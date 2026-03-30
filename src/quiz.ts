@@ -249,7 +249,18 @@ export async function generateQuiz(
       break;
     }
     case "heavy-rotation": {
-      rawData = await client.getHeavyRotation(10);
+      // Heavy rotation returns albums/playlists — fetch their tracks
+      const hrData = await client.getHeavyRotation(10) as { data?: Array<{ id: string; type: string }> };
+      const allTracks: unknown[] = [];
+      for (const item of hrData.data || []) {
+        try {
+          if (item.type === "albums") {
+            const tracks = await client.getAlbumTracks(item.id);
+            allTracks.push(...tracks.map(t => ({ id: t.id, type: "songs", attributes: t.attributes })));
+          }
+        } catch {}
+      }
+      rawData = { data: allTracks };
       title = "Heavy Rotation Quiz";
       description = "Based on your most played music";
       break;

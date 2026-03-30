@@ -250,6 +250,11 @@ app.patch("/api/quiz/:id", requireSession, (req, res) => {
     case "next-question": {
       const r = nextQuestion(id);
       session = r?.session ?? getQuizSession(id) ?? undefined;
+      // Auto-play the song for this question
+      if (r && isHomeConnected()) {
+        const q = r.question;
+        sendHomeCommand("search-and-play", { query: `${q.songName} ${q.artistName}` }).catch(() => {});
+      }
       break;
     }
     case "reveal": {
