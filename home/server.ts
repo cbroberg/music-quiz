@@ -12,7 +12,7 @@ import { promisify } from "node:util";
 import http from "node:http";
 
 const exec = promisify(execFile);
-const PORT = parseInt(process.env.HOME_PORT || "3001");
+const PORT = parseInt(process.env.HOME_PORT || "51470");
 const API_KEY = process.env.HOME_API_KEY;
 
 if (!API_KEY) {
