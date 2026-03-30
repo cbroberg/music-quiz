@@ -19,4 +19,4 @@ fi
 npx tsc -p tsconfig.json
 
 # Run
-HOME_PORT="${HOME_PORT:-51470}" node dist/server.js
+HOME_PORT="${HOME_PORT:-10516}" node dist/server.js
