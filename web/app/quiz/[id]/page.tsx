@@ -170,6 +170,13 @@ export default function QuizGame({ params }: { params: Promise<{ id: string }> }
           >
             Reveal answer (no points)
           </button>
+
+          <a
+            href="/quiz"
+            className="text-dimmer hover:text-apple-red text-sm transition-colors mt-4 block"
+          >
+            Stop Quiz
+          </a>
         </div>
       )}
 
