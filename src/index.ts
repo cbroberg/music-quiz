@@ -815,6 +815,10 @@ app.all("/mcp", mcpBearerAuth, async (req, res) => {
       res.status(400).json({ jsonrpc: "2.0", error: { code: -32000, message: "Session uses a different transport" }, id: null });
       return;
     }
+  } else if (sessionId && !transports.has(sessionId)) {
+    // Session was lost (server restart, idle cleanup). Return 404 so client re-initializes.
+    res.status(404).json({ jsonrpc: "2.0", error: { code: -32001, message: "Session not found. Please re-initialize." }, id: null });
+    return;
   } else if (!sessionId && req.method === "POST" && isInitializeRequest(req.body)) {
     transport = new StreamableHTTPServerTransport({
       sessionIdGenerator: () => randomUUID(),
