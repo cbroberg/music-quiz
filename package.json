@@ -1,0 +1,31 @@
+{
+  "name": "apple-music-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Apple Music – search catalog, create playlists, manage library",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch & node --watch dist/index.js"
+  },
+  "keywords": ["mcp", "apple-music", "musickit"],
+  "author": "Christian Broberg <cb@webhouse.dk>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cbroberg/apple-music-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.5.0",
+    "typescript": "^6.0.2"
+  }
+}

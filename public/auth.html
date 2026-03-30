@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Music MCP – Authorize</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 3rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    .icon { font-size: 3rem; margin-bottom: 1rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    p { color: #888; margin-bottom: 2rem; line-height: 1.5; }
+    button {
+      background: #fc3c44;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .status {
+      margin-top: 1.5rem;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .status.success { display: block; background: #1a3a1a; color: #4ade80; }
+    .status.error { display: block; background: #3a1a1a; color: #f87171; }
+    .status.info { display: block; background: #1a2a3a; color: #60a5fa; }
+    .footer { margin-top: 2rem; color: #555; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🎵</div>
+    <h1>Apple Music MCP</h1>
+    <p>Sign in with your Apple Music account to enable playlist creation from Claude.</p>
+
+    <button id="auth-btn" disabled>Loading MusicKit…</button>
+
+    <div id="status" class="status"></div>
+  </div>
+
+  <div class="footer">music.broberg.dk · WebHouse ApS</div>
+
+  <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js"
+          data-web-components
+          crossorigin></script>
+
+  <script>
+    const btn = document.getElementById('auth-btn');
+    const status = document.getElementById('status');
+
+    function setStatus(type, msg) {
+      status.className = `status ${type}`;
+      status.textContent = msg;
+    }
+
+    // Check if already authorized
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/status');
+        const data = await res.json();
+        if (data.authorized) {
+          setStatus('success', '✅ Already authorized! You can close this page.');
+        }
+      } catch {}
+    }
+
+    document.addEventListener('musickitloaded', async () => {
+      try {
+        // Fetch developer token from server
+        const tokenRes = await fetch('/api/developer-token');
+        const { token } = await tokenRes.json();
+
+        await MusicKit.configure({
+          developerToken: token,
+          app: {
+            name: 'Apple Music MCP',
+            build: '1.0.0',
+          },
+        });
+
+        btn.textContent = 'Sign in with Apple Music';
+        btn.disabled = false;
+
+        btn.addEventListener('click', async () => {
+          btn.disabled = true;
+          btn.textContent = 'Signing in…';
+          setStatus('info', 'Waiting for Apple authorization…');
+
+          try {
+            const music = MusicKit.getInstance();
+            const userToken = await music.authorize();
+
+            // Send token to server
+            const res = await fetch('/api/auth', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token: userToken }),
+            });
+
+            if (res.ok) {
+              setStatus('success', '✅ Authorized! Playlist creation is now enabled. You can close this page.');
+              btn.textContent = 'Authorized ✓';
+            } else {
+              throw new Error('Server rejected token');
+            }
+          } catch (err) {
+            setStatus('error', `Authorization failed: ${err.message}`);
+            btn.textContent = 'Try Again';
+            btn.disabled = false;
+          }
+        });
+
+        await checkAuth();
+      } catch (err) {
+        setStatus('error', `MusicKit init failed: ${err.message}. Check your Apple credentials.`);
+      }
+    });
+  </script>
+</body>
+</html>
