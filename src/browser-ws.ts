@@ -36,7 +36,9 @@ async function resolveArtwork(
       artworkCache = { key, url };
       return url;
     }
-  } catch {}
+  } catch (err) {
+    console.error("🎨 Artwork lookup failed:", err);
+  }
   return undefined;
 }
 
@@ -69,8 +71,10 @@ async function pollNowPlaying(musicClient: AppleMusicClient) {
     if (np.track && np.artist) {
       const trackKey = `${np.track}|${np.artist}`;
       if (trackKey !== lastTrackKey) {
+        console.log(`🎨 Resolving artwork for: ${np.track} — ${np.artist}`);
         artworkUrl = await resolveArtwork(np.track, np.artist, musicClient);
         lastTrackKey = trackKey;
+        console.log(`🎨 Artwork: ${artworkUrl || "not found"}`);
       } else {
         artworkUrl = artworkCache?.url;
       }
