@@ -34,7 +34,7 @@ const oauthProvider = new AppleMusicOAuthProvider();
 
 // ─── Express ────────────────────────────────────────────────
 const app = express();
-app.set("trust proxy", true); // Required behind Fly.io reverse proxy
+app.set("trust proxy", 1); // Trust first proxy (Fly.io)
 app.use(express.json());
 
 // OAuth 2.1 routes — must be mounted BEFORE static files and MCP endpoints.
