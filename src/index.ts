@@ -8,6 +8,7 @@ import { mcpAuthRouter } from "@modelcontextprotocol/sdk/server/auth/router.js";
 import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middleware/bearerAuth.js";
 import { randomUUID, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
+import jwt from "jsonwebtoken";
 import { createDeveloperToken } from "./token.js";
 import { AppleMusicClient } from "./apple-music.js";
 import { AppleMusicOAuthProvider } from "./oauth.js";
@@ -122,6 +123,19 @@ app.post("/api/auth", requireAdminKey, (req, res) => {
 
 // ─── GitHub OAuth (Express-side) ───────────────────────────
 
+// ─── Session auth (GitHub OAuth cookie) ────────────────────
+
+function requireSession(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const token = req.cookies?.["music-session"];
+  if (!token) { res.status(401).json({ error: "Unauthorized" }); return; }
+  try {
+    jwt.verify(token, process.env.SESSION_SECRET || "dev-session-secret-change-me!!!!!");
+    next();
+  } catch {
+    res.status(401).json({ error: "Unauthorized" });
+  }
+}
+
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID || "";
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || "";
 const GITHUB_ALLOWED_EMAIL = process.env.GITHUB_ALLOWED_EMAIL || "cb@webhouse.dk";
@@ -169,7 +183,6 @@ app.get("/api/auth/callback", async (req, res) => {
   const user = await userRes.json() as { name?: string; login?: string; avatar_url?: string };
 
   // Set a signed cookie as session
-  const jwt = (await import("jsonwebtoken")).default;
   const sessionToken = jwt.sign(
     { email: primaryEmail, name: user.name || user.login, avatarUrl: user.avatar_url },
     process.env.SESSION_SECRET || "dev-session-secret-change-me!!!!!",
@@ -191,7 +204,6 @@ app.get("/api/auth/session", (req, res) => {
   const token = req.cookies?.["music-session"];
   if (!token) { res.json({ isLoggedIn: false }); return; }
   try {
-    const jwt = require("jsonwebtoken") as typeof import("jsonwebtoken");
     const data = jwt.verify(token, process.env.SESSION_SECRET || "dev-session-secret-change-me!!!!!") as Record<string, unknown>;
     res.json({ isLoggedIn: true, name: data.name, avatarUrl: data.avatarUrl });
   } catch {
@@ -210,7 +222,7 @@ app.get("/api/quiz/sessions", (_req, res) => {
   res.json(listActiveSessions());
 });
 
-app.post("/api/quiz/create", requireAdminKey, async (req, res) => {
+app.post("/api/quiz/create", requireSession, async (req, res) => {
   try {
     const { type, source, count, timerDuration, decade, genre, artist } = req.body;
     const quiz = await generateQuiz(client, { type, source, count, genre, artist, decade });
@@ -227,7 +239,7 @@ app.get("/api/quiz/:id", (req, res) => {
   res.json(getPublicState(session));
 });
 
-app.patch("/api/quiz/:id", requireAdminKey, (req, res) => {
+app.patch("/api/quiz/:id", requireSession, (req, res) => {
   const id = String(req.params.id);
   const { action: act, name } = req.body;
 

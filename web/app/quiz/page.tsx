@@ -35,17 +35,15 @@ export default function QuizLobby() {
     setLoading(true);
     setError("");
     try {
-      const apiKey = localStorage.getItem("adminKey") || "";
-      const headers: Record<string, string> = { "Content-Type": "application/json", "X-Api-Key": apiKey };
-
       const res = await fetch("/api/quiz/create", {
         method: "POST",
-        headers,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type, source, count, timerDuration, decade: decade || undefined }),
       });
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || "Failed to create quiz. Are you logged in?");
+        if (data.error === "Unauthorized") throw new Error("Not logged in. Go to /login first.");
+        throw new Error(data.error || "Failed to create quiz");
       }
       const quiz = await res.json();
 
@@ -53,7 +51,7 @@ export default function QuizLobby() {
       for (const name of participants) {
         await fetch(`/api/quiz/${quiz.id}`, {
           method: "PATCH",
-          headers,
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "add-participant", name }),
         });
       }

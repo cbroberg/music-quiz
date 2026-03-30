@@ -78,10 +78,9 @@ export default function QuizGame({ params }: { params: Promise<{ id: string }> }
   }, [fetchState]);
 
   async function action(body: Record<string, unknown>) {
-    const apiKey = localStorage.getItem("adminKey") || "";
     const res = await fetch(`/api/quiz/${id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json", "X-Api-Key": apiKey },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
     if (res.ok) setState(await res.json());
