@@ -12,7 +12,7 @@ A Model Context Protocol (MCP) server for Apple Music with remote playback contr
 
 ## Features
 
-### 32 Tools
+### 33 Tools
 
 #### Catalog Tools (8 — no auth required)
 
@@ -43,6 +43,20 @@ A Model Context Protocol (MCP) server for Apple Music with remote playback contr
 | `recommendations` | Personalized music recommendations |
 | `replay` | Apple Music Replay — your top songs/artists/albums for the year |
 | `auth_status` | Check auth status and home controller connection |
+
+#### Quiz Tool (1)
+
+| Tool | Description |
+|------|-------------|
+| `music_quiz` | Generate a music quiz with questions, song IDs, answers, and hints |
+
+**Quiz types:** guess-the-artist, guess-the-song, guess-the-album, guess-the-year, intro-quiz, mixed
+
+**Sources:** your recently played, heavy rotation, library, charts, or a specific artist's catalog
+
+**Filters:** by decade (e.g. "1980" for 80s), genre, or artist
+
+Claude orchestrates the game — plays each song, asks the question, gives hints if you're stuck, keeps score, and announces the winner. Take your Mac to a party, connect to a speaker via AirPlay, and run a quiz from your phone.
 
 #### Playback & AirPlay Tools (12 — home controller required)
 
@@ -241,6 +255,12 @@ From Claude (iPhone or desktop):
 > "Search for Mew and show me their full discography"
 
 > "Next track" / "Pause" / "Shuffle on"
+
+> "Start a music quiz! 5 questions, intro-quiz, based on my recently played"
+
+> "80s rock quiz — 10 questions, play on Stue Apple TV"
+
+> "Make a quiz about The Police from their full catalog"
 
 ## License
 
