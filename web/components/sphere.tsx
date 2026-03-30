@@ -30,12 +30,9 @@ export function Sphere({ artworkUrl, isPlaying }: SphereProps) {
             ? undefined
             : "radial-gradient(circle at 40% 35%, rgba(252,60,68,0.6) 0%, rgba(252,60,68,0.15) 50%, rgba(252,60,68,0.03) 80%, transparent 100%)",
           animation: isPlaying
-            ? "spherePulse 6s ease-in-out infinite alternate"
-            : "none",
+            ? "spherePulse 4s ease-in-out infinite, sphereBreath 3s ease-in-out infinite"
+            : "spherePulse 8s ease-in-out infinite",
           transform: "translate(-50%, -50%)",
-          boxShadow: isPlaying
-            ? "0 0 120px rgba(252,60,68,0.2), 0 0 60px rgba(252,60,68,0.1)"
-            : "0 0 60px rgba(252,60,68,0.1)",
         }}
       >
         {artworkUrl && (

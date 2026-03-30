@@ -75,8 +75,7 @@ export function attachHomeWebSocket(server: Server): void {
   server.on("upgrade", (req: IncomingMessage, socket, head) => {
     const { pathname, query } = parse(req.url || "", true);
     if (pathname !== "/home-ws") {
-      // Not for us — let other handlers deal with it (or destroy)
-      socket.destroy();
+      // Not for us — let other upgrade handlers deal with it
       return;
     }
 
