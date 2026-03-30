@@ -15,6 +15,12 @@ export default function Home() {
       />
       <NowPlaying data={nowPlaying} />
 
+      {/* Nav */}
+      <nav className="fixed top-0 right-0 flex gap-4 p-4 text-sm">
+        <a href="/quiz" className="text-muted hover:text-foreground transition-colors">Quiz</a>
+        <a href="/login" className="text-muted hover:text-foreground transition-colors">Login</a>
+      </nav>
+
       {!nowPlaying.connected && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-card border border-border rounded-lg px-4 py-2 text-sm text-muted">
           Connecting...

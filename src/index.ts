@@ -11,6 +11,10 @@ import { createDeveloperToken } from "./token.js";
 import { AppleMusicClient } from "./apple-music.js";
 import { AppleMusicOAuthProvider } from "./oauth.js";
 import { generateQuiz } from "./quiz.js";
+import {
+  createQuizSession, getPublicState, addParticipant, removeParticipant,
+  getQuizSession, nextQuestion, revealAnswer, awardPoint, showScores, listActiveSessions,
+} from "./quiz-manager.js";
 import { attachHomeWebSocket, sendHomeCommand, isHomeConnected } from "./home-ws.js";
 import { loadMusicUserToken, saveMusicUserToken } from "./token-store.js";
 import { fileURLToPath } from "url";
@@ -112,6 +116,55 @@ app.post("/api/auth", requireAdminKey, (req, res) => {
   saveMusicUserToken(token);
   console.log("✅ Music User Token received and stored");
   res.json({ success: true });
+});
+
+// ─── Quiz API (Express-side, used by Next.js frontend) ─────
+
+app.get("/api/quiz/sessions", (_req, res) => {
+  res.json(listActiveSessions());
+});
+
+app.post("/api/quiz/create", requireAdminKey, async (req, res) => {
+  try {
+    const { type, source, count, timerDuration, decade, genre, artist } = req.body;
+    const quiz = await generateQuiz(client, { type, source, count, genre, artist, decade });
+    const session = createQuizSession(quiz, timerDuration || 30);
+    res.json(getPublicState(session));
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
+app.get("/api/quiz/:id", (req, res) => {
+  const session = getQuizSession(String(req.params.id));
+  if (!session) { res.status(404).json({ error: "Not found" }); return; }
+  res.json(getPublicState(session));
+});
+
+app.patch("/api/quiz/:id", requireAdminKey, (req, res) => {
+  const id = String(req.params.id);
+  const { action: act, name } = req.body;
+
+  let session;
+  switch (act) {
+    case "add-participant": session = addParticipant(id, String(name)); break;
+    case "remove-participant": session = removeParticipant(id, String(name)); break;
+    case "next-question": {
+      const r = nextQuestion(id);
+      session = r?.session ?? getQuizSession(id) ?? undefined;
+      break;
+    }
+    case "reveal": {
+      const r = revealAnswer(id);
+      session = r?.session;
+      break;
+    }
+    case "award-point": session = awardPoint(id, String(name)); break;
+    case "scores": session = showScores(id); break;
+    default: res.status(400).json({ error: "Unknown action" }); return;
+  }
+  if (!session) { res.status(404).json({ error: "Quiz not found" }); return; }
+  res.json(getPublicState(session));
 });
 
 // Check auth status
@@ -641,6 +694,55 @@ Give hints if the player is stuck. Keep score and announce the winner at the end
     }
   );
 
+  // Tool: create_visual_quiz
+  server.tool(
+    "create_visual_quiz",
+    `Create a visual music quiz with a shareable URL for display on a TV/monitor.
+Opens a quiz lobby where participants are added, then the game starts with visual questions, countdown timer, and scoreboard.
+Returns the quiz URL to open on a big screen. Control the quiz from this chat or from the web UI.`,
+    {
+      type: z.enum(["guess-the-artist", "guess-the-song", "guess-the-album", "guess-the-year", "intro-quiz", "mixed"])
+        .optional().describe("Quiz type. Default: mixed"),
+      source: z.enum(["recently-played", "heavy-rotation", "library", "charts", "catalog-artist"])
+        .optional().describe("Music source. Default: recently-played"),
+      count: z.number().min(3).max(25).optional().describe("Number of questions. Default: 10"),
+      timer_duration: z.number().min(10).max(120).optional().describe("Seconds per question. Default: 30"),
+      participants: z.array(z.string()).optional().describe("Player names to add to the quiz"),
+      decade: z.string().optional().describe("Filter by decade, e.g. '1980'"),
+    },
+    async ({ type, source, count, timer_duration, participants, decade }) => {
+      if (source === "recently-played" || source === "heavy-rotation" || source === "library") {
+        if (!client.hasUserToken()) {
+          return { content: [{ type: "text", text: "❌ Not authorized. Visit /auth first." }] };
+        }
+      }
+      const quiz = await generateQuiz(client, { type, source, count, decade });
+      const session = createQuizSession(quiz, timer_duration || 30);
+
+      if (participants) {
+        for (const name of participants) {
+          addParticipant(session.id, name);
+        }
+      }
+
+      const url = `${SERVER_URL}/quiz/${session.id}`;
+      const state = getPublicState(session);
+
+      return {
+        content: [{
+          type: "text",
+          text: `🎵 Visual Quiz created!\n\n` +
+            `**${quiz.title}** — ${quiz.questionCount} questions\n` +
+            `Open on TV/monitor: ${url}\n\n` +
+            `Players: ${state.participants.map((p: { name: string }) => p.name).join(", ") || "none yet"}\n` +
+            `Timer: ${timer_duration || 30}s per question\n\n` +
+            `Quiz ID: ${session.id}\n` +
+            JSON.stringify(state, null, 2),
+        }],
+      };
+    }
+  );
+
   // ═══════════════════════════════════════════════════════════
   // PLAYBACK TOOLS (requires home controller)
   // ═══════════════════════════════════════════════════════════
@@ -934,7 +1036,7 @@ export function logStartup() {
    Health:     ${SERVER_URL}/health
    User token: ${client.hasUserToken() ? "✅" : "❌ visit /auth"}
    Home ctrl:  WebSocket /home-ws (agent connects here)
-   Tools:      33 (8 catalog + 12 library + 1 quiz + 12 playback)
+   Tools:      34 (8 catalog + 12 library + 2 quiz + 12 playback)
 `);
 }
 
