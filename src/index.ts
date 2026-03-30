@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
@@ -43,6 +44,7 @@ const oauthProvider = new AppleMusicOAuthProvider();
 const app = express();
 app.set("trust proxy", 1); // Trust first proxy (Fly.io)
 app.use(express.json());
+app.use(cookieParser());
 
 // OAuth 2.1 routes — must be mounted BEFORE static files and MCP endpoints.
 // Installs: /.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource,
@@ -116,6 +118,90 @@ app.post("/api/auth", requireAdminKey, (req, res) => {
   saveMusicUserToken(token);
   console.log("✅ Music User Token received and stored");
   res.json({ success: true });
+});
+
+// ─── GitHub OAuth (Express-side) ───────────────────────────
+
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID || "";
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET || "";
+const GITHUB_ALLOWED_EMAIL = process.env.GITHUB_ALLOWED_EMAIL || "cb@webhouse.dk";
+
+app.get("/api/auth/github", (_req, res) => {
+  if (!GITHUB_CLIENT_ID) { res.status(500).send("GitHub OAuth not configured"); return; }
+  const params = new URLSearchParams({
+    client_id: GITHUB_CLIENT_ID,
+    redirect_uri: `${SERVER_URL}/api/auth/callback`,
+    scope: "user:email",
+    state: randomUUID(),
+  });
+  res.redirect(`https://github.com/login/oauth/authorize?${params}`);
+});
+
+app.get("/api/auth/callback", async (req, res) => {
+  const code = req.query.code as string;
+  if (!code) { res.status(400).send("Missing code"); return; }
+
+  // Exchange code for token
+  const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify({ client_id: GITHUB_CLIENT_ID, client_secret: GITHUB_CLIENT_SECRET, code }),
+  });
+  const tokenData = await tokenRes.json() as { access_token?: string };
+  if (!tokenData.access_token) { res.redirect("/login?error=token_failed"); return; }
+
+  // Get user emails
+  const emailsRes = await fetch("https://api.github.com/user/emails", {
+    headers: { Authorization: `Bearer ${tokenData.access_token}`, Accept: "application/vnd.github+json" },
+  });
+  const emails = await emailsRes.json() as Array<{ email: string; primary: boolean }>;
+  const primaryEmail = emails.find((e) => e.primary)?.email || emails[0]?.email;
+
+  if (!primaryEmail || primaryEmail.toLowerCase() !== GITHUB_ALLOWED_EMAIL.toLowerCase()) {
+    res.redirect("/login?error=unauthorized");
+    return;
+  }
+
+  // Get user profile
+  const userRes = await fetch("https://api.github.com/user", {
+    headers: { Authorization: `Bearer ${tokenData.access_token}` },
+  });
+  const user = await userRes.json() as { name?: string; login?: string; avatar_url?: string };
+
+  // Set a signed cookie as session
+  const jwt = (await import("jsonwebtoken")).default;
+  const sessionToken = jwt.sign(
+    { email: primaryEmail, name: user.name || user.login, avatarUrl: user.avatar_url },
+    process.env.SESSION_SECRET || "dev-session-secret-change-me!!!!!",
+    { expiresIn: "30d" },
+  );
+
+  res.cookie("music-session", sessionToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    path: "/",
+  });
+
+  res.redirect("/");
+});
+
+app.get("/api/auth/session", (req, res) => {
+  const token = req.cookies?.["music-session"];
+  if (!token) { res.json({ isLoggedIn: false }); return; }
+  try {
+    const jwt = require("jsonwebtoken") as typeof import("jsonwebtoken");
+    const data = jwt.verify(token, process.env.SESSION_SECRET || "dev-session-secret-change-me!!!!!") as Record<string, unknown>;
+    res.json({ isLoggedIn: true, name: data.name, avatarUrl: data.avatarUrl });
+  } catch {
+    res.json({ isLoggedIn: false });
+  }
+});
+
+app.post("/api/auth/logout", (_req, res) => {
+  res.clearCookie("music-session");
+  res.json({ ok: true });
 });
 
 // ─── Quiz API (Express-side, used by Next.js frontend) ─────

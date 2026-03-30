@@ -22,17 +22,15 @@ const EXPRESS_PATHS = new Set([
   "/authorize", "/token", "/register", "/revoke",
   "/auth",
 ]);
-// Express owns these /api/ sub-paths (admin endpoints + quiz API)
+// Express owns these /api/ sub-paths
 const EXPRESS_API_PREFIXES = [
-  "/api/developer-token", "/api/auth/status",
-  "/api/quiz/",
+  "/api/developer-token", "/api/auth",
+  "/api/quiz",
 ];
-const EXPRESS_API_EXACT = new Set(["/api/auth"]);
 const EXPRESS_PREFIXES = ["/.well-known/"];
 
 function isExpressRoute(pathname) {
   if (EXPRESS_PATHS.has(pathname)) return true;
-  if (EXPRESS_API_EXACT.has(pathname)) return true;
   if (EXPRESS_API_PREFIXES.some((p) => pathname.startsWith(p))) return true;
   return EXPRESS_PREFIXES.some((p) => pathname.startsWith(p));
 }
