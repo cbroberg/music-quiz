@@ -6,7 +6,7 @@ export async function GET() {
 
   const params = new URLSearchParams({
     client_id: clientId,
-    redirect_uri: `${process.env.SERVER_URL || "http://localhost:3000"}/api/auth/callback`,
+    redirect_uri: `${process.env.SERVER_URL || process.env.NEXT_PUBLIC_URL || "http://localhost:3000"}/api/auth/callback`,
     scope: "user:email",
     state: crypto.randomUUID(),
   });
