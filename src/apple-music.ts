@@ -331,6 +331,84 @@ export class AppleMusicClient {
     );
   }
 
+  // ─── Recently Played Tracks (track-level detail) ─────────
+
+  async getRecentlyPlayedTracks(limit: number = 10): Promise<unknown> {
+    // API max per request is 10, max total is 50
+    if (limit <= 10) {
+      return this.request(
+        `/me/recent/played/tracks?limit=${limit}`,
+        { requireUserToken: true }
+      );
+    }
+    // Paginate to get up to 50
+    const all: unknown[] = [];
+    for (let offset = 0; offset < Math.min(limit, 50); offset += 10) {
+      const batch = Math.min(10, limit - offset);
+      const data = await this.request(
+        `/me/recent/played/tracks?limit=${batch}&offset=${offset}`,
+        { requireUserToken: true }
+      ) as { data?: unknown[] };
+      if (data.data) all.push(...data.data);
+      if (!data.data || data.data.length < batch) break;
+    }
+    return { data: all };
+  }
+
+  // ─── Apple Music Replay (annual top songs/artists) ──────
+
+  async getReplay(): Promise<unknown> {
+    return this.request("/me/replay", { requireUserToken: true });
+  }
+
+  // ─── Get Library Playlist Tracks ────────────────────────
+
+  async getPlaylistTracks(playlistId: string): Promise<unknown> {
+    const tracks: unknown[] = [];
+    let url: string | null =
+      `/me/library/playlists/${playlistId}/tracks?limit=100`;
+
+    while (url) {
+      const data = (await this.request(url, {
+        requireUserToken: true,
+      })) as { data: unknown[]; next?: string };
+      tracks.push(...data.data);
+      url = data.next || null;
+    }
+
+    return { data: tracks };
+  }
+
+  // ─── Add to Library ─────────────────────────────────────
+
+  async addToLibrary(ids: { songs?: string[]; albums?: string[]; playlists?: string[] }): Promise<unknown> {
+    const params = new URLSearchParams();
+    if (ids.songs?.length) params.set("ids[songs]", ids.songs.join(","));
+    if (ids.albums?.length) params.set("ids[albums]", ids.albums.join(","));
+    if (ids.playlists?.length) params.set("ids[playlists]", ids.playlists.join(","));
+
+    return this.request(`/me/library?${params}`, {
+      method: "POST",
+      requireUserToken: true,
+    });
+  }
+
+  // ─── Get Song Details (catalog) ─────────────────────────
+
+  async getSongDetails(songIds: string[]): Promise<unknown> {
+    return this.request(
+      `/catalog/${this.storefront}/songs?ids=${songIds.join(",")}`
+    );
+  }
+
+  // ─── Get Album Details (catalog) ────────────────────────
+
+  async getAlbumDetails(albumId: string): Promise<unknown> {
+    return this.request(
+      `/catalog/${this.storefront}/albums/${albumId}?include=tracks`
+    );
+  }
+
   // ─── Check if user token is available ────────────────────
 
   hasUserToken(): boolean {

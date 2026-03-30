@@ -459,6 +459,117 @@ function createMcpServer(): McpServer {
     }
   );
 
+  // Tool: recently_played_tracks
+  server.tool(
+    "recently_played_tracks",
+    "Get the user's recently played tracks with full song details (up to 50). More detailed than recently_played which returns albums/playlists too.",
+    {
+      limit: z
+        .number()
+        .min(1)
+        .max(50)
+        .optional()
+        .describe("Number of tracks. Default: 10, max: 50"),
+    },
+    async ({ limit }) => {
+      if (!client.hasUserToken()) {
+        return {
+          content: [{ type: "text", text: "❌ Not authorized. Visit /auth first." }],
+        };
+      }
+      const data = await client.getRecentlyPlayedTracks(limit || 10);
+      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    }
+  );
+
+  // Tool: replay
+  server.tool(
+    "replay",
+    "Get the user's Apple Music Replay data — their top songs, artists, and albums for the year, ranked by play count. This is the best way to find a user's all-time favorites.",
+    {},
+    async () => {
+      if (!client.hasUserToken()) {
+        return {
+          content: [{ type: "text", text: "❌ Not authorized. Visit /auth first." }],
+        };
+      }
+      const data = await client.getReplay();
+      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    }
+  );
+
+  // Tool: get_playlist_tracks
+  server.tool(
+    "get_playlist_tracks",
+    "Get all tracks in a user's library playlist. Use list_playlists first to find the playlist ID.",
+    {
+      playlist_id: z.string().describe("Library playlist ID (from list_playlists)"),
+    },
+    async ({ playlist_id }) => {
+      if (!client.hasUserToken()) {
+        return {
+          content: [{ type: "text", text: "❌ Not authorized. Visit /auth first." }],
+        };
+      }
+      const data = await client.getPlaylistTracks(playlist_id);
+      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    }
+  );
+
+  // Tool: add_to_library
+  server.tool(
+    "add_to_library",
+    "Add songs, albums, or playlists from the Apple Music catalog to the user's personal library.",
+    {
+      song_ids: z.array(z.string()).optional().describe("Catalog song IDs to add"),
+      album_ids: z.array(z.string()).optional().describe("Catalog album IDs to add"),
+      playlist_ids: z.array(z.string()).optional().describe("Catalog playlist IDs to add"),
+    },
+    async ({ song_ids, album_ids, playlist_ids }) => {
+      if (!client.hasUserToken()) {
+        return {
+          content: [{ type: "text", text: "❌ Not authorized. Visit /auth first." }],
+        };
+      }
+      if (!song_ids?.length && !album_ids?.length && !playlist_ids?.length) {
+        return {
+          content: [{ type: "text", text: "❌ Provide at least one song_ids, album_ids, or playlist_ids." }],
+        };
+      }
+      await client.addToLibrary({ songs: song_ids, albums: album_ids, playlists: playlist_ids });
+      const count = (song_ids?.length || 0) + (album_ids?.length || 0) + (playlist_ids?.length || 0);
+      return {
+        content: [{ type: "text", text: `✅ Added ${count} item(s) to library.` }],
+      };
+    }
+  );
+
+  // Tool: get_song_details
+  server.tool(
+    "get_song_details",
+    "Get full details for one or more songs from the Apple Music catalog by their IDs, including artwork, preview URL, and release date.",
+    {
+      song_ids: z.array(z.string()).min(1).max(50).describe("Catalog song IDs"),
+    },
+    async ({ song_ids }) => {
+      const data = await client.getSongDetails(song_ids);
+      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    }
+  );
+
+  // Tool: get_album_details
+  server.tool(
+    "get_album_details",
+    "Get full details for an album from the Apple Music catalog, including all tracks, artwork, editorial notes, and release info.",
+    {
+      album_id: z.string().describe("Catalog album ID"),
+    },
+    async ({ album_id }) => {
+      const data = await client.getAlbumDetails(album_id);
+      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+    }
+  );
+
   // Tool: auth_status
   server.tool(
     "auth_status",
@@ -570,6 +681,6 @@ app.listen(PORT, () => {
    Apple Auth: ${SERVER_URL}/auth
    Health:     ${SERVER_URL}/health
    User token: ${client.hasUserToken() ? "✅" : "❌ visit /auth"}
-   Tools:      14 (6 catalog + 8 library/personal)
+   Tools:      20 (8 catalog + 12 library/personal)
 `);
 });
