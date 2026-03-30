@@ -249,7 +249,7 @@ export async function generateQuiz(
       break;
     }
     case "heavy-rotation": {
-      rawData = await client.getHeavyRotation(25);
+      rawData = await client.getHeavyRotation(10);
       title = "Heavy Rotation Quiz";
       description = "Based on your most played music";
       break;
