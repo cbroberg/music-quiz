@@ -92,7 +92,7 @@
       } catch {}
     }
 
-    document.addEventListener('musickitloaded', async () => {
+    async function initMusicKit() {
       try {
         // Fetch developer token from server
         const tokenRes = await fetch('/api/developer-token');
@@ -142,7 +142,17 @@
       } catch (err) {
         setStatus('error', `MusicKit init failed: ${err.message}. Check your Apple credentials.`);
       }
-    });
+    }
+
+    // MusicKit v3: try both event and polling
+    document.addEventListener('musickitloaded', () => initMusicKit());
+    // Fallback: poll for MusicKit availability
+    const poll = setInterval(() => {
+      if (typeof MusicKit !== 'undefined' && MusicKit.configure) {
+        clearInterval(poll);
+        initMusicKit();
+      }
+    }, 500);
   </script>
 </body>
 </html>

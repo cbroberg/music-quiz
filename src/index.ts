@@ -1,9 +1,15 @@
 import express from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
+import { mcpAuthRouter } from "@modelcontextprotocol/sdk/server/auth/router.js";
+import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middleware/bearerAuth.js";
+import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import { createDeveloperToken } from "./token.js";
 import { AppleMusicClient } from "./apple-music.js";
+import { AppleMusicOAuthProvider } from "./oauth.js";
 import { fileURLToPath } from "url";
 import path from "path";
 import dotenv from "dotenv";
@@ -13,6 +19,7 @@ dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = parseInt(process.env.PORT || "3000");
 const STOREFRONT = process.env.APPLE_STOREFRONT || "dk";
+const SERVER_URL = process.env.SERVER_URL || `http://localhost:${PORT}`;
 
 // ─── Music User Token store ────────────────────────────────
 // Persisted in memory; re-authorize via /auth when it expires.
@@ -20,10 +27,33 @@ let musicUserToken: string | null = process.env.APPLE_MUSIC_USER_TOKEN || null;
 
 const client = new AppleMusicClient(STOREFRONT, () => musicUserToken);
 
+// ─── OAuth 2.1 Provider ────────────────────────────────────
+const oauthProvider = new AppleMusicOAuthProvider();
+
 // ─── Express ────────────────────────────────────────────────
 const app = express();
+app.set("trust proxy", true); // Required behind Fly.io reverse proxy
 app.use(express.json());
+
+// OAuth 2.1 routes — must be mounted BEFORE static files and MCP endpoints.
+// Installs: /.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource,
+//           /authorize, /token, /register, /revoke
+app.use(
+  mcpAuthRouter({
+    provider: oauthProvider,
+    issuerUrl: new URL(SERVER_URL),
+    scopesSupported: ["mcp:tools"],
+    resourceName: "Apple Music MCP",
+    resourceServerUrl: new URL(SERVER_URL),
+  }),
+);
+
 app.use(express.static(path.join(__dirname, "..", "public")));
+
+// Serve /auth → auth.html (Apple Music user token flow)
+app.get("/auth", (_req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "auth.html"));
+});
 
 // Health check
 app.get("/health", (_req, res) => {
@@ -451,10 +481,54 @@ function createMcpServer(): McpServer {
   return server;
 }
 
-// ─── SSE Transport for MCP ──────────────────────────────────
-// Each client connection gets its own transport instance.
+// ─── MCP Transports ────────────────────────────────────────
+// Supports both Streamable HTTP (/mcp) and legacy SSE (/sse).
 
-const transports = new Map<string, SSEServerTransport>();
+const transports = new Map<string, SSEServerTransport | StreamableHTTPServerTransport>();
+
+// Bearer auth middleware for /mcp — claude.ai sends OAuth tokens here.
+const mcpBearerAuth = requireBearerAuth({
+  verifier: oauthProvider,
+  resourceMetadataUrl: new URL("/.well-known/oauth-protected-resource", SERVER_URL).href,
+});
+
+// --- Streamable HTTP (protocol version 2025-11-25) ---
+
+app.all("/mcp", mcpBearerAuth, async (req, res) => {
+  console.log(`🔌 MCP ${req.method} ${req.path}`, req.method === "POST" ? JSON.stringify(req.body?.method || req.body) : "");
+  const sessionId = req.headers["mcp-session-id"] as string | undefined;
+  let transport: StreamableHTTPServerTransport;
+
+  if (sessionId && transports.has(sessionId)) {
+    const existing = transports.get(sessionId)!;
+    if (existing instanceof StreamableHTTPServerTransport) {
+      transport = existing;
+    } else {
+      res.status(400).json({ jsonrpc: "2.0", error: { code: -32000, message: "Session uses a different transport" }, id: null });
+      return;
+    }
+  } else if (!sessionId && req.method === "POST" && isInitializeRequest(req.body)) {
+    transport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: () => randomUUID(),
+      onsessioninitialized: (sid) => {
+        transports.set(sid, transport);
+      },
+    });
+    transport.onclose = () => {
+      const sid = transport.sessionId;
+      if (sid) transports.delete(sid);
+    };
+    const server = createMcpServer();
+    await server.connect(transport);
+  } else {
+    res.status(400).json({ jsonrpc: "2.0", error: { code: -32000, message: "Bad Request: No valid session ID" }, id: null });
+    return;
+  }
+
+  await transport.handleRequest(req, res, req.body);
+});
+
+// --- Legacy SSE (protocol version 2024-11-05) ---
 
 app.get("/sse", async (req, res) => {
   console.log("📡 New MCP SSE connection");
@@ -475,7 +549,7 @@ app.get("/sse", async (req, res) => {
 app.post("/message", async (req, res) => {
   const sessionId = req.query.sessionId as string;
   const transport = transports.get(sessionId);
-  if (!transport) {
+  if (!transport || !(transport instanceof SSEServerTransport)) {
     res.status(400).json({ error: "Unknown session" });
     return;
   }
@@ -486,13 +560,16 @@ app.post("/message", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`
-🎵 Apple Music MCP Server v1.1.0
+🎵 Apple Music MCP Server v1.2.0
    Port:       ${PORT}
+   Server URL: ${SERVER_URL}
    Storefront: ${STOREFRONT}
-   Auth:       http://localhost:${PORT}/auth
-   MCP SSE:    http://localhost:${PORT}/sse
-   Health:     http://localhost:${PORT}/health
+   OAuth 2.1:  ${SERVER_URL}/.well-known/oauth-authorization-server
+   MCP:        ${SERVER_URL}/mcp (Streamable HTTP + OAuth)
+   MCP SSE:    ${SERVER_URL}/sse (legacy, no auth)
+   Apple Auth: ${SERVER_URL}/auth
+   Health:     ${SERVER_URL}/health
    User token: ${client.hasUserToken() ? "✅" : "❌ visit /auth"}
-   Tools:      13 (6 catalog + 7 library/personal)
+   Tools:      14 (6 catalog + 8 library/personal)
 `);
 });
