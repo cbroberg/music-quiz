@@ -7,52 +7,59 @@ interface SphereProps {
 
 export function Sphere({ artworkUrl, isPlaying }: SphereProps) {
   return (
-    <div className="relative w-[500px] h-[500px] max-w-[80vw] max-h-[80vw]">
-      {/* Outer glow */}
+    <div className="relative w-[700px] h-[700px] max-w-[90vw] max-h-[90vw]">
+      {/* Ambient glow — large, diffuse, fills the space */}
       <div
-        className="absolute top-1/2 left-1/2 w-[140%] h-[140%] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 w-[180%] h-[180%] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, rgba(252,60,68,0.08) 0%, transparent 70%)",
-          animation: isPlaying
-            ? "sphereGlowOuter 6s ease-in-out infinite alternate"
-            : "none",
+          background: "radial-gradient(circle, rgba(252,60,68,0.12) 0%, rgba(180,40,50,0.04) 40%, transparent 70%)",
+          animation: "sphereGlowOuter 8s ease-in-out infinite",
           transform: "translate(-50%, -50%)",
-          opacity: isPlaying ? undefined : 0.2,
         }}
       />
 
-      {/* Main sphere */}
+      {/* Core glow — warm, organic */}
       <div
-        className="absolute top-1/2 left-1/2 w-full h-full rounded-full overflow-hidden"
+        className="absolute top-1/2 left-1/2 w-full h-full rounded-full"
         style={{
-          background: artworkUrl
-            ? undefined
-            : "radial-gradient(circle at 40% 35%, rgba(252,60,68,0.6) 0%, rgba(252,60,68,0.15) 50%, rgba(252,60,68,0.03) 80%, transparent 100%)",
+          background: "radial-gradient(circle at 45% 40%, rgba(252,60,68,0.35) 0%, rgba(200,45,55,0.12) 35%, rgba(150,30,40,0.04) 60%, transparent 80%)",
           animation: isPlaying
-            ? "spherePulse 4s ease-in-out infinite, sphereBreath 3s ease-in-out infinite"
+            ? "spherePulse 4s ease-in-out infinite"
             : "spherePulse 8s ease-in-out infinite",
           transform: "translate(-50%, -50%)",
         }}
-      >
-        {artworkUrl && (
+      />
+
+      {/* Album artwork (shown inside the glow when playing) */}
+      {artworkUrl && (
+        <div
+          className="absolute top-1/2 left-1/2 w-[55%] h-[55%] rounded-full overflow-hidden"
+          style={{
+            transform: "translate(-50%, -50%)",
+            animation: isPlaying ? "sphereBreath 3s ease-in-out infinite" : "none",
+          }}
+        >
           <img
             src={artworkUrl}
             alt="Album artwork"
-            className="w-full h-full object-cover rounded-full"
+            className="w-full h-full object-cover"
+            style={{ filter: "brightness(0.9) saturate(1.15)" }}
+          />
+          {/* Soft edge blend into glow */}
+          <div
+            className="absolute inset-0 rounded-full"
             style={{
-              filter: "brightness(0.85) saturate(1.1)",
+              boxShadow: "inset 0 0 40px 20px rgba(13,13,13,0.6)",
             }}
           />
-        )}
-      </div>
+        </div>
+      )}
 
-      {/* Inner highlight */}
+      {/* Warm highlight spot */}
       <div
-        className="absolute top-1/2 left-1/2 w-full h-full rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 w-[60%] h-[60%] rounded-full pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle at 35% 30%, rgba(255,255,255,0.08) 0%, transparent 50%)",
+          background: "radial-gradient(circle at 35% 30%, rgba(255,200,180,0.06) 0%, transparent 50%)",
           transform: "translate(-50%, -50%)",
         }}
       />
