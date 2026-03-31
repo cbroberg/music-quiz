@@ -133,6 +133,8 @@ async function handleCommand(cmd: Command): Promise<unknown> {
     case "play-ids": {
       const ids = cmd.song_ids as string[];
       if (!ids?.length) return { error: "song_ids required" };
+      // Stop current playback first, then open catalog song via URL scheme
+      await osaMusic("stop").catch(() => {});
       await exec("open", [`music://music.apple.com/dk/song/${ids[0]}`]);
       return { action: "play-ids", count: ids.length, first: ids[0] };
     }

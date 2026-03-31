@@ -253,8 +253,9 @@ app.patch("/api/quiz/:id", requireSession, (req, res) => {
       // Auto-play the song for this question
       if (r && isHomeConnected()) {
         const q = r.question;
-        console.log(`🎵 Quiz: playing "${q.songName}" by ${q.artistName}`);
-        sendHomeCommand("search-and-play", { query: `${q.songName} ${q.artistName}` })
+        console.log(`🎵 Quiz: playing "${q.songName}" by ${q.artistName} (id: ${q.songId})`);
+        // Use play-ids (catalog URL) — works even if song isn't in local library
+        sendHomeCommand("play-ids", { song_ids: [q.songId] })
           .then((result) => console.log("🎵 Quiz playback:", JSON.stringify(result)))
           .catch((err) => console.error("🎵 Quiz playback failed:", err));
       } else {
