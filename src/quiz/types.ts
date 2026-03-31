@@ -48,13 +48,16 @@ export interface PlayerAnswer {
 // ─── Quiz Config ──────────────────────────────────────────
 
 export interface QuizConfig {
-  questionCount: number;    // 5-20
+  questionCount: number;    // 5-25
   timeLimit: number;        // seconds per question (10-60)
   quizType: QuizType;
   source: string;
   genre?: string;
   decade?: string;
   answerMode: AnswerMode;
+  excludeRecentPlays?: boolean;
+  customTracks?: Array<{ id: string; name: string; artistName: string; albumName: string; releaseYear: string; artworkUrl?: string; previewUrl?: string }>;
+  customName?: string;
 }
 
 // ─── Quiz Question ────────────────────────────────────────

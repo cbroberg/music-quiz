@@ -86,11 +86,22 @@ function createSession() {
     timeLimit: parseInt(document.getElementById('cfg-timer').value) || 30,
     decade: document.getElementById('cfg-decade').value || undefined,
     answerMode: document.getElementById('cfg-answer-mode').value,
+    excludeRecentPlays: document.getElementById('cfg-exclude-recent').checked,
   };
 
   timeLimit = config.timeLimit;
   questionCount = config.questionCount;
   showArtworkDuringQuestion = document.getElementById('cfg-show-artwork').checked;
+
+  // Check for custom playlist from builder
+  const customPlaylist = sessionStorage.getItem('customQuizPlaylist');
+  if (customPlaylist) {
+    config.source = 'custom';
+    config.customTracks = JSON.parse(customPlaylist);
+    config.customName = sessionStorage.getItem('customQuizName') || 'Custom Quiz';
+    sessionStorage.removeItem('customQuizPlaylist');
+    sessionStorage.removeItem('customQuizName');
+  }
 
   document.getElementById('btn-create').disabled = true;
   document.getElementById('btn-create').textContent = 'Creating quiz...';
@@ -619,6 +630,77 @@ function playTick() {
   osc.stop(audioCtx.currentTime + 0.15);
 }
 
+// ─── Load Custom Quiz ─────────────────────────────────────
+
+async function loadCustomQuiz() {
+  const modal = document.getElementById('load-quiz-modal');
+  const list = document.getElementById('host-saved-list');
+  modal.style.display = 'flex';
+
+  try {
+    const res = await fetch('/quiz/api/builder/playlists');
+    const playlists = await res.json();
+
+    if (playlists.length === 0) {
+      list.innerHTML = '<div style="padding:40px;text-align:center;color:var(--dimmer)">No saved quizzes yet.<br><a href="/quiz/builder" style="color:var(--red);margin-top:8px;display:inline-block">Create one in Quiz Builder</a></div>';
+      return;
+    }
+
+    list.innerHTML = '';
+    for (const pl of playlists) {
+      const item = document.createElement('div');
+      item.style.cssText = 'display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;cursor:pointer;transition:background 0.15s';
+      item.onmouseover = () => item.style.background = 'rgba(255,255,255,0.04)';
+      item.onmouseout = () => item.style.background = '';
+      item.innerHTML = `
+        <div style="flex:1">
+          <div style="font-weight:600">${pl.name}</div>
+          <div style="font-size:12px;color:var(--dimmer)">${pl.tracks.length} tracks · ${new Date(pl.updatedAt).toLocaleDateString('da-DK')}</div>
+        </div>
+      `;
+      item.addEventListener('click', () => {
+        sessionStorage.setItem('customQuizPlaylist', JSON.stringify(pl.tracks));
+        sessionStorage.setItem('customQuizName', pl.name);
+        window.location.href = '/quiz/host?source=custom';
+      });
+      list.appendChild(item);
+    }
+  } catch (err) {
+    list.innerHTML = `<div style="padding:40px;text-align:center;color:var(--dimmer)">Failed to load</div>`;
+  }
+}
+
+// Close modal on backdrop
+document.getElementById('load-quiz-modal')?.addEventListener('click', (e) => {
+  if (e.target.id === 'load-quiz-modal') e.target.style.display = 'none';
+});
+
+// ─── Custom Quiz Detection ────────────────────────────────
+
+function checkCustomQuiz() {
+  const params = new URLSearchParams(location.search);
+  const customPlaylist = sessionStorage.getItem('customQuizPlaylist');
+
+  if (params.get('source') === 'custom' && customPlaylist) {
+    const tracks = JSON.parse(customPlaylist);
+    const name = sessionStorage.getItem('customQuizName') || 'Custom Quiz';
+    document.getElementById('custom-quiz-banner').style.display = '';
+    document.getElementById('custom-quiz-name').textContent = name;
+    document.getElementById('custom-quiz-info').textContent = `${tracks.length} curated tracks`;
+    document.getElementById('setup-subtitle').textContent = 'Custom quiz ready — add players and start';
+
+    // Hide source/genre/decade selectors (not relevant for custom)
+    document.getElementById('cfg-source').closest('.config-item').style.display = 'none';
+    document.getElementById('genre-container').style.display = 'none';
+    document.getElementById('cfg-decade').closest('.config-item').style.display = 'none';
+
+    // Set question count to track count
+    document.getElementById('cfg-count').value = tracks.length;
+    document.getElementById('cfg-count').max = tracks.length;
+  }
+}
+
 // ─── Init ─────────────────────────────────────────────────
 
+checkCustomQuiz();
 connect();

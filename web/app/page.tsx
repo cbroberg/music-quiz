@@ -15,9 +15,10 @@ export default function Home() {
       />
       <NowPlaying data={nowPlaying} />
 
-      {/* Nav */}
-      <nav className="fixed top-0 right-0 flex gap-4 p-4 text-sm">
-        <a href="/quiz" className="text-muted hover:text-foreground transition-colors">Quiz</a>
+      {/* Nav — same position as admin header actions */}
+      <nav className="fixed top-0 right-0 flex items-center gap-3 px-6 py-5 text-[13px]">
+        <a href="/quiz/host" className="text-muted hover:text-foreground transition-colors">Quiz</a>
+        <a href="/quiz/admin" className="text-muted hover:text-foreground transition-colors">Admin</a>
         <a href="/login" className="text-muted hover:text-foreground transition-colors">Login</a>
       </nav>
 

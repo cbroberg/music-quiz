@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Admin — Recently Played</title>
+  <link rel="stylesheet" href="/quiz/static/admin.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Recently Played</h1>
+        <p class="subtitle"><span id="track-count">0</span> tracks</p>
+      </div>
+      <div class="header-actions">
+        <div class="view-toggle">
+          <button class="toggle-btn active" id="btn-grid" onclick="setView('grid')">Grid</button>
+          <button class="toggle-btn" id="btn-list" onclick="setView('list')">List</button>
+        </div>
+        <button class="clear-btn" onclick="clearUsedSongs()">Clear Used Songs</button>
+        <a href="/quiz/builder" class="back-link">Quiz Builder</a>
+        <a href="/" class="back-link">Now Playing</a>
+        <a href="/quiz/host" class="back-link">Host</a>
+      </div>
+    </header>
+
+    <div id="tracks-container" class="tracks-grid"></div>
+    <div id="loading" class="loading">Loading tracks...</div>
+    <div id="empty" class="empty" style="display:none">No recently played tracks found.</div>
+  </div>
+
+  <script src="/quiz/static/admin.js"></script>
+</body>
+</html>

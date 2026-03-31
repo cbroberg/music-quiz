@@ -212,7 +212,30 @@ html, body {
 
 .final-container {
   text-align: center; display: flex; flex-direction: column;
-  align-items: center; gap: 20px; max-width: 360px;
+  align-items: center; gap: 14px; max-width: 360px;
+  position: relative;
+}
+
+.final-confetti {
+  position: fixed; inset: 0; pointer-events: none; z-index: 100; overflow: hidden;
+}
+.final-confetti-piece {
+  position: absolute; top: -20px;
+  animation: confettiFall 3s ease-in forwards;
+}
+
+.final-rank-pulse {
+  animation: rankPulse 0.6s ease-in-out 5;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes rankPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
 .final-rank-big { font-size: 80px; font-weight: 900; }

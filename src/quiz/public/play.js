@@ -437,34 +437,60 @@ function onFinalResult(msg) {
   const rankClass = msg.rank === 1 ? 'gold' : msg.rank === 2 ? 'silver' : msg.rank === 3 ? 'bronze' : '';
   const trophies = { 1: '🏆', 2: '🥈', 3: '🥉' };
 
+  const isWinner = msg.rank === 1;
+
   container.innerHTML = `
-    <div style="font-size:64px">${trophies[msg.rank] || myPlayer?.avatar || '🎵'}</div>
-    <div class="final-rank-big ${rankClass}">#${msg.rank}</div>
+    ${isWinner ? '<div class="final-confetti" id="player-confetti"></div>' : ''}
+    <div style="font-size:52px">${trophies[msg.rank] || myPlayer?.avatar || '🎵'}</div>
+    <div class="final-rank-big ${rankClass} ${isWinner ? 'final-rank-pulse' : ''}">#${msg.rank}</div>
     <div class="final-score-big">${msg.totalScore} pts</div>
     <div class="final-stat-row">
-      <span class="final-stat-label">Correct answers</span>
-      <span class="final-stat-value">${msg.stats.correctAnswers} / ${msg.stats.totalAnswers}</span>
+      <span class="final-stat-label">Correct</span>
+      <span class="final-stat-value">${msg.stats.correctAnswers}/${msg.stats.totalAnswers}</span>
     </div>
     <div class="final-stat-row">
-      <span class="final-stat-label">Longest streak</span>
+      <span class="final-stat-label">Streak</span>
       <span class="final-stat-value">${msg.stats.longestStreak} 🔥</span>
     </div>
     <div class="final-stat-row">
-      <span class="final-stat-label">Average time</span>
+      <span class="final-stat-label">Avg time</span>
       <span class="final-stat-value">${(msg.stats.averageTimeMs / 1000).toFixed(1)}s</span>
     </div>
     <div class="final-stat-row">
       <span class="final-stat-label">Accuracy</span>
       <span class="final-stat-value">${msg.stats.totalAnswers > 0 ? Math.round(msg.stats.correctAnswers / msg.stats.totalAnswers * 100) : 0}%</span>
     </div>
-    <button onclick="location.href='/quiz/play'" style="margin-top:24px;background:var(--card);border:2px solid var(--border);color:var(--text);border-radius:14px;padding:14px 32px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;width:100%">Play Again</button>
+    <button onclick="location.href='/quiz/play'" style="margin-top:12px;background:var(--card);border:2px solid var(--border);color:var(--text);border-radius:14px;padding:14px 32px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;width:100%">Play Again</button>
   `;
+
+  // Confetti for the winner
+  if (isWinner) {
+    const confettiEl = document.getElementById('player-confetti');
+    const colors = ['#fc3c44', '#ffd60a', '#5ac8fa', '#34c759', '#ff9f0a', '#bf5af2'];
+    for (let i = 0; i < 60; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'final-confetti-piece';
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = Math.random() * 2 + 's';
+      piece.style.animationDuration = 2 + Math.random() * 2 + 's';
+      piece.style.width = 6 + Math.random() * 6 + 'px';
+      piece.style.height = 6 + Math.random() * 6 + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      confettiEl.appendChild(piece);
+    }
+  }
 }
 
 // ─── Register Service Worker ──────────────────────────────
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/quiz/sw.js').catch(() => {});
+}
+
+// Show PWA hint on iOS Safari (not already in standalone mode)
+if (/iPhone|iPad/.test(navigator.userAgent) && !window.navigator.standalone) {
+  document.getElementById('pwa-hint').style.display = '';
 }
 
 // ─── Start ────────────────────────────────────────────────

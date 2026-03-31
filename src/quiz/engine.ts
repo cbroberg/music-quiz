@@ -33,6 +33,11 @@ const joinCodeIndex = new Map<string, string>(); // joinCode → sessionId
 // Track used song IDs across all sessions to avoid repeats during an evening
 const usedSongIds = new Set<string>();
 
+export function clearUsedSongs(): void {
+  usedSongIds.clear();
+  console.log("🎮 Cleared used songs list");
+}
+
 // Cleanup stale sessions every 5 minutes
 setInterval(() => {
   const now = Date.now();
@@ -65,15 +70,62 @@ export async function createSession(
   hostWsId: string,
   musicClient: AppleMusicClient,
 ): Promise<GameSession> {
-  // Generate quiz questions (excluding songs already used this evening)
-  const quiz = await generateQuiz(musicClient, {
-    type: config.quizType as GenQuizType,
-    source: config.source as any,
-    count: config.questionCount,
-    genre: config.genre,
-    decade: config.decade,
-    excludeSongIds: usedSongIds,
-  });
+  let quiz;
+
+  if (config.source === "custom" && config.customTracks?.length) {
+    // Custom quiz from builder — use provided tracks directly
+    const ct = config.customTracks;
+    const generators = [makeQuestion];
+    const type = config.quizType as GenQuizType || "mixed";
+
+    const questionTypes: GenQuizType[] = ["guess-the-artist", "guess-the-song", "guess-the-album", "guess-the-year", "intro-quiz"];
+
+    quiz = {
+      title: config.customName || "Custom Quiz",
+      description: `Curated quiz with ${ct.length} songs`,
+      type,
+      source: "custom" as any,
+      questionCount: ct.length,
+      questions: ct.map((t, i) => {
+        const qType = type === "mixed" ? questionTypes[i % questionTypes.length] : type;
+        return {
+          questionNumber: i + 1,
+          type: qType,
+          songId: t.id,
+          songName: t.name,
+          artistName: t.artistName,
+          albumName: t.albumName,
+          releaseYear: t.releaseYear || "unknown",
+          question: generateQuestionText(qType, t),
+          answer: generateAnswer(qType, t),
+          hints: [],
+          difficulty: "medium" as const,
+        };
+      }),
+    };
+    console.log(`🎮 Custom quiz: "${quiz.title}" (${quiz.questionCount} tracks)`);
+  } else {
+    // Standard quiz from source
+    const excludeIds = new Set(usedSongIds);
+    if (config.excludeRecentPlays) {
+      try {
+        const recent = await musicClient.getRecentlyPlayedTracks(50) as { data?: Array<{ id?: string }> };
+        for (const item of recent.data || []) {
+          if (item.id) excludeIds.add(item.id);
+        }
+        console.log(`🎮 Excluding ${excludeIds.size} songs (${usedSongIds.size} session + ${excludeIds.size - usedSongIds.size} recent)`);
+      } catch {}
+    }
+
+    quiz = await generateQuiz(musicClient, {
+      type: config.quizType as GenQuizType,
+      source: config.source as any,
+      count: config.questionCount,
+      genre: config.genre,
+      decade: config.decade,
+      excludeSongIds: excludeIds,
+    });
+  }
 
   // Track used songs so they don't repeat across sessions
   for (const q of quiz.questions) {
@@ -324,7 +376,7 @@ async function playQuestionMusic(session: GameSession): Promise<void> {
       for (const delay of [300, 1500, 3000]) {
         await new Promise((r) => setTimeout(r, delay));
         for (const query of [`${simpleName} ${artist}`, simpleName]) {
-          const result = await sendHomeCommand("search-and-play", { query, randomSeek: true }) as { playing?: string };
+          const result = await sendHomeCommand("search-and-play", { query, artist, randomSeek: true }) as { playing?: string };
           if (result.playing) {
             console.log(`🎮 Playing: ${result.playing}`);
             return;
@@ -625,6 +677,39 @@ function generateOptions(
   const options = [...wrongs, correct];
   return shuffle(options);
 }
+
+// ─── Custom Quiz Helpers ──────────────────────────────────
+
+function generateQuestionText(type: string, t: { name: string; artistName: string; albumName: string }): string {
+  const types = type === "mixed"
+    ? ["guess-the-artist", "guess-the-song", "guess-the-album", "guess-the-year", "intro-quiz"]
+    : [type];
+  const picked = types[Math.floor(Math.random() * types.length)];
+
+  switch (picked) {
+    case "guess-the-artist": return "Which artist performs this song?";
+    case "guess-the-song": return "What is the name of this song?";
+    case "guess-the-album": return "Which album is this song from?";
+    case "guess-the-year": return "In which year was this song released?";
+    case "intro-quiz": return "Listen to the intro — name the song AND the artist!";
+    default: return "Which artist performs this song?";
+  }
+}
+
+function generateAnswer(type: string, t: { name: string; artistName: string; albumName: string; releaseYear?: string }): string {
+  // For mixed type, derive the answer from the question text pattern
+  switch (type) {
+    case "guess-the-artist": return t.artistName;
+    case "guess-the-song": return t.name;
+    case "guess-the-album": return t.albumName;
+    case "guess-the-year": return t.releaseYear || "unknown";
+    case "intro-quiz": return `${t.name} by ${t.artistName}`;
+    default: return t.artistName;
+  }
+}
+
+// Unused but required by custom quiz path for type compatibility
+function makeQuestion() {}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];

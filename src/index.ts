@@ -235,6 +235,16 @@ app.get("/api/quiz/sessions", (_req, res) => {
   res.json(listActiveSessions());
 });
 
+app.post("/api/quiz/play-pause", async (_req, res) => {
+  try {
+    if (!isHomeConnected()) { res.status(503).json({ error: "Home Controller not connected" }); return; }
+    const result = await sendHomeCommand("play", {});
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: String(err) });
+  }
+});
+
 app.post("/api/quiz/create", requireSession, async (req, res) => {
   try {
     const { type, source, count, timerDuration, decade, genre, artist } = req.body;

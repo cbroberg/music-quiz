@@ -107,12 +107,24 @@ async function handleCommand(cmd: Command): Promise<unknown> {
 
     case "search-and-play": {
       const query = String(cmd.query || "").replace(/"/g, '\\"');
+      const wantArtist = String(cmd.artist || "").replace(/"/g, '\\"');
       const randomSeek = cmd.randomSeek === true;
       const found = await osa(`
         tell application "Music"
           set results to search playlist "Library" for "${query}"
           if (count of results) > 0 then
+            ${wantArtist ? `
+            -- Find best match: prefer tracks whose artist contains the wanted artist
             set theTrack to item 1 of results
+            repeat with t in results
+              if (artist of t) contains "${wantArtist}" then
+                set theTrack to t
+                exit repeat
+              end if
+            end repeat
+            ` : `
+            set theTrack to item 1 of results
+            `}
             play theTrack
             delay 0.5
             if player state is not playing then play

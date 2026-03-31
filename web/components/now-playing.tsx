@@ -41,9 +41,14 @@ export function NowPlaying({ data }: NowPlayingProps) {
         </div>
       )}
       {data.state === "paused" && (
-        <p className="text-xs text-apple-red font-medium uppercase tracking-widest">
-          Paused
-        </p>
+        <button
+          onClick={async () => {
+            try { await fetch("/api/quiz/play-pause", { method: "POST" }); } catch {}
+          }}
+          className="text-xs text-apple-red font-medium uppercase tracking-widest hover:opacity-70 transition-opacity cursor-pointer bg-transparent border-none"
+        >
+          Paused — tap to play
+        </button>
       )}
     </div>
   );

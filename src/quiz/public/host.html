@@ -8,12 +8,22 @@
 </head>
 <body>
 
+  <!-- Top nav — matches admin header position -->
+  <nav style="position:fixed;top:0;right:0;display:flex;align-items:center;gap:12px;padding:24px;font-size:13px;z-index:40">
+    <a href="/" style="color:#888;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Now Playing</a>
+    <a href="/quiz/admin" style="color:#888;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Admin</a>
+  </nav>
+
   <!-- 1. Setup / Lobby -->
   <div id="screen-setup" class="screen active">
     <div class="setup-container">
       <div class="setup-left">
         <h1 class="setup-title">Music Quiz</h1>
-        <p class="setup-subtitle">Set up your quiz and wait for players</p>
+        <p class="setup-subtitle" id="setup-subtitle">Set up your quiz and wait for players</p>
+        <div id="custom-quiz-banner" style="display:none;margin-top:12px;margin-bottom:20px;background:rgba(252,60,68,0.1);border:1px solid rgba(252,60,68,0.3);border-radius:10px;padding:12px 16px">
+          <div style="font-size:14px;font-weight:600;color:var(--red)" id="custom-quiz-name"></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px" id="custom-quiz-info"></div>
+        </div>
 
         <div class="config-grid">
           <div class="config-item">
@@ -94,11 +104,21 @@
             <input type="checkbox" id="cfg-show-artwork" style="width:18px;height:18px;accent-color:var(--red)">
             <div>
               <div class="config-label">Show artwork</div>
-              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Show album cover during questions (easier!)</div>
+              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Show album cover during questions</div>
+            </div>
+          </div>
+          <div class="config-item" style="display:flex;align-items:center;gap:10px">
+            <input type="checkbox" id="cfg-exclude-recent" checked style="width:18px;height:18px;accent-color:var(--red)">
+            <div>
+              <div class="config-label">Skip recent plays</div>
+              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Exclude songs you've played recently</div>
             </div>
           </div>
         </div>
 
+        <div style="margin-bottom:8px">
+          <button onclick="loadCustomQuiz()" style="font-size:13px;color:var(--red);background:none;border:none;font-weight:600;font-family:inherit;cursor:pointer;padding:0;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Load Custom Quiz</button>
+        </div>
         <button id="btn-create" class="start-btn" onclick="createSession()">Create Game</button>
         <button id="btn-start" class="start-btn" style="display:none" disabled onclick="startGame()">
           Start Quiz
@@ -194,6 +214,17 @@
     <div class="final-stats" id="final-stats"></div>
     <button class="play-again-btn" onclick="location.reload()">Play Again</button>
     <div class="confetti-container" id="confetti"></div>
+  </div>
+
+  <!-- Load Custom Quiz modal -->
+  <div id="load-quiz-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:none;align-items:center;justify-content:center">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:90%;max-width:500px;max-height:70vh;display:flex;flex-direction:column;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)">
+        <h3 style="font-size:18px;font-weight:700">Saved Quizzes</h3>
+        <button onclick="document.getElementById('load-quiz-modal').style.display='none'" style="background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer">&times;</button>
+      </div>
+      <div id="host-saved-list" style="padding:8px;overflow-y:auto"></div>
+    </div>
   </div>
 
   <!-- Audio element for preview fallback (no Home Controller) -->

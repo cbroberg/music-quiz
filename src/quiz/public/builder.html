@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Builder</title>
+  <link rel="stylesheet" href="/quiz/static/builder.css">
+</head>
+<body>
+  <!-- Mini Now Playing -->
+  <div class="mini-player" id="mini-player">
+    <div class="mini-playing"><div class="mini-bar"></div><div class="mini-bar"></div><div class="mini-bar"></div></div>
+    <img class="mini-artwork" id="mini-artwork" src="" alt="">
+    <div class="mini-info">
+      <div class="mini-track" id="mini-track"></div>
+      <div class="mini-artist" id="mini-artist"></div>
+    </div>
+    <button class="mini-pause-btn" id="mini-pause" onclick="togglePause()">&#10074;&#10074;</button>
+  </div>
+
+  <div class="container">
+    <header>
+      <div>
+        <h1>Quiz Builder</h1>
+        <p class="subtitle">Search, curate, and save your own quiz</p>
+      </div>
+      <div class="header-actions">
+        <a href="/quiz/host" class="back-link">Back to Host</a>
+      </div>
+    </header>
+
+    <div class="builder-layout">
+      <!-- Left: Search -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Search</h2>
+        </div>
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Search songs, artists, albums..."
+            autocomplete="off" autocorrect="off">
+        </div>
+        <div id="search-results" class="track-list"></div>
+        <div id="search-empty" class="empty-state" style="display:none">Type to search Apple Music catalog</div>
+      </div>
+
+      <!-- Right: Playlist -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Your Quiz <span id="playlist-count" class="count-badge">0</span></h2>
+          <div class="panel-actions">
+            <button class="btn-danger" id="btn-clear-all" onclick="clearPlaylist()" style="display:none">Clear All</button>
+            <button class="btn-secondary" onclick="loadPlaylistPicker()">Load</button>
+            <button class="btn-primary" onclick="savePlaylist()" id="btn-save" disabled>Save</button>
+          </div>
+        </div>
+        <div class="playlist-name-row">
+          <input type="text" id="playlist-name" placeholder="Quiz name (e.g. 80s Rock Night)" autocomplete="off">
+        </div>
+        <div id="playlist-tracks" class="track-list"></div>
+        <div id="playlist-empty" class="empty-state">Add songs from search to build your quiz</div>
+
+        <div class="playlist-footer" id="playlist-footer" style="display:none">
+          <button class="btn-start" onclick="startQuizFromPlaylist()">Start Quiz with These Songs</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load modal -->
+    <div id="load-modal" class="modal" style="display:none">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Saved Quizzes</h3>
+          <button class="modal-close" onclick="closeModal('load-modal')">&times;</button>
+        </div>
+        <div id="saved-list" class="saved-list"></div>
+      </div>
+    </div>
+
+    <!-- Save confirmation modal -->
+    <div id="save-modal" class="modal" style="display:none">
+      <div class="modal-content" style="max-width:400px;text-align:center;padding:32px">
+        <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
+        <h3 id="save-modal-title" style="font-size:20px;margin-bottom:8px"></h3>
+        <p id="save-modal-subtitle" style="color:var(--muted);font-size:14px;margin-bottom:24px"></p>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <button class="btn-secondary" onclick="closeModal('save-modal')">Continue Editing</button>
+          <button class="btn-primary" onclick="startQuizFromPlaylist()">Start Quiz</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm modal -->
+    <div id="confirm-modal" class="modal" style="display:none">
+      <div class="modal-content" style="max-width:380px;text-align:center;padding:32px">
+        <h3 id="confirm-title" style="font-size:18px;margin-bottom:8px"></h3>
+        <p id="confirm-subtitle" style="color:var(--muted);font-size:14px;margin-bottom:24px"></p>
+        <div style="display:flex;gap:8px;justify-content:center">
+          <button class="btn-secondary" onclick="resolveConfirm(false)">Cancel</button>
+          <button class="btn-danger" id="confirm-action-btn" onclick="resolveConfirm(true)">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
+      background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 24px;
+      font-size:14px;font-weight:500;z-index:200;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      pointer-events:none"></div>
+  </div>
+
+  <script src="/quiz/static/builder.js"></script>
+</body>
+</html>
