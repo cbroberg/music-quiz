@@ -14,7 +14,6 @@ const QUIZ_TYPES = [
 
 const SOURCES = [
   { value: "recently-played", label: "Recently Played" },
-  { value: "heavy-rotation", label: "Heavy Rotation" },
   { value: "charts", label: "Charts" },
   { value: "library", label: "Library" },
 ];
