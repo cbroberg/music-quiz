@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const GENRES = [
@@ -63,6 +63,15 @@ export default function QuizLobby() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Recent players from localStorage
+  const [recentPlayers, setRecentPlayers] = useState<string[]>([]);
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("recentPlayers") || "[]");
+      if (Array.isArray(stored)) setRecentPlayers(stored.slice(0, 6));
+    } catch {}
+  }, []);
+
   async function createQuiz() {
     setLoading(true);
     setError("");
@@ -94,6 +103,10 @@ export default function QuizLobby() {
         throw new Error(data.error || "Failed to create quiz");
       }
       const quiz = await res.json();
+
+      // Save participants to localStorage
+      const allRecent = [...new Set([...participants, ...recentPlayers])].slice(0, 6);
+      localStorage.setItem("recentPlayers", JSON.stringify(allRecent));
 
       // Add participants
       for (const name of participants) {
@@ -239,6 +252,24 @@ export default function QuizLobby() {
         {/* Participants */}
         <div className="space-y-3">
           <label className="text-sm font-medium text-muted">Players</label>
+          {recentPlayers.length > 0 && (
+            <div className="space-y-1">
+              <p className="text-xs text-dimmer">Recent players — click to add</p>
+              <div className="flex flex-wrap gap-2">
+                {recentPlayers
+                  .filter((name) => !participants.includes(name))
+                  .map((name) => (
+                    <button
+                      key={name}
+                      onClick={() => setParticipants([...participants, name])}
+                      className="bg-background border border-border rounded-full px-3 py-1 text-sm text-muted hover:text-foreground hover:border-apple-red transition-colors"
+                    >
+                      + {name}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
           <div className="flex gap-2">
             <input
               type="text"

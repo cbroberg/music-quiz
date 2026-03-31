@@ -298,7 +298,21 @@ export async function generateQuiz(
       throw new Error(`Unknown source: ${source}`);
   }
 
-  const allSongs = extractSongs(rawData);
+  let allSongs = extractSongs(rawData);
+
+  // Fallback: if charts returned no songs, try catalog search with genre name
+  if (allSongs.length === 0 && source === "charts" && options.genre) {
+    const genreNames: Record<string, string> = {
+      "20": "alternative", "2": "blues", "5": "classical", "17": "dance",
+      "7": "electronic", "18": "hip hop", "11": "jazz", "12": "latin",
+      "1153": "metal", "14": "pop", "15": "r&b soul", "24": "reggae",
+      "21": "rock", "10": "singer songwriter", "16": "soundtrack", "19": "world",
+    };
+    const searchTerm = genreNames[options.genre] || "music";
+    const searchData = await client.searchCatalog(searchTerm, ["songs"], 25);
+    allSongs = extractSongs(searchData);
+  }
+
   if (allSongs.length === 0) {
     throw new Error("No songs found for quiz generation. Try a different source.");
   }
