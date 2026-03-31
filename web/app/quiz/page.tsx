@@ -3,6 +3,35 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const GENRES = [
+  { value: "20", label: "Alternative" },
+  { value: "2", label: "Blues" },
+  { value: "5", label: "Classical" },
+  { value: "17", label: "Dance" },
+  { value: "7", label: "Electronic" },
+  { value: "18", label: "Hip-Hop/Rap" },
+  { value: "11", label: "Jazz" },
+  { value: "12", label: "Latin" },
+  { value: "1153", label: "Metal" },
+  { value: "14", label: "Pop" },
+  { value: "15", label: "R&B/Soul" },
+  { value: "24", label: "Reggae" },
+  { value: "21", label: "Rock" },
+  { value: "10", label: "Singer/Songwriter" },
+  { value: "16", label: "Soundtrack" },
+  { value: "19", label: "World" },
+];
+
+const DECADES = [
+  { value: "1960", label: "60s" },
+  { value: "1970", label: "70s" },
+  { value: "1980", label: "80s" },
+  { value: "1990", label: "90s" },
+  { value: "2000", label: "00s" },
+  { value: "2010", label: "10s" },
+  { value: "2020", label: "20s" },
+];
+
 const QUIZ_TYPES = [
   { value: "mixed", label: "Mixed" },
   { value: "intro-quiz", label: "Intro Quiz" },
@@ -14,14 +43,18 @@ const QUIZ_TYPES = [
 
 const SOURCES = [
   { value: "recently-played", label: "Recently Played" },
-  { value: "charts", label: "Charts" },
-  { value: "library", label: "Library" },
+  { value: "charts", label: "Top Charts" },
+  { value: "library", label: "My Library" },
+  { value: "charts-genre", label: "Genre" },
+  { value: "charts-soundtrack", label: "Movie Soundtracks" },
+  { value: "random", label: "Random Shuffle" },
 ];
 
 export default function QuizLobby() {
   const router = useRouter();
   const [type, setType] = useState("mixed");
   const [source, setSource] = useState("recently-played");
+  const [genre, setGenre] = useState("");
   const [count, setCount] = useState(10);
   const [timerDuration, setTimerDuration] = useState(30);
   const [decade, setDecade] = useState("");
@@ -34,10 +67,26 @@ export default function QuizLobby() {
     setLoading(true);
     setError("");
     try {
+      // Map frontend source to backend source + genre
+      let apiSource = source;
+      let apiGenre = genre || undefined;
+      if (source === "charts-genre") {
+        apiSource = "charts";
+        if (!genre) { setError("Please select a genre"); setLoading(false); return; }
+      } else if (source === "charts-soundtrack") {
+        apiSource = "charts";
+        apiGenre = "16";
+      } else if (source === "random") {
+        apiSource = "charts";
+        // Random genre
+        const randomGenre = GENRES[Math.floor(Math.random() * GENRES.length)];
+        apiGenre = randomGenre.value;
+      }
+
       const res = await fetch("/api/quiz/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, source, count, timerDuration, decade: decade || undefined }),
+        body: JSON.stringify({ type, source: apiSource, count, timerDuration, decade: decade || undefined, genre: apiGenre }),
       });
       if (!res.ok) {
         const data = await res.json();
@@ -144,16 +193,47 @@ export default function QuizLobby() {
           </div>
         </div>
 
+        {/* Genre selector (shown for Genre source) */}
+        {source === "charts-genre" && (
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted">Genre</label>
+            <select
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+              className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm"
+            >
+              <option value="">Select genre...</option>
+              {GENRES.map((g) => (
+                <option key={g.value} value={g.value}>{g.label}</option>
+              ))}
+            </select>
+          </div>
+        )}
+
         {/* Decade filter */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-muted">Decade (optional)</label>
-          <input
-            type="text"
-            placeholder="e.g. 1980"
-            value={decade}
-            onChange={(e) => setDecade(e.target.value)}
-            className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm"
-          />
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setDecade("")}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                decade === "" ? "bg-apple-red text-white" : "bg-background border border-border text-muted hover:text-foreground"
+              }`}
+            >
+              All
+            </button>
+            {DECADES.map((d) => (
+              <button
+                key={d.value}
+                onClick={() => setDecade(d.value)}
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  decade === d.value ? "bg-apple-red text-white" : "bg-background border border-border text-muted hover:text-foreground"
+                }`}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Participants */}
