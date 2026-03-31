@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 680" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#111114"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#6c7086"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#fc3c44"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#68b576"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#74a8d0"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="680" fill="url(#bgGrad)" rx="12"/>
+
+  <!-- Title -->
+  <text x="460" y="38" text-anchor="middle" fill="#cdd6f4" font-size="16" font-weight="700">Music Quiz Flow</text>
+
+  <!-- ═══ QUIZ MASTER (left) ═══ -->
+  <rect x="30" y="70" width="200" height="220" rx="12" fill="#1e1e2e" stroke="#313244" stroke-width="1.5"/>
+  <text x="130" y="58" text-anchor="middle" fill="#6c7086" font-size="11" font-weight="600" letter-spacing="1.5">QUIZ MASTER</text>
+
+  <!-- Phone -->
+  <rect x="55" y="95" width="150" height="60" rx="8" fill="#1e1e2e" stroke="#74a8d0" stroke-width="1"/>
+  <text x="130" y="120" text-anchor="middle" fill="#74a8d0" font-size="13" font-weight="600">Claude (iPhone)</text>
+  <text x="130" y="137" text-anchor="middle" fill="#585b70" font-size="10">create_visual_quiz</text>
+
+  <!-- Web -->
+  <rect x="55" y="170" width="150" height="60" rx="8" fill="#1e1e2e" stroke="#cba6f7" stroke-width="1"/>
+  <text x="130" y="195" text-anchor="middle" fill="#cba6f7" font-size="13" font-weight="600">Web UI /quiz</text>
+  <text x="130" y="212" text-anchor="middle" fill="#585b70" font-size="10">Create + control quiz</text>
+
+  <text x="130" y="268" text-anchor="middle" fill="#585b70" font-size="10" font-style="italic">Click player name</text>
+  <text x="130" y="282" text-anchor="middle" fill="#585b70" font-size="10" font-style="italic">to award points</text>
+
+  <!-- ═══ MCP SERVER (center) ═══ -->
+  <rect x="310" y="70" width="300" height="330" rx="12" fill="#1a2332" stroke="#313244" stroke-width="1.5"/>
+  <text x="460" y="58" text-anchor="middle" fill="#6c7086" font-size="11" font-weight="600" letter-spacing="1.5">MCP SERVER · FLY.IO</text>
+
+  <!-- Quiz Manager -->
+  <rect x="335" y="95" width="250" height="52" rx="8" fill="#1a2332" stroke="#fc3c44" stroke-width="1"/>
+  <text x="460" y="117" text-anchor="middle" fill="#fc3c44" font-size="13" font-weight="600">Quiz Manager</text>
+  <text x="460" y="137" text-anchor="middle" fill="#585b70" font-size="10">State machine · Scoring · Timer</text>
+
+  <!-- Phase boxes -->
+  <rect x="335" y="160" width="250" height="36" rx="6" fill="#141c28" stroke="#45475a" stroke-width="1"/>
+  <text x="350" y="182" fill="#f9e2af" font-size="10" font-weight="600">PHASES</text>
+  <text x="420" y="182" fill="#585b70" font-size="10">lobby → question → reveal → scores → finished</text>
+
+  <!-- Quiz Generator -->
+  <rect x="335" y="210" width="250" height="42" rx="8" fill="#1a2332" stroke="#f38ba8" stroke-width="1"/>
+  <text x="460" y="232" text-anchor="middle" fill="#f38ba8" font-size="13" font-weight="600">Quiz Generator</text>
+  <text x="460" y="248" text-anchor="middle" fill="#585b70" font-size="10">Apple Music API → Questions + Answers</text>
+
+  <!-- API endpoints -->
+  <rect x="335" y="266" width="250" height="52" rx="8" fill="#1a2332" stroke="#45475a" stroke-width="1"/>
+  <text x="350" y="286" fill="#a6adc8" font-size="11" font-weight="600">API Endpoints</text>
+  <text x="350" y="304" fill="#585b70" font-size="10">POST /api/quiz/create · PATCH /api/quiz/:id</text>
+
+  <!-- Playback command -->
+  <rect x="335" y="332" width="250" height="52" rx="8" fill="#1a2332" stroke="#68b576" stroke-width="1"/>
+  <text x="460" y="354" text-anchor="middle" fill="#68b576" font-size="13" font-weight="600">Auto-Play</text>
+  <text x="460" y="372" text-anchor="middle" fill="#585b70" font-size="10">stop → search-and-play via WebSocket</text>
+
+  <!-- ═══ TV DISPLAY (right) ═══ -->
+  <rect x="690" y="70" width="200" height="220" rx="12" fill="#1f2a1a" stroke="#313244" stroke-width="1.5"/>
+  <text x="790" y="58" text-anchor="middle" fill="#6c7086" font-size="11" font-weight="600" letter-spacing="1.5">TV / MONITOR</text>
+
+  <rect x="710" y="95" width="160" height="42" rx="8" fill="#182014" stroke="#68b576" stroke-width="1"/>
+  <text x="790" y="113" text-anchor="middle" fill="#68b576" font-size="13" font-weight="600">/quiz/[id]</text>
+  <text x="790" y="130" text-anchor="middle" fill="#585b70" font-size="10">Full-screen game view</text>
+
+  <text x="790" y="162" text-anchor="middle" fill="#e8e8e8" font-size="11" font-weight="600">Question + Timer</text>
+  <text x="790" y="180" text-anchor="middle" fill="#585b70" font-size="10">Countdown 30s</text>
+
+  <text x="790" y="206" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="600">Player Buttons</text>
+  <text x="790" y="224" text-anchor="middle" fill="#585b70" font-size="10">Click name → award point</text>
+
+  <text x="790" y="250" text-anchor="middle" fill="#f9e2af" font-size="11" font-weight="600">Scoreboard</text>
+  <text x="790" y="268" text-anchor="middle" fill="#585b70" font-size="10">Live ranking + winner</text>
+
+  <!-- ═══ HOME CONTROLLER (bottom) ═══ -->
+  <rect x="340" y="460" width="240" height="130" rx="12" fill="#1f2a1a" stroke="#313244" stroke-width="1.5"/>
+  <text x="460" y="448" text-anchor="middle" fill="#6c7086" font-size="11" font-weight="600" letter-spacing="1.5">HOME CONTROLLER</text>
+
+  <text x="460" y="490" text-anchor="middle" fill="#a6e3a1" font-size="15" font-weight="700">Mac (M1)</text>
+  <text x="460" y="513" text-anchor="middle" fill="#585b70" font-size="11">Music.app → Speakers / Apple TVs</text>
+
+  <rect x="370" y="525" width="180" height="48" rx="6" fill="#182014" stroke="#45475a" stroke-width="1"/>
+  <text x="460" y="546" text-anchor="middle" fill="#68b576" font-size="11" font-weight="600">Each question plays</text>
+  <text x="460" y="563" text-anchor="middle" fill="#585b70" font-size="10">stop → search → play track</text>
+
+  <!-- ═══ APPLE MUSIC API (bottom-right) ═══ -->
+  <rect x="660" y="460" width="220" height="80" rx="12" fill="#1e1528" stroke="#313244" stroke-width="1.5"/>
+  <text x="770" y="495" text-anchor="middle" fill="#f38ba8" font-size="13" font-weight="600">Apple Music API</text>
+  <text x="770" y="518" text-anchor="middle" fill="#585b70" font-size="10">recently-played · heavy-rotation</text>
+  <text x="770" y="533" text-anchor="middle" fill="#585b70" font-size="10">charts · library · artist catalog</text>
+
+  <!-- ═══ CONNECTION LINES ═══ -->
+
+  <!-- Phone → Server (MCP) -->
+  <line x1="205" y1="125" x2="330" y2="116" stroke="#74a8d0" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <rect x="236" y="104" width="60" height="16" rx="3" fill="#0a0a0a" fill-opacity="0.9"/>
+  <text x="266" y="115" text-anchor="middle" fill="#74a8d0" font-size="9" font-weight="600">MCP</text>
+
+  <!-- Web → Server (REST) -->
+  <line x1="205" y1="200" x2="330" y2="290" stroke="#cba6f7" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="236" y="234" width="60" height="16" rx="3" fill="#0a0a0a" fill-opacity="0.9"/>
+  <text x="266" y="245" text-anchor="middle" fill="#cba6f7" font-size="9" font-weight="600">REST API</text>
+
+  <!-- Server → TV (HTTP) -->
+  <line x1="590" y1="290" x2="685" y2="200" stroke="#6c7086" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <rect x="614" y="232" width="50" height="16" rx="3" fill="#0a0a0a" fill-opacity="0.9"/>
+  <text x="639" y="243" text-anchor="middle" fill="#6c7086" font-size="9" font-weight="600">HTTP</text>
+
+  <!-- Server → Home (WebSocket) -->
+  <line x1="460" y1="390" x2="460" y2="455" stroke="#68b576" stroke-width="2" stroke-dasharray="6 4"/>
+  <polygon points="454,455 460,465 466,455" fill="#68b576"/>
+  <rect x="470" y="410" width="80" height="16" rx="3" fill="#0a0a0a" fill-opacity="0.9"/>
+  <text x="510" y="421" text-anchor="middle" fill="#68b576" font-size="9" font-weight="600">WebSocket</text>
+
+  <!-- Server → Apple Music API -->
+  <line x1="560" y1="230" x2="655" y2="490" stroke="#f38ba8" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrowRed)"/>
+
+  <!-- ═══ FLOW STEPS (bottom) ═══ -->
+  <rect x="30" y="610" width="860" height="50" rx="10" fill="#141414" stroke="#222" stroke-width="1"/>
+
+  <circle cx="70" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="70" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">1</text>
+  <text x="100" y="639" fill="#a6adc8" font-size="10">Create quiz</text>
+
+  <circle cx="210" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="210" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">2</text>
+  <text x="240" y="639" fill="#a6adc8" font-size="10">Add players</text>
+
+  <circle cx="350" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="350" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">3</text>
+  <text x="380" y="639" fill="#a6adc8" font-size="10">Music plays</text>
+
+  <circle cx="490" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="490" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">4</text>
+  <text x="520" y="639" fill="#a6adc8" font-size="10">Guess + score</text>
+
+  <circle cx="640" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="640" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">5</text>
+  <text x="670" y="639" fill="#a6adc8" font-size="10">Reveal answer</text>
+
+  <circle cx="790" cy="635" r="14" fill="#fc3c44" fill-opacity="0.15" stroke="#fc3c44" stroke-width="1"/>
+  <text x="790" y="639" text-anchor="middle" fill="#fc3c44" font-size="11" font-weight="700">6</text>
+  <text x="820" y="639" fill="#a6adc8" font-size="10">Winner!</text>
+
+  <!-- Footer -->
+  <text x="460" y="675" text-anchor="middle" fill="#313244" font-size="10">music.broberg.dk/quiz · Apple Music MCP · WebHouse ApS</text>
+</svg>

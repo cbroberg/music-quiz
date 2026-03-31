@@ -250,6 +250,8 @@ The agent now starts at login and restarts automatically if it crashes. Check st
 
 ### 8. Music Quiz
 
+![Quiz flow diagram](docs/quiz-flow.svg)
+
 #### From the web UI
 
 1. Log in at `/login` with GitHub
