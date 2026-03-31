@@ -5,10 +5,11 @@
  */
 
 import { createServer } from "node:http";
-import { parse } from "node:url";
 import next from "next";
 import { app, client, attachHomeWebSocket, PORT, logStartup } from "./dist/index.js";
 import { attachBrowserWebSocket } from "./dist/browser-ws.js";
+import { attachQuizWebSocket } from "./dist/quiz/ws-handler.js";
+import { createQuizRouter } from "./dist/quiz/routes.js";
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: "./web" });
@@ -27,19 +28,25 @@ const EXPRESS_API_PREFIXES = [
   "/api/developer-token", "/api/auth",
   "/api/quiz",
 ];
+// Quiz multiplayer routes served by Express (host, play, static, api, manifest, sw)
+const QUIZ_EXPRESS_PREFIXES = ["/quiz/host", "/quiz/play", "/quiz/static/", "/quiz/api/", "/quiz/manifest.json", "/quiz/sw.js"];
 const EXPRESS_PREFIXES = ["/.well-known/"];
 
 function isExpressRoute(pathname) {
   if (EXPRESS_PATHS.has(pathname)) return true;
   if (EXPRESS_API_PREFIXES.some((p) => pathname.startsWith(p))) return true;
-  return EXPRESS_PREFIXES.some((p) => pathname.startsWith(p));
+  if (EXPRESS_PREFIXES.some((p) => pathname.startsWith(p))) return true;
+  return QUIZ_EXPRESS_PREFIXES.some((p) => pathname.startsWith(p));
 }
+
+// Mount multiplayer quiz routes on Express
+app.use(createQuizRouter());
 
 // Create unified HTTP server
 const server = createServer((req, res) => {
-  const { pathname } = parse(req.url || "", true);
+  const pathname = new URL(req.url || "", `http://${req.headers.host}`).pathname;
 
-  if (isExpressRoute(pathname || "")) {
+  if (isExpressRoute(pathname)) {
     app(req, res);
   } else {
     handle(req, res);
@@ -49,10 +56,14 @@ const server = createServer((req, res) => {
 // Attach WebSocket handlers
 attachHomeWebSocket(server);
 attachBrowserWebSocket(server, client);
+attachQuizWebSocket(server, client);
 
 server.listen(PORT, () => {
   logStartup();
   console.log(`   Frontend:   ${dev ? "Next.js dev mode" : "Next.js production"}`);
   console.log(`   Now Playing: /ws/now-playing (browser WebSocket)`);
+  console.log(`   Quiz Host:   /quiz/host (fullscreen storskærm)`);
+  console.log(`   Quiz Player: /quiz/play (telefon PWA)`);
+  console.log(`   Quiz WS:     /quiz-ws (game WebSocket)`);
   console.log();
 });

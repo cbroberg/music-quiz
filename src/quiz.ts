@@ -234,6 +234,7 @@ export async function generateQuiz(
     genre?: string;
     artist?: string;
     decade?: string;
+    excludeSongIds?: Set<string>;
   } = {},
 ): Promise<Quiz> {
   const type = options.type || "mixed";
@@ -299,6 +300,15 @@ export async function generateQuiz(
   }
 
   let allSongs = extractSongs(rawData);
+
+  // Filter out previously used songs
+  if (options.excludeSongIds?.size) {
+    const before = allSongs.length;
+    allSongs = allSongs.filter((s) => !options.excludeSongIds!.has(s.id));
+    if (allSongs.length < before) {
+      console.log(`🎵 Excluded ${before - allSongs.length} already-used songs (${allSongs.length} remaining)`);
+    }
+  }
 
   // Fallback: if charts returned no songs, try catalog search with genre name
   if (allSongs.length === 0 && source === "charts" && options.genre) {

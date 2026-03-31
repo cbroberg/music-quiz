@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Quiz — Host</title>
+  <link rel="stylesheet" href="/quiz/static/host.css">
+</head>
+<body>
+
+  <!-- 1. Setup / Lobby -->
+  <div id="screen-setup" class="screen active">
+    <div class="setup-container">
+      <div class="setup-left">
+        <h1 class="setup-title">Music Quiz</h1>
+        <p class="setup-subtitle">Set up your quiz and wait for players</p>
+
+        <div class="config-grid">
+          <div class="config-item">
+            <div class="config-label">Quiz Type</div>
+            <select id="cfg-type" class="config-select">
+              <option value="mixed">Mixed</option>
+              <option value="intro-quiz">Intro Quiz</option>
+              <option value="guess-the-artist">Guess the Artist</option>
+              <option value="guess-the-song">Guess the Song</option>
+              <option value="guess-the-album">Guess the Album</option>
+              <option value="guess-the-year">Guess the Year</option>
+            </select>
+          </div>
+          <div class="config-item">
+            <div class="config-label">Music Source</div>
+            <select id="cfg-source" class="config-select">
+              <option value="mixed">Mixed (all sources)</option>
+              <option value="recently-played">Recently Played</option>
+              <option value="charts">Top Charts</option>
+              <option value="library">My Library</option>
+              <option value="charts-genre">Genre</option>
+              <option value="charts-soundtrack">Movie Soundtracks</option>
+              <option value="dansk">Dansk Musik</option>
+              <option value="random">Random Shuffle</option>
+            </select>
+          </div>
+          <div class="config-item" id="genre-container" style="display:none">
+            <div class="config-label">Genre</div>
+            <select id="cfg-genre" class="config-select">
+              <option value="20">Alternative</option>
+              <option value="2">Blues</option>
+              <option value="5">Classical</option>
+              <option value="17">Dance</option>
+              <option value="7">Electronic</option>
+              <option value="18">Hip-Hop/Rap</option>
+              <option value="11">Jazz</option>
+              <option value="12">Latin</option>
+              <option value="1153">Metal</option>
+              <option value="14">Pop</option>
+              <option value="15">R&B/Soul</option>
+              <option value="24">Reggae</option>
+              <option value="21">Rock</option>
+              <option value="10">Singer/Songwriter</option>
+              <option value="16">Soundtrack</option>
+              <option value="19">World</option>
+            </select>
+          </div>
+          <div class="config-item">
+            <div class="config-label">Answer Mode</div>
+            <select id="cfg-answer-mode" class="config-select">
+              <option value="multiple-choice">Multiple Choice</option>
+              <option value="free-text">Free Text (AI)</option>
+              <option value="mixed">Mixed</option>
+            </select>
+          </div>
+          <div class="config-item">
+            <div class="config-label">Questions</div>
+            <input type="number" id="cfg-count" class="config-input" value="10" min="5" max="25">
+          </div>
+          <div class="config-item">
+            <div class="config-label">Timer (sec)</div>
+            <input type="number" id="cfg-timer" class="config-input" value="30" min="10" max="60">
+          </div>
+          <div class="config-item">
+            <div class="config-label">Decade</div>
+            <select id="cfg-decade" class="config-select">
+              <option value="">All</option>
+              <option value="1960">60s</option>
+              <option value="1970">70s</option>
+              <option value="1980">80s</option>
+              <option value="1990">90s</option>
+              <option value="2000">00s</option>
+              <option value="2010">10s</option>
+              <option value="2020">20s</option>
+            </select>
+          </div>
+          <div class="config-item" style="display:flex;align-items:center;gap:10px">
+            <input type="checkbox" id="cfg-show-artwork" style="width:18px;height:18px;accent-color:var(--red)">
+            <div>
+              <div class="config-label">Show artwork</div>
+              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Show album cover during questions (easier!)</div>
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-create" class="start-btn" onclick="createSession()">Create Game</button>
+        <button id="btn-start" class="start-btn" style="display:none" disabled onclick="startGame()">
+          Start Quiz
+        </button>
+      </div>
+
+      <div class="setup-right" id="lobby-panel" style="display:none">
+        <div class="qr-container">
+          <canvas id="qr-canvas"></canvas>
+        </div>
+        <div class="join-code" id="join-code"></div>
+        <div class="join-url" id="join-url"></div>
+
+        <div class="players-section">
+          <div class="players-title">Players (<span id="player-count">0</span>/8)</div>
+          <div class="players-grid" id="players-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Countdown -->
+  <div id="screen-countdown" class="screen">
+    <div class="countdown-type" id="countdown-type"></div>
+    <div class="countdown-number" id="countdown-number">3</div>
+    <div class="countdown-label" id="countdown-label">Get ready!</div>
+  </div>
+
+  <!-- 3. Question -->
+  <div id="screen-question" class="screen question-screen">
+    <div class="question-header">
+      <span class="question-number" id="q-number">Question 1 / 10</span>
+      <span class="question-type" id="q-type">Guess the Artist</span>
+      <div class="timer-container">
+        <svg width="80" height="80" viewBox="0 0 80 80" class="timer-circle">
+          <circle cx="40" cy="40" r="36" class="timer-bg"/>
+          <circle cx="40" cy="40" r="36" class="timer-progress" id="timer-progress"
+            stroke-dasharray="226.2" stroke-dashoffset="0"/>
+        </svg>
+        <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;top:0;left:0">
+          <text x="40" y="40" class="timer-text" id="timer-text">30</text>
+        </svg>
+      </div>
+    </div>
+    <div class="question-body">
+      <div class="artwork-container" id="artwork-container">
+        <img id="q-artwork" src="" alt="">
+      </div>
+      <div class="question-content">
+        <div class="question-text" id="q-text"></div>
+        <div class="options-grid" id="options-grid"></div>
+        <div class="free-text-hint" id="free-text-hint" style="display:none">
+          Players are typing their answers...
+        </div>
+      </div>
+    </div>
+    <div class="answers-counter" id="answers-counter">0 / 0 answered</div>
+  </div>
+
+  <!-- 4. Evaluating -->
+  <div id="screen-evaluating" class="screen">
+    <div class="evaluating-container">
+      <div class="evaluating-icon">🤖</div>
+      <div class="evaluating-text">AI is evaluating answers...</div>
+    </div>
+  </div>
+
+  <!-- 5. Reveal -->
+  <div id="screen-reveal" class="screen reveal-screen">
+    <div class="reveal-answer" id="reveal-answer">
+      <div class="reveal-artwork" id="reveal-artwork-box">
+        <img id="reveal-artwork" src="" alt="">
+      </div>
+      <div>
+        <div class="reveal-song" id="reveal-song"></div>
+        <div class="reveal-artist" id="reveal-artist"></div>
+        <div class="reveal-album" id="reveal-album"></div>
+      </div>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+  </div>
+
+  <!-- 6. Scoreboard -->
+  <div id="screen-scoreboard" class="screen scoreboard-screen">
+    <div class="scoreboard-title">Scoreboard</div>
+    <div class="scoreboard-list" id="scoreboard-list"></div>
+  </div>
+
+  <!-- 7. Final / Podium -->
+  <div id="screen-final" class="screen final-screen">
+    <div class="final-title" id="final-title">Quiz Complete!</div>
+    <div class="podium" id="podium"></div>
+    <div class="final-stats" id="final-stats"></div>
+    <button class="play-again-btn" onclick="location.reload()">Play Again</button>
+    <div class="confetti-container" id="confetti"></div>
+  </div>
+
+  <!-- Audio element for preview fallback (no Home Controller) -->
+  <audio id="preview-audio" preload="none"></audio>
+
+  <!-- Exit Game button (visible during game) -->
+  <button id="exit-btn" class="exit-btn" style="display:none" onclick="exitGame()">Exit Game</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
+  <script src="/quiz/static/host.js"></script>
+</body>
+</html>

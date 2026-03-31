@@ -27,5 +27,6 @@ COPY --from=frontend /app/web/.next/static web/.next/static
 COPY --from=frontend /app/web/public web/public
 COPY server.js ./
 COPY public/ public/
+COPY src/quiz/public/ src/quiz/public/
 EXPOSE 3000
 CMD ["node", "server.js"]

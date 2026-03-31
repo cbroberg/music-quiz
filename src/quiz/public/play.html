@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Music Quiz</title>
+  <link rel="manifest" href="/quiz/manifest.json">
+  <link rel="stylesheet" href="/quiz/static/play.css">
+</head>
+<body>
+
+  <!-- 1. Join Screen -->
+  <div id="screen-join" class="screen active">
+    <div class="join-container">
+      <div class="join-title">Music Quiz</div>
+      <div class="join-subtitle">Enter the game code from the big screen</div>
+
+      <div class="input-group">
+        <label class="input-label">Game Code</label>
+        <input type="text" id="join-code" class="text-input code-input"
+          maxlength="6" placeholder="ROCK42" autocomplete="off" autocorrect="off" autocapitalize="characters">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Your Name</label>
+        <input type="text" id="join-name" class="text-input"
+          maxlength="12" placeholder="Your name" autocomplete="off">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Pick an Avatar</label>
+        <div class="avatar-grid" id="avatar-grid"></div>
+      </div>
+
+      <div class="join-error" id="join-error" style="display:none"></div>
+
+      <button id="btn-join" class="join-btn" onclick="joinGame()">Join Game</button>
+    </div>
+  </div>
+
+  <!-- 2. Lobby Screen -->
+  <div id="screen-lobby" class="screen">
+    <div class="lobby-container">
+      <div class="lobby-avatar" id="lobby-avatar"></div>
+      <div class="lobby-name" id="lobby-name"></div>
+      <div class="lobby-waiting">Waiting for the quiz to start...</div>
+      <div class="lobby-players" id="lobby-players"></div>
+    </div>
+  </div>
+
+  <!-- 3a. Answer Screen (Multiple Choice) -->
+  <div id="screen-mc" class="screen">
+    <div class="answer-container">
+      <div class="answer-header">
+        <div class="answer-qnum" id="mc-qnum">Question 1 / 10</div>
+        <div class="answer-type" id="mc-type"></div>
+      </div>
+      <div class="answer-timer"><div class="answer-timer-bar" id="mc-timer-bar"></div></div>
+      <div class="mc-grid" id="mc-grid"></div>
+    </div>
+  </div>
+
+  <!-- 3b. Answer Screen (Free Text) -->
+  <div id="screen-ft" class="screen">
+    <div class="ft-container">
+      <div class="answer-header">
+        <div class="answer-qnum" id="ft-qnum">Question 1 / 10</div>
+        <div class="answer-type" id="ft-type"></div>
+      </div>
+      <div class="answer-timer"><div class="answer-timer-bar" id="ft-timer-bar"></div></div>
+      <input type="text" id="ft-input" class="ft-input" placeholder="Type your answer..."
+        autocomplete="off" autocorrect="off">
+      <button id="ft-submit-btn" class="ft-submit" onclick="submitTextAnswer()">Submit</button>
+      <div class="ft-submitted" id="ft-submitted" style="display:none">Answer submitted!</div>
+    </div>
+  </div>
+
+  <!-- 4. Result Screen -->
+  <div id="screen-result" class="screen">
+    <div class="result-container" id="result-container">
+      <!-- Filled dynamically -->
+    </div>
+  </div>
+
+  <!-- 5. Scoreboard -->
+  <div id="screen-scoreboard" class="screen">
+    <div class="answer-container">
+      <div style="text-align:center;font-size:24px;font-weight:800;margin-bottom:16px">Scoreboard</div>
+      <div id="player-scoreboard"></div>
+    </div>
+  </div>
+
+  <!-- 6. Final Score -->
+  <div id="screen-final" class="screen">
+    <div class="final-container" id="final-container">
+      <!-- Filled dynamically -->
+    </div>
+  </div>
+
+  <script src="/quiz/static/play.js"></script>
+</body>
+</html>
