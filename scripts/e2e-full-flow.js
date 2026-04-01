@@ -291,17 +291,19 @@ async function main() {
   });
   console.log(`🎵 Viola auto-joined: ${violaJoined ? 'YES ✓' : 'NO ✗'}`);
 
-  // Christian + Nina need to join new session manually (their WS is on old session)
+  // Christian + Nina navigate to new session — auto-rejoin handles the rest
   for (let i = 0; i < 2; i++) {
     await [p1.page, p2.page][i].goto(`${BASE}/quiz/play?code=${joinCode2}`);
-    await sleep(500);
-    await [p1.page, p2.page][i].fill('#join-name', names12[i]);
-    await [p1.page, p2.page][i].click(`.avatar-btn:nth-child(${i + 1})`);
-    await sleep(200);
-    await [p1.page, p2.page][i].click('#btn-join');
-    console.log(`🎵 ${names12[i]} joined round 2`);
-    await sleep(500);
+    console.log(`🎵 ${names12[i]} → round 2 (auto-join)`);
+    await sleep(1500);
   }
+  // Wait for all players to appear in host lobby
+  try {
+    await host.page.waitForFunction(() => {
+      return document.body.innerHTML.includes('Christian') && document.body.innerHTML.includes('Nina');
+    }, undefined, { timeout: 15000 });
+  } catch {}
+  await sleep(1000);
 
   // Start quiz
   await host.page.waitForFunction(() => {
