@@ -61,7 +61,7 @@ async function clickButton(page, text, timeout = 10000) {
       for (const btn of document.querySelectorAll('button')) {
         if (btn.textContent.includes(t) && !btn.disabled) { btn.click(); return; }
       }
-    }, t);
+    }, text);
     return true;
   } catch { return false; }
 }
@@ -144,6 +144,7 @@ async function main() {
   // Set config
   await host.page.evaluate(() => {
     document.getElementById('cfg-count').value = '3';
+    document.getElementById('cfg-timer').value = '3';
     document.getElementById('cfg-source').value = 'genre';
     document.getElementById('cfg-genre').value = 'Jazz';
     const skipRecent = document.getElementById('cfg-exclude-recent');
