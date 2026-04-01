@@ -294,8 +294,7 @@ export async function createSession(
   sessions.set(sessionId, session);
   joinCodeIndex.set(joinCode, sessionId);
 
-  // Reset any lingering DJ Mode from previous session
-  resetDjMode();
+  // DJ Mode queue is NOT reset here — music keeps playing between rounds
 
   console.log(`🎮 Session created: ${joinCode} (${questions.length} questions)`);
   return session;
