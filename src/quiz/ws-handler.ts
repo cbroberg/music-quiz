@@ -315,6 +315,17 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
 
     // ─── DJ Mode (host) ─────────────────────────────────
     case "activate_dj": {
+      // Ensure picks are awarded (may not have happened yet if finishGame is still in setTimeout)
+      if (conn.sessionId) {
+        const sess = getSession(conn.sessionId);
+        if (sess && getAllPlayerPicks().length === 0) {
+          const { getFinalRankings: getFR } = await import("./engine.js");
+          const rankings = getFR(sess);
+          const { awardPicks: ap } = await import("./dj-mode.js");
+          ap(rankings);
+          console.log(`🎧 Late awardPicks: ${rankings.length} players`);
+        }
+      }
       activateDjMode();
       startDjAutoplayPolling(musicClient);
       const picks = getAllPlayerPicks();
