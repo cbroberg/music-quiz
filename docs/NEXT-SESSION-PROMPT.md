@@ -1,76 +1,129 @@
-# Next Session Prompt: Music Quiz Multiplayer Web Game
+# Next Session Prompt: Music Quiz v3.0.0
 
 ## Kontekst
 
-Vi bygger videre på Apple Music MCP serveren (`music.broberg.dk`). Serveren har 34 MCP tools, Now Playing frontend med pulserende sfære, og en quiz med playback der virker (5/5 tracks spiller med random seek). Se `docs/QUIZ-PLAN.md` for den fulde plan.
+Music Quiz er et party-spil bygget oven på en Apple Music MCP server (`music.broberg.dk`). Spillere quizzer om musik fra telefonen, og vinder derefter retten til at vælge musik via DJ Mode. Alt kører på Fly.io med en Home Controller på en Mac der styrer Music.app via osascript.
 
-## Hvad er bygget
+## Hvad er bygget og virker
 
-- Express + Next.js custom server på Fly.io (Stockholm)
-- 34 MCP tools (catalog, library, quiz, playback, AirPlay)
-- Home controller via WebSocket (Mac agent, launchd auto-start)
-- Quiz generator med 7 sources + 6 typer + decade/genre filtre
-- Quiz game UI (lobby, spørgsmål, countdown, scoring, reveal, winner)
-- Auto-playback: pre-load sange → search-and-play → random seek
-- Now Playing landing page med live album artwork
-- GitHub OAuth login + dev auto-login
-- Token persistence på Fly.io volume
+### Core Platform
+- **34 MCP tools** for Apple Music (catalog, library, playback, AirPlay)
+- **Express + Next.js** custom server på Fly.io (Stockholm/arn)
+- **Home Controller** via WebSocket "phone home" (Mac → Fly.io, launchd auto-start)
+- **OAuth 2.1** med 90-dages JWT tokens for claude.ai
+- **Now Playing** landing page med vinyl-spinning sfære (45 RPM rotation, grooves, center hole)
+- **GitHub OAuth** login (prod) + auto-login (dev)
+- **Token persistence** på Fly.io volume
 
-## Opgaven: Fase 1 Web Quiz — Full Multiplayer
+### Multiplayer Quiz (Phase 1 — komplet)
+- **Game Engine** (`src/quiz/engine.ts`): 6-tegn join-koder, max 8 spillere, Kahoot-scoring (1000pts max, streak bonus 1.5x/2x)
+- **Host UI** (`/quiz/host`): Vanilla HTML/JS. Setup → lobby med QR → countdown med tick-lyd → spørgsmål → reveal → scoreboard → podium med confetti
+- **Player PWA** (`/quiz/play`): Join via QR/kode, emoji avatar, multiple-choice + free-text svar, confetti for vinder, Play Again
+- **AI Evaluation** (`src/quiz/ai-evaluator.ts`): Claude haiku evaluerer free-text svar (stavefejl OK, forkortelser OK)
+- **WebSocket** (`/quiz-ws`): Real-time host ↔ server ↔ player kommunikation
+- **9 Sources**: Mixed (6-source aggregate), Recently Played, Charts, Library, Genre (16), Movie Soundtracks, Danish Music, Live Music, Random Shuffle
+- **Custom Quiz Builder** (`/quiz/builder`): Søg Apple Music (sange + albums med expand), curatér playliste, gem/load med navn, start quiz fra curated liste
+- **Admin** (`/quiz/admin`): Recently played grid/list med artwork, play-knapper med mini-player, clear used songs
+- **Artist-aware search-and-play**: Home Controller itererer resultater for at matche artist
+- **Song dedup**: Tracker brugte sange på tværs af sessions, "Skip recent plays" checkbox
+- **Preview fallback**: 30s Apple Music preview i browser når ingen Home Controller
+- **Custom UI**: Dark theme dropdowns, custom modals (ingen browser alert/confirm), toast notifications
 
-Byg det komplette multiplayer quiz-spil som beskrevet i `docs/QUIZ-PLAN.md` fase 1. Web first, ingen tvOS endnu.
+### DJ Mode — Music Democracy (bygget, har bugs)
+- **Picks system** (`src/quiz/dj-mode.ts`): #1=5, #2=3, #3=2, rest=1, streak bonus +1
+- **Player search**: Albums + sange, picks enforced (disabled ved 0)
+- **Queue**: Nye sange shuffles tilfældigt blandt ikke-spillede, første sang auto-plays
+- **Host jukebox**: Now-playing hero card med progress gauge via `/ws/now-playing`, autoplay toggle, player chips
+- **Reconnect**: `dj_status` check på WS connect → restorer DJ Mode efter page reload
+- **Navigation**: DJ Mode link i host nav
 
-### Prioriteret rækkefølge:
+### Visual & Polish
+- **Vinyl sfære**: Album artwork roterer som 45 RPM plade med grooves og sort center-hul
+- **Favicon**: SVG med dark/light mode support (prefers-color-scheme)
+- **Logo**: `logo/music-quiz-logo.svg` + `logo/favicon.svg`
+- **Playwright E2E test**: `scripts/e2e-quiz-visual.js` — 4 separate browsere på 3440x1440
 
-1. **Game Engine** (`src/quiz/engine.ts`) — erstat nuværende `quiz-manager.ts` med fuld engine: 6-tegn join-koder, player management, game states (lobby → countdown → playing → evaluating → reveal → scoreboard → finished), Kahoot-stil scoring med streak bonus
+## Kendte bugs at fikse
 
-2. **WebSocket Protocol** (`src/quiz/ws-handler.ts`) — host + player real-time kommunikation via `/quiz-ws`
+### Kritisk
+1. **Forkert sang spiller i DJ Mode** — "Stand on the Rock" (Fleetwood Mac) startede "I Saw Her Standing There" (Beatles). Search-and-play matcher stadig forkert trods artist-aware matching. Mulig løsning: søg med eksakt sangnavn som frase, eller brug songId direkte.
 
-3. **Host UI** (`/quiz/host`) — fullscreen storskærm: QR-kode, countdown animation, spørgsmål med artwork, reveal, animeret scoreboard, confetti podium
+2. **DJ Mode autoplay stopper** — Musik stopper efter første sang. Autoplay polling (`djPollInterval`) detecterer ikke sang-slut korrekt. Now-playing state kan skifte til "paused" mellem sange i stedet for "stopped".
 
-4. **Player PWA** (`/quiz/play`) — telefon: join via QR/kode, emoji avatar, multiple-choice knapper + free-text input, result feedback, final score
+3. **Players kan stadig vælge sange efter 0 picks** — `updateDjPicksDisplay` clearer søgeresultater, men timing-issue med eksisterende knapper.
 
-5. **AI Answer Evaluation** (`src/quiz/ai-evaluator.ts`) — Claude API (haiku) evaluerer free-text svar: stavefejl OK, forkortelser OK, batch alle svar i ét kald
+### UX
+4. **Player kan ikke navigere fra Now Playing tilbage til DJ Mode** — `history.back()` virker ikke altid. Bør bruge en mere robust approach (evt. sessionStorage med DJ state flag).
 
-6. **QR-kode** — `npm install qrcode`, vis på host setup screen
+5. **Host setup flicker ved reload** — Setup-skærmen vises kortvarigt før DJ Mode activeres via `dj_status`.
 
-7. **Preview Fallback** — hvis ingen Home Controller, brug Apple Music 30s preview i `<audio>` element
+6. **E2E test hænger efter Q2** — Timing-issue med reveal + scoreboard + countdown varighed.
 
-### Teknisk setup:
+## Features til næste session
 
-- Alle quiz-filer i `src/quiz/` mappen
-- Host + Player er vanilla HTML/CSS/JS (ingen React — holdes simpelt for fremtidig tvOS WebView)
-- Express routes serverer static files
-- `.env` har `ANTHROPIC_API_KEY` for Claude API
-- Udvikl og test lokalt (`node server.js`) før deploy
-- E2E test-script der simulerer 6 spillere
+### Prioritet 1: Fix DJ Mode bugs (3 kritiske)
+- Fix sang-matching (brug songId eller eksakt søgning)
+- Fix autoplay (bedre end-of-song detection)
+- Fix picks enforcement (server-side reject)
 
-### Design:
+### Prioritet 2: DJ Mode UX polish
+- Player sticky nav i toppen (Now Playing / Queue links)
+- Player kø-visning med Now Playing artwork
+- Bedre layout på player DJ Mode skærm
 
-- Mørk baggrund (#0a0a0a) med noise texture
-- Apple Music rød (#fc3c44) som accent
-- Store fonts (læsbare på TV-afstand)
-- Smooth CSS animations
-- Album artwork som hero-element med glow
-- Kahoot!-inspireret men med mere æstetik
+### Prioritet 3: Gameplay modes
+- **Steal Round** — Ingen svarede rigtigt? 5 ekstra sekunder, dobbelt points
+- **All-In Round** — Sidste spørgsmål: sæt X% af dine points på spil
+- **Sound Clash** — To spillere head-to-head, først til at svare
+- **Blind Round** — Kun free-text, ingen options, triple points
+- **Playlist Battle** — Spillere indsender sange, "hvem valgte denne?" som bonus
 
-### Vigtige detaljer:
+### Prioritet 4: Nye features
+- **Sangtekster på Now Playing** — Apple Music API lyrics (kræver undersøgelse)
+- **Repo omdøbning** — `apple-music-mcp` → `musicquiz` (GitHub + lokal mappe)
+- **Phase 2: tvOS app** — Se `docs/QUIZ-PLAN.md`
 
-- Max 8 spillere per session
-- Join-koder: 6 tegn, alfanumerisk, case-insensitive
-- Scoring: 1000 point max, falder lineært med svartid, 1.5x streak efter 3, 2x efter 5
-- Musik starter ved hvert spørgsmål via Home Controller (allerede virker)
-- Pre-load alle sange til Apple Music library ved quiz-oprettelse (allerede virker)
-- Random seek position (allerede virker)
-- Sessions timeout efter 30 min inaktivitet
-- Reconnect-logik for spillere der mister forbindelse
+## Teknisk setup
 
-### Filer at læse først:
+### API-arkitektur
+- **Quiz/DJ/Builder/Admin** kalder Apple Music REST API **direkte** via `AppleMusicClient` (`src/apple-music.ts`)
+- **MCP** er kun wrapper-lag for Claude-interaktion (claude.ai / iPhone)
+- **Home Controller** kommunikerer via direkte WebSocket, ikke MCP
+- Ingen MCP overhead i quiz-flowet
 
-- `docs/QUIZ-PLAN.md` — den fulde plan
-- `src/quiz-manager.ts` — nuværende simpel quiz state (skal erstattes)
-- `src/quiz.ts` — quiz generator (genbruges)
-- `src/home-ws.ts` — home controller WebSocket (genbruges)
-- `src/browser-ws.ts` — browser WebSocket pattern (genbruges)
-- `src/index.ts` — Express routes og MCP tools
-- `server.js` — custom server (Express + Next.js routing)
+### Lokal udvikling
+```bash
+# Terminal 1: Server
+npx tsc && NODE_ENV=development node server.js
+
+# Terminal 2: Home Controller
+./scripts/dev-home.sh
+
+# Terminal 3: E2E test (valgfrit)
+node scripts/e2e-quiz-visual.js
+```
+
+### Deploy
+```bash
+fly deploy
+```
+**VIGTIGT**: Seneste kode er IKKE fuldt deployed. Sidste deploy mangler DJ Mode fixes, vinyl sfære, og mange UI ændringer. Kør `fly deploy` tidligt.
+
+### Filer at læse først
+- `src/quiz/engine.ts` — Game engine + custom quiz support
+- `src/quiz/dj-mode.ts` — DJ Mode state management
+- `src/quiz/ws-handler.ts` — WebSocket handler (quiz + DJ Mode)
+- `src/quiz/routes.ts` — Express routes (builder, admin, DJ search, playback)
+- `src/quiz/public/host.js` — Host UI logik (alle screens inkl. DJ)
+- `src/quiz/public/play.js` — Player UI logik (quiz + DJ)
+- `home/server.ts` — Home Controller (osascript, artist-aware search)
+
+### Vigtige patterns
+- **Vanilla HTML/JS** til quiz/DJ UI (ikke Next.js) — for fremtidig tvOS WebView
+- **Express routes** til auth/redirects (ALDRIG Next.js API routes bag Fly.io proxy)
+- **Artist-aware search**: `sendHomeCommand("search-and-play", { query, artist })`
+- **Custom selects**: Native `<select>` hidden, custom dropdown wrappers via `initCustomSelects()`
+- **DJ Mode state**: In-memory, tabes ved restart. `dj_status` WS message restorer for host reconnect
+- **Song dedup**: `usedSongIds` Set + `excludeSongIds` til `generateQuiz()`
+- **LAN IP**: `getServerUrl()` replacer localhost med LAN IP for QR-koder
+- **Ultrawide test**: Christians skærm er 3440x1440, E2E test positionerer 4 browsere
