@@ -208,7 +208,7 @@
     <div class="final-stats" id="final-stats"></div>
     <div style="display:flex;gap:12px;margin-top:16px">
       <button class="play-again-btn" onclick="location.reload()">Play Again</button>
-      <button class="play-again-btn" style="border-color:var(--red);color:var(--red)" onclick="activateDjMode()">DJ Mode</button>
+      <button data-testid="btn-dj-mode" class="play-again-btn" style="border-color:var(--red);color:var(--red)" onclick="activateDjMode()">DJ Mode</button>
     </div>
     <div class="confetti-container" id="confetti"></div>
   </div>
@@ -223,7 +223,7 @@
       <div style="display:flex;gap:8px">
         <button onclick="djPlayNext()" style="background:var(--red);color:white;border:none;border-radius:10px;padding:12px 24px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer">Next Song</button>
         <button id="btn-autoplay" onclick="toggleAutoplay()" style="background:var(--card);border:1px solid var(--green);color:var(--green);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">Autoplay: ON</button>
-        <button onclick="startNewQuizFromDj()" style="background:var(--card);border:1px solid var(--yellow);color:var(--yellow);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">New Quiz</button>
+        <button data-testid="btn-new-quiz" onclick="startNewQuizFromDj()" style="background:var(--card);border:1px solid var(--yellow);color:var(--yellow);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">New Quiz</button>
         <button onclick="deactivateDjMode()" style="background:var(--card);border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">End DJ Mode</button>
       </div>
     </div>

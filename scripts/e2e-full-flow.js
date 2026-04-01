@@ -238,16 +238,22 @@ async function main() {
   } catch {}
   await sleep(5000);
 
-  // Activate DJ Mode
-  console.log('🎧 Activating DJ Mode...');
-  await clickButton(host.page, 'DJ Mode');
-  await sleep(3000);
+  // Activate DJ Mode via data-testid selector
+  console.log('🎧 Step: Click DJ Mode button...');
+  await host.page.waitForSelector('[data-testid="btn-dj-mode"]', { timeout: 15000 });
+  await host.page.click('[data-testid="btn-dj-mode"]');
+  console.log('🎧 ✓ DJ Mode clicked');
 
-  // Wait for DJ search to appear on players
-  for (const p of [p1.page, p2.page]) {
-    await waitForSelector(p, '#dj-search', 10000);
+  // Verify host DJ screen
+  await host.page.waitForSelector('#dj-host-queue', { timeout: 10000 });
+  console.log('🎧 ✓ DJ Mode screen visible');
+  await sleep(1000);
+
+  // Verify players see DJ search
+  for (let i = 0; i < 2; i++) {
+    const vis = await waitForSelector([p1.page, p2.page][i], '#dj-search:not([style*="display: none"])', 10000);
+    console.log(`🎵 ${names12[i]} DJ search: ${vis ? '✓' : '✗'}`);
   }
-  await sleep(500);
 
   // Christian + Nina add songs
   console.log('🎵 Christian searching "John Coltrane"...');
@@ -263,12 +269,14 @@ async function main() {
   console.log('\n═══ ROUND 2: New Quiz, Viola auto-joins ═══\n');
 
   // Host clicks New Quiz
-  console.log('📺 Host clicks New Quiz...');
-  await clickButton(host.page, 'New Quiz');
-  await sleep(2000);
+  console.log('📺 Step: Click New Quiz...');
+  await host.page.click('[data-testid="btn-new-quiz"]');
+  console.log('📺 ✓ New Quiz clicked');
+  await sleep(1000);
 
   // Click Create Game
-  await host.page.click('#btn-create');
+  await host.page.waitForSelector('#btn-create:not(:disabled)', { timeout: 5000 });
+  await host.page.evaluate(() => document.getElementById('btn-create').click());
   console.log('📺 Creating round 2...');
 
   // Wait for lobby with join code
@@ -343,21 +351,19 @@ async function main() {
   console.log('\n🏆 Round 2 complete!\n');
 
   // DJ Mode round 2
-  try {
-    await host.page.waitForFunction(() => {
-      return [...document.querySelectorAll('button')].some(b => b.textContent.includes('DJ Mode'));
-    }, undefined, { timeout: 20000 });
-  } catch {}
-  await sleep(5000);
+  console.log('🎧 Step: Wait for DJ Mode button (round 2)...');
+  await host.page.waitForSelector('[data-testid="btn-dj-mode"]', { timeout: 30000 });
+  await sleep(2000);
+  await host.page.click('[data-testid="btn-dj-mode"]');
+  console.log('🎧 ✓ DJ Mode clicked (round 2)');
+  await host.page.waitForSelector('#dj-host-queue', { timeout: 10000 });
+  console.log('🎧 ✓ DJ Mode screen visible (round 2)');
+  await sleep(1000);
 
-  console.log('🎧 Activating DJ Mode (round 2)...');
-  await clickButton(host.page, 'DJ Mode');
-  await sleep(3000);
-
-  for (const p of allPlayers) {
-    await waitForSelector(p, '#dj-search', 10000);
+  for (let i = 0; i < allPlayers.length; i++) {
+    const vis = await waitForSelector(allPlayers[i], '#dj-search', 10000);
+    console.log(`🎵 ${allNames[i]} DJ search: ${vis ? '✓' : '✗'}`);
   }
-  await sleep(500);
 
   console.log('🎵 Christian searching "Dave Brubeck"...');
   await djAddSongs(p1.page, 'Christian', 'Dave Brubeck');
