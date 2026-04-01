@@ -5,9 +5,17 @@ export const metadata: Metadata = {
   title: "Apple Music MCP",
   description: "Remote control your Apple Music from anywhere",
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/favicon-32.png", sizes: "32x32", type: "image/png" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
     apple: "/apple-touch-icon.png",
   },
+  other: [
+    { rel: "icon", type: "image/svg+xml", href: "/favicon.svg", media: "(prefers-color-scheme: dark)" },
+    { rel: "icon", type: "image/svg+xml", href: "/favicon-light.svg", media: "(prefers-color-scheme: light)" },
+  ] as any,
 };
 
 export default function RootLayout({
