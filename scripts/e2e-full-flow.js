@@ -299,11 +299,22 @@ async function main() {
   });
   console.log(`🎵 Viola auto-joined: ${violaJoined ? 'YES ✓' : 'NO ✗'}`);
 
-  // Christian + Nina navigate to new session — auto-rejoin handles the rest
+  // Christian + Nina: clear old state and navigate fresh to new session
   for (let i = 0; i < 2; i++) {
+    // Clear any DJ Mode / session state before navigating
+    await [p1.page, p2.page][i].evaluate(() => {
+      sessionStorage.clear();
+      localStorage.removeItem('quizPlayerName');
+    });
     await [p1.page, p2.page][i].goto(`${BASE}/quiz/play?code=${joinCode2}`);
-    console.log(`🎵 ${names12[i]} → round 2 (auto-join)`);
-    await sleep(1500);
+    await sleep(500);
+    // Manually fill name and join (clean state, no auto-rejoin confusion)
+    await [p1.page, p2.page][i].fill('#join-name', names12[i]);
+    await [p1.page, p2.page][i].click(`.avatar-btn:nth-child(${i + 1})`);
+    await sleep(200);
+    await [p1.page, p2.page][i].click('#btn-join');
+    console.log(`🎵 ${names12[i]} joined round 2 ✓`);
+    await sleep(500);
   }
   // Wait for all players to appear in host lobby
   try {
