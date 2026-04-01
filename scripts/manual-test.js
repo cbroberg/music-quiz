@@ -88,7 +88,7 @@ async function main() {
   await host.page.waitForFunction(() => {
     const body = document.body.innerHTML;
     return /[A-Z0-9]{6}/.test(body) && body.includes('Start Quiz');
-  }, { timeout: 300000 }); // 5 min timeout — take your time
+  }, undefined, { timeout: 300000 }); // 5 min timeout — take your time
   await sleep(500);
 
   const joinCode = await host.page.evaluate(() => {

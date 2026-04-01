@@ -569,18 +569,25 @@ function onDjActivated(msg) {
 function updateDjPicksDisplay() {
   const el = document.getElementById('dj-picks-left');
   el.textContent = `${djPicks} pick${djPicks !== 1 ? 's' : ''} left`;
-  // Always disable all remaining add-buttons when picks are 0
+  const searchPanel = document.getElementById('dj-panel-search');
   if (djPicks <= 0) {
-    document.getElementById('dj-all-picked').style.display = '';
-    document.getElementById('dj-search').disabled = true;
-    // Disable ALL add buttons in the DOM (not just visible ones)
+    // Hide search entirely — no searching at 0 picks
+    if (searchPanel) searchPanel.style.display = 'none';
+    // Switch to queue tab automatically
+    switchDjTab('queue');
+    // Disable any remaining add buttons
     document.querySelectorAll('.dj-add-btn:not(.used)').forEach(btn => {
       btn.classList.add('used');
       btn.disabled = true;
       btn.innerHTML = '–';
     });
+    // Hide search tab
+    const searchTab = document.getElementById('dj-tab-search');
+    if (searchTab) searchTab.style.display = 'none';
   } else {
-    document.getElementById('dj-all-picked').style.display = 'none';
+    if (searchPanel) searchPanel.style.display = '';
+    const searchTab = document.getElementById('dj-tab-search');
+    if (searchTab) searchTab.style.display = '';
     document.getElementById('dj-search').disabled = false;
   }
 }
