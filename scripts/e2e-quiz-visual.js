@@ -12,7 +12,7 @@ import { chromium } from 'playwright';
 import { execSync, spawn } from 'node:child_process';
 
 const BASE = 'http://localhost:3000';
-const QUESTIONS = 5;
+const QUESTIONS = 3;
 const TIMER = 15;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -29,11 +29,18 @@ function startScreenRecording() {
   return outFile;
 }
 
-function stopScreenRecording() {
+async function stopScreenRecording() {
   if (screenRecordProc) {
     console.log('🎬 Stopping screen recording...');
-    try { screenRecordProc.kill('SIGINT'); } catch {}
+    const proc = screenRecordProc;
     screenRecordProc = null;
+    try { proc.kill('SIGINT'); } catch {}
+    // Wait for process to exit and file to be written
+    await new Promise(resolve => {
+      proc.on('exit', resolve);
+      setTimeout(resolve, 5000); // timeout after 5s
+    });
+    console.log('🎬 Recording saved.');
   }
 }
 
@@ -148,11 +155,18 @@ async function main() {
 
   // ─── Play questions ────────────────────────────────────
   for (let q = 1; q <= QUESTIONS; q++) {
-    console.log(`🎵 Q${q}/${QUESTIONS}`);
-    await sleep(4500); // countdown + question appears
+    // Wait for answer buttons to appear (question is active)
+    console.log(`🎵 Q${q}/${QUESTIONS} — waiting for question...`);
+    try {
+      await players[0].waitForSelector('.mc-btn:not(:disabled), #ft-input', { timeout: 45000 });
+    } catch {
+      console.log(`   ⚠️ Question ${q} didn't appear, checking if quiz ended`);
+      break;
+    }
+    await sleep(500);
 
     for (let i = 0; i < 3; i++) {
-      await sleep(300 + Math.random() * 1500);
+      await sleep(200 + Math.random() * 1000);
       try {
         const btns = await players[i].$$('.mc-btn:not(:disabled)');
         if (btns.length > 0) {
@@ -169,23 +183,62 @@ async function main() {
       } catch {}
     }
 
-    // Wait for reveal + scoreboard + countdown + buffer
-    await sleep(16000);
+    // Wait for reveal + scoreboard to finish (watch host screen for state change)
+    if (q < QUESTIONS) {
+      // Not last question — wait for next countdown or question
+      try {
+        await host.page.waitForFunction((qNum) => {
+          const el = document.getElementById('q-number');
+          return el && el.textContent && !el.textContent.includes(`Question ${qNum} `);
+        }, q, { timeout: 40000 });
+      } catch {
+        console.log(`   ⚠️ Timed out waiting for Q${q + 1}`);
+      }
+    } else {
+      // Last question — wait for final results
+      try {
+        await host.page.waitForFunction(() => {
+          return document.body.innerHTML.includes('Quiz Complete') ||
+                 document.body.innerHTML.includes('DJ Mode');
+        }, { timeout: 40000 });
+      } catch {
+        console.log('   ⚠️ Timed out waiting for final results');
+      }
+    }
   }
 
   // ─── Final results ─────────────────────────────────────
   console.log('\n🏆 Quiz complete!\n');
+  // Wait for podium + DJ Mode button to actually appear
+  try {
+    await host.page.waitForFunction(() => {
+      return [...document.querySelectorAll('button')].some(b => b.textContent.includes('DJ Mode'));
+    }, { timeout: 20000 });
+  } catch {
+    console.log('   ⚠️ DJ Mode button not found');
+  }
+  // Let We Are the Champions play a bit + ensure picks are awarded
   await sleep(5000);
 
   // ─── DJ Mode ───────────────────────────────────────────
   console.log('🎧 Activating DJ Mode...');
-  // Click DJ Mode button (may be in different locations)
   await host.page.evaluate(() => {
     for (const btn of document.querySelectorAll('button')) {
       if (btn.textContent.includes('DJ Mode')) { btn.click(); return; }
     }
   });
   await sleep(3000);
+
+  // Wait for DJ Mode to appear on player screens
+  console.log('🎧 Waiting for DJ Mode on player screens...');
+  for (let i = 0; i < 3; i++) {
+    try {
+      await players[i].waitForSelector('#dj-search', { timeout: 10000 });
+    } catch {
+      console.log(`   ${names[i]} DJ screen not ready`);
+    }
+  }
+  await sleep(1000);
 
   // Players search and add songs
   for (let i = 0; i < 3; i++) {
@@ -258,8 +311,7 @@ async function main() {
   await sleep(10000);
 
   // ─── Cleanup ───────────────────────────────────────────
-  stopScreenRecording();
-  await sleep(1000);
+  await stopScreenRecording();
   console.log(`\n✅ Done! Recording: ${recordingFile}`);
 
   // Close all browsers

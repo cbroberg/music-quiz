@@ -15,7 +15,7 @@ import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "../quiz.j
 import type { AppleMusicClient } from "../apple-music.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
-import { awardPicks } from "./dj-mode.js";
+import { awardPicks, resetDjMode } from "./dj-mode.js";
 
 import { writeFileSync, mkdirSync } from "node:fs";
 
@@ -23,6 +23,17 @@ import { writeFileSync, mkdirSync } from "node:fs";
 
 const MAX_PLAYERS = 8;
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+
+// ─── Theme Songs (permanent in library, never deleted) ───
+
+export const THEME_SONGS = {
+  preparation: [
+    { name: "Theme from New York, New York", artist: "Frank Sinatra" },
+    { name: "Every Breath You Take", artist: "The Police" },
+    { name: "Message In A Bottle", artist: "The Police" },
+  ],
+  victory: { name: "We Are the Champions", artist: "Queen" },
+};
 
 // ─── Quiz Log (expected vs actual playback) ──────────────
 
@@ -112,8 +123,12 @@ setInterval(() => {
       destroySession(id);
     }
   }
-  // Clear used songs if no active sessions (new evening)
-  if (sessions.size === 0) usedSongIds.clear();
+  // Clear state if no active sessions (new evening)
+  if (sessions.size === 0) {
+    usedSongIds.clear();
+    resetDjMode();
+    console.log("🎮 All sessions expired — DJ Mode and used songs reset");
+  }
 }, 5 * 60 * 1000);
 
 // ─── Join Code Generation ─────────────────────────────────
@@ -278,8 +293,31 @@ export async function createSession(
   sessions.set(sessionId, session);
   joinCodeIndex.set(joinCode, sessionId);
 
+  // Reset any lingering DJ Mode from previous session
+  resetDjMode();
+
   console.log(`🎮 Session created: ${joinCode} (${questions.length} questions)`);
   return session;
+}
+
+// Ensure theme songs are in library (called once on first quiz)
+let themeSongsEnsured = false;
+async function ensureThemeSongs(musicClient: AppleMusicClient): Promise<void> {
+  if (themeSongsEnsured || !musicClient.hasUserToken()) return;
+  themeSongsEnsured = true;
+  const allThemes = [...THEME_SONGS.preparation, THEME_SONGS.victory];
+  for (const theme of allThemes) {
+    try {
+      const result = await musicClient.searchCatalog(`${theme.name} ${theme.artist}`, ["songs"], 1) as {
+        results?: { songs?: { data?: Array<{ id: string }> } };
+      };
+      const songId = result?.results?.songs?.data?.[0]?.id;
+      if (songId) {
+        await musicClient.addToLibrary({ songs: [songId] });
+        console.log(`🎵 Theme song ready: ${theme.name} — ${theme.artist}`);
+      }
+    } catch {}
+  }
 }
 
 export async function prepareSongs(
@@ -290,15 +328,13 @@ export async function prepareSongs(
   const session = sessions.get(sessionId);
   if (!session) return;
 
+  // Ensure theme songs are available
+  await ensureThemeSongs(musicClient);
+
   const songs = session.questions.filter(q => q.songId);
   if (songs.length === 0 || !musicClient.hasUserToken()) return;
 
   if (!isHomeConnected()) return;
-
-  // Play background music while preparing
-  if (isHomeConnected()) {
-    sendHomeCommand("search-and-play", { query: "music", randomSeek: true }).catch(() => {});
-  }
 
   // Step 1: Check which songs are already in library
   const needsDownload: string[] = [];
@@ -408,7 +444,7 @@ export async function prepareSongs(
 
   // Stop background music when preparation is done
   if (isHomeConnected()) {
-    sendHomeCommand("pause", {}).catch(() => {});
+    await sendHomeCommand("pause", {}, 3000).catch(() => {});
   }
 }
 
@@ -427,7 +463,7 @@ export function destroySession(sessionId: string): void {
   if (session.timer) clearTimeout(session.timer);
   joinCodeIndex.delete(session.joinCode);
   sessions.delete(sessionId);
-  console.log(`🎮 Session destroyed: ${session.joinCode}`);
+  console.log(`🎮 Session destroyed: ${session.joinCode} (was ${session.state}, ${session.players.size} players)`);
 }
 
 // ─── Player Management ────────────────────────────────────
@@ -566,7 +602,7 @@ async function advanceToNextQuestion(session: GameSession): Promise<void> {
 
   if (session.currentQuestion >= session.questions.length) {
     // Game over
-    finishGame(session);
+    await finishGame(session);
     return;
   }
 
@@ -607,9 +643,6 @@ async function advanceToNextQuestion(session: GameSession): Promise<void> {
         await new Promise(r => setTimeout(r, 800));
       }
     }
-
-    // 1 second bonus — let players hear the music before timer starts
-    await new Promise(r => setTimeout(r, 1000));
 
     // NOW start the clock
     session.pendingAnswers.clear();
@@ -854,13 +887,13 @@ async function evaluateAndScore(
   // Auto-advance: reveal → scoreboard → next question
   session.timer = setTimeout(() => {
     transition(session, "scoreboard");
-    session.timer = setTimeout(() => {
-      advanceToNextQuestion(session);
+    session.timer = setTimeout(async () => {
+      await advanceToNextQuestion(session);
     }, SCOREBOARD_DURATION_MS);
   }, REVEAL_DURATION_MS);
 }
 
-function finishGame(session: GameSession): void {
+async function finishGame(session: GameSession): Promise<void> {
   if (session.timer) {
     clearTimeout(session.timer);
     session.timer = null;
@@ -875,20 +908,24 @@ function finishGame(session: GameSession): void {
   // Award music picks for DJ Mode
   awardPicks(rankings);
 
-  // Fade music down fast for applause, then stop
+  // Stop quiz music → start Champions → THEN show results with confetti
   if (isHomeConnected()) {
-    sendHomeCommand("fade-volume", { level: 0, duration: 500 }).then(() => {
-      sendHomeCommand("pause", {}).catch(() => {});
-    }).catch(() => {});
+    await sendHomeCommand("pause", {}, 3000).catch(() => {});
+    const theme = THEME_SONGS.victory;
+    await sendHomeCommand("play-exact", { name: theme.name, artist: theme.artist, retries: 2 }, 10000).catch(async () => {
+      await sendHomeCommand("search-and-play", { query: `${theme.name} ${theme.artist}` }, 10000).catch(() => {});
+    });
+    // Let Champions intro play before showing podium
+    await new Promise(r => setTimeout(r, 2000));
   }
 
   emit(session.id, { type: "final_results", session, rankings });
 }
 
-export function endQuiz(sessionId: string): boolean {
+export async function endQuiz(sessionId: string): Promise<boolean> {
   const session = sessions.get(sessionId);
   if (!session) return false;
-  finishGame(session);
+  await finishGame(session);
   return true;
 }
 

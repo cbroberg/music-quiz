@@ -21,7 +21,7 @@ import {
   onGameEvent, removeGameEventListener,
   getHostQuestionData, getPlayerRankings, getFinalRankings,
   getPlayerCount, getAnswerModeForCurrentQuestion,
-  trackAddedToLibrary, getAddedToLibrary, clearAddedToLibrary, prepareSongs,
+  trackAddedToLibrary, getAddedToLibrary, clearAddedToLibrary, prepareSongs, THEME_SONGS,
 } from "./engine.js";
 import {
   activateDjMode, deactivateDjMode, isDjModeActive,
@@ -208,6 +208,25 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
   switch (msg.type) {
     case "create_session": {
       try {
+        // Start prep music IMMEDIATELY — try each theme song until one plays
+        if (isHomeConnected()) {
+          // Ensure volume is up (may have been left at 0)
+          await sendHomeCommand("volume", { level: 75 }, 3000).catch(() => {});
+          let prepPlaying = false;
+          for (const theme of THEME_SONGS.preparation) {
+            const res = await sendHomeCommand("play-exact", { name: theme.name, artist: theme.artist, retries: 1 }, 8000).catch(() => null) as { playing?: string } | null;
+            if (res?.playing) {
+              console.log(`🎵 Prep music: ${res.playing}`);
+              prepPlaying = true;
+              break;
+            }
+          }
+          if (!prepPlaying) {
+            // Last resort: search for first option
+            await sendHomeCommand("search-and-play", { query: `${THEME_SONGS.preparation[0].name} ${THEME_SONGS.preparation[0].artist}` }, 10000).catch(() => {});
+          }
+        }
+
         const session = await createSession(msg.config, conn.id, musicClient);
         conn.role = "host";
         conn.sessionId = session.id;
@@ -283,8 +302,6 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
     case "activate_dj": {
       activateDjMode();
       startDjAutoplayPolling(musicClient);
-      // Restore volume after quiz fade-down
-      if (isHomeConnected()) sendHomeCommand("fade-volume", { level: 50, duration: 1500 }).catch(() => {});
       const picks = getAllPlayerPicks();
       sendToWs(conn.ws, { type: "dj_activated", picks, queue: getQueue() } as any);
       // Notify all players
@@ -330,7 +347,10 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
       break;
     }
     case "dj_status": {
-      if (isDjModeActive()) {
+      // Only respond if DJ Mode is active AND this connection has a finished session
+      if (!conn.sessionId) break; // No session = no DJ Mode
+      const djCheckSession = getSession(conn.sessionId);
+      if (isDjModeActive() && djCheckSession?.state === "finished") {
         conn.role = "host";
         const picks = getAllPlayerPicks().map(p => ({
           ...p,
@@ -521,7 +541,16 @@ async function cleanupLibrary(): Promise<void> {
   if (songs.length === 0 || !isHomeConnected()) return;
   console.log(`🧹 Cleaning up ${songs.length} quiz-added songs from library...`);
   let deleted = 0;
+  // Protected songs (theme songs) — never delete
+  const protectedSongs = [...THEME_SONGS.preparation, THEME_SONGS.victory];
+  function isProtected(name: string, artist: string): boolean {
+    const n = name.toLowerCase().trim();
+    const a = artist.toLowerCase().trim();
+    return protectedSongs.some(t => t.name.toLowerCase().trim() === n && t.artist.toLowerCase().trim() === a);
+  }
+
   for (const song of songs) {
+    if (isProtected(song.name, song.artist)) continue;
     try {
       const result = await sendHomeCommand("delete-from-library", {
         name: song.name, artist: song.artist,
@@ -559,9 +588,6 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
       await new Promise(r => setTimeout(r, 800));
     }
 
-    // Crossfade: fade current song down
-    await sendHomeCommand("fade-volume", { level: 0, duration: 1500 }).catch(() => {});
-
     // Primary: exact name + artist match (no fuzzy search, no wrong songs)
     const artist = song.artistName.split(/[,&]/)[0].trim();
     const result = await sendHomeCommand("play-exact", {
@@ -570,8 +596,6 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
 
     if (result.playing) {
       console.log(`🎧 DJ playing: ${result.playing}`);
-      // Crossfade: fade new song in
-      sendHomeCommand("fade-volume", { level: 50, duration: 2000 }).catch(() => {});
       return;
     }
     // Fallback: try without parentheses (remaster tags etc.)
@@ -582,7 +606,6 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
       }, 10000) as { playing?: string };
       if (retry.playing) {
         console.log(`🎧 DJ playing (simplified): ${retry.playing}`);
-        sendHomeCommand("fade-volume", { level: 50, duration: 2000 }).catch(() => {});
         return;
       }
     }
