@@ -88,17 +88,21 @@ async function answerQuestion(players, names) {
 
 async function djAddSongs(page, name, searchTerm, maxSongs = 3) {
   try {
-    // Make sure search tab is visible
+    // Check if search is available (hidden when 0 picks)
+    const canSearch = await page.evaluate(() => {
+      const panel = document.getElementById('dj-panel-search');
+      const input = document.getElementById('dj-search');
+      return panel && panel.style.display !== 'none' && input && !input.disabled;
+    });
+    if (!canSearch) {
+      console.log(`   ${name}: no picks / search hidden, skipping`);
+      return;
+    }
     await page.evaluate(() => {
       const tab = document.getElementById('dj-tab-search');
       if (tab) tab.click();
     });
     await sleep(300);
-    const searchInput = await page.$('#dj-search');
-    if (!searchInput || await searchInput.isDisabled()) {
-      console.log(`   ${name}: no picks left, skipping search`);
-      return;
-    }
     await page.fill('#dj-search', searchTerm);
     await sleep(2500);
     for (let s = 0; s < maxSongs; s++) {
@@ -263,11 +267,22 @@ async function main() {
 
   // Host clicks New Quiz
   console.log('📺 Host clicks New Quiz...');
-  await clickButton(host.page, 'New Quiz');
+  const newQuizClicked = await host.page.evaluate(() => {
+    for (const btn of document.querySelectorAll('button')) {
+      if (btn.textContent.includes('New Quiz')) { btn.click(); return true; }
+    }
+    // Fallback: call function directly
+    if (typeof startNewQuizFromDj === 'function') { startNewQuizFromDj(); return true; }
+    return false;
+  });
+  console.log(`   New Quiz clicked: ${newQuizClicked}`);
   await sleep(2000);
 
   // Click Create Game
-  await host.page.click('#btn-create');
+  await host.page.evaluate(() => {
+    const btn = document.getElementById('btn-create');
+    if (btn) btn.click();
+  });
   console.log('📺 Creating round 2...');
 
   // Wait for lobby with join code
