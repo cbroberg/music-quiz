@@ -716,7 +716,11 @@ function startNewQuizFromDj() {
   // Show config, hide lobby from previous session
   document.getElementById('setup-config').style.display = '';
   document.getElementById('lobby-view').style.display = 'none';
-  document.getElementById('btn-create').style.display = '';
+  // Reset Create Game button
+  const createBtn = document.getElementById('btn-create');
+  createBtn.style.display = '';
+  createBtn.disabled = false;
+  createBtn.textContent = 'Create Game';
   document.getElementById('btn-start').style.display = 'none';
   // Clear old player list
   players.clear();
