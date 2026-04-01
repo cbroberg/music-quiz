@@ -41,6 +41,27 @@ function init() {
 
   // Connect WebSocket
   connect();
+
+  // Auto-rejoin if returning to DJ Mode (has code + saved name)
+  const autoCode = params.get('code');
+  if (autoCode && savedName) {
+    const savedAvatar = sessionStorage.getItem('djAvatar');
+    if (savedAvatar) selectedAvatar = savedAvatar;
+    // Wait for WS to open, then auto-join
+    const tryAutoJoin = setInterval(() => {
+      if (ws?.readyState === WebSocket.OPEN) {
+        clearInterval(tryAutoJoin);
+        send({
+          type: 'join_session',
+          joinCode: autoCode.toUpperCase(),
+          name: savedName,
+          avatar: selectedAvatar,
+        });
+      }
+    }, 200);
+    // Give up after 5s
+    setTimeout(() => clearInterval(tryAutoJoin), 5000);
+  }
 }
 
 function selectAvatar(emoji) {
@@ -509,6 +530,19 @@ let djAddedSongIds = new Set();
 function onDjActivated(msg) {
   djPicks = msg.picks?.availablePicks ?? 0;
   djAddedSongIds.clear();
+  isDjModeActive = true;
+  // Store join code so Now Playing can link back
+  const code = document.getElementById('join-code')?.value || new URLSearchParams(location.search).get('code') || '';
+  if (code) sessionStorage.setItem('djJoinCode', code);
+  sessionStorage.setItem('djAvatar', selectedAvatar);
+  // Update all Now Playing links with code for return navigation
+  const npLink = document.getElementById('dj-np-link');
+  if (npLink && code) npLink.href = `/quiz/now-playing?from=dj&code=${code}`;
+  const npPageLink = document.getElementById('dj-np-page-link');
+  if (npPageLink && code) npPageLink.href = `/quiz/now-playing?from=dj&code=${code}`;
+  // Show player identity
+  const identEl = document.getElementById('dj-player-identity');
+  if (identEl && myPlayer) identEl.textContent = `${myPlayer.avatar} ${myPlayer.name}`;
   showScreen('dj');
   updateDjPicksDisplay();
   requestWakeLock();
@@ -521,19 +555,33 @@ function onDjActivated(msg) {
   };
   document.getElementById('dj-search-results').innerHTML = '';
   document.getElementById('dj-all-picked').style.display = 'none';
+
+  // Render queue if available (reconnect scenario)
+  if (msg.queue || msg.current) {
+    renderDjQueue(msg.queue, msg.current);
+    // If picks are 0, switch to queue tab
+    if (djPicks <= 0 && msg.queue?.some(q => !q.played)) {
+      switchDjTab('queue');
+    }
+  }
 }
 
 function updateDjPicksDisplay() {
   const el = document.getElementById('dj-picks-left');
   el.textContent = `${djPicks} pick${djPicks !== 1 ? 's' : ''} left`;
+  // Always disable all remaining add-buttons when picks are 0
   if (djPicks <= 0) {
     document.getElementById('dj-all-picked').style.display = '';
     document.getElementById('dj-search').disabled = true;
-    document.getElementById('dj-search-results').innerHTML = '';
+    // Disable ALL add buttons in the DOM (not just visible ones)
     document.querySelectorAll('.dj-add-btn:not(.used)').forEach(btn => {
       btn.classList.add('used');
       btn.disabled = true;
+      btn.innerHTML = '–';
     });
+  } else {
+    document.getElementById('dj-all-picked').style.display = 'none';
+    document.getElementById('dj-search').disabled = false;
   }
 }
 
@@ -616,11 +664,16 @@ function createDjTrackRow(t) {
   const btn = document.createElement('button');
   btn.className = `dj-add-btn${added ? ' used' : ''}`;
   btn.innerHTML = added ? '✓' : '+';
-  if (!added && djPicks > 0) {
+  if (!added) {
+    btn.disabled = djPicks <= 0;
+    if (djPicks <= 0) btn.classList.add('used');
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
+      // Re-check picks at click time (server also enforces this)
+      if (djPicks <= 0 || djAddedSongIds.has(t.id)) return;
       djAddedSongIds.add(t.id);
       btn.classList.add('used');
+      btn.disabled = true;
       btn.innerHTML = '✓';
       send({
         type: 'dj_add_song',
@@ -633,10 +686,16 @@ function createDjTrackRow(t) {
     });
   } else {
     btn.disabled = true;
-    if (!added) btn.classList.add('used');
   }
   row.appendChild(btn);
   return row;
+}
+
+function switchDjTab(tab) {
+  document.getElementById('dj-tab-search').classList.toggle('active', tab === 'search');
+  document.getElementById('dj-tab-queue').classList.toggle('active', tab === 'queue');
+  document.getElementById('dj-panel-search').style.display = tab === 'search' ? '' : 'none';
+  document.getElementById('dj-panel-queue').style.display = tab === 'queue' ? '' : 'none';
 }
 
 function renderDjQueue(queue, current) {
@@ -644,7 +703,7 @@ function renderDjQueue(queue, current) {
   list.innerHTML = '';
   const upcoming = (queue || []).filter(q => !q.played);
 
-  // Now Playing on queue screen
+  // Now Playing on queue tab
   const npDiv = document.getElementById('dj-now-playing-player');
   if (current && !current.played) {
     npDiv.style.display = '';
@@ -654,6 +713,25 @@ function renderDjQueue(queue, current) {
   } else {
     npDiv.style.display = 'none';
   }
+
+  // Sticky mini Now Playing bar (visible on all tabs)
+  const miniNp = document.getElementById('dj-mini-np');
+  if (current && !current.played) {
+    miniNp.style.display = '';
+    document.getElementById('dj-mini-np-art').src = current.artworkUrl || '';
+    document.getElementById('dj-mini-np-title').textContent = current.name;
+    document.getElementById('dj-mini-np-artist').textContent = current.artistName;
+    // Update Now Playing link with code
+    const code = sessionStorage.getItem('djJoinCode') || '';
+    const npLink = document.getElementById('dj-np-link');
+    if (npLink && code) npLink.href = `/quiz/now-playing?from=dj&code=${code}`;
+  } else {
+    miniNp.style.display = 'none';
+  }
+
+  // Queue tab badge
+  const queueTab = document.getElementById('dj-tab-queue');
+  queueTab.textContent = upcoming.length > 0 ? `Queue (${upcoming.length})` : 'Queue';
 
   if (upcoming.length === 0) {
     list.innerHTML = '<div style="color:var(--dimmer);font-size:13px;text-align:center;padding:12px">No songs in queue yet</div>';

@@ -36,7 +36,7 @@ export function Sphere({ artworkUrl, isPlaying }: SphereProps) {
           className="absolute top-1/2 left-1/2 w-[55%] h-[55%] rounded-full overflow-hidden"
           style={{
             transform: "translate(-50%, -50%)",
-            animation: isPlaying ? "vinylSpin 2.66s linear infinite" : "none",
+            animation: isPlaying ? "vinylSpin 1.8s linear infinite" : "none",
           }}
         >
           <img

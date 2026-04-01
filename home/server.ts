@@ -83,6 +83,22 @@ async function handleCommand(cmd: Command): Promise<unknown> {
       return { volume: parseInt(vol) };
     }
 
+    case "fade-volume": {
+      // Smooth volume fade over durationMs (default 2000ms)
+      const targetLevel = Math.max(0, Math.min(100, Number(cmd.level)));
+      const durationMs = Number(cmd.duration) || 2000;
+      const steps = 10;
+      const stepMs = durationMs / steps;
+      const currentVol = parseInt(await osaMusic("get sound volume"));
+      const delta = (targetLevel - currentVol) / steps;
+      for (let i = 1; i <= steps; i++) {
+        const vol = Math.round(currentVol + delta * i);
+        await osaMusic(`set sound volume to ${vol}`);
+        await new Promise(r => setTimeout(r, stepMs));
+      }
+      return { action: "fade-volume", from: currentVol, to: targetLevel, duration: durationMs };
+    }
+
     case "now-playing": {
       const state = await osaMusic("get player state as string");
       if (state === "stopped") return { state: "stopped" };
@@ -149,6 +165,89 @@ async function handleCommand(cmd: Command): Promise<unknown> {
       const name = String(cmd.name || "").replace(/"/g, '\\"');
       await osaMusic(`play playlist "${name}"`);
       return { action: "play-playlist", playlist: cmd.name };
+    }
+
+    case "delete-from-library": {
+      // Delete tracks from local library by exact name + artist (osascript bypasses API limitation)
+      const delName = String(cmd.name || "").replace(/"/g, '\\"');
+      const delArtist = String(cmd.artist || "").replace(/"/g, '\\"');
+      if (!delName) return { error: "name required" };
+      try {
+        const result = await osa(`
+          tell application "Music"
+            set targets to (every track of playlist "Library" whose name is "${delName}"${delArtist ? ` and artist contains "${delArtist}"` : ""})
+            set cnt to count of targets
+            if cnt > 0 then
+              delete targets
+            end if
+            return cnt
+          end tell
+        `);
+        const count = parseInt(result) || 0;
+        return { action: "delete-from-library", deleted: count, name: delName, artist: delArtist };
+      } catch (err) {
+        return { error: String(err) };
+      }
+    }
+
+    case "check-library": {
+      // Check if a song exists in library (no playback)
+      const checkName = String(cmd.name || "").replace(/"/g, '\\"');
+      const checkArtist = String(cmd.artist || "").replace(/"/g, '\\"');
+      if (!checkName) return { found: false };
+      try {
+        const count = await osa(`
+          tell application "Music"
+            set results to (every track of playlist "Library" whose name is "${checkName}" and artist contains "${checkArtist}")
+            return count of results
+          end tell
+        `);
+        return { found: parseInt(count) > 0, count: parseInt(count) };
+      } catch {
+        return { found: false };
+      }
+    }
+
+    case "play-exact": {
+      // Play a song by exact name + artist match (used after addToLibrary)
+      const songName = String(cmd.name || "").replace(/"/g, '\\"');
+      const songArtist = String(cmd.artist || "").replace(/"/g, '\\"');
+      const doRandomSeek = cmd.randomSeek === true;
+      if (!songName) return { error: "name required" };
+
+      const maxRetries = Number(cmd.retries) || 3;
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+          const found = await osa(`
+            tell application "Music"
+              set results to (every track of playlist "Library" whose name is "${songName}" and artist contains "${songArtist}")
+              if (count of results) > 0 then
+                play item 1 of results
+                delay 0.5
+                if player state is not playing then play
+                ${doRandomSeek ? `
+                try
+                  set dur to duration of item 1 of results
+                  set seekTo to (random number from (round (dur * 0.15)) to (round (dur * 0.6)))
+                  set player position to seekTo
+                end try
+                ` : ""}
+                return name of item 1 of results & " — " & artist of item 1 of results
+              else
+                return "NOT_FOUND"
+              end if
+            end tell
+          `);
+          if (found !== "NOT_FOUND") {
+            return { action: "play-exact", playing: found };
+          }
+        } catch {}
+        // Wait before retry (library sync from iCloud may need time)
+        if (attempt < maxRetries) {
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      }
+      return { error: "Song not found after retries", name: songName, artist: songArtist };
     }
 
     case "play-ids": {

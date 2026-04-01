@@ -5,3 +5,5 @@ dist/
 .DS_Store
 web/.next/
 home/dist/
+recordings/
+.build/

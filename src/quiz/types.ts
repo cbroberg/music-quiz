@@ -88,6 +88,7 @@ export interface GameSession {
   state: GameState;
   currentQuestion: number;       // -1 = not started
   questions: QuizQuestion[];
+  alternatives: QuizQuestion[];  // backup questions to replace failed songs
   questionStartTime: number;     // Date.now() when question started
   timer: ReturnType<typeof setTimeout> | null;
   pendingAnswers: Map<string, PendingAnswer>;  // answers waiting for evaluation

@@ -11,16 +11,63 @@ import type {
   QuizQuestion, PendingAnswer, QuestionResult, FinalRanking,
   HostQuestionData, AnswerMode,
 } from "./types.js";
-import { generateQuiz, type QuizType as GenQuizType } from "../quiz.js";
+import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "../quiz.js";
 import type { AppleMusicClient } from "../apple-music.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
 import { awardPicks } from "./dj-mode.js";
 
+import { writeFileSync, mkdirSync } from "node:fs";
+
 // ─── Constants ────────────────────────────────────────────
 
 const MAX_PLAYERS = 8;
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+
+// ─── Quiz Log (expected vs actual playback) ──────────────
+
+interface QuizLogEntry {
+  q: number;
+  expected: string;
+  actual: string;
+  match: boolean;
+}
+const quizLog: QuizLogEntry[] = [];
+
+async function verifyPlaying(qNum: number, expectedSong: string, expectedArtist: string): Promise<void> {
+  // Wait a beat for Music.app to settle
+  await new Promise(r => setTimeout(r, 1500));
+  try {
+    const np = await sendHomeCommand("now-playing", {}, 5000) as { track?: string; artist?: string; state?: string };
+    const actual = np.track && np.artist ? `${np.track} — ${np.artist}` : np.state || "unknown";
+    const match = (np.track || "").toLowerCase().includes(expectedSong.toLowerCase().slice(0, 10)) ||
+                  (np.artist || "").toLowerCase().includes(expectedArtist.toLowerCase().slice(0, 10));
+    quizLog.push({ q: qNum, expected: `${expectedSong} — ${expectedArtist}`, actual, match });
+    if (!match) {
+      console.error(`🎮 ⚠️ MISMATCH Q${qNum}: expected "${expectedSong}" but playing "${np.track}"`);
+    } else {
+      console.log(`🎮 ✓ Q${qNum} verified: ${actual}`);
+    }
+  } catch {
+    quizLog.push({ q: qNum, expected: `${expectedSong} — ${expectedArtist}`, actual: "verify-failed", match: false });
+  }
+}
+
+export function getQuizLog(): QuizLogEntry[] { return quizLog; }
+
+export function saveQuizLog(): string {
+  const ts = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+  const path = `recordings/quiz-log-${ts}.json`;
+  try {
+    mkdirSync("recordings", { recursive: true });
+    writeFileSync(path, JSON.stringify(quizLog, null, 2));
+    console.log(`🎮 Quiz log saved: ${path}`);
+  } catch (err) {
+    console.error("🎮 Failed to save quiz log:", err);
+  }
+  quizLog.length = 0;
+  return path;
+}
 const JOIN_CODE_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no I/O/0/1 confusion
 const COUNTDOWN_MS = 3000;
 const REVEAL_DURATION_MS = 6000;
@@ -33,6 +80,24 @@ const joinCodeIndex = new Map<string, string>(); // joinCode → sessionId
 
 // Track used song IDs across all sessions to avoid repeats during an evening
 const usedSongIds = new Set<string>();
+
+// Track songs WE added to library (name + artist) so we can clean up without touching user's own music
+const addedToLibrary = new Set<string>(); // "songName|||artistName"
+
+export function trackAddedToLibrary(songName: string, artistName: string): void {
+  addedToLibrary.add(`${songName}|||${artistName}`);
+}
+
+export function getAddedToLibrary(): Array<{ name: string; artist: string }> {
+  return [...addedToLibrary].map(key => {
+    const [name, artist] = key.split("|||");
+    return { name, artist };
+  });
+}
+
+export function clearAddedToLibrary(): void {
+  addedToLibrary.clear();
+}
 
 export function clearUsedSongs(): void {
   usedSongIds.clear();
@@ -71,7 +136,7 @@ export async function createSession(
   hostWsId: string,
   musicClient: AppleMusicClient,
 ): Promise<GameSession> {
-  let quiz;
+  let quiz: Quiz;
 
   if (config.source === "custom" && config.customTracks?.length) {
     // Custom quiz from builder — use provided tracks directly
@@ -121,61 +186,73 @@ export async function createSession(
     quiz = await generateQuiz(musicClient, {
       type: config.quizType as GenQuizType,
       source: config.source as any,
-      count: config.questionCount,
+      count: config.questionCount * 2,  // Request double for alternatives
       genre: config.genre,
       decade: config.decade,
       excludeSongIds: excludeIds,
     });
   }
 
+  // Split into primary (first N) and alternatives (rest)
+  const primaryQuestions = quiz.questions.slice(0, config.questionCount);
+  const alternativeQuestions = quiz.questions.slice(config.questionCount);
+
   // Track used songs so they don't repeat across sessions
   for (const q of quiz.questions) {
     if (q.songId) usedSongIds.add(q.songId);
   }
 
-  // Pre-load all songs to library
+  // Pre-load all songs to library + verify they're available before starting
   const songIds = quiz.questions.map((q) => q.songId).filter(Boolean);
-  if (songIds.length > 0 && musicClient.hasUserToken()) {
-    musicClient.addToLibrary({ songs: songIds })
-      .then(() => console.log(`🎮 Pre-loaded ${songIds.length} quiz songs to library`))
-      .catch((err: Error) => console.error("🎮 Pre-load failed:", err));
+  // (actual download + verification happens in prepareSongs(), called after session_created)
+
+  // Helper to build QuizQuestion from raw quiz data
+  async function buildQuizQuestion(
+    q: typeof quiz.questions[0],
+    allQ: typeof quiz.questions,
+  ): Promise<QuizQuestion> {
+    // Resolve artwork
+    let artworkUrl: string | undefined;
+    let previewUrl: string | undefined;
+    try {
+      const result = (await musicClient.searchCatalog(`${q.songName} ${q.artistName}`, ["songs"], 1)) as {
+        results?: { songs?: { data?: Array<{ attributes?: { artwork?: { url?: string }; previews?: Array<{ url?: string }> } }> } };
+      };
+      const song = result?.results?.songs?.data?.[0];
+      if (song?.attributes?.artwork?.url) {
+        artworkUrl = song.attributes.artwork.url.replace("{w}", "600").replace("{h}", "600");
+      }
+      previewUrl = song?.attributes?.previews?.[0]?.url;
+    } catch {}
+
+    // Generate multiple-choice options
+    const options = generateOptions(q, allQ);
+
+    return {
+      songId: q.songId,
+      songName: q.songName,
+      artistName: q.artistName,
+      albumName: q.albumName,
+      releaseYear: q.releaseYear,
+      artworkUrl,
+      previewUrl,
+      questionText: q.question,
+      correctAnswer: q.answer,
+      options,
+      questionType: q.type as QuizQuestion["questionType"],
+      difficulty: q.difficulty,
+    };
   }
 
   // Build quiz questions with artwork and multiple-choice options
+  const allRawQuestions = quiz.questions;
   const questions: QuizQuestion[] = await Promise.all(
-    quiz.questions.map(async (q) => {
-      // Resolve artwork
-      let artworkUrl: string | undefined;
-      let previewUrl: string | undefined;
-      try {
-        const result = (await musicClient.searchCatalog(`${q.songName} ${q.artistName}`, ["songs"], 1)) as {
-          results?: { songs?: { data?: Array<{ attributes?: { artwork?: { url?: string }; previews?: Array<{ url?: string }> } }> } };
-        };
-        const song = result?.results?.songs?.data?.[0];
-        if (song?.attributes?.artwork?.url) {
-          artworkUrl = song.attributes.artwork.url.replace("{w}", "600").replace("{h}", "600");
-        }
-        previewUrl = song?.attributes?.previews?.[0]?.url;
-      } catch {}
+    primaryQuestions.map((q) => buildQuizQuestion(q, allRawQuestions)),
+  );
 
-      // Generate multiple-choice options
-      const options = generateOptions(q, quiz.questions);
-
-      return {
-        songId: q.songId,
-        songName: q.songName,
-        artistName: q.artistName,
-        albumName: q.albumName,
-        releaseYear: q.releaseYear,
-        artworkUrl,
-        previewUrl,
-        questionText: q.question,
-        correctAnswer: q.answer,
-        options,
-        questionType: q.type as QuizQuestion["questionType"],
-        difficulty: q.difficulty,
-      };
-    }),
+  // Build alternative questions too (artwork + options)
+  const alternatives: QuizQuestion[] = await Promise.all(
+    alternativeQuestions.map((q) => buildQuizQuestion(q, allRawQuestions)),
   );
 
   const joinCode = generateJoinCode();
@@ -190,6 +267,7 @@ export async function createSession(
     state: "lobby",
     currentQuestion: -1,
     questions,
+    alternatives,
     questionStartTime: 0,
     timer: null,
     pendingAnswers: new Map(),
@@ -202,6 +280,136 @@ export async function createSession(
 
   console.log(`🎮 Session created: ${joinCode} (${questions.length} questions)`);
   return session;
+}
+
+export async function prepareSongs(
+  sessionId: string,
+  musicClient: AppleMusicClient,
+  onProgress: (current: number, total: number) => void,
+): Promise<void> {
+  const session = sessions.get(sessionId);
+  if (!session) return;
+
+  const songs = session.questions.filter(q => q.songId);
+  if (songs.length === 0 || !musicClient.hasUserToken()) return;
+
+  if (!isHomeConnected()) return;
+
+  // Play background music while preparing
+  if (isHomeConnected()) {
+    sendHomeCommand("search-and-play", { query: "music", randomSeek: true }).catch(() => {});
+  }
+
+  // Step 1: Check which songs are already in library
+  const needsDownload: string[] = [];
+  for (let i = 0; i < songs.length; i++) {
+    const q = songs[i];
+    const artist = q.artistName.split(/[,&]/)[0].trim();
+    const simple = q.songName.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+    let found = false;
+    for (const name of [q.songName, simple]) {
+      try {
+        const check = await sendHomeCommand("check-library", { name, artist }, 5000) as { found?: boolean };
+        if (check.found) { found = true; break; }
+      } catch {}
+    }
+    if (found) {
+      console.log(`🎮 ✓ Already in library: ${q.songName}`);
+      onProgress(i + 1, songs.length);
+    } else {
+      needsDownload.push(q.songId);
+      trackAddedToLibrary(q.songName, q.artistName);
+    }
+  }
+
+  // Step 2: Add missing songs to library in one batch
+  if (needsDownload.length > 0) {
+    console.log(`🎮 Downloading ${needsDownload.length} songs to library...`);
+    try {
+      await musicClient.addToLibrary({ songs: needsDownload });
+      console.log(`🎮 addToLibrary OK for ${needsDownload.length} songs`);
+    } catch (err) {
+      console.error("🎮 addToLibrary failed:", err);
+    }
+  }
+
+  // Step 3: Verify all songs are available locally (4 retries × 1s)
+  // Also add alternative songs to library so they're ready for replacement
+  const altSongIds = session.alternatives.filter(q => q.songId).map(q => q.songId);
+  if (altSongIds.length > 0) {
+    try {
+      await musicClient.addToLibrary({ songs: altSongIds });
+      console.log(`🎮 addToLibrary OK for ${altSongIds.length} alternative songs`);
+    } catch (err) {
+      console.error("🎮 addToLibrary for alternatives failed:", err);
+    }
+  }
+
+  for (let i = 0; i < songs.length; i++) {
+    const q = songs[i];
+    const artist = q.artistName.split(/[,&]/)[0].trim();
+    const names = [q.songName];
+    const simple = q.songName.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+    if (simple !== q.songName) names.push(simple);
+
+    onProgress(i + 1, songs.length);
+
+    let found = false;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      for (const name of names) {
+        try {
+          const check = await sendHomeCommand("check-library", { name, artist }, 5000) as { found?: boolean };
+          if (check.found) { found = true; break; }
+        } catch {}
+      }
+      if (found) break;
+      await new Promise(r => setTimeout(r, 1000));
+    }
+    if (found) {
+      console.log(`🎮 ✓ Ready: ${q.songName} — ${q.artistName}`);
+    } else {
+      console.warn(`🎮 ✗ Not found: ${q.songName} — ${q.artistName} (after 8 attempts)`);
+
+      // Try to replace with an alternative that IS in the library
+      let replaced = false;
+      for (let altIdx = 0; altIdx < session.alternatives.length; altIdx++) {
+        const alt = session.alternatives[altIdx];
+        const altArtist = alt.artistName.split(/[,&]/)[0].trim();
+        const altNames = [alt.songName];
+        const altSimple = alt.songName.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+        if (altSimple !== alt.songName) altNames.push(altSimple);
+
+        let altFound = false;
+        for (const name of altNames) {
+          try {
+            const check = await sendHomeCommand("check-library", { name, artist: altArtist }, 5000) as { found?: boolean };
+            if (check.found) { altFound = true; break; }
+          } catch {}
+        }
+
+        if (altFound) {
+          // Replace the failed question with this alternative
+          const qIndex = session.questions.indexOf(q);
+          if (qIndex !== -1) {
+            session.questions[qIndex] = alt;
+            console.log(`🎮 ↻ Replaced "${q.songName}" with alternative "${alt.songName}" — ${alt.artistName}`);
+          }
+          // Remove used alternative
+          session.alternatives.splice(altIdx, 1);
+          replaced = true;
+          break;
+        }
+      }
+      if (!replaced) {
+        console.warn(`🎮 ✗ No alternative available for: ${q.songName} — ${q.artistName}`);
+      }
+    }
+  }
+
+  // Stop background music when preparation is done
+  if (isHomeConnected()) {
+    sendHomeCommand("pause", {}).catch(() => {});
+  }
 }
 
 export function getSession(sessionId: string): GameSession | undefined {
@@ -232,10 +440,26 @@ export function addPlayer(
 ): { player: Player; session: GameSession } | { error: string } {
   const session = sessions.get(sessionId);
   if (!session) return { error: "Session not found" };
-  if (session.state !== "lobby") return { error: "Game already started" };
+
+  // Allow reconnect: same name in a finished/DJ Mode session → update connection ID
+  if (session.state !== "lobby") {
+    for (const [oldId, p] of session.players) {
+      if (p.name.toLowerCase() === name.toLowerCase()) {
+        // Reconnect existing player with new WebSocket ID
+        session.players.delete(oldId);
+        p.id = wsId;
+        p.connected = true;
+        session.players.set(wsId, p);
+        console.log(`🎮 Player reconnected: ${name} (${oldId} → ${wsId})`);
+        return { player: p, session };
+      }
+    }
+    return { error: "Game already started" };
+  }
+
   if (session.players.size >= MAX_PLAYERS) return { error: "Game is full (max 8 players)" };
 
-  // Check name uniqueness
+  // Check name uniqueness (lobby only)
   for (const p of session.players.values()) {
     if (p.name.toLowerCase() === name.toLowerCase()) {
       return { error: "Name already taken" };
@@ -346,17 +570,51 @@ async function advanceToNextQuestion(session: GameSession): Promise<void> {
     return;
   }
 
-  // Countdown phase
+  // Stop any playing music before countdown (awaited!)
+  if (isHomeConnected()) {
+    await sendHomeCommand("pause", {}, 3000).catch(() => {});
+  }
+
+  // Countdown phase (songs already verified in library during preparation)
   transition(session, "countdown");
 
   session.timer = setTimeout(async () => {
-    // Start playing
+    // Play music first, wait for confirmation, THEN start timer
+    await playQuestionMusic(session);
+
+    // Verify music is actually playing before starting timer (exponential backoff)
+    if (isHomeConnected()) {
+      let confirmed = false;
+      const delays = [300, 600, 1200, 2000]; // exponential backoff
+      for (let i = 0; i < delays.length; i++) {
+        await new Promise(r => setTimeout(r, delays[i]));
+        try {
+          const np = await sendHomeCommand("now-playing", {}, 3000) as { state?: string; track?: string };
+          if (np.state === "playing") {
+            console.log(`🎮 ✓ Music confirmed: ${np.track} (${delays[i]}ms backoff)`);
+            confirmed = true;
+            break;
+          }
+          console.log(`🎮 ⏳ Not playing yet (state: ${np.state}, waited ${delays[i]}ms)`);
+        } catch (err) {
+          console.error(`🎮 ⚠️ now-playing poll failed:`, err);
+        }
+      }
+      if (!confirmed) {
+        // Different approach: maybe Music.app needs a manual play nudge
+        console.warn("🎮 ⚠️ Music not confirmed — sending play command");
+        await sendHomeCommand("play", {}, 3000).catch(() => {});
+        await new Promise(r => setTimeout(r, 800));
+      }
+    }
+
+    // 1 second bonus — let players hear the music before timer starts
+    await new Promise(r => setTimeout(r, 1000));
+
+    // NOW start the clock
     session.pendingAnswers.clear();
     session.questionStartTime = Date.now();
     transition(session, "playing");
-
-    // Play music via Home Controller
-    playQuestionMusic(session);
 
     // Set timer for question end
     session.timer = setTimeout(() => {
@@ -369,22 +627,38 @@ async function playQuestionMusic(session: GameSession): Promise<void> {
   const q = session.questions[session.currentQuestion];
   if (!q) return;
 
+  const qNum = session.currentQuestion + 1;
+
   if (isHomeConnected()) {
     try {
-      const simpleName = q.songName.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
       const artist = q.artistName.split(/[,&]/)[0].trim();
 
-      for (const delay of [300, 1500, 3000]) {
-        await new Promise((r) => setTimeout(r, delay));
-        for (const query of [`${simpleName} ${artist}`, simpleName]) {
-          const result = await sendHomeCommand("search-and-play", { query, artist, randomSeek: true }) as { playing?: string };
-          if (result.playing) {
-            console.log(`🎮 Playing: ${result.playing}`);
-            return;
-          }
+      // Primary: exact name + artist match with retries
+      const result = await sendHomeCommand("play-exact", {
+        name: q.songName, artist, retries: 3, randomSeek: true,
+      }, 15000) as { playing?: string; error?: string };
+      if (result.playing) {
+        console.log(`🎮 Playing: ${result.playing}`);
+        verifyPlaying(qNum, q.songName, q.artistName);
+        return;
+      }
+
+      // Fallback: try without parentheses (remaster tags)
+      const simpleName = q.songName.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+      if (simpleName !== q.songName) {
+        const retry = await sendHomeCommand("play-exact", {
+          name: simpleName, artist, retries: 2, randomSeek: true,
+        }, 10000) as { playing?: string };
+        if (retry.playing) {
+          console.log(`🎮 Playing (simplified): ${retry.playing}`);
+          verifyPlaying(qNum, q.songName, q.artistName);
+          return;
         }
       }
-      console.error(`🎮 All retries failed for: ${q.songName}`);
+
+      // No fuzzy fallback — silence is better than wrong song
+      console.error(`🎮 Exact match failed for: ${q.songName} — ${q.artistName} (no fallback)`);
+      quizLog.push({ q: qNum, expected: `${q.songName} — ${q.artistName}`, actual: "SILENCE", match: false });
     } catch (err) {
       console.error("🎮 Playback failed:", err);
     }
@@ -591,6 +865,7 @@ function finishGame(session: GameSession): void {
     clearTimeout(session.timer);
     session.timer = null;
   }
+  saveQuizLog();
 
   session.state = "finished";
   session.lastActivity = new Date();
@@ -599,6 +874,13 @@ function finishGame(session: GameSession): void {
 
   // Award music picks for DJ Mode
   awardPicks(rankings);
+
+  // Fade music down fast for applause, then stop
+  if (isHomeConnected()) {
+    sendHomeCommand("fade-volume", { level: 0, duration: 500 }).then(() => {
+      sendHomeCommand("pause", {}).catch(() => {});
+    }).catch(() => {});
+  }
 
   emit(session.id, { type: "final_results", session, rankings });
 }
@@ -633,6 +915,12 @@ export function calculatePoints(timeMs: number, timeLimitMs: number, streak: num
   return Math.round(basePoints * multiplier);
 }
 
+// ─── Danish Language Detection ───────────────────────────
+
+function looksLikeDanish(text: string): boolean {
+  return /[æøåÆØÅ]/.test(text);
+}
+
 // ─── Multiple-Choice Options ──────────────────────────────
 
 function generateOptions(
@@ -663,15 +951,29 @@ function generateOptions(
   // For guess-the-year, add nearby years if not enough options
   if (question.type === "guess-the-year" && pool.size < 3) {
     const year = parseInt(correct);
+    const currentYear = new Date().getFullYear();
     if (!isNaN(year)) {
       for (const offset of [-3, -1, 1, 2, 3, -2, 4, -4]) {
-        pool.add(String(year + offset));
+        const candidate = year + offset;
+        if (candidate <= currentYear) pool.add(String(candidate));
       }
     }
   }
 
+  // Prefer Danish-looking wrong answers when the correct answer or song looks Danish
+  const isDanish = looksLikeDanish(correct) || looksLikeDanish(question.songName) || looksLikeDanish(question.artistName);
+  let poolArray = [...pool];
+  if (isDanish && question.type !== "guess-the-year") {
+    const danishPool = poolArray.filter(v => looksLikeDanish(v));
+    const otherPool = poolArray.filter(v => !looksLikeDanish(v));
+    // Danish first, then fill with others
+    poolArray = [...shuffle(danishPool), ...shuffle(otherPool)];
+  } else {
+    poolArray = shuffle(poolArray);
+  }
+
   // Pick 3 wrong answers
-  const wrongs = shuffle([...pool]).slice(0, 3);
+  const wrongs = poolArray.slice(0, 3);
 
   // Pad if needed (shouldn't happen with 5+ questions)
   while (wrongs.length < 3) {

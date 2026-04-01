@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="google" content="notranslate">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#0a0a0a">
@@ -110,42 +111,62 @@
     </div>
   </div>
 
-  <!-- 7. DJ Mode — Song Selection -->
+  <!-- 7. DJ Mode (unified — tabs for Search/Queue) -->
   <div id="screen-dj" class="screen screen-top">
-    <div class="answer-container" style="max-width:420px;gap:12px">
-      <div style="text-align:center">
+    <div class="answer-container" style="max-width:420px;gap:0;padding-bottom:100px">
+      <div style="text-align:center;padding-bottom:8px">
         <div style="font-size:28px;font-weight:800">DJ Mode</div>
         <div style="font-size:13px;color:var(--dimmer)">Music Democracy</div>
-        <div id="dj-picks-left" style="color:var(--red);font-size:16px;font-weight:700;margin-top:4px">0 picks left</div>
+        <div id="dj-player-identity" style="font-size:15px;font-weight:600;margin-top:6px"></div>
+        <div id="dj-picks-left" style="color:var(--red);font-size:16px;font-weight:700;margin-top:2px">0 picks left</div>
       </div>
-      <div>
+      <!-- Nav links -->
+      <div style="display:flex;justify-content:center;gap:16px;padding:4px 0 8px;font-size:13px">
+        <a id="dj-np-page-link" href="/quiz/now-playing" style="color:var(--dimmer);text-decoration:none">Now Playing</a>
+        <a href="/quiz/admin" style="color:var(--dimmer);text-decoration:none">Admin</a>
+      </div>
+      <!-- Tabs -->
+      <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin:0 -16px">
+        <button id="dj-tab-search" onclick="switchDjTab('search')" class="dj-tab active">Search</button>
+        <button id="dj-tab-queue" onclick="switchDjTab('queue')" class="dj-tab">Queue</button>
+      </div>
+      <!-- Search tab -->
+      <div id="dj-panel-search" style="padding-top:12px">
         <input type="text" id="dj-search" class="text-input" placeholder="Search songs to add..."
           autocomplete="off" autocorrect="off" style="font-size:16px">
+        <div id="dj-search-results" style="max-height:50vh;overflow-y:auto;margin-top:8px"></div>
+        <div id="dj-all-picked" style="display:none;text-align:center;padding:16px">
+          <div style="font-size:16px;font-weight:600;color:var(--green)">All picks used!</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px">Your songs are in the queue</div>
+        </div>
       </div>
-      <div id="dj-search-results" style="max-height:55vh;overflow-y:auto"></div>
-      <div id="dj-all-picked" style="display:none;text-align:center;padding:16px">
-        <div style="font-size:16px;font-weight:600;color:var(--green)">All picks used!</div>
-        <div style="font-size:13px;color:var(--muted);margin-top:4px">Your songs are in the queue</div>
-        <button onclick="showScreen('dj-queue')" style="margin-top:12px;background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:10px 20px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">View Queue</button>
+      <!-- Queue tab -->
+      <div id="dj-panel-queue" style="display:none;padding-top:12px">
+        <div id="dj-now-playing-player" style="display:none;text-align:center;padding:12px 0">
+          <div style="font-size:12px;color:var(--dimmer);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Now Playing</div>
+          <img id="dj-np-art" src="" style="width:120px;height:120px;border-radius:12px;object-fit:cover">
+          <div id="dj-np-title" style="font-size:18px;font-weight:700;margin-top:10px"></div>
+          <div id="dj-np-artist" style="font-size:14px;color:var(--muted)"></div>
+        </div>
+        <div style="font-size:14px;font-weight:600;margin-top:8px">Up Next</div>
+        <div id="dj-queue-list"></div>
       </div>
+    </div>
+    <!-- Sticky Now Playing mini-bar -->
+    <div id="dj-mini-np" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);padding:10px 16px;z-index:10">
+      <a id="dj-np-link" href="/quiz/now-playing?from=dj" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)">
+        <img id="dj-mini-np-art" src="" style="width:40px;height:40px;border-radius:6px;object-fit:cover">
+        <div style="flex:1;min-width:0">
+          <div id="dj-mini-np-title" style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+          <div id="dj-mini-np-artist" style="font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+        </div>
+        <div style="font-size:11px;color:var(--dimmer);white-space:nowrap">Now Playing &rarr;</div>
+      </a>
     </div>
   </div>
 
-  <!-- 8. DJ Mode — Queue / Now Playing -->
-  <div id="screen-dj-queue" class="screen screen-top">
-    <div class="answer-container" style="max-width:420px;gap:12px">
-      <div id="dj-now-playing-player" style="display:none;text-align:center;padding:12px 0">
-        <div style="font-size:12px;color:var(--dimmer);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Now Playing</div>
-        <img id="dj-np-art" src="" style="width:120px;height:120px;border-radius:12px;object-fit:cover">
-        <div id="dj-np-title" style="font-size:18px;font-weight:700;margin-top:10px"></div>
-        <div id="dj-np-artist" style="font-size:14px;color:var(--muted)"></div>
-      </div>
-      <div style="font-size:14px;font-weight:600;margin-top:8px">Up Next</div>
-      <div id="dj-queue-list"></div>
-      <button onclick="showScreen('dj')" style="margin-top:12px;background:none;border:none;color:var(--muted);font-size:13px;font-family:inherit;cursor:pointer">Back to search</button>
-      <a href="/?from=dj" style="display:block;text-align:center;margin-top:8px;color:var(--dimmer);font-size:13px;text-decoration:none">Now Playing</a>
-    </div>
-  </div>
+  <!-- Keep dj-queue screen ID for backwards compat but redirect to dj with queue tab -->
+  <div id="screen-dj-queue" class="screen" style="display:none"></div>
 
   <script src="/quiz/static/play.js"></script>
 </body>

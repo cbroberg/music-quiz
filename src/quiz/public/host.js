@@ -8,6 +8,7 @@
 let ws = null;
 let sessionId = null;
 let joinCode = null;
+let currentGameState = 'setup';
 let timerInterval = null;
 let timeLeft = 0;
 let timeLimit = 30;
@@ -71,6 +72,44 @@ function mapSource(source, genre) {
 }
 
 // ─── Session Creation ─────────────────────────────────────
+
+// ─── Preparing Songs Modal ────────────────────────────────
+
+function showPreparingModal(totalSongs) {
+  let modal = document.getElementById('preparing-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'preparing-modal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:1000';
+    modal.innerHTML = `
+      <div style="background:var(--card);border-radius:20px;padding:48px 40px;text-align:center;max-width:420px;width:90%">
+        <div style="font-size:32px;margin-bottom:8px">🎵</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:4px">Preparing Your Quiz</div>
+        <div style="font-size:14px;color:var(--muted);margin-bottom:24px">Stay ready and alert!</div>
+        <div style="background:var(--border);border-radius:8px;height:12px;overflow:hidden;margin-bottom:12px">
+          <div id="prepare-gauge" style="height:100%;background:var(--red);border-radius:8px;width:0%;transition:width 0.3s ease"></div>
+        </div>
+        <div id="prepare-status" style="font-size:13px;color:var(--dimmer)">Checking library...</div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  modal.style.display = 'flex';
+}
+
+function updatePreparingProgress(current, total) {
+  const gauge = document.getElementById('prepare-gauge');
+  const status = document.getElementById('prepare-status');
+  if (gauge) gauge.style.width = `${(current / total) * 100}%`;
+  if (status) status.textContent = `${current} of ${total} songs ready`;
+}
+
+function hidePreparingModal() {
+  const modal = document.getElementById('preparing-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+// ─── Session ─────────────────────────────────────────────
 
 function createSession() {
   const rawSource = document.getElementById('cfg-source').value;
@@ -148,7 +187,14 @@ function showScreen(id) {
 
 function handleMessage(msg) {
   switch (msg.type) {
+    case 'preparing':
+      showPreparingModal(msg.totalSongs);
+      break;
+    case 'prepare_progress':
+      updatePreparingProgress(msg.current, msg.total);
+      break;
     case 'session_created':
+      hidePreparingModal();
       onSessionCreated(msg);
       break;
     case 'player_joined':
@@ -198,6 +244,7 @@ function handleMessage(msg) {
 function onSessionCreated(msg) {
   sessionId = msg.sessionId;
   joinCode = msg.joinCode;
+  currentGameState = 'lobby';
 
   // Hide config, show clean lobby
   document.getElementById('setup-config').style.display = 'none';
@@ -241,6 +288,10 @@ function onPlayerJoined(player) {
   players.set(player.id, player);
   updatePlayersGrid();
   document.getElementById('btn-start').disabled = players.size === 0;
+  // Instrument sound only in lobby (not on reconnect during DJ Mode)
+  if (currentGameState === 'lobby') {
+    playInstrumentSound(player.avatar);
+  }
 }
 
 function onPlayerLeft(playerId, playerName) {
@@ -264,6 +315,7 @@ function updatePlayersGrid() {
 // ─── Game State ───────────────────────────────────────────
 
 function onGameState(msg) {
+  currentGameState = msg.state;
   switch (msg.state) {
     case 'countdown':
       showCountdown(msg.questionNumber, msg.totalQuestions, msg.question?.questionType);
@@ -549,6 +601,7 @@ onQuestionResults = function(msg) {
 function onFinalResults(rankings) {
   if (timerInterval) clearInterval(timerInterval);
   showScreen('final');
+  playApplause();
 
   // Podium
   const podium = document.getElementById('podium');
@@ -778,6 +831,268 @@ function playTick() {
   gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
   osc.start(audioCtx.currentTime);
   osc.stop(audioCtx.currentTime + 0.15);
+}
+
+// ─── Instrument Sounds (Web Audio synthesis per avatar) ───
+
+function playInstrumentSound(avatar) {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const t = audioCtx.currentTime;
+
+  const instruments = {
+    '🎸': playGuitar,
+    '🎤': playMic,
+    '🎹': playPiano,
+    '🥁': playDrums,
+    '🎺': playTrumpet,
+    '🎻': playViolin,
+    '🎷': playSax,
+    '🪘': playConga,
+    '🪗': playAccordion,
+    '🎧': playHeadphones,
+    '🪈': playFlute,
+    '🪇': playMaracas,
+  };
+
+  const fn = instruments[avatar] || playDefaultChime;
+  fn(t);
+}
+
+function playGuitar(t) {
+  // Quick strum — multiple notes with slight delay
+  [329, 415, 494, 659].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+    const s = t + i * 0.04;
+    gain.gain.setValueAtTime(0.2, s);
+    gain.gain.exponentialRampToValueAtTime(0.001, s + 0.6);
+    osc.start(s); osc.stop(s + 0.6);
+  });
+}
+
+function playMic(t) {
+  // Vocal-like "ding dong"
+  [880, 660].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const s = t + i * 0.2;
+    gain.gain.setValueAtTime(0.25, s);
+    gain.gain.exponentialRampToValueAtTime(0.001, s + 0.4);
+    osc.start(s); osc.stop(s + 0.4);
+  });
+}
+
+function playPiano(t) {
+  // Piano chord — C major
+  [262, 330, 392, 523].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.2, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
+    osc.start(t); osc.stop(t + 0.8);
+  });
+}
+
+function playDrums(t) {
+  // Snare hit — noise burst + low thump
+  const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.15, audioCtx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / 1500);
+  const src = audioCtx.createBufferSource();
+  src.buffer = buf;
+  const hp = audioCtx.createBiquadFilter();
+  hp.type = 'highpass'; hp.frequency.value = 2000;
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0.4, t);
+  src.connect(hp); hp.connect(gain); gain.connect(audioCtx.destination);
+  src.start(t);
+  // Low thump
+  const kick = audioCtx.createOscillator();
+  const kg = audioCtx.createGain();
+  kick.connect(kg); kg.connect(audioCtx.destination);
+  kick.frequency.setValueAtTime(150, t);
+  kick.frequency.exponentialRampToValueAtTime(50, t + 0.1);
+  kg.gain.setValueAtTime(0.4, t);
+  kg.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+  kick.start(t); kick.stop(t + 0.15);
+}
+
+function playTrumpet(t) {
+  // Brass fanfare — two short notes
+  [523, 784].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    const s = t + i * 0.15;
+    gain.gain.setValueAtTime(0, s);
+    gain.gain.linearRampToValueAtTime(0.12, s + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, s + 0.3);
+    osc.start(s); osc.stop(s + 0.3);
+  });
+}
+
+function playViolin(t) {
+  // Pizzicato pluck — sawtooth with fast decay
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.type = 'sawtooth';
+  osc.frequency.value = 660;
+  gain.gain.setValueAtTime(0.2, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+  osc.start(t); osc.stop(t + 0.3);
+}
+
+function playSax(t) {
+  // Reedy tone — square wave
+  [349, 440].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    const s = t + i * 0.12;
+    gain.gain.setValueAtTime(0, s);
+    gain.gain.linearRampToValueAtTime(0.1, s + 0.03);
+    gain.gain.setValueAtTime(0.1, s + 0.15);
+    gain.gain.exponentialRampToValueAtTime(0.001, s + 0.35);
+    osc.start(s); osc.stop(s + 0.35);
+  });
+}
+
+function playConga(t) {
+  // Low pitched drum slap
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.frequency.setValueAtTime(200, t);
+  osc.frequency.exponentialRampToValueAtTime(80, t + 0.12);
+  gain.gain.setValueAtTime(0.35, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+  osc.start(t); osc.stop(t + 0.2);
+}
+
+function playAccordion(t) {
+  // Wheezy chord
+  [262, 330, 392].forEach(freq => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.type = 'sawtooth';
+    osc.frequency.value = freq;
+    osc.frequency.setValueAtTime(freq, t);
+    osc.frequency.linearRampToValueAtTime(freq * 1.01, t + 0.3);
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.08, t + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+    osc.start(t); osc.stop(t + 0.5);
+  });
+}
+
+function playHeadphones(t) {
+  // Electronic blip
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(1200, t);
+  osc.frequency.exponentialRampToValueAtTime(400, t + 0.15);
+  gain.gain.setValueAtTime(0.2, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+  osc.start(t); osc.stop(t + 0.2);
+}
+
+function playFlute(t) {
+  // Light breathy tone
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.type = 'sine';
+  osc.frequency.value = 784;
+  gain.gain.setValueAtTime(0, t);
+  gain.gain.linearRampToValueAtTime(0.15, t + 0.05);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+  osc.start(t); osc.stop(t + 0.4);
+}
+
+function playMaracas(t) {
+  // Short noise shake
+  const buf = audioCtx.createBuffer(1, audioCtx.sampleRate * 0.08, audioCtx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 + Math.sin(i / 30) * 0.5);
+  const src = audioCtx.createBufferSource();
+  src.buffer = buf;
+  const bp = audioCtx.createBiquadFilter();
+  bp.type = 'bandpass'; bp.frequency.value = 5000; bp.Q.value = 1;
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0.25, t);
+  src.connect(bp); bp.connect(gain); gain.connect(audioCtx.destination);
+  src.start(t);
+}
+
+function playDefaultChime(t) {
+  // Musical chime — rising arpeggio
+  [523, 659, 784, 1047].forEach((freq, i) => {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'triangle';
+    const s = t + i * 0.08;
+    gain.gain.setValueAtTime(0, s);
+    gain.gain.linearRampToValueAtTime(0.2, s + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, s + 0.4);
+    osc.start(s); osc.stop(s + 0.4);
+  });
+}
+
+function playApplause() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const t = audioCtx.currentTime;
+  const duration = 3;
+  // White noise burst through bandpass filter = applause-like
+  const bufferSize = audioCtx.sampleRate * duration;
+  const buffer = audioCtx.createBuffer(2, bufferSize, audioCtx.sampleRate);
+  for (let ch = 0; ch < 2; ch++) {
+    const data = buffer.getChannelData(ch);
+    for (let i = 0; i < bufferSize; i++) {
+      // Random noise with amplitude modulation for clapping texture
+      data[i] = (Math.random() * 2 - 1) * (1 + 0.5 * Math.sin(i / 80));
+    }
+  }
+  const source = audioCtx.createBufferSource();
+  source.buffer = buffer;
+  // Bandpass filter to shape noise into applause
+  const bp = audioCtx.createBiquadFilter();
+  bp.type = 'bandpass';
+  bp.frequency.value = 3000;
+  bp.Q.value = 0.5;
+  // Highpass to remove rumble
+  const hp = audioCtx.createBiquadFilter();
+  hp.type = 'highpass';
+  hp.frequency.value = 500;
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0, t);
+  gain.gain.linearRampToValueAtTime(0.35, t + 0.2);
+  gain.gain.setValueAtTime(0.35, t + 1.0);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + duration);
+  source.connect(bp);
+  bp.connect(hp);
+  hp.connect(gain);
+  gain.connect(audioCtx.destination);
+  source.start(t);
+  source.stop(t + duration);
 }
 
 // ─── Load Custom Quiz ─────────────────────────────────────

@@ -9,11 +9,13 @@ import { useSearchParams } from "next/navigation";
 function NavBarInner() {
   const params = useSearchParams();
   const fromDj = params.get("from") === "dj";
+  const djCode = params.get("code") || "";
 
   if (fromDj) {
+    const backUrl = djCode ? `/quiz/play?code=${djCode}` : "/quiz/play";
     return (
       <nav className="fixed top-0 right-0 flex items-center gap-3 px-6 py-5 text-[13px]">
-        <a href="javascript:history.back()" className="text-apple-red font-semibold hover:opacity-70 transition-opacity">Back to DJ Mode</a>
+        <a href={backUrl} className="text-apple-red font-semibold hover:opacity-70 transition-opacity">Back to DJ Mode</a>
       </nav>
     );
   }

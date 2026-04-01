@@ -8,7 +8,7 @@
 import { Router, json } from "express";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { getSessionByCode, listActiveSessions, clearUsedSongs } from "./engine.js";
+import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary } from "./engine.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { getAllPlaylists, getPlaylist, savePlaylist, updatePlaylist, deletePlaylist } from "./playlist-store.js";
 import type { AppleMusicClient } from "../apple-music.js";
@@ -83,6 +83,11 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   // Admin page
   router.get("/quiz/admin", (_req, res) => {
     res.sendFile(join(publicDir, "admin.html"));
+  });
+
+  // Now Playing page (vanilla, same design as Next.js frontpage)
+  router.get("/quiz/now-playing", (_req, res) => {
+    res.sendFile(join(publicDir, "now-playing.html"));
   });
 
   // Admin API: recently played tracks with artwork
@@ -166,6 +171,30 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   router.post("/quiz/api/admin/clear-used", (_req, res) => {
     clearUsedSongs();
     res.json({ ok: true });
+  });
+
+  // Admin API: list songs we added to library
+  router.get("/quiz/api/admin/added-songs", (_req, res) => {
+    res.json({ songs: getAddedToLibrary() });
+  });
+
+  // Admin API: cleanup — delete songs we added from local library
+  router.post("/quiz/api/admin/cleanup-library", async (_req, res) => {
+    if (!isHomeConnected()) {
+      return res.status(503).json({ error: "Home Controller not connected" });
+    }
+    const songs = getAddedToLibrary();
+    let deleted = 0;
+    for (const song of songs) {
+      try {
+        const result = await sendHomeCommand("delete-from-library", {
+          name: song.name, artist: song.artist,
+        }, 5000) as { deleted?: number };
+        deleted += result.deleted || 0;
+      } catch {}
+    }
+    clearAddedToLibrary();
+    res.json({ ok: true, deleted, total: songs.length });
   });
 
   // ─── Quiz Builder ─────────────────────────────────────────

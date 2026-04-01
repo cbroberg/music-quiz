@@ -21,6 +21,7 @@ import {
   onGameEvent, removeGameEventListener,
   getHostQuestionData, getPlayerRankings, getFinalRankings,
   getPlayerCount, getAnswerModeForCurrentQuestion,
+  trackAddedToLibrary, getAddedToLibrary, clearAddedToLibrary, prepareSongs,
 } from "./engine.js";
 import {
   activateDjMode, deactivateDjMode, isDjModeActive,
@@ -212,6 +213,22 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
         conn.sessionId = session.id;
         setupGameEvents(session.id);
 
+        // Send preparing state to host
+        sendToWs(conn.ws, {
+          type: "preparing",
+          sessionId: session.id,
+          totalSongs: session.questions.length,
+        } as any);
+
+        // Download + verify all songs before showing lobby
+        await prepareSongs(session.id, musicClient, (current, total) => {
+          sendToWs(conn.ws, {
+            type: "prepare_progress",
+            current,
+            total,
+          } as any);
+        });
+
         const joinUrl = `${getServerUrl()}/quiz/play?code=${session.joinCode}`;
         sendToWs(conn.ws, {
           type: "session_created",
@@ -266,6 +283,8 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
     case "activate_dj": {
       activateDjMode();
       startDjAutoplayPolling(musicClient);
+      // Restore volume after quiz fade-down
+      if (isHomeConnected()) sendHomeCommand("fade-volume", { level: 50, duration: 1500 }).catch(() => {});
       const picks = getAllPlayerPicks();
       sendToWs(conn.ws, { type: "dj_activated", picks, queue: getQueue() } as any);
       // Notify all players
@@ -280,6 +299,7 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
     case "deactivate_dj": {
       deactivateDjMode();
       stopDjAutoplayPolling();
+      cleanupLibrary();
       for (const [, c] of connections) {
         if (c.role === "player") {
           sendToWs(c.ws, { type: "dj_deactivated" } as any);
@@ -368,6 +388,18 @@ function handlePlayerMessage(conn: WsConnection, msg: PlayerMessage, musicClient
           });
         }
       }
+
+      // If DJ Mode is active, send DJ state to reconnecting player
+      if (isDjModeActive()) {
+        const pp = getPlayerPicks(result.player.name);
+        sendToWs(conn.ws, {
+          type: "dj_activated",
+          picks: pp || null,
+          queue: getQueue(),
+          current: getCurrentSong(),
+          autoplay: isAutoplay(),
+        } as any);
+      }
       break;
     }
 
@@ -430,35 +462,50 @@ function getPlayerNameByWsId(wsId: string): string {
 
 let djPollInterval: ReturnType<typeof setInterval> | null = null;
 let djLastPlayingTrack = "";
+let djIsAdvancing = false;
 
 function startDjAutoplayPolling(musicClient: AppleMusicClient): void {
   if (djPollInterval) return;
   djPollInterval = setInterval(async () => {
     if (!isDjModeActive() || !isAutoplay()) return;
     if (!isHomeConnected()) return;
+    if (djIsAdvancing) return; // prevent overlapping advances
 
     try {
-      const np = await sendHomeCommand("now-playing", {}, 5000) as { state?: string; track?: string };
-      const currentTrack = np.track || "";
+      const np = await sendHomeCommand("now-playing", {}, 5000) as {
+        state?: string; track?: string; position?: number; duration?: number;
+      };
       const state = np.state || "stopped";
+      const position = np.position ?? 0;
+      const duration = np.duration ?? 0;
 
-      // If we were playing and now stopped/paused → song ended → advance
-      if (djLastPlayingTrack && (state === "stopped" || state === "paused") && getCurrentSong()) {
-        console.log("🎧 Autoplay: song ended, advancing queue...");
-        const next = advanceQueue();
-        if (next) {
-          await playDjSong(next, musicClient);
-          broadcastDjStateToAll();
-        } else {
-          console.log("🎧 Autoplay: queue empty");
-          broadcastDjStateToAll();
+      if (state === "playing") {
+        djLastPlayingTrack = np.track || "";
+      } else if (djLastPlayingTrack && getCurrentSong()) {
+        // State is stopped or paused — determine if song actually ended
+        // Song ended = stopped, OR paused with position near end (within 3 seconds)
+        const songEnded = state === "stopped" || (state === "paused" && duration > 0 && (duration - position) < 3);
+
+        if (songEnded) {
+          console.log(`🎧 Autoplay: song ended (state=${state}, pos=${position}/${duration}), advancing...`);
+          djIsAdvancing = true;
+          try {
+            const next = advanceQueue();
+            if (next) {
+              await playDjSong(next, musicClient);
+            } else {
+              console.log("🎧 Autoplay: queue empty");
+            }
+            broadcastDjStateToAll();
+          } finally {
+            djIsAdvancing = false;
+          }
+          djLastPlayingTrack = "";
         }
-        djLastPlayingTrack = "";
-      } else if (state === "playing") {
-        djLastPlayingTrack = currentTrack;
+        // If paused but NOT near end → user manually paused, don't advance
       }
     } catch {}
-  }, 4000);
+  }, 2000);
 }
 
 function stopDjAutoplayPolling(): void {
@@ -467,6 +514,23 @@ function stopDjAutoplayPolling(): void {
     djPollInterval = null;
   }
   djLastPlayingTrack = "";
+}
+
+async function cleanupLibrary(): Promise<void> {
+  const songs = getAddedToLibrary();
+  if (songs.length === 0 || !isHomeConnected()) return;
+  console.log(`🧹 Cleaning up ${songs.length} quiz-added songs from library...`);
+  let deleted = 0;
+  for (const song of songs) {
+    try {
+      const result = await sendHomeCommand("delete-from-library", {
+        name: song.name, artist: song.artist,
+      }, 5000) as { deleted?: number };
+      deleted += result.deleted || 0;
+    } catch {}
+  }
+  clearAddedToLibrary();
+  console.log(`🧹 Cleanup done: ${deleted} tracks removed`);
 }
 
 function broadcastDjStateToAll(): void {
@@ -488,20 +552,42 @@ function broadcastDjStateToAll(): void {
 async function playDjSong(song: { songId: string; name: string; artistName: string }, musicClient: AppleMusicClient): Promise<void> {
   if (!isHomeConnected()) return;
   try {
-    // Add to library first
+    // Add to library first so it's available for exact match search
     if (musicClient?.hasUserToken()) {
       await musicClient.addToLibrary({ songs: [song.songId] }).catch(() => {});
-      await new Promise(r => setTimeout(r, 500));
+      trackAddedToLibrary(song.name, song.artistName);
+      await new Promise(r => setTimeout(r, 800));
     }
-    const simpleName = song.name.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+
+    // Crossfade: fade current song down
+    await sendHomeCommand("fade-volume", { level: 0, duration: 1500 }).catch(() => {});
+
+    // Primary: exact name + artist match (no fuzzy search, no wrong songs)
     const artist = song.artistName.split(/[,&]/)[0].trim();
-    for (const query of [`${simpleName} ${artist}`, simpleName]) {
-      const result = await sendHomeCommand("search-and-play", { query, artist }) as { playing?: string };
-      if (result.playing) {
-        console.log(`🎧 DJ playing: ${result.playing}`);
+    const result = await sendHomeCommand("play-exact", {
+      name: song.name, artist, retries: 3,
+    }, 15000) as { playing?: string; error?: string };
+
+    if (result.playing) {
+      console.log(`🎧 DJ playing: ${result.playing}`);
+      // Crossfade: fade new song in
+      sendHomeCommand("fade-volume", { level: 50, duration: 2000 }).catch(() => {});
+      return;
+    }
+    // Fallback: try without parentheses (remaster tags etc.)
+    const simpleName = song.name.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+    if (simpleName !== song.name) {
+      const retry = await sendHomeCommand("play-exact", {
+        name: simpleName, artist, retries: 2,
+      }, 10000) as { playing?: string };
+      if (retry.playing) {
+        console.log(`🎧 DJ playing (simplified): ${retry.playing}`);
+        sendHomeCommand("fade-volume", { level: 50, duration: 2000 }).catch(() => {});
         return;
       }
     }
+    // No fuzzy fallback — silence is better than wrong song
+    console.error(`🎧 DJ exact match failed: ${song.name} — ${song.artistName} (no fallback)`);
   } catch (err) {
     console.error("🎧 DJ play failed:", err);
   }

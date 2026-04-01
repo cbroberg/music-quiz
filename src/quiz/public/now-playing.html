@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="da" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="google" content="notranslate">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Now Playing — Music Quiz</title>
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --card: #141414;
+      --border: #1e1e1e;
+      --text: #e8e8e8;
+      --muted: #888;
+      --dimmer: #555;
+      --red: #fc3c44;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- Nav --- */
+    .nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px;
+      font-size: 13px;
+      z-index: 100;
+    }
+    .nav a {
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav a:hover { opacity: 0.7; }
+    .nav-active {
+      color: var(--red);
+      font-weight: 600;
+    }
+    .nav-muted {
+      color: var(--muted);
+    }
+    .nav-muted:hover {
+      color: var(--text);
+    }
+
+    /* --- Sphere container --- */
+    .sphere-container {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      max-width: 90vw;
+      max-height: 90vw;
+      flex-shrink: 0;
+    }
+
+    /* Ambient glow */
+    .sphere-glow-outer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 180%;
+      height: 180%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(252,60,68,0.12) 0%, rgba(180,40,50,0.04) 40%, transparent 70%);
+      animation: sphereGlowOuter 8s ease-in-out infinite;
+    }
+
+    /* Core glow */
+    .sphere-glow-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at 45% 40%, rgba(252,60,68,0.35) 0%, rgba(200,45,55,0.12) 35%, rgba(150,30,40,0.04) 60%, transparent 80%);
+      animation: spherePulse 8s ease-in-out infinite;
+    }
+    .sphere-glow-core.playing {
+      animation: spherePulse 4s ease-in-out infinite;
+    }
+
+    /* Album art vinyl */
+    .vinyl {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 55%;
+      height: 55%;
+      border-radius: 50%;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+    }
+    .vinyl.spinning {
+      animation: vinylSpin 1.8s linear infinite;
+    }
+    .vinyl img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9) saturate(1.15);
+    }
+    .vinyl-grooves {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: repeating-radial-gradient(
+        circle at center,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.03) 3px,
+        rgba(0,0,0,0.03) 4px
+      );
+    }
+    .vinyl-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8%;
+      height: 8%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at 40% 40%, #151515 0%, #0a0a0a 50%, #111 80%, #0a0a0a 100%);
+      box-shadow: 0 0 8px 4px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .vinyl-edge {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 0 0 40px 20px rgba(13,13,13,0.6);
+    }
+
+    /* Warm highlight */
+    .sphere-highlight {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at 35% 30%, rgba(255,200,180,0.06) 0%, transparent 50%);
+    }
+
+    /* --- Track info --- */
+    .track-info {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .track-name {
+      font-size: clamp(1.4rem, 4vw, 1.875rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .track-artist {
+      font-size: 1.125rem;
+      color: var(--muted);
+    }
+    .track-album {
+      font-size: 0.875rem;
+      color: var(--dimmer);
+    }
+
+    /* Progress */
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--dimmer);
+    }
+    .progress-bar {
+      width: 200px;
+      height: 4px;
+      background: #222;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 9999px;
+      transition: width 1s linear;
+    }
+
+    /* Paused button */
+    .paused-btn {
+      background: none;
+      border: none;
+      color: var(--red);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .paused-btn:hover { opacity: 0.7; }
+
+    /* Not playing */
+    .not-playing {
+      font-size: 1.125rem;
+      color: var(--muted);
+      text-align: center;
+      animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* Connection banner */
+    .connection-banner {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      z-index: 100;
+    }
+
+    /* Hidden utility */
+    .hidden { display: none !important; }
+
+    /* --- Animations --- */
+    @keyframes vinylSpin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes spherePulse {
+      0%   { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
+      50%  { transform: translate(-50%, -50%) scale(1.12); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
+    }
+
+    @keyframes sphereGlowOuter {
+      0%   { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
+      30%  { transform: translate(-50%, -50%) scale(1.25); opacity: 0.6; }
+      60%  { transform: translate(-50%, -50%) scale(1.35); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) scale(1);    opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav"></nav>
+
+  <!-- Sphere -->
+  <div class="sphere-container">
+    <div class="sphere-glow-outer"></div>
+    <div class="sphere-glow-core" id="glow-core"></div>
+    <div class="vinyl hidden" id="vinyl">
+      <img id="vinyl-art" src="" alt="Album artwork">
+      <div class="vinyl-grooves"></div>
+      <div class="vinyl-center"></div>
+      <div class="vinyl-edge"></div>
+    </div>
+    <div class="sphere-highlight"></div>
+  </div>
+
+  <!-- Track info -->
+  <div id="track-info"></div>
+
+  <!-- Connection banner -->
+  <div class="connection-banner" id="connection-banner">Connecting...</div>
+
+  <script>
+    // --- URL params ---
+    const params = new URLSearchParams(location.search);
+    const fromDj = params.get('from') === 'dj';
+    const djCode = params.get('code') || '';
+
+    // --- Build nav ---
+    const nav = document.getElementById('nav');
+    if (fromDj) {
+      const backUrl = djCode ? '/quiz/play?code=' + encodeURIComponent(djCode) : '/quiz/play';
+      nav.innerHTML = '<a class="nav-active" href="' + backUrl + '">Back to DJ Mode</a>';
+    } else {
+      nav.innerHTML =
+        '<a class="nav-active" href="/now-playing.html">Now Playing</a>' +
+        '<a class="nav-muted" href="/quiz/host">DJ Mode</a>' +
+        '<a class="nav-muted" href="/quiz/admin">Admin</a>';
+    }
+
+    // --- DOM refs ---
+    const glowCore = document.getElementById('glow-core');
+    const vinyl = document.getElementById('vinyl');
+    const vinylArt = document.getElementById('vinyl-art');
+    const trackInfo = document.getElementById('track-info');
+    const banner = document.getElementById('connection-banner');
+
+    // --- State ---
+    let currentState = 'stopped';
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return m + ':' + String(s).padStart(2, '0');
+    }
+
+    function render(data) {
+      currentState = data.state || 'stopped';
+
+      // Sphere glow speed
+      if (currentState === 'playing') {
+        glowCore.classList.add('playing');
+      } else {
+        glowCore.classList.remove('playing');
+      }
+
+      // Vinyl
+      if (data.artworkUrl) {
+        vinyl.classList.remove('hidden');
+        vinylArt.src = data.artworkUrl;
+        if (currentState === 'playing') {
+          vinyl.classList.add('spinning');
+        } else {
+          vinyl.classList.remove('spinning');
+        }
+      } else {
+        vinyl.classList.add('hidden');
+      }
+
+      // Track info
+      if (currentState === 'stopped') {
+        trackInfo.innerHTML = '<div class="not-playing">Not playing</div>';
+        return;
+      }
+
+      let html = '<div class="track-info">';
+      html += '<div class="track-name">' + escapeHtml(data.track || '') + '</div>';
+      html += '<div class="track-artist">' + escapeHtml(data.artist || '') + '</div>';
+      html += '<div class="track-album">' + escapeHtml(data.album || '') + '</div>';
+
+      if (data.duration != null && data.position != null && data.duration > 0) {
+        const pct = Math.min((data.position / data.duration) * 100, 100);
+        html += '<div class="progress-row">';
+        html += '<span>' + formatTime(data.position) + '</span>';
+        html += '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
+        html += '<span>' + formatTime(data.duration) + '</span>';
+        html += '</div>';
+      }
+
+      if (currentState === 'paused') {
+        html += '<button class="paused-btn" onclick="playPause()">Paused &mdash; tap to play</button>';
+      }
+
+      html += '</div>';
+      trackInfo.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    async function playPause() {
+      try { await fetch('/api/quiz/play-pause', { method: 'POST' }); } catch (e) { /* ignore */ }
+    }
+
+    // --- WebSocket ---
+    let ws = null;
+    let reconnectDelay = 1000;
+
+    function connect() {
+      const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      ws = new WebSocket(proto + '//' + location.host + '/ws/now-playing');
+
+      ws.onopen = function() {
+        banner.classList.add('hidden');
+        reconnectDelay = 1000;
+      };
+
+      ws.onmessage = function(e) {
+        try {
+          const msg = JSON.parse(e.data);
+          if (msg.type === 'now-playing') {
+            render(msg.data);
+          }
+        } catch (err) { /* ignore parse errors */ }
+      };
+
+      ws.onclose = function() {
+        banner.classList.remove('hidden');
+        const delay = reconnectDelay;
+        reconnectDelay = Math.min(delay * 2, 30000);
+        setTimeout(connect, delay);
+      };
+
+      ws.onerror = function() {
+        ws.close();
+      };
+    }
+
+    // Initial render
+    render({ state: 'stopped' });
+    connect();
+  </script>
+</body>
+</html>
