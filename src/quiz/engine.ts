@@ -632,7 +632,7 @@ async function advanceToNextQuestion(session: GameSession): Promise<void> {
 
   if (session.currentQuestion >= session.questions.length) {
     // Game over
-    await finishGame(session);
+    finishGame(session);
     return;
   }
 
@@ -946,7 +946,7 @@ async function evaluateAndScore(
   }, REVEAL_DURATION_MS);
 }
 
-async function finishGame(session: GameSession): Promise<void> {
+function finishGame(session: GameSession): void {
   if (session.timer) {
     clearTimeout(session.timer);
     session.timer = null;
@@ -958,27 +958,28 @@ async function finishGame(session: GameSession): Promise<void> {
 
   const rankings = getFinalRankings(session);
 
-  // Award music picks for DJ Mode
+  // Award music picks IMMEDIATELY (synchronous — must happen before DJ Mode can activate)
   awardPicks(rankings);
+  console.log(`🎮 Picks awarded to ${rankings.length} players`);
 
-  // Stop quiz music → start Champions → THEN show results with confetti
-  if (isHomeConnected()) {
-    await sendHomeCommand("pause", {}, 3000).catch(() => {});
-    const theme = THEME_SONGS.victory;
-    await sendHomeCommand("play-exact", { name: theme.name, artist: theme.artist, retries: 2 }, 10000).catch(async () => {
-      await sendHomeCommand("search-and-play", { query: `${theme.name} ${theme.artist}` }, 10000).catch(() => {});
-    });
-    // Let Champions intro play before showing podium
-    await new Promise(r => setTimeout(r, 2000));
-  }
-
+  // Emit results first so UI shows podium
   emit(session.id, { type: "final_results", session, rankings });
+
+  // Play Champions async (doesn't block anything — picks are already awarded)
+  if (isHomeConnected()) {
+    sendHomeCommand("pause", {}, 3000).then(async () => {
+      const theme = THEME_SONGS.victory;
+      await sendHomeCommand("play-exact", { name: theme.name, artist: theme.artist, retries: 2 }, 10000).catch(async () => {
+        await sendHomeCommand("search-and-play", { query: `${theme.name} ${theme.artist}` }, 10000).catch(() => {});
+      });
+    }).catch(() => {});
+  }
 }
 
-export async function endQuiz(sessionId: string): Promise<boolean> {
+export function endQuiz(sessionId: string): boolean {
   const session = sessions.get(sessionId);
   if (!session) return false;
-  await finishGame(session);
+  finishGame(session);
   return true;
 }
 
