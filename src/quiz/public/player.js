@@ -262,8 +262,15 @@ const Player = (() => {
   // ─── Auto-init ─────────────────────────────────────────
 
   function _init() {
-    // Start HC WebSocket if that's the preferred provider
-    if (getPreferredProvider() === 'home-controller') _startHcWebSocket();
+    const prov = getPreferredProvider();
+    // Sync saved provider to server on every page load
+    fetch('/quiz/api/set-provider', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ provider: prov }),
+    }).catch(() => {});
+    // Always start HC WebSocket (for now-playing data from HC polling)
+    _startHcWebSocket();
     // Init MusicKit when CDN loads
     if (typeof MusicKit !== 'undefined') initMusicKit();
   }
