@@ -727,7 +727,7 @@ function launchConfetti() {
 async function exitGame() {
   if (await hostConfirm('End the quiz for all players?')) {
     send({ type: 'end_quiz' });
-    setTimeout(() => location.reload(), 500);
+    // Don't reload — let the game flow to finished/DJ Mode naturally
   }
 }
 

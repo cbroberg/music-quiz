@@ -15,7 +15,7 @@ let timerInterval = null;
 let hasAnswered = false;
 
 const AVATARS = ['🎸', '🎤', '🎹', '🥁', '🎺', '🎻', '🎵', '🎶', '🎧', '🎼', '🪘', '🪗', '🎷', '🪈', '🪇', '🫧'];
-let selectedAvatar = AVATARS[Math.floor(Math.random() * AVATARS.length)];
+let selectedAvatar = localStorage.getItem('quizPlayerAvatar') || AVATARS[Math.floor(Math.random() * AVATARS.length)];
 
 // ─── Init ─────────────────────────────────────────────────
 
@@ -80,6 +80,7 @@ function init() {
 
 function selectAvatar(emoji) {
   selectedAvatar = emoji;
+  localStorage.setItem('quizPlayerAvatar', emoji);
   document.querySelectorAll('.avatar-btn').forEach(btn => {
     btn.classList.toggle('selected', btn.textContent === emoji);
   });
@@ -225,6 +226,7 @@ function onJoined(msg) {
   document.getElementById('lobby-name').textContent = myPlayer.name;
   updateRoundIndicator();
   showScreen('lobby');
+  requestWakeLock(); // keep screen on from lobby through entire quiz
 
   // Show other players
   updateLobbyPlayers(msg.players);
@@ -839,8 +841,24 @@ async function requestWakeLock() {
   } catch {}
 }
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && (djPicks > 0 || isDjModeActive)) {
+  if (document.visibilityState === 'visible') {
+    // Re-acquire wake lock
     requestWakeLock();
+    // Reconnect WS if dead + auto-rejoin current session
+    if (ws?.readyState !== WebSocket.OPEN && sessionId) {
+      connect();
+      const savedName = localStorage.getItem('quizPlayerName');
+      const code = new URLSearchParams(location.search).get('code');
+      if (savedName && code) {
+        const tryRejoin = setInterval(() => {
+          if (ws?.readyState === WebSocket.OPEN) {
+            clearInterval(tryRejoin);
+            send({ type: 'join_session', joinCode: code.toUpperCase(), name: savedName, avatar: selectedAvatar });
+          }
+        }, 200);
+        setTimeout(() => clearInterval(tryRejoin), 5000);
+      }
+    }
   }
 });
 let isDjModeActive = false;
