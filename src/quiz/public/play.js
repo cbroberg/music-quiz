@@ -40,9 +40,11 @@ function init() {
   const savedName = localStorage.getItem('quizPlayerName');
   if (savedName) document.getElementById('join-name').value = savedName;
 
-  // Auto-rejoin if returning to DJ Mode (has code + saved name)
+  // Auto-rejoin ONLY if player was already in a session (DJ Mode page nav)
+  // NOT on fresh QR scan — user must pick avatar and click Join
   const autoCode = params.get('code');
-  const isAutoRejoining = autoCode && savedName;
+  const wasInSession = sessionStorage.getItem('inActiveSession') === 'true';
+  const isAutoRejoining = autoCode && savedName && wasInSession;
 
   // Hide join screen during auto-rejoin — show nothing until DJ Mode loads
   if (isAutoRejoining) {
@@ -53,7 +55,6 @@ function init() {
   connect();
 
   if (isAutoRejoining) {
-    // selectedAvatar already loaded from localStorage at top
     // Wait for WS to open, then auto-join
     const tryAutoJoin = setInterval(() => {
       if (ws?.readyState === WebSocket.OPEN) {
@@ -69,7 +70,6 @@ function init() {
     // Give up after 5s — show join screen only if auto-rejoin truly failed
     setTimeout(() => {
       clearInterval(tryAutoJoin);
-      // Only show join if we never got to DJ Mode
       if (!isDjModeActive) {
         showScreen('join');
       }
@@ -194,6 +194,7 @@ function handleMessage(msg) {
       break;
     case 'party_ended':
       isDjModeActive = false;
+      sessionStorage.removeItem('inActiveSession');
       showScreen('join');
       break;
     case 'dj_pick_used':
@@ -219,6 +220,7 @@ function handleMessage(msg) {
 function onJoined(msg) {
   myPlayer = msg.player;
   sessionId = msg.sessionId;
+  sessionStorage.setItem('inActiveSession', 'true');
   if (msg.roundNumber) roundNumber = msg.roundNumber;
 
   document.getElementById('lobby-avatar').textContent = myPlayer.avatar;
