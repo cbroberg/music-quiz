@@ -214,7 +214,7 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     const q = String(req.query.q || "").trim();
     if (!q) { res.json({ tracks: [], albums: [] }); return; }
     try {
-      const data = await musicClient.searchCatalog(q, ["songs", "albums"], 25) as {
+      const data = await musicClient.searchCatalog(q, ["songs", "albums", "artists"], 25) as {
         results?: {
           songs?: { data?: Array<{
             id?: string;
@@ -234,9 +234,17 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
               trackCount?: number;
             };
           }> };
+          artists?: { data?: Array<{
+            id?: string;
+            attributes?: {
+              name?: string;
+              genreNames?: string[];
+              artwork?: { url?: string };
+            };
+          }> };
         };
       };
-      const tracks = (data.results?.songs?.data || []).map((t) => ({
+      const songs = (data.results?.songs?.data || []).map((t) => ({
         id: t.id || "",
         name: t.attributes?.name || "",
         artistName: t.attributes?.artistName || "",
@@ -253,7 +261,13 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
         artworkUrl: a.attributes?.artwork?.url?.replace("{w}", "200").replace("{h}", "200") || "",
         trackCount: a.attributes?.trackCount || 0,
       }));
-      res.json({ tracks, albums });
+      const artists = (data.results?.artists?.data || []).map((a) => ({
+        id: a.id || "",
+        name: a.attributes?.name || "",
+        genres: (a.attributes?.genreNames || []).join(", "),
+        artworkUrl: a.attributes?.artwork?.url?.replace("{w}", "200").replace("{h}", "200") || "",
+      }));
+      res.json({ songs, tracks: songs, albums, artists });
     } catch (err) {
       res.status(500).json({ error: String(err) });
     }

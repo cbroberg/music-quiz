@@ -287,6 +287,26 @@ html, body {
 .pl-album-meta { font-size: 12px; color: var(--dimmer); margin-top: 2px; }
 .pl-album-tracks { padding-left: 58px; }
 
+/* Search section labels */
+.search-section-label {
+  font-size: 11px; font-weight: 700; color: var(--dimmer);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 10px 0 4px 0; border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.search-section-label:first-child { border-top: none; margin-top: 0; }
+
+/* Artist results */
+.artist-result { cursor: pointer; border-radius: 6px; padding: 6px 4px; }
+.artist-result:hover { background: rgba(255,255,255,0.04); }
+.pl-artist-art {
+  width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+}
+.pl-artist-placeholder {
+  background: var(--border); display: flex; align-items: center;
+  justify-content: center; font-size: 18px;
+}
+
 /* ─── Favorite Button ─── */
 
 .fav-btn {
