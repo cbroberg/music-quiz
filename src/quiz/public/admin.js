@@ -158,10 +158,9 @@ async function playTrack(name, artist, songId) {
 
     // Queue remaining tracks from the list this track belongs to
     const idx = tracks.findIndex(t => t.id === songId || (t.name === name && t.artistName === artist));
-    if (idx >= 0 && typeof playAllQueue !== 'undefined') {
-      // Set queue to this track + everything after it
-      playAllQueue = tracks.slice(idx).filter(t => t.id);
-      playAllIndex = 1; // skip first — we're playing it now
+    if (idx >= 0) {
+      window.playAllQueue = tracks.slice(idx).filter(t => t.id);
+      window.playAllIndex = 1; // skip first — we're playing it now
     }
 
     const ok = await Player.play(songId, name, artist);
