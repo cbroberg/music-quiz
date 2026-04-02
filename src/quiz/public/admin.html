@@ -441,11 +441,11 @@
     }
 
     async function playNextInQueue() {
-      if (playAllIndex >= playAllQueue.length) { playAllQueue = []; return; }
-      const t = playAllQueue[playAllIndex];
-      playAllIndex++;
-      console.log('▶ Play All:', t.name, '—', t.artistName);
-      await Player.play(t.id, t.name, t.artistName);
+      if (window.playAllIndex >= window.playAllQueue.length) { window.playAllQueue = []; return; }
+      const t = window.playAllQueue[window.playAllIndex];
+      window.playAllIndex++;
+      console.log('▶ Next track:', t.name, '—', t.artistName, 'id:', t.id);
+      await Player.play(t.id || null, t.name, t.artistName);
     }
 
     // Auto-advance: when Player reports stopped/new track, play next
@@ -686,7 +686,8 @@
 
     function setupPlayPause() { Player.togglePlayPause(); }
     function setupNextSong() {
-      if (playAllQueue.length > 0 && playAllIndex < playAllQueue.length) {
+      console.log('⏭ Next:', 'queue=' + window.playAllQueue.length, 'index=' + window.playAllIndex);
+      if (window.playAllQueue.length > 0 && window.playAllIndex < window.playAllQueue.length) {
         playNextInQueue();
       } else {
         // No queue — try HC next track
