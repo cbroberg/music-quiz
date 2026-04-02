@@ -1411,15 +1411,33 @@ function onMusicKitAuthorized() {
   send({ type: 'set_provider', provider: 'musickit-web' });
 }
 
-function showAirPlayPicker() {
-  // Safari: native AirPlay picker via WebKit API
-  const audioEl = document.querySelector('audio') || musicKit?._player?._mediaElement;
+async function showAirPlayPicker() {
+  // Find MusicKit's audio element (it creates one in the DOM)
+  let audioEl = document.querySelector('audio');
+
+  // If no audio element yet, MusicKit hasn't played anything — trigger a brief load
+  if (!audioEl && musicKit && musicKitAuthorized) {
+    try {
+      // Search for any song and set queue (this creates the audio element)
+      const results = await musicKit.api.music(`/v1/catalog/${musicKit.storefrontId || 'dk'}/search`, {
+        term: 'test', types: 'songs', limit: 1,
+      });
+      const song = results?.data?.results?.songs?.data?.[0];
+      if (song) {
+        await musicKit.setQueue({ song: song.id });
+        // Wait for audio element to appear
+        await new Promise(r => setTimeout(r, 500));
+        audioEl = document.querySelector('audio');
+      }
+    } catch {}
+  }
+
   if (audioEl?.webkitShowPlaybackTargetPicker) {
     audioEl.webkitShowPlaybackTargetPicker();
     return;
   }
 
-  // Non-Safari browser — AirPlay picker not available
+  // Non-Safari or no audio element
   const isMac = navigator.platform.includes('Mac');
   if (isMac) {
     showHostToast('AirPlay requires Safari — open this page in Safari, or use macOS Sound output settings', false);

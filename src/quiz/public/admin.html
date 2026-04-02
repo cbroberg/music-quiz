@@ -9,6 +9,22 @@
 </head>
 <body>
   <div class="container">
+    <!-- Audio Setup Panel -->
+    <div id="audio-setup" class="audio-setup">
+      <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">Audio Setup</h2>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div id="setup-provider-status" style="display:flex;align-items:center;gap:8px">
+          <span id="setup-provider-icon">🔇</span>
+          <span id="setup-provider-label" style="color:var(--muted)">No music source</span>
+        </div>
+        <button id="btn-setup-connect" onclick="setupConnectAppleMusic()" style="background:none;border:1px solid var(--red);color:var(--red);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">Connect Apple Music</button>
+        <button id="btn-setup-test" onclick="setupTestPlay()" style="display:none;background:none;border:1px solid var(--green);color:var(--green);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">Test Play</button>
+        <button id="btn-setup-stop" onclick="setupStop()" style="display:none;background:none;border:1px solid var(--muted);color:var(--muted);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">Stop</button>
+        <button id="btn-setup-airplay" onclick="setupAirPlay()" style="display:none;background:none;border:1px solid #5ac8fa;color:#5ac8fa;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">AirPlay</button>
+      </div>
+      <div id="setup-now-playing" style="display:none;margin-top:12px;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;font-size:14px"></div>
+    </div>
+
     <header>
       <div>
         <h1>Recently Played</h1>
@@ -32,6 +48,115 @@
     <div id="empty" class="empty" style="display:none">No recently played tracks found.</div>
   </div>
 
+  <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" async></script>
   <script src="/quiz/static/admin.js"></script>
+  <script>
+    // ─── Audio Setup (MusicKit JS) ─────────────────────────
+    let setupMK = null;
+    let setupAuthorized = false;
+
+    async function setupInitMusicKit() {
+      if (typeof MusicKit === 'undefined') return;
+      try {
+        const res = await fetch('/quiz/api/musickit-token');
+        const { token } = await res.json();
+        await MusicKit.configure({
+          developerToken: token,
+          app: { name: 'Music Quiz', build: '3.0.0' },
+        });
+        setupMK = MusicKit.getInstance();
+        if (setupMK.isAuthorized) setupOnAuthorized();
+        updateSetupUI();
+      } catch (err) {
+        console.error('MusicKit init failed:', err);
+      }
+    }
+
+    async function setupConnectAppleMusic() {
+      if (!setupMK) {
+        await setupInitMusicKit();
+        if (!setupMK) return;
+      }
+      try {
+        document.getElementById('btn-setup-connect').textContent = 'Connecting...';
+        await setupMK.authorize();
+        setupOnAuthorized();
+      } catch {
+        document.getElementById('btn-setup-connect').textContent = 'Connect Apple Music';
+      }
+    }
+
+    function setupOnAuthorized() {
+      setupAuthorized = true;
+      updateSetupUI();
+    }
+
+    function updateSetupUI() {
+      const icon = document.getElementById('setup-provider-icon');
+      const label = document.getElementById('setup-provider-label');
+      const connectBtn = document.getElementById('btn-setup-connect');
+      const testBtn = document.getElementById('btn-setup-test');
+      const stopBtn = document.getElementById('btn-setup-stop');
+      const airplayBtn = document.getElementById('btn-setup-airplay');
+
+      if (setupAuthorized) {
+        icon.textContent = '🎵';
+        label.textContent = 'Apple Music connected';
+        label.style.color = '#34c759';
+        connectBtn.style.display = 'none';
+        testBtn.style.display = '';
+        stopBtn.style.display = '';
+        airplayBtn.style.display = '';
+      } else if (setupMK) {
+        icon.textContent = '🔑';
+        label.textContent = 'Ready to connect';
+        label.style.color = '#ffd60a';
+      }
+    }
+
+    async function setupTestPlay() {
+      if (!setupMK || !setupAuthorized) return;
+      const np = document.getElementById('setup-now-playing');
+      np.style.display = '';
+      np.textContent = 'Searching...';
+      try {
+        const results = await setupMK.api.music(`/v1/catalog/${setupMK.storefrontId || 'dk'}/search`, {
+          term: 'Theme from New York New York Frank Sinatra', types: 'songs', limit: 1,
+        });
+        const song = results?.data?.results?.songs?.data?.[0];
+        if (!song) { np.textContent = 'No results'; return; }
+        await setupMK.setQueue({ song: song.id });
+        await setupMK.play();
+        np.innerHTML = `<span style="color:var(--green)">▶</span> ${song.attributes.name} — ${song.attributes.artistName}`;
+      } catch (err) {
+        np.textContent = 'Playback failed: ' + err.message;
+      }
+    }
+
+    async function setupStop() {
+      if (setupMK) {
+        setupMK.pause();
+        document.getElementById('setup-now-playing').style.display = 'none';
+      }
+    }
+
+    function setupAirPlay() {
+      const audioEl = document.querySelector('audio');
+      if (audioEl?.webkitShowPlaybackTargetPicker) {
+        audioEl.webkitShowPlaybackTargetPicker();
+      } else {
+        const isMac = navigator.platform.includes('Mac');
+        const msg = isMac
+          ? 'AirPlay requires Safari — or use macOS Sound output settings'
+          : 'AirPlay is only available on Mac with Safari';
+        const toast = document.getElementById('setup-now-playing');
+        toast.style.display = '';
+        toast.textContent = msg;
+      }
+    }
+
+    document.addEventListener('musickitloaded', () => setupInitMusicKit());
+    setTimeout(() => { if (!setupMK && typeof MusicKit !== 'undefined') setupInitMusicKit(); }, 3000);
+  </script>
 </body>
 </html>
