@@ -296,8 +296,8 @@ async function playTrack(name, artist, artworkUrl, songId) {
   console.log(`🎵 Play: "${name}" by ${artist} (id: ${songId})`);
   showMiniPlayer(name, artist, artworkUrl, true);
 
-  // Try MusicKit JS first (browser playback)
-  if (typeof MKPlayer !== 'undefined' && MKPlayer.isAuthorized() && songId) {
+  // MusicKit JS local playback — only if it's the active provider
+  if (typeof MKPlayer !== 'undefined' && MKPlayer.isActivePlayer() && songId) {
     const ok = await MKPlayer.play(songId);
     showMiniPlayer(name, artist, artworkUrl, false, !ok);
     if (!ok) showToast('Playback failed', true);
@@ -348,8 +348,8 @@ function showMiniPlayer(name, artist, artworkUrl, loading = false, failed = fals
 }
 
 async function togglePause() {
-  // MusicKit JS toggle
-  if (typeof MKPlayer !== 'undefined' && MKPlayer.isAuthorized()) {
+  // MusicKit JS toggle — only if active provider
+  if (typeof MKPlayer !== 'undefined' && MKPlayer.isActivePlayer()) {
     await MKPlayer.togglePlayPause();
     const s = MKPlayer.getState();
     isPlaying = s.state === 'playing';

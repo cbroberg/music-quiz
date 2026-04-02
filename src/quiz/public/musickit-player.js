@@ -121,6 +121,12 @@ const MKPlayer = (() => {
   /** Is authorized? */
   function isAuthorized() { return authorized; }
 
+  /** Should this page use local MusicKit playback? (vs server-side Home Controller) */
+  function isActivePlayer() {
+    const pref = localStorage.getItem('preferred-provider');
+    return authorized && pref !== 'home-controller';
+  }
+
   /** Is available? */
   function isReady() { return mk !== null; }
 
@@ -227,7 +233,7 @@ const MKPlayer = (() => {
   }
 
   return {
-    init, authorize, isAuthorized, isReady, getInstance,
+    init, authorize, isAuthorized, isActivePlayer, isReady, getInstance,
     play, pause, resume, togglePlayPause, stop,
     getState, onUpdate, showAirPlayPicker,
   };
