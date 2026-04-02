@@ -329,14 +329,17 @@
     const fromDj = params.get('from') === 'dj';
     const djCode = params.get('code') || '';
 
-    // --- Build nav ---
+    // --- Build nav (hidden when in iframe overlay) ---
     const nav = document.getElementById('nav');
-    if (fromDj) {
+    const isInIframe = window !== window.parent;
+    if (isInIframe) {
+      nav.style.display = 'none';
+    } else if (fromDj) {
       const backUrl = djCode ? '/quiz/play?code=' + encodeURIComponent(djCode) : '/quiz/play';
       nav.innerHTML = '<a class="nav-active" href="' + backUrl + '">Back to DJ Mode</a>';
     } else {
       nav.innerHTML =
-        '<a class="nav-active" href="/now-playing.html">Now Playing</a>' +
+        '<a class="nav-active" href="/quiz/now-playing">Now Playing</a>' +
         '<a class="nav-muted" href="/quiz/host">DJ Mode</a>' +
         '<a class="nav-muted" href="/quiz/admin">Admin</a>';
     }
