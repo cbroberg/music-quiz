@@ -95,6 +95,7 @@
   </div>
 
   <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" async></script>
+  <script src="/quiz/static/musickit-player.js"></script>
   <script src="/quiz/static/admin.js"></script>
   <script>
     // ─── Audio Setup (MusicKit JS) ─────────────────────────
@@ -257,13 +258,12 @@
     }
 
     function setupAirPlay() {
+      if (typeof MKPlayer !== 'undefined' && MKPlayer.showAirPlayPicker()) return;
+      // Fallback if MKPlayer not loaded
       const el = findMusicKitAudioElement();
       if (el) {
         el.webkitShowPlaybackTargetPicker();
-      } else {
-        const toast = document.getElementById('setup-now-playing');
-        toast.style.display = '';
-        toast.textContent = 'Play a song first, then click AirPlay to select speakers';
+        localStorage.setItem('mk-airplay-preferred', 'true');
       }
     }
 
