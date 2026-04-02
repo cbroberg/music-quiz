@@ -220,6 +220,15 @@
       }
     });
 
+    // Expose functions for onclick attributes
+    window.switchProvider = switchProvider;
+    window.setupConnectAppleMusic = setupConnectAppleMusic;
+    window.setupTestPlay = setupTestPlay;
+    window.setupStop = setupStop;
+    window.setupPlayPause = setupPlayPause;
+    window.setupAirPlay = setupAirPlay;
+    window.toggleNowPlayingOverlay = toggleNowPlayingOverlay;
+
     // Init UI
     setTimeout(updateSetupUI, 500);
     setTimeout(updateSetupUI, 3000);
