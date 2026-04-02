@@ -218,11 +218,13 @@ const Player = (() => {
     hcWsConnecting = true;
     const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
     const ws = new WebSocket(proto + '//' + location.host + '/ws/now-playing');
-    ws.onopen = () => { hcWs = ws; hcWsConnecting = false; };
+    ws.onopen = () => { hcWs = ws; hcWsConnecting = false; console.log('🎵 Player: now-playing WS connected'); };
     ws.onmessage = (e) => {
       try {
         const msg = JSON.parse(e.data);
-        if (msg.type === 'now-playing') hcNpData = msg.data;
+        if (msg.type === 'now-playing') {
+          hcNpData = msg.data;
+        }
       } catch {}
     };
     ws.onclose = () => { hcWs = null; hcWsConnecting = false; setTimeout(_startHcWebSocket, 2000); };

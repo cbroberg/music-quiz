@@ -105,6 +105,9 @@
   <script src="/quiz/static/player.js" defer></script>
   <script src="/quiz/static/admin.js" defer></script>
   <script>
+    // Wait for deferred scripts (player.js) to load
+    document.addEventListener('DOMContentLoaded', () => {
+
     // ─── Admin uses universal Player for everything ──────────
 
     function switchProvider(provider) {
@@ -220,6 +223,8 @@
     // Init UI
     setTimeout(updateSetupUI, 500);
     setTimeout(updateSetupUI, 3000);
+
+    }); // end DOMContentLoaded
   </script>
 </body>
 </html>
