@@ -194,9 +194,17 @@ const Player = (() => {
 
   function onUpdate(callback) {
     onStateChange = callback;
+    // Only start interval — callbacks fire on actual state changes + _notifyUpdate
     if (!updateInterval) {
+      let lastKey = '';
       updateInterval = setInterval(() => {
-        if (onStateChange) onStateChange(getState());
+        if (!onStateChange) return;
+        const s = getState();
+        const key = s.state + '|' + (s.track || '') + '|' + Math.floor(s.position || 0);
+        if (key !== lastKey) {
+          lastKey = key;
+          onStateChange(s);
+        }
       }, 500);
     }
   }
