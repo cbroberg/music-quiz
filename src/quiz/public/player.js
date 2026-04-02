@@ -212,17 +212,21 @@ const Player = (() => {
 
   // ─── Home Controller WebSocket (now-playing data) ──────
 
+  let hcWsConnecting = false;
   function _startHcWebSocket() {
-    if (hcWs) return;
+    if (hcWs || hcWsConnecting) return;
+    hcWsConnecting = true;
     const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
-    hcWs = new WebSocket(proto + '//' + location.host + '/ws/now-playing');
-    hcWs.onmessage = (e) => {
+    const ws = new WebSocket(proto + '//' + location.host + '/ws/now-playing');
+    ws.onopen = () => { hcWs = ws; hcWsConnecting = false; };
+    ws.onmessage = (e) => {
       try {
         const msg = JSON.parse(e.data);
         if (msg.type === 'now-playing') hcNpData = msg.data;
       } catch {}
     };
-    hcWs.onclose = () => { hcWs = null; setTimeout(_startHcWebSocket, 2000); };
+    ws.onclose = () => { hcWs = null; hcWsConnecting = false; setTimeout(_startHcWebSocket, 2000); };
+    ws.onerror = () => { ws.close(); };
   }
 
   // ─── AirPlay ───────────────────────────────────────────
