@@ -32,6 +32,7 @@ html, body {
   overscroll-behavior: none;
   user-select: none;
   -webkit-user-select: none;
+  overflow-x: hidden;
 }
 
 /* ─── Screens ─── */
@@ -73,7 +74,8 @@ html, body {
 }
 
 .avatar-grid {
-  display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+  justify-items: center;
 }
 .avatar-btn {
   background: var(--card); border: 2px solid var(--border);

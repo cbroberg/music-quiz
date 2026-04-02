@@ -14,7 +14,7 @@ let questionStartTime = 0;
 let timerInterval = null;
 let hasAnswered = false;
 
-const AVATARS = ['🎸', '🎤', '🎹', '🥁', '🎺', '🎻', '🎵', '🎶', '🎧', '🎼', '🪘', '🪗', '🎷', '🪈', '🪇', '🫧'];
+const AVATARS = ['🎸', '🎤', '🎹', '🥁', '🎺', '🎻', '🎵', '🎶', '🎧', '🎼', '🪘', '🪗', '🎷', '🪈', '🪇', '🫧', '🪕', '🔔'];
 let selectedAvatar = localStorage.getItem('quizPlayerAvatar') || AVATARS[Math.floor(Math.random() * AVATARS.length)];
 
 // ─── Init ─────────────────────────────────────────────────
