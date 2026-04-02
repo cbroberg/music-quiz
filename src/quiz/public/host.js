@@ -1288,6 +1288,7 @@ function clearCustomQuiz() {
 checkCustomQuiz();
 initCustomSelects();
 connect();
+startHostNpUpdater();
 
 // ─── Custom Select Dropdowns ──────────────────────────────
 
@@ -1383,7 +1384,6 @@ function onMusicKitAuthorized() {
   console.log('🎵 Apple Music authorized — browser playback ready');
   updateProviderStatus();
   startMusicKitNowPlayingPush();
-  startHostNpUpdater();
 
   // Tell server that MusicKit Web is available
   send({ type: 'set_provider', provider: 'musickit-web' });
@@ -1662,53 +1662,63 @@ async function mkCheckLibrary(name, artist) {
   }
 }
 
-// ─── Host Now Playing Screen (embedded, no navigation) ───
+// ─── Host Now Playing Screen (embedded, Player-driven) ───
 
-let hostNpInterval = null;
+let hostNpSyncPos = 0, hostNpSyncTime = 0, hostNpDuration = 0, hostNpState = 'stopped';
+let hostNpLastReceivedPos = -1;
 
 function startHostNpUpdater() {
-  if (hostNpInterval) return;
-  hostNpInterval = setInterval(updateHostNowPlaying, 500);
+  // Receive state changes from Player
+  Player.onUpdate((s) => {
+    if (s.position != null && Math.abs(s.position - hostNpLastReceivedPos) > 0.5) {
+      hostNpSyncPos = s.position;
+      hostNpSyncTime = Date.now();
+      hostNpLastReceivedPos = s.position;
+    }
+    if (s.duration) hostNpDuration = s.duration;
+    hostNpState = s.state || 'stopped';
+
+    // Update track info
+    if (s.track) {
+      const artEl = document.getElementById('hnp-artwork');
+      if (s.artworkUrl && artEl.src !== s.artworkUrl) artEl.src = s.artworkUrl;
+      document.getElementById('hnp-track').textContent = s.track;
+      document.getElementById('hnp-artist').textContent = s.artist || '';
+      document.getElementById('hnp-album').textContent = s.album || '';
+      document.getElementById('hnp-glow').classList.toggle('np-playing', s.state === 'playing');
+      document.getElementById('hnp-vinyl').classList.toggle('np-spinning', s.state === 'playing');
+    }
+  });
+
+  // Interpolate time every second
+  setInterval(() => {
+    const pos = hostNpState === 'playing' && hostNpSyncTime > 0
+      ? Math.min(hostNpSyncPos + (Date.now() - hostNpSyncTime) / 1000, hostNpDuration)
+      : hostNpSyncPos;
+    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s) % 60).padStart(2, '0')}`;
+    document.getElementById('hnp-pos').textContent = fmt(pos);
+    document.getElementById('hnp-dur').textContent = fmt(hostNpDuration);
+    if (hostNpDuration > 0) document.getElementById('hnp-progress').style.width = `${(pos / hostNpDuration) * 100}%`;
+  }, 1000);
 }
 
-function updateHostNowPlaying() {
-  if (!musicKit || !musicKitAuthorized) return;
-  const stateMap = { 2: 'playing', 3: 'paused', 0: 'stopped' };
-  const state = stateMap[musicKit.playbackState] || 'stopped';
-  const np = musicKit.nowPlayingItem;
-  if (!np) return;
-
-  const artEl = document.getElementById('np-artwork');
-  const trackEl = document.getElementById('np-track');
-  const artistEl = document.getElementById('np-artist');
-  const albumEl = document.getElementById('np-album');
-  const posEl = document.getElementById('np-time-pos');
-  const durEl = document.getElementById('np-time-dur');
-  const progressEl = document.getElementById('np-progress');
-  const vinylEl = document.getElementById('np-vinyl');
-
-  if (!trackEl) return; // screen not in DOM yet
-
-  const artUrl = np.artwork?.url?.replace('{w}', '600')?.replace('{h}', '600');
-  if (artUrl && artEl.src !== artUrl) artEl.src = artUrl;
-  trackEl.textContent = np.title || '';
-  artistEl.textContent = np.artistName || '';
-  albumEl.textContent = np.albumName || '';
-
-  const pos = musicKit.currentPlaybackTime || 0;
-  const dur = musicKit.currentPlaybackDuration || 0;
-  const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s) % 60).padStart(2, '0')}`;
-  posEl.textContent = fmt(pos);
-  durEl.textContent = fmt(dur);
-  if (dur > 0) progressEl.style.width = `${(pos / dur) * 100}%`;
-
-  // Spin vinyl when playing
-  if (state === 'playing') {
-    vinylEl.style.animation = 'spin 1.8s linear infinite';
-  } else {
-    vinylEl.style.animation = 'none';
+// Instant render when showing NP screen
+const _origShowScreenForNp = showScreen;
+showScreen = function(id) {
+  _origShowScreenForNp(id);
+  if (id === 'np') {
+    const s = Player.getState();
+    if (s.track) {
+      const artEl = document.getElementById('hnp-artwork');
+      if (s.artworkUrl) artEl.src = s.artworkUrl;
+      document.getElementById('hnp-track').textContent = s.track;
+      document.getElementById('hnp-artist').textContent = s.artist || '';
+      document.getElementById('hnp-album').textContent = s.album || '';
+      document.getElementById('hnp-glow').classList.toggle('np-playing', s.state === 'playing');
+      document.getElementById('hnp-vinyl').classList.toggle('np-spinning', s.state === 'playing');
+    }
   }
-}
+};
 
 // ─── Init MusicKit on load ───────────────────────────────
 
