@@ -43,6 +43,20 @@ async function resolveArtwork(
   return undefined;
 }
 
+// Track change log (accessible via routes)
+export const trackChangeLog: Array<{ ts: string; track: string; artist: string; source: string }> = [];
+let lastLoggedTrack = "";
+
+function logTrackChange(track: string, artist: string, source: string) {
+  const key = `${track}|${artist}`;
+  if (key === lastLoggedTrack) return;
+  lastLoggedTrack = key;
+  const entry = { ts: new Date().toISOString(), track, artist, source };
+  trackChangeLog.push(entry);
+  if (trackChangeLog.length > 100) trackChangeLog.shift();
+  console.log(`🎵 NOW PLAYING: "${track}" — ${artist} [${source}]`);
+}
+
 function broadcast(data: unknown) {
   const msg = JSON.stringify(data);
   for (const ws of nowPlayingClients) {
@@ -91,6 +105,7 @@ async function pollNowPlaying(musicClient: AppleMusicClient) {
       }
     }
 
+    if (np.track && np.artist) logTrackChange(np.track, np.artist, "hc-poll");
     broadcast({
       type: "now-playing",
       data: { ...np, artworkUrl },
@@ -111,6 +126,7 @@ export function pushNowPlaying(data: {
   position?: number;
 }): void {
   lastPushTime = Date.now();
+  if (data.track && data.artist) logTrackChange(data.track, data.artist, "musickit-push");
   broadcast({ type: "now-playing", data });
 }
 

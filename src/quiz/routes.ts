@@ -14,7 +14,7 @@ import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { createDeveloperToken } from "../token.js";
 import { getActiveProviderType, getProvider, setActiveProvider } from "./playback/provider-manager.js";
 import type { ProviderType } from "./playback/provider-manager.js";
-import { pushNowPlaying as pushNowPlayingData } from "../browser-ws.js";
+import { pushNowPlaying as pushNowPlayingData, trackChangeLog } from "../browser-ws.js";
 import { getAllPlaylists, getPlaylist, savePlaylist, updatePlaylist, deletePlaylist } from "./playlist-store.js";
 import type { AppleMusicClient } from "../apple-music.js";
 
@@ -205,9 +205,14 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     }
   });
 
-  // Play log viewer
+  // Play log viewer (requested vs actual)
   router.get("/quiz/api/admin/play-log", (_req, res) => {
     res.json(playLog.slice(-50));
+  });
+
+  // Track change log (everything that actually played)
+  router.get("/quiz/api/admin/track-log", (_req, res) => {
+    res.json(trackChangeLog.slice(-100));
   });
 
   // Playback control (passes body as params to HC)
