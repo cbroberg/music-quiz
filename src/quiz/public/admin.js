@@ -161,7 +161,6 @@ async function playTrack(name, artist, songId) {
     if (idx >= 0) {
       window.playAllQueue = tracks.slice(idx);
       window.playAllIndex = 1; // skip first — we're playing it now
-      console.log('▶ Queue set:', window.playAllQueue.length, 'tracks from index', idx);
     }
 
     const ok = await Player.play(songId, name, artist);
