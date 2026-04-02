@@ -91,8 +91,10 @@
         <h1>Playlists</h1>
         <button class="action-btn" onclick="createPlaylist()">New Playlist</button>
       </div>
-      <div id="playlists-list" class="placeholder-content">
-        <p style="color:var(--dimmer)">Loading playlists...</p>
+      <div id="playlists-list"></div>
+      <div id="playlists-empty" class="placeholder-content" style="display:none">
+        <p style="color:var(--dimmer)">No playlists yet.</p>
+        <p style="color:var(--dimmer);font-size:13px;margin-top:8px">Create one in Quiz Builder to curate songs for your quiz.</p>
       </div>
     </div>
 
@@ -183,24 +185,90 @@
     async function loadPlaylists() {
       if (playlistsLoaded) return;
       playlistsLoaded = true;
+      await renderPlaylists();
+    }
+
+    async function renderPlaylists() {
       try {
         const res = await fetch('/quiz/api/builder/playlists');
         const playlists = await res.json();
         const container = document.getElementById('playlists-list');
+        const empty = document.getElementById('playlists-empty');
+
         if (playlists.length === 0) {
-          container.innerHTML = '<p style="color:var(--dimmer)">No playlists yet. Create one to get started.</p>';
+          container.innerHTML = '';
+          empty.style.display = '';
           return;
         }
+        empty.style.display = 'none';
         container.innerHTML = '';
+
         for (const pl of playlists) {
+          // Artwork mosaic from first 4 tracks
+          const arts = pl.tracks.slice(0, 4).map(t => t.artworkUrl).filter(Boolean);
+          const artHtml = arts.length > 0
+            ? '<div class="pl-art-grid">' + arts.map(u => '<img src="' + u + '" loading="lazy">').join('') + '</div>'
+            : '<div class="pl-art-grid"><div class="pl-art-empty">🎵</div></div>';
+
+          const date = new Date(pl.updatedAt).toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric' });
+
           const div = document.createElement('div');
           div.className = 'playlist-card';
-          div.innerHTML = '<div style="font-weight:600">' + pl.name + '</div>' +
-            '<div style="font-size:12px;color:var(--dimmer)">' + pl.tracks.length + ' tracks</div>';
-          div.onclick = () => { location.href = '/quiz/builder?load=' + pl.id; };
+          div.innerHTML = artHtml +
+            '<div class="pl-info">' +
+              '<div class="pl-name">' + pl.name + '</div>' +
+              '<div class="pl-meta">' + pl.tracks.length + ' tracks · ' + date + '</div>' +
+            '</div>' +
+            '<div class="pl-actions">' +
+              '<button class="pl-action-btn" onclick="event.stopPropagation(); loadPlaylistInQuiz(\'' + pl.id + '\', \'' + pl.name.replace(/'/g, "\\'") + '\')">Start Quiz</button>' +
+              '<button class="pl-action-btn secondary" onclick="event.stopPropagation(); editPlaylist(\'' + pl.id + '\')">Edit</button>' +
+              '<button class="pl-action-btn danger" onclick="event.stopPropagation(); deletePlaylistConfirm(\'' + pl.id + '\', \'' + pl.name.replace(/'/g, "\\'") + '\')">Delete</button>' +
+            '</div>';
+          div.onclick = () => togglePlaylistExpand(div, pl);
           container.appendChild(div);
         }
       } catch { }
+    }
+
+    function togglePlaylistExpand(div, pl) {
+      const existing = div.querySelector('.pl-tracks');
+      if (existing) { existing.remove(); return; }
+
+      const trackList = document.createElement('div');
+      trackList.className = 'pl-tracks';
+      for (const t of pl.tracks) {
+        const row = document.createElement('div');
+        row.className = 'pl-track-row';
+        row.innerHTML =
+          (t.artworkUrl ? '<img src="' + t.artworkUrl + '" class="pl-track-art">' : '') +
+          '<div class="pl-track-info">' +
+            '<span class="pl-track-name">' + t.name + '</span>' +
+            '<span class="pl-track-artist">' + t.artistName + '</span>' +
+          '</div>' +
+          '<button class="pl-track-play" onclick="event.stopPropagation(); Player.play(\'' + t.id + '\', \'' + t.name.replace(/'/g, "\\'") + '\', \'' + t.artistName.replace(/'/g, "\\'") + '\')">▶</button>';
+        trackList.appendChild(row);
+      }
+      div.appendChild(trackList);
+    }
+
+    function loadPlaylistInQuiz(id, name) {
+      // Store in sessionStorage so Host page picks it up
+      fetch('/quiz/api/builder/playlists/' + id).then(r => r.json()).then(pl => {
+        sessionStorage.setItem('customQuizPlaylist', JSON.stringify(pl.tracks));
+        sessionStorage.setItem('customQuizName', name);
+        location.href = '/quiz/host?source=custom';
+      });
+    }
+
+    function editPlaylist(id) {
+      location.href = '/quiz/builder?load=' + id;
+    }
+
+    async function deletePlaylistConfirm(id, name) {
+      if (!confirm('Delete playlist "' + name + '"?')) return;
+      await fetch('/quiz/api/builder/playlists/' + id, { method: 'DELETE' });
+      playlistsLoaded = false;
+      await renderPlaylists();
     }
 
     function createPlaylist() { location.href = '/quiz/builder'; }
@@ -368,6 +436,10 @@
     window.toggleNowPlayingOverlay = toggleNowPlayingOverlay;
     window.createPlaylist = createPlaylist;
     window.createEvent = createEvent;
+    window.loadPlaylistInQuiz = loadPlaylistInQuiz;
+    window.editPlaylist = editPlaylist;
+    window.deletePlaylistConfirm = deletePlaylistConfirm;
+    window.togglePlaylistExpand = togglePlaylistExpand;
 
     setTimeout(updateSetupUI, 500);
     setTimeout(updateSetupUI, 3000);
