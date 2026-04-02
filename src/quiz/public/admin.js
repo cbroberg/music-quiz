@@ -153,14 +153,18 @@ async function clearUsedSongs() {
 }
 
 async function playTrack(name, artist, songId) {
-  console.log('▶ playTrack:', name, artist, songId);
   try {
-    if (typeof Player === 'undefined') {
-      console.error('Player not loaded!');
-      return;
+    if (typeof Player === 'undefined') return;
+
+    // Queue remaining tracks from the list this track belongs to
+    const idx = tracks.findIndex(t => t.id === songId || (t.name === name && t.artistName === artist));
+    if (idx >= 0 && typeof playAllQueue !== 'undefined') {
+      // Set queue to this track + everything after it
+      playAllQueue = tracks.slice(idx).filter(t => t.id);
+      playAllIndex = 1; // skip first — we're playing it now
     }
+
     const ok = await Player.play(songId, name, artist);
-    console.log('▶ result:', ok);
     playingTrackName = ok ? name : null;
     renderTracks();
   } catch (err) {

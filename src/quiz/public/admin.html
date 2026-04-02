@@ -48,6 +48,7 @@
           </div>
           <div style="display:flex;gap:4px;align-items:center">
             <button onclick="setupPlayPause()" id="mp-play-btn" style="background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;padding:4px 6px">⏸</button>
+            <button onclick="setupNextSong()" style="background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;padding:4px 6px">⏭</button>
             <button onclick="setupStop()" style="background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px 6px">⏹</button>
           </div>
         </div>
@@ -684,6 +685,14 @@
     }
 
     function setupPlayPause() { Player.togglePlayPause(); }
+    function setupNextSong() {
+      if (playAllQueue.length > 0 && playAllIndex < playAllQueue.length) {
+        playNextInQueue();
+      } else {
+        // No queue — try HC next track
+        fetch('/quiz/api/admin/playback/next', { method: 'POST' }).catch(() => {});
+      }
+    }
     function setupAirPlay() { Player.showAirPlayPicker(); }
 
     function toggleNowPlayingOverlay() {
@@ -785,6 +794,7 @@
     window.setupStop = setupStop;
     window.setupPlayPause = setupPlayPause;
     window.setupAirPlay = setupAirPlay;
+    window.setupNextSong = setupNextSong;
     window.toggleNowPlayingOverlay = toggleNowPlayingOverlay;
     window.showNewPlaylistInput = showNewPlaylistInput;
     window.hideNewPlaylistInput = hideNewPlaylistInput;
