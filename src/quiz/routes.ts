@@ -11,7 +11,7 @@ import { dirname, join } from "node:path";
 import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary } from "./engine.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { createDeveloperToken } from "../token.js";
-import { getActiveProviderType } from "./playback/provider-manager.js";
+import { getActiveProviderType, getProvider } from "./playback/provider-manager.js";
 import { getAllPlaylists, getPlaylist, savePlaylist, updatePlaylist, deletePlaylist } from "./playlist-store.js";
 import type { AppleMusicClient } from "../apple-music.js";
 
@@ -124,32 +124,32 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     }
   });
 
-  // Admin API: play a track via Home Controller
+  // Admin API: play a track via active provider or return songId for client-side playback
   router.post("/quiz/api/admin/play", async (req, res) => {
     const { name, artist, songId } = req.body;
-    if (!isHomeConnected()) {
-      res.status(503).json({ error: "Home Controller not connected" });
+    const provider = getProvider();
+
+    // If provider is musickit-web, tell client to play locally (browser has MusicKit JS)
+    if (getActiveProviderType() === "musickit-web" || !provider.isAvailable()) {
+      // Return songId so admin.js can play via its own MusicKit instance
+      res.json({ action: "play-client", songId, name, artist });
       return;
     }
+
+    // Home Controller path
     try {
-      // Add to library first so search-and-play can find it
       if (songId && musicClient?.hasUserToken()) {
         await musicClient.addToLibrary({ songs: [songId] }).catch(() => {});
-        // Brief delay for library sync
         await new Promise(r => setTimeout(r, 500));
       }
 
-      // Simplify search: remove (feat. ...), [Remastered], etc.
       const simpleName = name.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
       const simpleArtist = artist.split(/[,&]/)[0].trim();
 
-      // Try multiple queries with artist hint for precise matching
-      for (const query of [`${simpleName} ${simpleArtist}`, simpleName, `${name} ${artist}`]) {
-        const result = await sendHomeCommand("search-and-play", { query, artist: simpleArtist }) as { playing?: string; error?: string };
-        if (result.playing) {
-          res.json({ action: "search-and-play", playing: result.playing });
-          return;
-        }
+      const result = await provider.searchAndPlay(`${simpleName} ${simpleArtist}`);
+      if (result.playing) {
+        res.json({ action: "search-and-play", playing: result.track });
+        return;
       }
       res.json({ error: `Could not find "${name}" by ${artist}` });
     } catch (err) {

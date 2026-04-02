@@ -116,7 +116,18 @@ async function playTrack(name, artist, songId) {
       body: JSON.stringify({ name, artist, songId }),
     });
     const data = await res.json();
-    if (data.error) {
+
+    if (data.action === 'play-client' && data.songId) {
+      // Play via local MusicKit JS (browser)
+      if (typeof setupMK !== 'undefined' && setupMK && setupAuthorized) {
+        await setupMK.setQueue({ song: data.songId });
+        await setupMK.play();
+        playingTrackName = name;
+        renderTracks();
+      } else {
+        console.error('MusicKit not connected — go to Audio Setup');
+      }
+    } else if (data.error) {
       console.error('Play failed:', data.error);
     } else {
       playingTrackName = name;
