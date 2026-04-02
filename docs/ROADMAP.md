@@ -1,10 +1,10 @@
 # Music Quiz — Roadmap
 
-**Last updated:** 2026-04-01
+**Last updated:** 2026-04-02
 
 ---
 
-## Done (12 milestones)
+## Done (15 milestones)
 
 | # | Milestone | Completed |
 |---|-----------|-----------|
@@ -20,15 +20,18 @@
 | 10 | **Exact Match Playback** — `play-exact` osascript, no fuzzy search, library pre-check before countdown | 2026-04 |
 | 11 | **Player Reconnect** — Seamless re-join during DJ Mode, session persistence | 2026-04 |
 | 12 | **Library Cleanup** — Track added songs, osascript delete, protect user's own library | 2026-04 |
+| 13 | **DJ Mode Stability** — Autoplay detection (position-based), picks enforcement, correct song matching | 2026-04 |
+| 14 | **UI Polish** — Podium sizing, translate suppression, countdown spacing, sound effects (tada/applause) | 2026-04 |
+| 15 | **Party Session (Events)** — Event → Rounds, immutable playlist, picks accumulate, Round # in UI | 2026-04 |
 
 ---
 
-## In Progress
+## Up Next
 
-| # | Milestone | Target |
-|---|-----------|--------|
-| 13 | **DJ Mode Stability** — Autoplay detection (position-based), picks enforcement, correct song matching | 2026-04 |
-| 14 | **UI Polish** — Podium sizing, translate suppression, countdown spacing, sound effects (tada/applause) | 2026-04 |
+| # | Milestone | Notes |
+|---|-----------|-------|
+| 16 | **Playback Provider Abstraction** — Provider interface, HomeControllerProvider wrap | [F18](features/F18-playback-provider-abstraction.md) |
+| 17 | **MusicKit JS Playback** — Browser-based Apple Music, cross-platform, no Mac needed | [F17](features/F17-musickit-js-playback.md) |
 
 ---
 
@@ -36,9 +39,10 @@
 
 | # | Milestone | Notes |
 |---|-----------|-------|
-| 15 | **Gameplay Modes** — Steal Round, All-In, Sound Clash, Blind Round, Playlist Battle | See [FEATURES.md](FEATURES.md) F06-F10 |
-| 16 | **Home Controller App** — Standalone macOS app with UI, replacing CLI-only agent | See [FEATURES.md](FEATURES.md) F11 |
-| 17 | **Lyrics Display** — Show lyrics on Now Playing page | See [FEATURES.md](FEATURES.md) F12 |
-| 18 | **Repo Rename** — `apple-music-mcp` → `musicquiz` | |
-| 19 | **Production Deploy** — Fly.io (arn), latest code with DJ Mode, vinyl sphere, all fixes | |
-| 20 | **tvOS App** — Apple TV companion app, WebView-based quiz display | See [FEATURES.md](FEATURES.md) F13 |
+| 18 | **Gameplay Modes** — Steal Round, All-In, Sound Clash, Blind Round, Playlist Battle | [FEATURES.md](FEATURES.md) F06-F10 |
+| 19 | **Movie/TV Quiz** — TMDB integration, film-citater, soundtrack playback | [QUIZ-PATCH-001.md](QUIZ-PATCH-001.md) |
+| 20 | **Production Deploy** — Fly.io (arn), latest code, MusicKit JS, all fixes | |
+| 21 | **tvOS App** — Apple TV companion app, WebView-based quiz display | [FEATURES.md](FEATURES.md) F13 |
+| 22 | **Spotify Support** — Web Playback SDK, OAuth PKCE, song resolver | [FEATURES.md](FEATURES.md) F14 |
+| 23 | **User Auth + Billing** — Magic link, Stripe, tier enforcement | [QUIZ-PATCH-001.md](QUIZ-PATCH-001.md) P4 |
+| 24 | **Repo Rename** — `apple-music-mcp` → `musicquiz` | |

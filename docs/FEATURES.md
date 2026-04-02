@@ -1,6 +1,6 @@
 # Music Quiz — Feature List
 
-**Last updated:** 2026-04-01
+**Last updated:** 2026-04-02
 
 ---
 
@@ -33,6 +33,9 @@
 | F14 | [Spotify Support](#f14-spotify-support) | Idea | Alternative music source for non-Apple users |
 | F15 | [Tournament Mode](#f15-tournament-mode) | Idea | Multi-round tournament with brackets and finals |
 | F16 | [Party Themes](#f16-party-themes) | Idea | Visual themes (80s neon, rock, jazz club, etc.) |
+| F17 | [MusicKit JS Playback](features/F17-musickit-js-playback.md) | Planned | Browser-based Apple Music — no Mac/Home Controller needed |
+| F18 | [Playback Provider Abstraction](features/F18-playback-provider-abstraction.md) | Planned | Provider interface for swappable playback engines |
+| F19 | [Party Session (Events)](features/F19-party-session.md) | Done | Event → Rounds, immutable playlist, picks accumulate |
 
 ---
 
