@@ -97,7 +97,7 @@
       <!-- Inline create -->
       <div id="new-playlist-form" style="display:none;margin-bottom:16px">
         <div style="display:flex;gap:8px">
-          <input id="new-playlist-name" type="text" placeholder="Playlist name (e.g. 80s Rock Night)" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none">
+          <input id="new-playlist-name" type="text" placeholder="Playlist name (e.g. 80s Rock Night)" onkeydown="if(event.key==='Enter')saveNewPlaylist()" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none">
           <button class="action-btn" onclick="saveNewPlaylist()">Create</button>
           <button class="action-btn secondary" onclick="hideNewPlaylistInput()">Cancel</button>
         </div>
