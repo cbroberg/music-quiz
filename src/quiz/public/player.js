@@ -299,14 +299,16 @@ const Player = (() => {
     }).catch(() => {});
     // Always start HC WebSocket (for now-playing data from HC polling)
     _startHcWebSocket();
-    // Init MusicKit when CDN loads
-    if (typeof MusicKit !== 'undefined') initMusicKit();
+    // Only init MusicKit if it's the preferred provider (avoids autoplay errors on HC)
+    if (prov === 'musickit-web') {
+      if (typeof MusicKit !== 'undefined') initMusicKit();
+    }
   }
 
   if (typeof document !== 'undefined') {
-    document.addEventListener('musickitloaded', () => initMusicKit());
-    // Fallback
-    setTimeout(() => { if (!mk && typeof MusicKit !== 'undefined') initMusicKit(); }, 3000);
+    document.addEventListener('musickitloaded', () => {
+      if (getPreferredProvider() === 'musickit-web') initMusicKit();
+    });
     // Start HC if needed
     _init();
   }

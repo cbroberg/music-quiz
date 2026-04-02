@@ -148,7 +148,7 @@ async function clearUsedSongs() {
   if (!await customConfirm('Clear the list of used songs?')) return;
   try {
     await fetch('/quiz/api/admin/clear-used', { method: 'POST' });
-    alert('Used songs cleared!');
+    // Cleared silently
   } catch {}
 }
 
