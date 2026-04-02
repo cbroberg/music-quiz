@@ -1387,38 +1387,25 @@ function onMusicKitAuthorized() {
   send({ type: 'set_provider', provider: 'musickit-web' });
 }
 
-async function showAirPlayPicker() {
-  // Find MusicKit's audio element (it creates one in the DOM)
-  let audioEl = document.querySelector('audio');
+// Persistent audio element for AirPlay picker
+let airplayAudio = null;
+function getAirPlayAudio() {
+  if (airplayAudio) return airplayAudio;
+  airplayAudio = document.createElement('audio');
+  airplayAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYYoRwRHAAAAAAD/+1AAAAAAAH//tQAAAAAAAA';
+  airplayAudio.load();
+  document.body.appendChild(airplayAudio);
+  return airplayAudio;
+}
 
-  // If no audio element yet, MusicKit hasn't played anything — trigger a brief load
-  if (!audioEl && musicKit && musicKitAuthorized) {
-    try {
-      // Search for any song and set queue (this creates the audio element)
-      const results = await musicKit.api.music(`/v1/catalog/${musicKit.storefrontId || 'dk'}/search`, {
-        term: 'test', types: 'songs', limit: 1,
-      });
-      const song = results?.data?.results?.songs?.data?.[0];
-      if (song) {
-        await musicKit.setQueue({ song: song.id });
-        // Wait for audio element to appear
-        await new Promise(r => setTimeout(r, 500));
-        audioEl = document.querySelector('audio');
-      }
-    } catch {}
-  }
-
-  if (audioEl?.webkitShowPlaybackTargetPicker) {
-    audioEl.webkitShowPlaybackTargetPicker();
-    return;
-  }
-
-  // Non-Safari or no audio element
-  const isMac = navigator.platform.includes('Mac');
-  if (isMac) {
-    showHostToast('AirPlay requires Safari — open this page in Safari, or use macOS Sound output settings', false);
+function showAirPlayPicker() {
+  const el = getAirPlayAudio();
+  if (el.webkitShowPlaybackTargetPicker) {
+    el.webkitShowPlaybackTargetPicker();
   } else {
-    showHostToast('AirPlay is only available on Mac with Safari — connect speakers via Bluetooth or cable', false);
+    showHostToast(navigator.platform.includes('Mac')
+      ? 'Open this page in Safari for native AirPlay — or use macOS Sound output'
+      : 'AirPlay requires Safari on Mac — use Bluetooth or cable', false);
   }
 }
 

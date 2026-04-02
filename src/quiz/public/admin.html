@@ -140,18 +140,28 @@
       }
     }
 
+    // Persistent audio element for AirPlay picker (Safari needs a real media element)
+    let airplayAudio = null;
+    function getAirPlayAudio() {
+      if (airplayAudio) return airplayAudio;
+      airplayAudio = document.createElement('audio');
+      // Tiny silent mp3 data URI — just enough to make Safari treat it as real media
+      airplayAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABhgC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAYYoRwRHAAAAAAD/+1AAAAAAAH//tQAAAAAAAA';
+      airplayAudio.load();
+      document.body.appendChild(airplayAudio);
+      return airplayAudio;
+    }
+
     function setupAirPlay() {
-      const audioEl = document.querySelector('audio');
-      if (audioEl?.webkitShowPlaybackTargetPicker) {
-        audioEl.webkitShowPlaybackTargetPicker();
+      const el = getAirPlayAudio();
+      if (el.webkitShowPlaybackTargetPicker) {
+        el.webkitShowPlaybackTargetPicker();
       } else {
-        const isMac = navigator.platform.includes('Mac');
-        const msg = isMac
-          ? 'AirPlay requires Safari — or use macOS Sound output settings'
-          : 'AirPlay is only available on Mac with Safari';
         const toast = document.getElementById('setup-now-playing');
         toast.style.display = '';
-        toast.textContent = msg;
+        toast.textContent = navigator.platform.includes('Mac')
+          ? 'Open this page in Safari for native AirPlay — or use macOS Sound output'
+          : 'AirPlay requires Safari on Mac — use Bluetooth or cable';
       }
     }
 
