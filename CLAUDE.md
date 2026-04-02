@@ -19,7 +19,11 @@ Core quiz + DJ Mode + Party Sessions + MusicKit JS working end-to-end.
 - **Player Reconnect:** Rejoin DJ Mode seamlessly after page navigation
 - **Library Cleanup:** Tracks quiz-added songs, deletes on DJ Mode end (never theme songs, never user's own music)
 - **Now Playing:** Embedded screen in Host (no navigation needed), plus standalone page for display
-- **Admin Audio Setup:** Connect Apple Music, test play, AirPlay, mini player with progress
+- **Admin Hub:** Tabbed layout (Recently Played, Playlists, Favorites, Quiz), provider toggle, mini player
+- **Universal Player:** `player.js` — single module for all playback (MusicKit JS / Home Controller)
+- **Playlists:** Create, add/remove songs, Play All, Start Quiz from playlist
+- **Favorites:** Heart button on all views, dedicated tab, stored as special playlist
+- **Mini Player:** Track info, progress, play/pause/next/stop — works with both providers
 - **Screen Recording:** ScreenCaptureKit Swift CLI with system audio + `--crop` flag
 - **E2E Testing:** Playwright, 4-window ultrawide, 2-round + 5-round tests with Waiting Room
 - **MUTE_ALL:** Env var for silent testing (no music, no sound effects)
@@ -29,7 +33,7 @@ Core quiz + DJ Mode + Party Sessions + MusicKit JS working end-to-end.
 - **PlaybackProvider:** Abstraction layer (`src/quiz/playback/`) — MusicKit JS or Home Controller
 - **MusicKit JS:** Browser-based Apple Music via Apple's CDN, auth via developer token (`.p8` key)
 - **Home Controller:** Legacy Mac agent (`home/`) — osascript playback, AirPlay control (fallback)
-- **Shared Player:** `musickit-player.js` — single module used by all pages (Admin, Builder, Host)
+- **Universal Player:** `player.js` — single module for all playback, provider-aware, used by all pages
 - **Host UI:** Vanilla HTML/JS (`src/quiz/public/host.*`) — fullscreen on Mac/TV, embedded Now Playing
 - **Player UI:** Vanilla HTML/JS PWA (`src/quiz/public/play.*`) — mobile phones
 - **Now Playing:** Embedded screen in Host + standalone page (`now-playing.html`) for display only
