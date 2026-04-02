@@ -882,7 +882,19 @@ let isDjModeActive = false;
 // ─── Register Service Worker ──────────────────────────────
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/quiz/sw.js').catch(() => {});
+  navigator.serviceWorker.register('/quiz/sw.js').then(reg => {
+    // Check for updates every 30s
+    setInterval(() => reg.update(), 30000);
+    reg.addEventListener('updatefound', () => {
+      const newSW = reg.installing;
+      newSW?.addEventListener('statechange', () => {
+        if (newSW.state === 'activated') {
+          // New version available — reload if not mid-game
+          if (!sessionId) location.reload();
+        }
+      });
+    });
+  }).catch(() => {});
 }
 
 // Show PWA hint on iOS Safari (not already in standalone mode)
