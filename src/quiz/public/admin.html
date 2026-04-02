@@ -480,18 +480,19 @@
       // Re-render visible elements
       document.querySelectorAll('.fav-btn').forEach(btn => {
         if (btn.dataset.trackId === track.id) {
-          btn.textContent = favoritesSet.has(track.id) ? '♥' : '♡';
           btn.classList.toggle('fav-active', favoritesSet.has(track.id));
         }
       });
     }
+
+    const heartSvg = '<svg viewBox="0 0 24 24"><path class="fav-outline" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
 
     function favBtnHtml(track) {
       const isFav = favoritesSet.has(track.id);
       const esc = s => (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
       return '<button class="fav-btn' + (isFav ? ' fav-active' : '') + '" data-track-id="' + track.id + '" ' +
         'onclick="event.stopPropagation(); toggleFavorite({id:\'' + esc(track.id) + '\',name:\'' + esc(track.name) + '\',artistName:\'' + esc(track.artistName) + '\',albumName:\'' + esc(track.albumName || '') + '\',releaseYear:\'' + esc(track.releaseYear || '') + '\',artworkUrl:\'' + esc(track.artworkUrl || '') + '\'})">' +
-        (isFav ? '♥' : '♡') + '</button>';
+        heartSvg + '</button>';
     }
 
     // Load favorites on init

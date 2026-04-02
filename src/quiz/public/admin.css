@@ -274,11 +274,16 @@ html, body {
 /* ─── Favorite Button ─── */
 
 .fav-btn {
-  background: none; border: none; font-size: 16px; cursor: pointer;
-  color: var(--dimmer); padding: 4px 6px; transition: color 0.15s;
+  background: none; border: none; cursor: pointer;
+  padding: 4px; transition: opacity 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
 }
-.fav-btn:hover { color: var(--red); }
-.fav-btn.fav-active { color: var(--red); }
+.fav-btn:hover { opacity: 0.8; }
+.fav-btn svg { width: 20px; height: 20px; }
+.fav-btn .fav-outline { stroke: var(--dimmer); fill: none; stroke-width: 2; }
+.fav-btn:hover .fav-outline { stroke: var(--red); }
+.fav-btn.fav-active .fav-outline { stroke: var(--red); fill: var(--red); }
 
 .grid-fav {
   position: absolute; top: 6px; right: 6px; z-index: 2;
