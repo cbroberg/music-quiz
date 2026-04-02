@@ -1376,31 +1376,7 @@ async function initMusicKit() {
   }
 }
 
-async function connectAppleMusic() {
-  if (!musicKitReady) {
-    // Try to initialize first
-    await initMusicKit();
-    if (!musicKitReady) {
-      showHostToast('MusicKit JS not available — using Home Controller', true);
-      return;
-    }
-  }
-
-  try {
-    const btn = document.getElementById('btn-connect-music');
-    btn.textContent = 'Connecting...';
-    btn.disabled = true;
-
-    await musicKit.authorize();
-    onMusicKitAuthorized();
-  } catch (err) {
-    console.error('🎵 Apple Music auth failed:', err);
-    showHostToast('Apple Music connection failed', true);
-    const btn = document.getElementById('btn-connect-music');
-    btn.textContent = 'Connect Apple Music';
-    btn.disabled = false;
-  }
-}
+// connectAppleMusic is now on Admin page only — Host auto-detects
 
 function onMusicKitAuthorized() {
   musicKitAuthorized = true;
@@ -1450,28 +1426,27 @@ function updateProviderStatus() {
   const icon = document.getElementById('provider-icon');
   const label = document.getElementById('provider-label');
   const btn = document.getElementById('btn-connect-music');
+  const setupLink = document.getElementById('provider-setup-link');
 
   if (musicKitAuthorized) {
     icon.textContent = '🎵';
     label.textContent = 'Apple Music (browser)';
     label.style.color = 'var(--green)';
+    setupLink.style.display = 'none';
+    btn.style.display = '';
     btn.textContent = 'AirPlay';
-    btn.className = 'provider-btn';
     btn.style.borderColor = 'var(--blue)';
     btn.style.color = 'var(--blue)';
-    btn.disabled = false;
-    btn.onclick = showAirPlayPicker;
   } else if (musicKitReady) {
     icon.textContent = '🔑';
-    label.textContent = 'Apple Music ready — click to connect';
+    label.textContent = 'Apple Music available';
     label.style.color = 'var(--yellow)';
+    setupLink.textContent = 'Connect via Admin';
   } else {
-    // Check if Home Controller is available via existing connection
     icon.textContent = '🏠';
     label.textContent = 'Home Controller';
     label.style.color = 'var(--muted)';
-    btn.textContent = 'Connect Apple Music';
-    btn.disabled = false;
+    setupLink.textContent = 'Setup';
   }
 }
 

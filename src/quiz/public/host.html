@@ -125,12 +125,13 @@
           </div>
         </div>
 
-        <!-- Playback Provider -->
+        <!-- Playback Provider (auto-detected, setup via Admin page) -->
         <div id="playback-provider" class="playback-provider">
           <div id="provider-status" class="provider-status">
             <span id="provider-icon">🔇</span>
             <span id="provider-label">No music source</span>
-            <button id="btn-connect-music" onclick="connectAppleMusic()" class="provider-btn">Connect Apple Music</button>
+            <a id="provider-setup-link" href="/quiz/admin" style="margin-left:auto;color:var(--red);font-size:13px;font-weight:600;text-decoration:none">Setup</a>
+            <button id="btn-connect-music" style="display:none" onclick="showAirPlayPicker()" class="provider-btn">AirPlay</button>
           </div>
         </div>
 
