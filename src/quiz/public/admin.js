@@ -153,8 +153,14 @@ async function clearUsedSongs() {
 }
 
 async function playTrack(name, artist, songId) {
+  console.log('▶ playTrack:', name, artist, songId);
   try {
+    if (typeof Player === 'undefined') {
+      console.error('Player not loaded!');
+      return;
+    }
     const ok = await Player.play(songId, name, artist);
+    console.log('▶ result:', ok);
     playingTrackName = ok ? name : null;
     renderTracks();
   } catch (err) {
