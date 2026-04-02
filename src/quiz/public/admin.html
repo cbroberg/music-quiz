@@ -312,6 +312,9 @@
       if (s.duration) lastDuration = s.duration;
       lastState = s.state || 'stopped';
 
+      // Auto-update Recently Played list
+      if (typeof onTrackChanged === 'function') onTrackChanged(s);
+
       const miniEl = document.getElementById('mini-player');
       if (s.state === 'stopped' || !s.track) { miniEl.style.display = 'none'; }
       else {

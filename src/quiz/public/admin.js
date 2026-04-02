@@ -1,6 +1,37 @@
 let currentView = 'grid';
 let tracks = [];
 let playingTrackName = null;
+let lastSeenTrack = '';
+
+// Auto-update Recently Played when track changes
+function onTrackChanged(s) {
+  if (!s.track || s.track === lastSeenTrack) return;
+  lastSeenTrack = s.track;
+  playingTrackName = s.track;
+
+  // Check if already at top
+  if (tracks.length > 0 && tracks[0].name === s.track && tracks[0].artistName === s.artist) {
+    renderTracks();
+    return;
+  }
+
+  // Prepend new track to list
+  const newTrack = {
+    name: s.track,
+    artistName: s.artist || '',
+    albumName: s.album || '',
+    artworkUrl: s.artworkSmall || s.artworkUrl || '',
+  };
+
+  // Remove duplicate if exists deeper in list
+  tracks = tracks.filter(t => !(t.name === newTrack.name && t.artistName === newTrack.artistName));
+  tracks.unshift(newTrack);
+  document.getElementById('track-count').textContent = tracks.length;
+  renderTracks();
+}
+
+// Called from admin.html's Player.onUpdate callback
+// (only one onUpdate callback allowed, so admin.html calls this)
 
 async function loadTracks() {
   document.getElementById('loading').style.display = '';
