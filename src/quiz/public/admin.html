@@ -1198,10 +1198,12 @@
 
       let html = '<div class="song-ctx-header">AirPlay</div>';
       for (const d of devices) {
-        const icon = d.active ? '🔊' : '🔈';
+        const icon = d.active ? '🔊' : d.selected ? '🔇' : '🔈';
+        const dot = d.active ? '<span style="color:var(--green);font-size:11px;margin-left:4px">●</span>'
+          : d.selected ? '<span style="color:var(--red);font-size:11px;margin-left:4px">−</span>'
+          : '';
         html += '<div class="song-ctx-item" data-device="' + d.name.replace(/"/g, '&quot;') + '">' +
-          '<span class="ctx-icon">' + icon + '</span>' + d.name +
-          (d.active ? ' <span style="color:var(--green);font-size:11px;margin-left:4px">●</span>' : '') +
+          '<span class="ctx-icon">' + icon + '</span>' + d.name + dot +
         '</div>';
       }
       menu.innerHTML = html;

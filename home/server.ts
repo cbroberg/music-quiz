@@ -268,17 +268,18 @@ async function handleCommand(cmd: Command): Promise<unknown> {
           set deviceList to {}
           repeat with d in (get every AirPlay device)
             set deviceName to name of d
-            set deviceActive to selected of d
+            set deviceSelected to selected of d
+            set deviceActive to active of d
             set deviceKind to kind of d as string
             set deviceVolume to sound volume of d
-            set end of deviceList to deviceName & "|" & deviceActive & "|" & deviceKind & "|" & deviceVolume
+            set end of deviceList to deviceName & "|" & deviceSelected & "|" & deviceKind & "|" & deviceVolume & "|" & deviceActive
           end repeat
           return deviceList
         end tell
       `);
       const devices = raw.split(", ").map((entry) => {
-        const [name, active, kind, volume] = entry.split("|");
-        return { name, active: active === "true", kind, volume: parseInt(volume) || 0 };
+        const [name, selected, kind, volume, active] = entry.split("|");
+        return { name, selected: selected === "true", active: active === "true", kind, volume: parseInt(volume) || 0 };
       });
       return { devices };
     }
