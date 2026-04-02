@@ -32,7 +32,8 @@ import {
   setAutoplay, isAutoplay, getPlayerQueueCount,
   calculatePicksForRank,
 } from "./dj-mode.js";
-import { getProvider } from "./playback/provider-manager.js";
+import { getProvider, setActiveProvider, getMusicKitWebProvider } from "./playback/provider-manager.js";
+import { MusicKitWebProvider } from "./playback/musickit-web.js";
 import type { AppleMusicClient } from "../apple-music.js";
 
 // ─── Connection Registry ──────────────────────────────────
@@ -410,6 +411,23 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
       break;
     }
 
+    case "set_provider": {
+      const providerType = (msg as any).provider;
+      if (providerType === "musickit-web") {
+        // Set up MusicKit Web provider with host's WS connection for sending commands
+        const mkProvider = getMusicKitWebProvider();
+        mkProvider.setSendToHost((m: any) => sendToWs(conn.ws, m));
+        mkProvider.setAuthorized(true);
+        setActiveProvider("musickit-web");
+        sendToWs(conn.ws, { type: "provider_set", provider: "musickit-web" } as any);
+        console.log(`🎵 Playback provider set to MusicKit JS (via host browser)`);
+      } else if (providerType === "home-controller") {
+        setActiveProvider("home-controller");
+        sendToWs(conn.ws, { type: "provider_set", provider: "home-controller" } as any);
+      }
+      break;
+    }
+
     case "end_party": {
       if (!conn.partyId) {
         sendToWs(conn.ws, { type: "error", message: "No active party" });
@@ -744,13 +762,19 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
             const msg = JSON.parse(data.toString());
 
             // Route based on message type
+            // Handle playback responses from MusicKit JS
+            if (msg.type === "playback_response") {
+              MusicKitWebProvider.handleResponse(msg);
+              return;
+            }
+
             if (msg.type === "create_session" || msg.type === "start_quiz" ||
                 msg.type === "next_question" || msg.type === "skip_question" ||
                 msg.type === "end_quiz" || msg.type === "kick_player" ||
                 msg.type === "activate_dj" || msg.type === "deactivate_dj" ||
                 msg.type === "dj_next" || msg.type === "dj_remove" ||
                 msg.type === "dj_autoplay" || msg.type === "dj_status" ||
-                msg.type === "end_party") {
+                msg.type === "end_party" || msg.type === "set_provider") {
               handleHostMessage(conn, msg, musicClient);
             } else {
               handlePlayerMessage(conn, msg, musicClient);

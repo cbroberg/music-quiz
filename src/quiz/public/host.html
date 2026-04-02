@@ -125,6 +125,15 @@
           </div>
         </div>
 
+        <!-- Playback Provider -->
+        <div id="playback-provider" class="playback-provider">
+          <div id="provider-status" class="provider-status">
+            <span id="provider-icon">🔇</span>
+            <span id="provider-label">No music source</span>
+            <button id="btn-connect-music" onclick="connectAppleMusic()" class="provider-btn">Connect Apple Music</button>
+          </div>
+        </div>
+
         <button id="btn-create" class="start-btn" onclick="createSession()">Create Game</button>
         <button id="btn-start" class="start-btn" style="display:none" disabled onclick="startGame()">
           Start Quiz
@@ -282,6 +291,7 @@
   <button id="exit-btn" class="exit-btn" style="display:none" onclick="exitGame()">Exit Game</button>
 
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
+  <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" async></script>
   <script src="/quiz/static/host.js"></script>
 </body>
 </html>

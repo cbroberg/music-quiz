@@ -259,6 +259,9 @@ function handleMessage(msg) {
     case 'dj_queue_empty':
       // No more songs
       break;
+    case 'playback_command':
+      handlePlaybackCommand(msg);
+      break;
     case 'error':
       // Show error as toast instead of browser alert
       showHostToast(msg.message, true);
@@ -1334,3 +1337,299 @@ function initCustomSelects() {
     document.querySelectorAll('.custom-select.open').forEach(s => s.classList.remove('open'));
   });
 }
+
+// ─── MusicKit JS Integration ─────────────────────────────
+
+let musicKit = null;
+let musicKitReady = false;
+let musicKitAuthorized = false;
+
+async function initMusicKit() {
+  // Check if MusicKit JS is loaded
+  if (typeof MusicKit === 'undefined') {
+    console.log('🎵 MusicKit JS not loaded yet');
+    return;
+  }
+
+  try {
+    // Fetch developer token from server
+    const res = await fetch('/quiz/api/musickit-token');
+    const { token, storefront } = await res.json();
+
+    await MusicKit.configure({
+      developerToken: token,
+      app: { name: 'Music Quiz', build: '3.0.0' },
+    });
+
+    musicKit = MusicKit.getInstance();
+    musicKitReady = true;
+    console.log('🎵 MusicKit JS initialized');
+
+    // Check if already authorized (from previous session)
+    if (musicKit.isAuthorized) {
+      onMusicKitAuthorized();
+    }
+
+    updateProviderStatus();
+  } catch (err) {
+    console.error('🎵 MusicKit init failed:', err);
+  }
+}
+
+async function connectAppleMusic() {
+  if (!musicKitReady) {
+    // Try to initialize first
+    await initMusicKit();
+    if (!musicKitReady) {
+      showHostToast('MusicKit JS not available — using Home Controller', true);
+      return;
+    }
+  }
+
+  try {
+    const btn = document.getElementById('btn-connect-music');
+    btn.textContent = 'Connecting...';
+    btn.disabled = true;
+
+    await musicKit.authorize();
+    onMusicKitAuthorized();
+  } catch (err) {
+    console.error('🎵 Apple Music auth failed:', err);
+    showHostToast('Apple Music connection failed', true);
+    const btn = document.getElementById('btn-connect-music');
+    btn.textContent = 'Connect Apple Music';
+    btn.disabled = false;
+  }
+}
+
+function onMusicKitAuthorized() {
+  musicKitAuthorized = true;
+  console.log('🎵 Apple Music authorized — browser playback ready');
+  updateProviderStatus();
+
+  // Tell server that MusicKit Web is available
+  send({ type: 'set_provider', provider: 'musickit-web' });
+}
+
+function updateProviderStatus() {
+  const icon = document.getElementById('provider-icon');
+  const label = document.getElementById('provider-label');
+  const btn = document.getElementById('btn-connect-music');
+
+  if (musicKitAuthorized) {
+    icon.textContent = '🎵';
+    label.textContent = 'Apple Music (browser)';
+    label.style.color = 'var(--green)';
+    btn.textContent = 'Connected';
+    btn.className = 'provider-btn connected';
+    btn.disabled = true;
+    btn.onclick = null;
+  } else if (musicKitReady) {
+    icon.textContent = '🔑';
+    label.textContent = 'Apple Music ready — click to connect';
+    label.style.color = 'var(--yellow)';
+  } else {
+    // Check if Home Controller is available via existing connection
+    icon.textContent = '🏠';
+    label.textContent = 'Home Controller';
+    label.style.color = 'var(--muted)';
+    btn.textContent = 'Connect Apple Music';
+    btn.disabled = false;
+  }
+}
+
+// ─── MusicKit JS Playback Commands (from server) ─────────
+
+function handlePlaybackCommand(msg) {
+  if (!musicKit || !musicKitAuthorized) {
+    // Send failure response
+    send({ type: 'playback_response', commandId: msg.commandId, result: { playing: false } });
+    return;
+  }
+
+  const { command, params, commandId } = msg;
+
+  switch (command) {
+    case 'play_by_id':
+      mkPlayById(params.songId, params.seekToPercent).then(result => {
+        send({ type: 'playback_response', commandId, result });
+      });
+      break;
+
+    case 'play_exact':
+      mkPlayExact(params.name, params.artist, params.randomSeek).then(result => {
+        send({ type: 'playback_response', commandId, result });
+      });
+      break;
+
+    case 'search_and_play':
+      mkSearchAndPlay(params.query).then(result => {
+        send({ type: 'playback_response', commandId, result });
+      });
+      break;
+
+    case 'pause':
+      musicKit.pause();
+      send({ type: 'playback_response', commandId, result: {} });
+      break;
+
+    case 'resume':
+      musicKit.play().then(() => {
+        send({ type: 'playback_response', commandId, result: {} });
+      }).catch(() => {
+        send({ type: 'playback_response', commandId, result: {} });
+      });
+      break;
+
+    case 'set_volume':
+      musicKit.volume = params.level; // 0-1
+      send({ type: 'playback_response', commandId, result: {} });
+      break;
+
+    case 'now_playing':
+      mkNowPlaying().then(result => {
+        send({ type: 'playback_response', commandId, result });
+      });
+      break;
+
+    case 'check_library':
+      mkCheckLibrary(params.name, params.artist).then(result => {
+        send({ type: 'playback_response', commandId, result });
+      });
+      break;
+
+    default:
+      send({ type: 'playback_response', commandId, result: null });
+  }
+}
+
+async function mkPlayById(songId, seekToPercent) {
+  try {
+    await musicKit.setQueue({ song: songId });
+    await musicKit.play();
+    // Seek to position if requested
+    if (seekToPercent && musicKit.currentPlaybackDuration > 0) {
+      const seekTime = (seekToPercent / 100) * musicKit.currentPlaybackDuration;
+      await musicKit.seekToTime(seekTime);
+    }
+    const np = musicKit.nowPlayingItem;
+    return { playing: true, track: np?.title || songId };
+  } catch (err) {
+    console.error('🎵 MusicKit play failed:', err);
+    return { playing: false };
+  }
+}
+
+async function mkPlayExact(name, artist, randomSeek) {
+  try {
+    // Search for the exact song
+    const query = `${name} ${artist}`;
+    const results = await musicKit.api.music(`/v1/catalog/${musicKit.storefrontId || 'dk'}/search`, {
+      term: query,
+      types: 'songs',
+      limit: 5,
+    });
+
+    const songs = results?.data?.results?.songs?.data || [];
+    if (songs.length === 0) return { playing: false };
+
+    // Find best match — exact name + artist
+    const nameLower = name.toLowerCase();
+    const artistLower = artist.toLowerCase();
+    let bestMatch = songs[0]; // fallback to first result
+
+    for (const s of songs) {
+      const sName = (s.attributes?.name || '').toLowerCase();
+      const sArtist = (s.attributes?.artistName || '').toLowerCase();
+      if (sName.includes(nameLower.slice(0, 10)) && sArtist.includes(artistLower.slice(0, 10))) {
+        bestMatch = s;
+        break;
+      }
+    }
+
+    await musicKit.setQueue({ song: bestMatch.id });
+    await musicKit.play();
+
+    // Random seek for quiz variety
+    if (randomSeek) {
+      // Wait for duration to be available
+      await new Promise(r => setTimeout(r, 500));
+      const duration = musicKit.currentPlaybackDuration;
+      if (duration > 30) {
+        const seekPercent = 20 + Math.random() * 50; // 20-70%
+        await musicKit.seekToTime((seekPercent / 100) * duration);
+      }
+    }
+
+    return { playing: true, track: `${bestMatch.attributes?.name} — ${bestMatch.attributes?.artistName}` };
+  } catch (err) {
+    console.error('🎵 MusicKit playExact failed:', err);
+    return { playing: false };
+  }
+}
+
+async function mkSearchAndPlay(query) {
+  try {
+    const results = await musicKit.api.music(`/v1/catalog/${musicKit.storefrontId || 'dk'}/search`, {
+      term: query,
+      types: 'songs',
+      limit: 1,
+    });
+    const song = results?.data?.results?.songs?.data?.[0];
+    if (!song) return { playing: false };
+
+    await musicKit.setQueue({ song: song.id });
+    await musicKit.play();
+    return { playing: true, track: `${song.attributes?.name} — ${song.attributes?.artistName}` };
+  } catch (err) {
+    return { playing: false };
+  }
+}
+
+async function mkNowPlaying() {
+  try {
+    const state = musicKit.playbackState;
+    const stateMap = { 2: 'playing', 3: 'paused', 0: 'stopped' };
+    const np = musicKit.nowPlayingItem;
+    return {
+      state: stateMap[state] || 'stopped',
+      track: np?.title || undefined,
+      artist: np?.artistName || undefined,
+      position: musicKit.currentPlaybackTime || 0,
+      duration: musicKit.currentPlaybackDuration || 0,
+    };
+  } catch {
+    return { state: 'stopped' };
+  }
+}
+
+async function mkCheckLibrary(name, artist) {
+  try {
+    const results = await musicKit.api.music(`/v1/me/library/search`, {
+      term: `${name} ${artist}`,
+      types: 'library-songs',
+      limit: 5,
+    });
+    const songs = results?.data?.results?.['library-songs']?.data || [];
+    const found = songs.some(s => {
+      const sName = (s.attributes?.name || '').toLowerCase();
+      const sArtist = (s.attributes?.artistName || '').toLowerCase();
+      return sName.includes(name.toLowerCase().slice(0, 10)) &&
+             sArtist.includes(artist.toLowerCase().slice(0, 10));
+    });
+    return { found };
+  } catch {
+    return { found: false };
+  }
+}
+
+// ─── Init MusicKit on load ───────────────────────────────
+
+// Wait for MusicKit JS to load, then initialize
+document.addEventListener('musickitloaded', () => {
+  initMusicKit();
+});
+// Also try after a delay (in case event already fired)
+setTimeout(() => {
+  if (!musicKitReady && typeof MusicKit !== 'undefined') initMusicKit();
+}, 3000);

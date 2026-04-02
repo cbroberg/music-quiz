@@ -187,7 +187,8 @@ export type HostMessage =
   | { type: "dj_remove"; songQueueId: string }
   | { type: "dj_autoplay"; enabled: boolean }
   | { type: "dj_status" }
-  | { type: "end_party" };
+  | { type: "end_party" }
+  | { type: "set_provider"; provider: string };
 
 // Player → Server
 export type PlayerMessage =
