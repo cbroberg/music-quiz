@@ -332,6 +332,7 @@ h1 { font-size: 28px; font-weight: 800; }
   background: var(--card); border: 1px solid var(--border);
   border-radius: 12px; overflow: hidden;
   transition: border-color 0.2s;
+  position: relative;
 }
 .track-card-grid:hover { border-color: var(--dimmer); }
 .track-card-grid .artwork-wrap {
