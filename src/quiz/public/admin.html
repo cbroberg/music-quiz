@@ -139,22 +139,29 @@
     <div id="tab-quiz" class="tab-content">
       <div class="tab-header">
         <h1>Events</h1>
-        <div style="display:flex;gap:8px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <div class="view-toggle">
+            <button class="toggle-btn active" id="btn-ev-active" onclick="setEventFilter('active')">Active</button>
+            <button class="toggle-btn" id="btn-ev-scheduled" onclick="setEventFilter('scheduled')">Scheduled</button>
+            <button class="toggle-btn" id="btn-ev-completed" onclick="setEventFilter('completed')">Previous</button>
+          </div>
           <button class="action-btn" onclick="location.href='/quiz/host'">Quick Quiz</button>
-          <button class="action-btn secondary" onclick="createEvent()">New Event</button>
+          <button class="action-btn secondary" onclick="showNewEventForm()">New Event</button>
         </div>
       </div>
-      <!-- New Event form (inline) -->
+      <!-- New Event form -->
       <div id="new-event-form" style="display:none;margin-bottom:16px">
-        <div style="display:flex;gap:8px">
-          <input id="new-event-name" type="text" placeholder="Event name (e.g. Friday Night Quiz)" onkeydown="if(event.key==='Enter')saveNewEvent()" style="flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="new-event-name" type="text" placeholder="Event name (e.g. Friday Night Quiz)" onkeydown="if(event.key==='Enter')saveNewEvent()" style="flex:1;min-width:200px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none">
+          <input id="new-event-date" type="datetime-local" style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:13px;font-family:inherit;outline:none">
           <button class="action-btn" onclick="saveNewEvent()">Create</button>
           <button class="action-btn secondary" onclick="hideNewEventForm()">Cancel</button>
         </div>
+        <div style="font-size:11px;color:var(--dimmer);margin-top:6px">Leave date empty to start immediately, or set a date to schedule.</div>
       </div>
       <div id="events-list"></div>
       <div id="events-empty" class="placeholder-content" style="display:none">
-        <p style="color:var(--dimmer)">No active events. Create one to start a party evening.</p>
+        <p style="color:var(--dimmer)">No events yet. Create one to start a party evening.</p>
       </div>
     </div>
 
@@ -226,6 +233,26 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
 
+    // ─── Early declarations (must be before any usage) ───────
+    const FAVORITES_ID = '__favorites__';
+    let favoritesSet = new Set();
+    let currentArtistId = null;
+    let currentAlbumId = null;
+    let ctxMenuVisible = false;
+    let cachedAirplayDevices = [];
+    let lastSyncPos = 0, lastSyncTime = 0, lastDuration = 0, lastState = 'stopped';
+    let lastReceivedPos = -1;
+    const fmt = sec => Math.floor(sec / 60) + ':' + String(Math.floor(sec) % 60).padStart(2, '0');
+    const heartSvg = '<svg viewBox="0 0 24 24"><path class="fav-outline" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
+
+    function favBtnHtml(track) {
+      const isFav = favoritesSet.has(track.id);
+      const esc = s => (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      return '<button class="fav-btn' + (isFav ? ' fav-active' : '') + '" data-track-id="' + track.id + '" ' +
+        'onclick="event.stopPropagation(); toggleFavorite({id:\'' + esc(track.id) + '\',name:\'' + esc(track.name) + '\',artistName:\'' + esc(track.artistName) + '\',albumName:\'' + esc(track.albumName || '') + '\',releaseYear:\'' + esc(track.releaseYear || '') + '\',artworkUrl:\'' + esc(track.artworkUrl || '') + '\'})">' +
+        heartSvg + '</button>';
+    }
+
     // ─── Tab Switching ───────────────────────────────────────
 
     function switchTab(tabId) {
@@ -291,7 +318,7 @@
               '<div class="pl-meta">' + pl.tracks.length + ' tracks · ' + date + '</div>' +
             '</div>' +
             '<div class="pl-actions">' +
-              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); playAllPlaylist(\'' + pl.id + '\')">▶ Play All</button>' +
+              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); playAllPlaylist(\'' + pl.id + '\', this)">▶ Play All</button>' +
               '<button class="pl-action-btn" onclick="event.stopPropagation(); loadPlaylistInQuiz(\'' + pl.id + '\', \'' + pl.name.replace(/'/g, "\\'") + '\')">Start Quiz</button>' +
               (pl.id === FAVORITES_ID ? '' : '<button class="pl-action-btn danger" onclick="event.stopPropagation(); deletePlaylistConfirm(\'' + pl.id + '\', \'' + pl.name.replace(/'/g, "\\'") + '\')">Delete</button>') +
             '</div>';
@@ -504,24 +531,19 @@
     window.playAllQueue = [];
     window.playAllIndex = -1;
 
-    async function playAllPlaylist(playlistId) {
-      try {
-        const btn = document.querySelector('[onclick*="playAllPlaylist(\\\'' + playlistId + '\\\'"]');
-        if (btn) { btn.textContent = '▶ Loading...'; }
-        const res = await fetch('/quiz/api/builder/playlists/' + playlistId);
-        const pl = await res.json();
-        if (!pl.tracks || pl.tracks.length === 0) {
-          if (btn) btn.textContent = '▶ Empty';
-          return;
-        }
-        playAllQueue = pl.tracks;
-        playAllIndex = 0;
-        if (btn) btn.textContent = '▶ Playing';
-        setTimeout(() => { if (btn) btn.textContent = '▶ Play All'; }, 2000);
-        await playNextInQueue();
-      } catch (e) {
-        console.error('Play All failed:', e);
+    async function playAllPlaylist(playlistId, btnEl) {
+      if (btnEl) btnEl.textContent = '▶ Loading...';
+      const res = await fetch('/quiz/api/builder/playlists/' + playlistId);
+      const pl = await res.json();
+      if (!pl.tracks || pl.tracks.length === 0) {
+        if (btnEl) btnEl.textContent = '▶ Empty';
+        return;
       }
+      window.playAllQueue = pl.tracks;
+      window.playAllIndex = 0;
+      if (btnEl) btnEl.textContent = '▶ Playing';
+      setTimeout(() => { if (btnEl) btnEl.textContent = '▶ Play All'; }, 2000);
+      await playNextInQueue();
     }
 
     async function playNextInQueue() {
@@ -531,15 +553,19 @@
       await Player.play(t.id || null, t.name, t.artistName);
     }
 
-    // Auto-advance: when Player reports stopped/new track, play next
-    // (checked in the existing Player.onUpdate callback via track change)
+    // Auto-advance: detect when a song ends and play next
     let playAllLastTrack = '';
+    let playAllWasPlaying = false;
     function checkPlayAllAdvance(s) {
-      if (playAllQueue.length === 0) return;
-      if (s.state === 'stopped' && playAllLastTrack) {
-        playAllLastTrack = '';
+      if (window.playAllQueue.length === 0) return;
+      const isPlaying = s.state === 'playing';
+      // Detect transition from playing → stopped/paused (song ended)
+      if (playAllWasPlaying && !isPlaying && s.state !== 'paused') {
+        playAllWasPlaying = false;
         setTimeout(playNextInQueue, 500);
-      } else if (s.track && s.track !== playAllLastTrack) {
+      }
+      if (isPlaying) playAllWasPlaying = true;
+      if (s.track && s.track !== playAllLastTrack) {
         playAllLastTrack = s.track;
       }
     }
@@ -587,86 +613,157 @@
       playlistsLoaded = false;
       await renderPlaylists();
     }
-    function createEvent() {
-      document.getElementById('new-event-form').style.display = '';
+    let allEvents = [];
+    let eventFilter = 'active';
+
+    function showNewEventForm() {
+      document.getElementById('new-event-form').style.display = 'block';
+      document.getElementById('new-event-name').value = '';
       document.getElementById('new-event-name').focus();
     }
 
     function hideNewEventForm() {
       document.getElementById('new-event-form').style.display = 'none';
       document.getElementById('new-event-name').value = '';
+      document.getElementById('new-event-date').value = '';
     }
 
     async function saveNewEvent() {
       const name = document.getElementById('new-event-name').value.trim();
       if (!name) return;
+      const dateVal = document.getElementById('new-event-date').value;
+      const scheduledAt = dateVal ? new Date(dateVal).toISOString() : undefined;
       try {
-        const res = await fetch('/quiz/api/events', {
+        await fetch('/quiz/api/events', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name }),
+          body: JSON.stringify({ name, scheduledAt }),
         });
-        const event = await res.json();
         hideNewEventForm();
-        loadEvents();
+        // Switch to the right filter tab
+        if (scheduledAt) setEventFilter('scheduled');
+        else loadEvents();
       } catch {}
+    }
+
+    function setEventFilter(filter) {
+      eventFilter = filter;
+      document.getElementById('btn-ev-active').classList.toggle('active', filter === 'active');
+      document.getElementById('btn-ev-scheduled').classList.toggle('active', filter === 'scheduled');
+      document.getElementById('btn-ev-completed').classList.toggle('active', filter === 'completed');
+      loadEvents();
     }
 
     async function loadEvents() {
       try {
         const res = await fetch('/quiz/api/events');
-        const events = await res.json();
-        const container = document.getElementById('events-list');
-        const empty = document.getElementById('events-empty');
-
-        if (events.length === 0) {
-          container.innerHTML = '';
-          empty.style.display = '';
-          return;
-        }
-        empty.style.display = 'none';
-        container.innerHTML = '';
-
-        for (const ev of events) {
-          const stateLabel = { playlist: 'DJ Mode', lobby: 'Lobby', quiz: 'Playing', ceremony: 'Ceremony' }[ev.state] || ev.state;
-          const stateColor = { playlist: 'var(--green)', lobby: '#ffd60a', quiz: 'var(--red)', ceremony: '#af52de' }[ev.state] || 'var(--dimmer)';
-
-          const div = document.createElement('div');
-          div.className = 'playlist-card';
-          div.style.cursor = 'pointer';
-          div.innerHTML =
-            '<div style="width:52px;height:52px;border-radius:10px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">🎉</div>' +
-            '<div class="pl-info">' +
-              '<div class="pl-name">' + ev.joinCode + ' — ' + (ev.name || 'Event') + '</div>' +
-              '<div class="pl-meta">' +
-                '<span style="color:' + stateColor + ';font-weight:600">' + stateLabel + '</span>' +
-                ' · ' + ev.playerCount + ' players · Round ' + ev.currentRound +
-              '</div>' +
-            '</div>' +
-            '<div class="pl-actions">' +
-              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); openEvent(\'' + ev.joinCode + '\')">▶ Open</button>' +
-              '<button class="pl-action-btn danger" onclick="event.stopPropagation(); endEventConfirm(\'' + ev.id + '\', \'' + ev.joinCode + '\')">End</button>' +
-            '</div>';
-          div.addEventListener('click', () => openEvent(ev.joinCode));
-          container.appendChild(div);
-        }
+        allEvents = await res.json();
+        renderEvents();
       } catch {}
+    }
+
+    function renderEvents() {
+      const filtered = allEvents.filter(e => e.status === eventFilter);
+      const container = document.getElementById('events-list');
+      const empty = document.getElementById('events-empty');
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        empty.style.display = '';
+        const msgs = {
+          active: 'No active events. Create one to start a party evening.',
+          scheduled: 'No scheduled events. Create one with a date to plan ahead.',
+          completed: 'No previous events yet. Your finished events will appear here.',
+        };
+        empty.querySelector('p').textContent = msgs[eventFilter] || '';
+        return;
+      }
+      empty.style.display = 'none';
+      container.innerHTML = '';
+
+      for (const ev of filtered) {
+        const div = document.createElement('div');
+        div.className = 'playlist-card';
+
+        // Icon based on status
+        const icon = { active: '🎉', scheduled: '📅', completed: '✅' }[ev.status] || '🎉';
+
+        // Meta line
+        let meta = '';
+        if (ev.status === 'active') {
+          meta = (ev.joinCode ? '<span style="font-family:monospace;color:var(--red);font-weight:700">' + ev.joinCode + '</span> · ' : '') +
+            ev.players.length + ' players · ' + ev.rounds.length + ' rounds';
+        } else if (ev.status === 'scheduled') {
+          const d = ev.scheduledAt ? new Date(ev.scheduledAt) : null;
+          meta = d ? d.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) : 'No date';
+        } else {
+          const d = ev.completedAt ? new Date(ev.completedAt) : new Date(ev.updatedAt);
+          meta = d.toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric' }) +
+            ' · ' + ev.players.length + ' players · ' + ev.rounds.length + ' rounds';
+        }
+
+        div.innerHTML =
+          '<div style="width:52px;height:52px;border-radius:10px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">' + icon + '</div>' +
+          '<div class="pl-info">' +
+            '<div class="pl-name">' + ev.name + '</div>' +
+            '<div class="pl-meta">' + meta + '</div>' +
+          '</div>' +
+          '<div class="pl-actions">' +
+            (ev.status === 'active' && ev.joinCode ?
+              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); openEvent(\'' + ev.joinCode + '\')">▶ Open</button>' +
+              '<button class="pl-action-btn danger" onclick="event.stopPropagation(); completeEventConfirm(\'' + ev.id + '\')">End</button>'
+            : ev.status === 'scheduled' ?
+              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); startScheduledEvent(\'' + ev.id + '\')">▶ Start Now</button>' +
+              '<button class="pl-action-btn danger" onclick="event.stopPropagation(); deleteEventConfirm(\'' + ev.id + '\', \'' + ev.name.replace(/'/g, "\\'") + '\')">Delete</button>'
+            :
+              '<button class="pl-action-btn secondary" onclick="event.stopPropagation(); deleteEventConfirm(\'' + ev.id + '\', \'' + ev.name.replace(/'/g, "\\'") + '\')">Delete</button>'
+            ) +
+          '</div>';
+
+        if (ev.status === 'active' && ev.joinCode) {
+          div.style.cursor = 'pointer';
+          div.addEventListener('click', () => openEvent(ev.joinCode));
+        }
+        container.appendChild(div);
+      }
     }
 
     function openEvent(joinCode) {
       location.href = '/quiz/host?event=' + joinCode;
     }
 
-    async function endEventConfirm(id, code) {
-      if (!confirm('End event ' + code + '? This cannot be undone.')) return;
+    async function startScheduledEvent(id) {
+      try {
+        // Create live party and activate
+        const ev = allEvents.find(e => e.id === id);
+        const res = await fetch('/quiz/api/events', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: ev?.name || 'Event' }),
+        });
+        const newEv = await res.json();
+        // Delete the scheduled one
+        await fetch('/quiz/api/events/' + id, { method: 'DELETE' });
+        setEventFilter('active');
+        if (newEv.joinCode) openEvent(newEv.joinCode);
+      } catch {}
+    }
+
+    async function completeEventConfirm(id) {
+      if (!confirm('End this event? Stats will be saved.')) return;
+      await fetch('/quiz/api/events/' + id + '/complete', { method: 'POST' });
+      loadEvents();
+    }
+
+    async function deleteEventConfirm(id, name) {
+      if (!confirm('Delete "' + name + '"? This cannot be undone.')) return;
       await fetch('/quiz/api/events/' + id, { method: 'DELETE' });
       loadEvents();
     }
 
     // ─── Favorites (special playlist with reserved ID) ────────
 
-    const FAVORITES_ID = '__favorites__';
-    let favoritesSet = new Set(); // track IDs for quick lookup
+    // FAVORITES_ID + favoritesSet declared at top
 
     async function ensureFavorites() {
       try {
@@ -715,15 +812,7 @@
       if (favTab?.classList.contains('active')) renderFavorites();
     }
 
-    const heartSvg = '<svg viewBox="0 0 24 24"><path class="fav-outline" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
-
-    function favBtnHtml(track) {
-      const isFav = favoritesSet.has(track.id);
-      const esc = s => (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
-      return '<button class="fav-btn' + (isFav ? ' fav-active' : '') + '" data-track-id="' + track.id + '" ' +
-        'onclick="event.stopPropagation(); toggleFavorite({id:\'' + esc(track.id) + '\',name:\'' + esc(track.name) + '\',artistName:\'' + esc(track.artistName) + '\',albumName:\'' + esc(track.albumName || '') + '\',releaseYear:\'' + esc(track.releaseYear || '') + '\',artworkUrl:\'' + esc(track.artworkUrl || '') + '\'})">' +
-        heartSvg + '</button>';
-    }
+    // heartSvg + favBtnHtml declared at top
 
     // Load favorites on init
     ensureFavorites();
@@ -904,6 +993,8 @@
       }
     }
 
+    // ctxMenuVisible + cachedAirplayDevices declared at top
+
     function showAirPlayPicker(devices) {
       const menu = document.getElementById('song-ctx-menu');
       const btn = document.getElementById('btn-setup-airplay');
@@ -966,10 +1057,7 @@
     });
 
     // ─── Mini Player + Overlay — interpolation ───────────────
-
-    let lastSyncPos = 0, lastSyncTime = 0, lastDuration = 0, lastState = 'stopped';
-    let lastReceivedPos = -1;
-    const fmt = sec => Math.floor(sec / 60) + ':' + String(Math.floor(sec) % 60).padStart(2, '0');
+    // lastSyncPos, lastDuration, lastState, lastReceivedPos, fmt declared at top
 
     function getInterpolatedPos() {
       if (lastState !== 'playing' || lastSyncTime === 0) return lastSyncPos;
@@ -1263,8 +1351,6 @@
 
     // ─── Artist Page ─────────────────────────────────────────
 
-    let currentArtistId = null;
-
     async function loadArtistPage(id) {
       if (currentArtistId === id) return; // avoid re-fetch
       currentArtistId = id;
@@ -1312,8 +1398,6 @@
     }
 
     // ─── Album Page ──────────────────────────────────────────
-
-    let currentAlbumId = null;
 
     async function loadAlbumPage(id) {
       if (currentAlbumId === id) return;
@@ -1427,8 +1511,6 @@
     }
 
     // ─── Song Context Menu (···) ───────────────────────────
-
-    let ctxMenuVisible = false;
 
     async function showSongContextMenu(e, track) {
       e.stopPropagation();
@@ -1621,11 +1703,14 @@
     window.showNewPlaylistInput = showNewPlaylistInput;
     window.hideNewPlaylistInput = hideNewPlaylistInput;
     window.saveNewPlaylist = saveNewPlaylist;
-    window.createEvent = createEvent;
+    window.showNewEventForm = showNewEventForm;
     window.hideNewEventForm = hideNewEventForm;
     window.saveNewEvent = saveNewEvent;
+    window.setEventFilter = setEventFilter;
     window.openEvent = openEvent;
-    window.endEventConfirm = endEventConfirm;
+    window.startScheduledEvent = startScheduledEvent;
+    window.completeEventConfirm = completeEventConfirm;
+    window.deleteEventConfirm = deleteEventConfirm;
     window.loadPlaylistInQuiz = loadPlaylistInQuiz;
     window.editPlaylist = editPlaylist;
     window.deletePlaylistConfirm = deletePlaylistConfirm;
@@ -1646,7 +1731,6 @@
     window.navigateToArtistByName = navigateToArtistByName;
     window.playAllTracks = playAllTracks;
     let volTimeout = null;
-    let cachedAirplayDevices = [];
     function setVolume(val) {
       // vol-label removed, icon shows instead
       clearTimeout(volTimeout);

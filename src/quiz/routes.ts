@@ -8,7 +8,8 @@
 import { Router, json } from "express";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary, createParty, listParties, endParty, getParty } from "./engine.js";
+import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary, createParty, listParties, endParty, getParty, getPartyByCode } from "./engine.js";
+import { getAllEvents, getEvent, createEvent as createStoredEvent, updateEvent, deleteEvent } from "./event-store.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { createDeveloperToken } from "../token.js";
 import { getActiveProviderType, getProvider, setActiveProvider } from "./playback/provider-manager.js";
@@ -138,16 +139,24 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
       return;
     }
 
-    // Home Controller path
+    // Home Controller path — add to library first, then play exact
     try {
       if (songId && musicClient?.hasUserToken()) {
         await musicClient.addToLibrary({ songs: [songId] }).catch(() => {});
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 800));
       }
 
       const simpleName = name.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
       const simpleArtist = artist.split(/[,&]/)[0].trim();
 
+      // Try exact match first (avoids wrong artist with same song title)
+      const exactResult = await provider.playExact(simpleName, simpleArtist).catch(() => ({ playing: false })) as { playing: boolean; track?: string };
+      if (exactResult.playing) {
+        res.json({ action: "play-exact", playing: exactResult.track || `${name} — ${artist}` });
+        return;
+      }
+
+      // Fallback: fuzzy search (for songs not yet in library)
       const result = await provider.searchAndPlay(`${simpleName} ${simpleArtist}`);
       if (result.playing) {
         res.json({ action: "search-and-play", playing: result.track });
@@ -201,41 +210,127 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     res.json({ ok: true, deleted, total: songs.length });
   });
 
-  // ─── Events (Parties) ──────────────────────────────────────
+  // ─── Events (persisted) ────────────────────────────────────
 
-  // List active events
-  router.get("/quiz/api/events", (_req, res) => {
-    res.json(listParties());
+  // List all events
+  router.get("/quiz/api/events", async (_req, res) => {
+    const events = await getAllEvents();
+    // Enrich active events with live party data
+    for (const ev of events) {
+      if (ev.status === "active" && ev.joinCode) {
+        const party = getPartyByCode(ev.joinCode);
+        if (party) {
+          ev.players = [...party.players.values()].map(p => ({
+            name: p.name, avatar: p.avatar,
+            totalScore: p.score, totalPicks: 0,
+          }));
+          ev.rounds = party.rounds.map(r => ({
+            number: r.number, questionCount: r.questions.length,
+            songCount: r.questions.length, completedAt: r.completedAt.toISOString(),
+          }));
+        }
+      }
+    }
+    res.json(events);
   });
 
   // Create new event
-  router.post("/quiz/api/events", (req, res) => {
-    const { name } = req.body || {};
-    const party = createParty("admin", name || undefined);
-    res.json({ id: party.id, joinCode: party.joinCode, name: party.name, state: party.state });
+  router.post("/quiz/api/events", async (req, res) => {
+    const { name, playlistId, scheduledAt } = req.body || {};
+    if (!name) { res.status(400).json({ error: "Name required" }); return; }
+    const event = await createStoredEvent({ name, playlistId, scheduledAt });
+
+    // If active (not scheduled), also create a live party
+    if (event.status === "active") {
+      const party = createParty("admin", name);
+      event.joinCode = party.joinCode;
+      await updateEvent(event.id, { joinCode: party.joinCode });
+    }
+    res.json(event);
   });
 
-  // End event
-  router.delete("/quiz/api/events/:id", (req, res) => {
-    const ok = endParty(String(req.params.id));
+  // Get event details
+  router.get("/quiz/api/events/:id", async (req, res) => {
+    const event = await getEvent(String(req.params.id));
+    if (!event) { res.status(404).json({ error: "Event not found" }); return; }
+    res.json(event);
+  });
+
+  // Update event
+  router.put("/quiz/api/events/:id", async (req, res) => {
+    const { name, playlistId, scheduledAt, status } = req.body || {};
+    const updated = await updateEvent(String(req.params.id), { name, playlistId, scheduledAt, status });
+    if (!updated) { res.status(404).json({ error: "Event not found" }); return; }
+    res.json(updated);
+  });
+
+  // Complete/end event
+  router.post("/quiz/api/events/:id/complete", async (req, res) => {
+    const event = await getEvent(String(req.params.id));
+    if (!event) { res.status(404).json({ error: "Event not found" }); return; }
+
+    // End live party if exists
+    if (event.joinCode) {
+      const party = getPartyByCode(event.joinCode);
+      if (party) {
+        // Save final stats before ending
+        await updateEvent(event.id, {
+          players: [...party.players.values()].map(p => ({
+            name: p.name, avatar: p.avatar,
+            totalScore: p.score, totalPicks: 0,
+          })),
+          rounds: party.rounds.map(r => ({
+            number: r.number, questionCount: r.questions.length,
+            songCount: r.questions.length, completedAt: r.completedAt.toISOString(),
+          })),
+        });
+        endParty(party.id);
+      }
+    }
+    await updateEvent(event.id, { status: "completed", completedAt: new Date().toISOString() });
+    res.json({ ok: true });
+  });
+
+  // Delete event
+  router.delete("/quiz/api/events/:id", async (req, res) => {
+    const event = await getEvent(String(req.params.id));
+    if (event?.joinCode) {
+      const party = getPartyByCode(event.joinCode);
+      if (party) endParty(party.id);
+    }
+    const ok = await deleteEvent(String(req.params.id));
     if (!ok) { res.status(404).json({ error: "Event not found" }); return; }
     res.json({ ok: true });
   });
 
-  // Get event details
-  router.get("/quiz/api/events/:id", (req, res) => {
-    const party = getParty(String(req.params.id));
-    if (!party) { res.status(404).json({ error: "Event not found" }); return; }
-    res.json({
-      id: party.id,
-      joinCode: party.joinCode,
-      name: party.name,
-      state: party.state,
-      playerCount: party.players.size,
-      currentRound: party.currentRound,
-      totalRounds: party.rounds.length,
-      createdAt: party.createdAt,
-    });
+  // Play entire playlist via Home Controller
+  router.post("/quiz/api/admin/play-playlist/:id", async (req, res) => {
+    try {
+      const pl = await getPlaylist(String(req.params.id));
+      if (!pl || pl.tracks.length === 0) { res.status(404).json({ error: "Playlist empty or not found" }); return; }
+      const shuffle = req.body?.shuffle === true;
+      const tracks = shuffle ? [...pl.tracks].sort(() => Math.random() - 0.5) : pl.tracks;
+
+      // Play first track — add to library first if songId available, then play exact
+      const first = tracks[0];
+      const provider = getProvider();
+      if (provider.isAvailable()) {
+        if (first.id && musicClient?.hasUserToken()) {
+          await musicClient.addToLibrary({ songs: [first.id] }).catch(() => {});
+          await new Promise(r => setTimeout(r, 500));
+        }
+        const simpleName = first.name.replace(/\s*[\(\[].*?[\)\]]/g, "").trim();
+        const simpleArtist = first.artistName.split(/[,&]/)[0].trim();
+        await provider.playExact(simpleName, simpleArtist).catch(() =>
+          provider.searchAndPlay(`${simpleName} ${simpleArtist}`)
+        );
+      }
+
+      // Return full queue for client to manage
+      res.json({ playing: first.name, queue: tracks.slice(1).map(t => ({ id: t.id, name: t.name, artistName: t.artistName })), total: tracks.length });
+    } catch (err) {
+      res.status(500).json({ error: String(err) });
+    }
   });
 
   // ─── Quiz Builder ─────────────────────────────────────────
