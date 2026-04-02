@@ -258,8 +258,13 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
 
   // Update event
   router.put("/quiz/api/events/:id", async (req, res) => {
-    const { name, playlistId, scheduledAt, status } = req.body || {};
-    const updated = await updateEvent(String(req.params.id), { name, playlistId, scheduledAt, status });
+    // Only pass fields that were explicitly sent (avoid undefined overwriting)
+    const body = req.body || {};
+    const updates: Record<string, unknown> = {};
+    for (const key of ["name", "playlistId", "scheduledAt", "status", "maxRounds"]) {
+      if (key in body) updates[key] = body[key];
+    }
+    const updated = await updateEvent(String(req.params.id), updates as Parameters<typeof updateEvent>[1]);
     if (!updated) { res.status(404).json({ error: "Event not found" }); return; }
     res.json(updated);
   });

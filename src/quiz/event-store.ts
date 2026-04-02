@@ -28,6 +28,7 @@ export interface SavedEvent {
   status: "scheduled" | "active" | "completed";
   joinCode?: string;
   playlistId?: string;       // linked playlist for quiz source
+  maxRounds?: number;        // 0 = unlimited (free), >0 = fixed rounds
   scheduledAt?: string;      // ISO date (optional, for scheduled events)
   createdAt: string;
   updatedAt: string;
@@ -102,12 +103,15 @@ export async function createEvent(event: {
   return saved;
 }
 
-export async function updateEvent(id: string, updates: Partial<Pick<SavedEvent, "name" | "status" | "joinCode" | "playlistId" | "scheduledAt" | "completedAt" | "players" | "rounds" | "totalSongsPlayed">>): Promise<SavedEvent | undefined> {
+export async function updateEvent(id: string, updates: Partial<Pick<SavedEvent, "name" | "status" | "joinCode" | "playlistId" | "maxRounds" | "scheduledAt" | "completedAt" | "players" | "rounds" | "totalSongsPlayed">>): Promise<SavedEvent | undefined> {
   await ensureLoaded();
   const event = events.find(e => e.id === id);
   if (!event) return undefined;
 
-  Object.assign(event, updates);
+  // Only apply defined values (don't overwrite with undefined)
+  for (const [key, val] of Object.entries(updates)) {
+    if (val !== undefined) (event as unknown as Record<string, unknown>)[key] = val;
+  }
   event.updatedAt = new Date().toISOString();
   await persist();
   return event;

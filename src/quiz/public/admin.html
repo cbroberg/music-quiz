@@ -712,6 +712,8 @@
     }
 
     function renderEvents() {
+      // Default status for legacy events without status field
+      allEvents.forEach(e => { if (!e.status) e.status = e.scheduledAt ? 'scheduled' : 'active'; });
       const filtered = allEvents.filter(e => e.status === eventFilter);
       const container = document.getElementById('events-list');
       const empty = document.getElementById('events-empty');
@@ -745,6 +747,7 @@
         } else if (ev.status === 'scheduled') {
           const d = ev.scheduledAt ? new Date(ev.scheduledAt) : null;
           meta = d ? d.toLocaleDateString('da-DK', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) : 'No date';
+          if (ev.maxRounds) meta += ' · ' + ev.maxRounds + ' rounds';
         } else {
           const d = ev.completedAt ? new Date(ev.completedAt) : new Date(ev.updatedAt);
           meta = d.toLocaleDateString('da-DK', { day: 'numeric', month: 'short', year: 'numeric' }) +
@@ -759,9 +762,11 @@
           '</div>' +
           '<div class="pl-actions">' +
             (ev.status === 'active' && ev.joinCode ?
-              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); openEvent(\'' + ev.joinCode + '\')">▶ Open</button>' +
+              '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); openEvent(\'' + ev.joinCode + '\', \'' + ev.name.replace(/'/g, "\\'") + '\')">▶ Start Quiz</button>' +
+              '<button class="pl-action-btn" onclick="event.stopPropagation(); editEvent(\'' + ev.id + '\')">Edit</button>' +
               '<button class="pl-action-btn danger" onclick="event.stopPropagation(); completeEventConfirm(\'' + ev.id + '\')">End</button>'
             : ev.status === 'scheduled' ?
+              '<button class="pl-action-btn" onclick="event.stopPropagation(); editEvent(\'' + ev.id + '\')">Edit</button>' +
               '<button class="pl-action-btn play-all" onclick="event.stopPropagation(); startScheduledEvent(\'' + ev.id + '\')">▶ Start Now</button>' +
               '<button class="pl-action-btn danger" onclick="event.stopPropagation(); deleteEventConfirm(\'' + ev.id + '\', \'' + ev.name.replace(/'/g, "\\'") + '\')">Delete</button>'
             :
@@ -771,14 +776,155 @@
 
         if (ev.status === 'active' && ev.joinCode) {
           div.style.cursor = 'pointer';
-          div.addEventListener('click', () => openEvent(ev.joinCode));
+          div.addEventListener('click', () => openEvent(ev.joinCode, ev.name));
         }
         container.appendChild(div);
       }
     }
 
-    function openEvent(joinCode) {
+    function openEvent(joinCode, eventName) {
+      if (eventName) sessionStorage.setItem('eventName', eventName);
       location.href = '/quiz/host?event=' + joinCode;
+    }
+
+    async function editEvent(id) {
+      const ev = allEvents.find(e => e.id === id);
+      if (!ev) return;
+
+      // Show edit in a modal (reuse search overlay style)
+      const overlay = document.createElement('div');
+      overlay.className = 'search-overlay';
+      overlay.style.display = 'flex';
+      overlay.innerHTML =
+        '<div class="search-modal" style="padding:24px;max-width:480px">' +
+          '<h3 style="font-size:18px;font-weight:700;margin-bottom:16px">Edit Event</h3>' +
+          '<div style="display:flex;flex-direction:column;gap:12px">' +
+            '<input id="edit-ev-name" type="text" value="' + (ev.name || '').replace(/"/g, '&quot;') + '" placeholder="Event name" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-size:15px;font-family:inherit;outline:none">' +
+            '<div style="display:flex;gap:8px;align-items:center">' +
+              '<span style="font-size:13px;color:var(--dimmer);min-width:50px">Date</span>' +
+              '<input id="edit-ev-date" type="date" value="' + (ev.scheduledAt ? ev.scheduledAt.slice(0,10) : '') + '" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:14px;font-family:inherit;outline:none;color-scheme:dark">' +
+              '<span style="color:var(--dimmer)">kl.</span>' +
+              '<input id="edit-ev-hour" type="number" min="0" max="23" value="' + (ev.scheduledAt ? new Date(ev.scheduledAt).getHours() : 19) + '" style="width:60px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:14px;font-family:inherit;outline:none">' +
+              '<span style="color:var(--dimmer)">:</span>' +
+              '<input id="edit-ev-min" type="number" min="0" max="59" step="15" value="' + (ev.scheduledAt ? new Date(ev.scheduledAt).getMinutes() : 0) + '" style="width:60px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:14px;font-family:inherit;outline:none">' +
+            '</div>' +
+            '<div style="display:flex;gap:8px;align-items:center">' +
+              '<span style="font-size:13px;color:var(--dimmer);min-width:50px">Rounds</span>' +
+              '<div id="edit-ev-rounds-btn" class="custom-select-btn" data-value="' + (ev.maxRounds || 0) + '">' + (ev.maxRounds ? ev.maxRounds + ' rounds' : 'Unlimited') + '</div>' +
+            '</div>' +
+            '<div style="display:flex;gap:8px;align-items:center">' +
+              '<span style="font-size:13px;color:var(--dimmer);min-width:50px">Playlist</span>' +
+              '<div id="edit-ev-playlist-btn" class="custom-select-btn" style="flex:1" data-value="' + (ev.playlistId || '') + '">No playlist</div>' +
+            '</div>' +
+            '<div style="display:flex;gap:8px;margin-top:8px">' +
+              '<button class="action-btn" id="edit-ev-save" style="flex:1;padding:12px">Save</button>' +
+              '<button class="action-btn secondary" id="edit-ev-cancel" style="flex:1;padding:12px">Cancel</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      document.body.appendChild(overlay);
+
+      // Populate playlist dropdown
+      try {
+        const plRes = await fetch('/quiz/api/builder/playlists');
+        const pls = await plRes.json();
+        const plSelect = document.getElementById('edit-ev-playlist');
+        for (const p of pls.filter(p => p.id !== FAVORITES_ID)) {
+          const sel = ev.playlistId === p.id ? ' selected' : '';
+          plSelect.innerHTML += '<option value="' + p.id + '"' + sel + '>' + p.name + ' (' + p.tracks.length + ' tracks)</option>';
+        }
+      } catch {}
+
+      // Rounds custom select
+      document.getElementById('edit-ev-rounds-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const btn = e.currentTarget;
+        const menu = document.getElementById('song-ctx-menu');
+        const rect = btn.getBoundingClientRect();
+        menu.style.top = (rect.bottom + 4) + 'px';
+        menu.style.left = rect.left + 'px';
+        menu.style.display = '';
+        ctxMenuVisible = true;
+        const options = [{v:0,l:'Unlimited (free)'},...[1,2,3,4,5,6,7,8,9,10].map(n=>({v:n,l:n+' rounds'}))];
+        menu.innerHTML = options.map(o =>
+          '<div class="song-ctx-item" data-val="'+o.v+'">' +
+            (String(btn.dataset.value) === String(o.v) ? '<span class="ctx-icon" style="color:var(--green)">✓</span>' : '<span class="ctx-icon"></span>') +
+            o.l + '</div>'
+        ).join('');
+        menu.querySelectorAll('.song-ctx-item').forEach(item => {
+          item.addEventListener('click', () => {
+            btn.dataset.value = item.dataset.val;
+            btn.childNodes[0].textContent = item.textContent.trim();
+            hideContextMenu();
+          });
+        });
+      });
+
+      // Playlist custom select — populated after fetch
+      document.getElementById('edit-ev-playlist-btn').addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const btn = e.currentTarget;
+        const menu = document.getElementById('song-ctx-menu');
+        const rect = btn.getBoundingClientRect();
+        menu.style.top = (rect.bottom + 4) + 'px';
+        menu.style.left = rect.left + 'px';
+        menu.style.display = '';
+        ctxMenuVisible = true;
+        menu.innerHTML = '<div class="song-ctx-item" data-val=""><span class="ctx-icon">' + (!btn.dataset.value ? '✓' : '') + '</span>No playlist</div>';
+        try {
+          const plRes = await fetch('/quiz/api/builder/playlists');
+          const pls = await plRes.json();
+          for (const p of pls.filter(p => p.id !== FAVORITES_ID)) {
+            const check = btn.dataset.value === p.id ? '✓' : '';
+            menu.innerHTML += '<div class="song-ctx-item" data-val="' + p.id + '"><span class="ctx-icon" style="color:var(--green)">' + check + '</span>' + p.name + ' <span style="color:var(--dimmer)">(' + p.tracks.length + ')</span></div>';
+          }
+        } catch {}
+        menu.querySelectorAll('.song-ctx-item').forEach(item => {
+          item.addEventListener('click', () => {
+            btn.dataset.value = item.dataset.val;
+            btn.childNodes[0].textContent = item.textContent.trim();
+            hideContextMenu();
+          });
+        });
+      });
+
+      // Set initial playlist label
+      if (ev.playlistId) {
+        fetch('/quiz/api/builder/playlists/' + ev.playlistId).then(r => r.json()).then(p => {
+          if (p.name) document.getElementById('edit-ev-playlist-btn').childNodes[0].textContent = p.name + ' (' + p.tracks.length + ')';
+        }).catch(() => {});
+      }
+
+      document.getElementById('edit-ev-name').focus();
+
+      // Click outside to close
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+      // ESC to close
+      const escHandler = (e) => { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); } };
+      document.addEventListener('keydown', escHandler);
+
+      document.getElementById('edit-ev-cancel').addEventListener('click', () => overlay.remove());
+      document.getElementById('edit-ev-save').addEventListener('click', async () => {
+        const name = document.getElementById('edit-ev-name').value.trim();
+        if (!name) return;
+        const dateVal = document.getElementById('edit-ev-date').value;
+        let scheduledAt;
+        if (dateVal) {
+          const h = String(document.getElementById('edit-ev-hour').value).padStart(2,'0');
+          const m = String(document.getElementById('edit-ev-min').value).padStart(2,'0');
+          scheduledAt = new Date(dateVal + 'T' + h + ':' + m + ':00').toISOString();
+        }
+        const maxRounds = parseInt(document.getElementById('edit-ev-rounds-btn').dataset.value) || 0;
+        const playlistId = document.getElementById('edit-ev-playlist-btn').dataset.value || undefined;
+        await fetch('/quiz/api/events/' + id, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, scheduledAt, maxRounds, playlistId }),
+        });
+        overlay.remove();
+        loadEvents();
+      });
     }
 
     async function startScheduledEvent(id) {
@@ -1788,6 +1934,7 @@
     window.clearEventSchedule = clearEventSchedule;
     window.setEventFilter = setEventFilter;
     window.openEvent = openEvent;
+    window.editEvent = editEvent;
     window.startScheduledEvent = startScheduledEvent;
     window.completeEventConfirm = completeEventConfirm;
     window.deleteEventConfirm = deleteEventConfirm;
