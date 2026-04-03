@@ -3,7 +3,7 @@
 ## Current Status (April 2026)
 
 Music Quiz v3.0.0 — multiplayer music quiz party game powered by Apple Music.
-Core quiz + DJ Mode + Party Sessions + MusicKit JS working end-to-end.
+Core quiz + DJ Mode + Party Sessions + MusicKit JS + AI Trivia working end-to-end.
 
 ### What Works
 - **Multiplayer Quiz:** WebSocket game engine, QR join, Kahoot-style scoring, AI answer evaluation
@@ -18,8 +18,16 @@ Core quiz + DJ Mode + Party Sessions + MusicKit JS working end-to-end.
 - **PlaybackProvider Abstraction:** Swappable playback engines (MusicKit JS, Home Controller, future Spotify)
 - **AirPlay:** HC: device list with selected status via osascript. MusicKit: Safari native picker
 - **Exact Match Playback:** `play-exact` with full track name first, simplified fallback. Verified with play-log
+- **Quiz Engine v2:** AI trivia (country-of-origin, band-members, artist-trivia, film-soundtrack, tv-theme), fact-checked by Sonnet
+- **Verified Pool:** Massive curated song pool (150+ searches), batch download, verify BEFORE quiz starts — zero runtime failures
+- **Global Question Bank:** 74+ validated trivia questions, grows with every quiz, persisted to disk
+- **AI Enrichment:** Claude Haiku generates trivia, Claude Sonnet fact-checks. Fun facts shown on reveal
+- **Song Dedup:** No song plays twice, no artist appears twice (normalized: strips Live/Remastered/English Version)
+- **Diverse Sources:** Film soundtracks, TV themes, decades (60s-2010s), countries (Swedish, British, Korean, Danish...), deep genres
+- **"Researching..." Modal:** Live seconds countdown during pool building + AI trivia generation
 - **Pre-download:** All quiz songs downloaded + verified before quiz starts (progress modal with theme music)
-- **Theme Songs:** "Theme from New York, New York" (prep), "We Are the Champions" (victory)
+- **Theme Songs:** Hardcoded Apple Music IDs — "Theme from New York, New York" (prep), "We Are the Champions" (victory)
+- **Howler.js:** Sound manager with real applause.mp3 at podium
 - **Waiting Room:** Late arrivals wait, auto-join when next lobby opens
 - **Player Reconnect:** Rejoin DJ Mode seamlessly after page navigation
 - **Library Cleanup:** Tracks quiz-added songs, deletes on DJ Mode end (never theme songs, never user's own music)
@@ -65,13 +73,17 @@ Core quiz + DJ Mode + Party Sessions + MusicKit JS working end-to-end.
 | `src/quiz/playback/musickit-web.ts` | MusicKit JS provider (server→browser WS proxy) |
 | `src/quiz/playback/provider-manager.ts` | Active provider management + fallback chain |
 | `src/quiz/public/musickit-player.js` | Shared client-side MusicKit JS module (all pages) |
+| `src/quiz/ai-enricher.ts` | AI trivia generation (Haiku) + fact-checking (Sonnet) |
 | `src/quiz/ai-evaluator.ts` | Claude haiku for free-text answer evaluation |
+| `src/quiz/question-bank.ts` | Global question bank — persisted validated trivia |
 | `src/quiz/playlist-store.ts` | Disk persistence for custom playlists |
 | `src/browser-ws.ts` | Now Playing WebSocket broadcaster + track change log |
 | `home/server.ts` | Home Controller: osascript commands, WebSocket agent |
 | `server.js` | Main server: routing between Express and Next.js |
 | `scripts/e2e-full-flow.js` | Full E2E test: 2 rounds, Waiting Room, DJ Mode |
 | `scripts/e2e-5rounds.js` | 5-round test with accumulated playlist verification |
+| `scripts/e2e-screenshot-test-3players.js` | Screenshot test: 3 players, configurable Q count, post-test validation |
+| `scripts/e2e-observer.js` | Headless observer — screenshots during manual testing |
 | `scripts/screen-record/` | ScreenCaptureKit Swift CLI for video + audio recording |
 
 ## Playback Provider Architecture
@@ -184,6 +196,8 @@ PlaybackProvider: playExact, pause, resume, setVolume, nowPlaying,
 ## Testing
 - **E2E full flow:** `node scripts/e2e-full-flow.js` — 2 rounds, Waiting Room, DJ Mode
 - **E2E 5 rounds:** `node scripts/e2e-5rounds.js` — 5 rounds, playlist accumulation
+- **E2E screenshots:** `node scripts/e2e-screenshot-test-3players.js 20` — 3 players, screenshots, post-validation
+- **E2E headless 100:** `MUTE_ALL=true node scripts/e2e-screenshot-test-3players.js 100` — stress test, grows bank
 - **Manual test:** `node scripts/manual-test.js` — opens windows, user controls
 - **Quiz log:** Saved to `recordings/quiz-log-{timestamp}.json`
 - **Screen recording:** `recordings/` dir (in .gitignore)

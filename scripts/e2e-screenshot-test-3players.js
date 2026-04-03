@@ -18,6 +18,7 @@ import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 const BASE = 'http://localhost:3000';
 const QUESTIONS = parseInt(process.argv[2]) || 10;
 const TIMER = 15;
+const HEADLESS = process.argv.includes('--headless');
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
@@ -51,10 +52,10 @@ async function main() {
 
   async function launchWindow(x, y, w, h) {
     const browser = await chromium.launch({
-      headless: false,
-      args: [`--window-position=${x},${y}`, `--window-size=${w},${h}`],
+      headless: HEADLESS,
+      args: HEADLESS ? [] : [`--window-position=${x},${y}`, `--window-size=${w},${h}`],
     });
-    const ctx = await browser.newContext({ viewport: { width: w - 16, height: h - 80 } });
+    const ctx = await browser.newContext({ viewport: { width: HEADLESS ? 1920 : w - 16, height: HEADLESS ? 1080 : h - 80 } });
     const page = await ctx.newPage();
     return { browser, page };
   }
@@ -63,6 +64,7 @@ async function main() {
   const p1 = await launchWindow(hostW, 25, playerW, H);
   const p2 = await launchWindow(hostW + playerW, 25, playerW, H);
   const p3 = await launchWindow(hostW + playerW * 2, 25, playerW, H);
+  log(`🖥️ Mode: ${HEADLESS ? 'headless' : 'visual'} | ${QUESTIONS} questions`);
 
   const hostPage = host.page;
   const names = ['Christian', 'Nina', 'Viola'];
