@@ -279,17 +279,19 @@ async function main() {
       durationMs: Date.now() - qStart,
     });
 
-    // Wait for next question (scoreboard transitions automatically)
+    // Wait for next question
     if (q < QUESTIONS) {
       try {
-        await playerPages[0].waitForFunction(() => {
-          const screen = document.querySelector('.screen.active');
-          return screen?.id === 'screen-mc' || screen?.id === 'screen-ft';
-        }, { timeout: 45000 });
+        // First wait for current question to leave (result/scoreboard phase)
+        await playerPages[0].waitForFunction((qn) => {
+          const qnumEl = document.getElementById('mc-qnum') || document.getElementById('ft-qnum');
+          const text = qnumEl?.textContent || '';
+          // Wait until question number changes (next question arrived)
+          return text.includes(`${qn + 1} /`) || text.includes(`${qn + 1}/`);
+        }, q, { timeout: 45000 });
       } catch {
         log(`   ⚠️ Timeout waiting for Q${q + 1}`);
-        // Try waiting a bit more — scoreboard might be slow
-        await sleep(3000);
+        await sleep(2000);
       }
     }
   }

@@ -495,41 +495,58 @@ export async function createSession(
   const triviaCount = Math.max(2, Math.round(config.questionCount * 0.35));
   const musicCount = config.questionCount - triviaCount;
 
-  // Trivia uses ONLY verified artists (guaranteed playable)
-  const artistSongMap = new Map<string, QuizQuestion>();
+  // Trivia should use DIFFERENT artists than music questions for maximum variety
+  const musicArtistKeys = new Set(dedupedVerified.slice(0, musicCount).map(q => q.artistName.toLowerCase()));
+  const triviaOnlyArtists: Array<{ name: string }> = [];
+  const triviaSongPool: typeof dedupedVerified = [];
   for (const q of dedupedVerified) {
-    if (!artistSongMap.has(q.artistName)) artistSongMap.set(q.artistName, q);
+    if (!musicArtistKeys.has(q.artistName.toLowerCase())) {
+      triviaOnlyArtists.push({ name: q.artistName });
+      triviaSongPool.push(q);
+    }
   }
-  const artistPool = [...artistSongMap.keys()].map(name => ({ name }));
+  // Full song pool for background song lookup
   const songPool = dedupedVerified.map(q => ({
     id: q.songId, name: q.songName, artistName: q.artistName,
     albumName: q.albumName, releaseYear: q.releaseYear,
   }));
 
+  console.log(`🧠 Trivia artist pool: ${triviaOnlyArtists.length} artists not in music questions`);
+
   const [freshTrivia, bankedQuestions] = await Promise.all([
-    generateTriviaQuestions({ artists: artistPool, songs: songPool }, triviaCount + 2).catch(() => [] as GeneratedTrivia[]),
+    generateTriviaQuestions(
+      { artists: triviaOnlyArtists.length >= triviaCount ? triviaOnlyArtists : [...triviaOnlyArtists, ...dedupedVerified.slice(0, musicCount).map(q => ({ name: q.artistName }))],
+        songs: songPool },
+      triviaCount + 4  // request extra — some will be filtered
+    ).catch(() => [] as GeneratedTrivia[]),
     getRandomQuestions(Math.max(1, Math.ceil(triviaCount * 0.3))).catch(() => []),
   ]);
 
-  // Track which artists are used in music questions (for trivia dedup)
-  const musicArtists = new Set(dedupedVerified.slice(0, musicCount).map(q => q.artistName.toLowerCase()));
+  // Track used SONGS across all questions (music + trivia) — no song twice
+  const usedSongKeysInQuiz = new Set(
+    dedupedVerified.slice(0, musicCount).map(q => normalizeForDedup(q.songName) + "|" + q.artistName.toLowerCase())
+  );
   const usedTriviaArtists = new Set<string>();
 
   function triviaToQuestion(t: { questionType: string; questionText: string; correctAnswer: string; options: string[]; artistName: string; funFact?: string; backgroundSongName?: string; backgroundArtist?: string; difficulty: string }): QuizQuestion | null {
     const triviaArtist = t.backgroundArtist || t.artistName;
-    const bgSong = songPool.find(s => s.artistName === triviaArtist) ||
-                   songPool.find(s => s.artistName.toLowerCase() === triviaArtist.toLowerCase());
+    // No trivia artist twice
+    if (usedTriviaArtists.has(triviaArtist.toLowerCase())) {
+      console.log(`🧠 Trivia skipped: "${triviaArtist}" already has a trivia question`);
+      return null;
+    }
+    // Find a verified song by this artist that hasn't been used yet
+    const bgSong = songPool.find(s =>
+      (s.artistName === triviaArtist || s.artistName.toLowerCase() === triviaArtist.toLowerCase()) &&
+      !usedSongKeysInQuiz.has(normalizeForDedup(s.name) + "|" + s.artistName.toLowerCase())
+    );
     if (!bgSong) {
-      console.log(`🧠 Trivia skipped: no verified song for "${triviaArtist}"`);
+      console.log(`🧠 Trivia skipped: no unused song for "${triviaArtist}"`);
       return null;
     }
-    // Skip if this artist is already used in a music question OR another trivia
-    const artistKey = bgSong.artistName.toLowerCase();
-    if (musicArtists.has(artistKey) || usedTriviaArtists.has(artistKey)) {
-      console.log(`🧠 Trivia skipped: "${triviaArtist}" already used in quiz`);
-      return null;
-    }
-    usedTriviaArtists.add(artistKey);
+    // Mark song + artist as used
+    usedSongKeysInQuiz.add(normalizeForDedup(bgSong.name) + "|" + bgSong.artistName.toLowerCase());
+    usedTriviaArtists.add(triviaArtist.toLowerCase());
     return {
       songId: bgSong.id,
       songName: bgSong.name,
