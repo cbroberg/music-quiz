@@ -1,6 +1,6 @@
 # Music Quiz — Roadmap
 
-**Last updated:** 2026-04-02
+**Last updated:** 2026-04-03
 
 ---
 
@@ -39,10 +39,27 @@
 
 | # | Milestone | Notes |
 |---|-----------|-------|
-| 18 | **Gameplay Modes** — Steal Round, All-In, Sound Clash, Blind Round, Playlist Battle | [FEATURES.md](FEATURES.md) F06-F10 |
-| 19 | **Movie/TV Quiz** — TMDB integration, film-citater, soundtrack playback | [QUIZ-PATCH-001.md](QUIZ-PATCH-001.md) |
+| 18 | **Core Gameplay Modes** — Steal Round, All-In, Sound Clash, Blind Round, Playlist Battle | [FEATURES.md](FEATURES.md) F06-F10 |
+| 19 | **Movie/TV Quiz** — TMDB integration, film-citater, soundtrack playback | [MOVIE-QUIZ.md](MOVIE-QUIZ.md) |
 | 20 | **Production Deploy** — Fly.io (arn), latest code, MusicKit JS, all fixes | |
 | 21 | **tvOS App** — Apple TV companion app, WebView-based quiz display | [FEATURES.md](FEATURES.md) F13 |
 | 22 | **Spotify Support** — Web Playback SDK, OAuth PKCE, song resolver | [FEATURES.md](FEATURES.md) F14 |
 | 23 | **User Auth + Billing** — Magic link, Stripe, tier enforcement | [QUIZ-PATCH-001.md](QUIZ-PATCH-001.md) P4 |
 | 24 | **Repo Rename** — `apple-music-mcp` → `musicquiz` | |
+
+---
+
+## Future Gameplay Ideas (F21-F30)
+
+| # | Feature | Category | Notes |
+|---|---------|----------|-------|
+| 25 | **Hum It / Sing It** — Mic input, others guess | Social/Party | [F21](features/F21-hum-it.md) |
+| 26 | **Time Machine** — Year slider, distance-based scoring | New Input | [F22](features/F22-time-machine.md) |
+| 27 | **Cover vs. Original** — Spot the original, ID the cover | Music Knowledge | [F23](features/F23-cover-vs-original.md) |
+| 28 | **Genre Roulette** — 4-layer progressive reveal | Gameplay Depth | [F24](features/F24-genre-roulette.md) |
+| 29 | **Music Map** — World map pin, haversine scoring | Visual/Educational | [F25](features/F25-music-map.md) |
+| 30 | **Setlist Challenge** — Guess next track on album | Deep Knowledge | [F26](features/F26-setlist-challenge.md) |
+| 31 | **Mashup Round** — Two simultaneous songs | Chaos/Fun | [F27](features/F27-mashup-round.md) |
+| 32 | **Audience Mode** — Spectator voting & reactions | Scale/Events | [F28](features/F28-audience-mode.md) |
+| 33 | **Ear Trainer** — Progressive 1s→30s playback | Skill/Challenge | [F29](features/F29-ear-trainer.md) |
+| 34 | **Stats & Replay** — History, achievements, sharing | Retention/Growth | [F30](features/F30-stats-replay.md) |
