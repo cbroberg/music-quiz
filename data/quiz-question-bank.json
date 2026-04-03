@@ -5258,5 +5258,4545 @@
     "timesUsed": 0,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0262"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Gotye from?",
+    "correctAnswer": "Australia",
+    "options": [
+      "Australia",
+      "Belgium",
+      "UK",
+      "New Zealand"
+    ],
+    "artistName": "Gotye",
+    "funFact": "Gotye's 'Somebody That I Used to Know' was the best-selling song worldwide in 2012 — then he basically disappeared from music entirely",
+    "difficulty": "medium",
+    "backgroundSongName": "Somebody That I Used to Know",
+    "backgroundArtist": "Gotye",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0263"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is INXS frontman Michael Hutchence's tragic claim to fame beyond music?",
+    "correctAnswer": "He died at age 37 in 1997",
+    "options": [
+      "He died at age 37 in 1997",
+      "He was banned from Australia",
+      "He lost his voice permanently",
+      "He retired at 25"
+    ],
+    "artistName": "INXS",
+    "funFact": "INXS continued for years after Hutchence's death, even holding a reality TV show to find a new singer — nothing could replace his charisma",
+    "difficulty": "hard",
+    "backgroundSongName": "Need You Tonight",
+    "backgroundArtist": "INXS",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0264"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the multi-instrumentalist behind Tame Impala?",
+    "correctAnswer": "Kevin Parker",
+    "options": [
+      "Kevin Parker",
+      "Jay Watson",
+      "Dominic Simper",
+      "Cam Avery"
+    ],
+    "artistName": "Tame Impala",
+    "funFact": "Kevin Parker records everything alone in his home studio — the 'band' only exists for live shows. He plays every instrument on the albums",
+    "difficulty": "medium",
+    "backgroundSongName": "Let It Happen",
+    "backgroundArtist": "Tame Impala",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0265"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Django Reinhardt from?",
+    "correctAnswer": "Belgium",
+    "options": [
+      "Belgium",
+      "France",
+      "Spain",
+      "Italy"
+    ],
+    "artistName": "Django Reinhardt",
+    "funFact": "Django Reinhardt lost the use of two fingers in a fire at age 18 — he reinvented his guitar technique with just two working fingers and became the greatest jazz guitarist ever",
+    "difficulty": "hard",
+    "backgroundSongName": "Minor Swing",
+    "backgroundArtist": "Django Reinhardt",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0266"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which Brazilian artist reinterpreted David Bowie songs in Portuguese for 'The Life Aquatic'?",
+    "correctAnswer": "Seu Jorge",
+    "options": [
+      "Seu Jorge",
+      "Caetano Veloso",
+      "Gilberto Gil",
+      "Tom Zé"
+    ],
+    "artistName": "Seu Jorge",
+    "funFact": "Seu Jorge's Portuguese Bowie covers for Wes Anderson's film were so beloved that Bowie himself said 'had Seu Jorge not recorded my songs in Portuguese, I would never have heard this new level of beauty'",
+    "difficulty": "hard",
+    "backgroundSongName": "Life on Mars (Seu Jorge version)",
+    "backgroundArtist": "Seu Jorge",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0267"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Sepultura from?",
+    "correctAnswer": "Brazil",
+    "options": [
+      "Brazil",
+      "Portugal",
+      "Mexico",
+      "Argentina"
+    ],
+    "artistName": "Sepultura",
+    "funFact": "Sepultura's 'Roots' album incorporated indigenous Xavante tribal music recorded in the Amazon — blending extreme metal with Brazilian indigenous culture",
+    "difficulty": "hard",
+    "backgroundSongName": "Roots Bloody Roots",
+    "backgroundArtist": "Sepultura",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0268"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Bryan Adams' longest-running #1 single?",
+    "correctAnswer": "(Everything I Do) I Do It for You — 16 weeks",
+    "options": [
+      "(Everything I Do) I Do It for You — 16 weeks",
+      "Summer of '69 — 12 weeks",
+      "Run to You — 8 weeks",
+      "Have You Ever Really Loved a Woman? — 10 weeks"
+    ],
+    "artistName": "Bryan Adams",
+    "funFact": "'(Everything I Do) I Do It for You' from Robin Hood: Prince of Thieves spent 16 consecutive weeks at #1 in the UK — the longest run in UK chart history at the time",
+    "difficulty": "medium",
+    "backgroundSongName": "(Everything I Do) I Do It for You",
+    "backgroundArtist": "Bryan Adams",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0269"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Hallelujah' by Leonard Cohen in an iconic scene?",
+    "correctAnswer": "Shrek",
+    "options": [
+      "Shrek",
+      "Watchmen",
+      "The O.C.",
+      "House of Cards"
+    ],
+    "artistName": "Leonard Cohen",
+    "funFact": "Leonard Cohen wrote 80 draft verses of 'Hallelujah' over 5 years — it was initially a flop, but after Jeff Buckley's cover and its use in Shrek, it became one of the most-covered songs ever",
+    "difficulty": "easy",
+    "backgroundSongName": "Hallelujah",
+    "backgroundArtist": "Leonard Cohen",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0270"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features 'Where Is My Mind?' by Pixies prominently throughout?",
+    "correctAnswer": "Mr. Robot",
+    "options": [
+      "Mr. Robot",
+      "Fight Club (film, not TV)",
+      "Legion",
+      "Dark"
+    ],
+    "artistName": "Pixies",
+    "funFact": "Mr. Robot used 'Where Is My Mind?' as a deliberate nod to Fight Club — both stories deal with alter egos and the destruction of capitalism",
+    "difficulty": "hard",
+    "backgroundSongName": "Where Is My Mind?",
+    "backgroundArtist": "Pixies",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0271"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Céline Dion from?",
+    "correctAnswer": "Canada",
+    "options": [
+      "Canada",
+      "France",
+      "Belgium",
+      "Switzerland"
+    ],
+    "artistName": "Céline Dion",
+    "funFact": "Céline Dion's manager René Angélil mortgaged his house to fund her first album when she was 12 — they later married when she was 26 and he was 52",
+    "difficulty": "easy",
+    "backgroundSongName": "My Heart Will Go On",
+    "backgroundArtist": "Céline Dion",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0272"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What makes Daniel Caesar's Grammy-winning album 'Freudian' unique?",
+    "correctAnswer": "He self-released it independently",
+    "options": [
+      "He self-released it independently",
+      "It was recorded in one day",
+      "It features no instruments",
+      "It was his debut and final album"
+    ],
+    "artistName": "Daniel Caesar",
+    "funFact": "Daniel Caesar turned down every major label and self-released 'Freudian' — it won a Grammy for Best R&B Performance, proving indie artists can compete at the highest level",
+    "difficulty": "hard",
+    "backgroundSongName": "Best Part",
+    "backgroundArtist": "Daniel Caesar",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0273"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Devin Townsend from?",
+    "correctAnswer": "Canada",
+    "options": [
+      "Canada",
+      "US",
+      "Sweden",
+      "UK"
+    ],
+    "artistName": "Devin Townsend",
+    "funFact": "Devin Townsend is known for his extreme versatility — he's made everything from brutal death metal to new age ambient music, sometimes on the same album",
+    "difficulty": "hard",
+    "backgroundSongName": "Kingdom",
+    "backgroundArtist": "Devin Townsend",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0274"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Paramore?",
+    "correctAnswer": "Hayley Williams",
+    "options": [
+      "Hayley Williams",
+      "Amy Lee",
+      "Lacey Sturm",
+      "Lzzy Hale"
+    ],
+    "artistName": "Paramore",
+    "funFact": "Hayley Williams was only 16 when Paramore released their debut — she's one of the youngest artists to score a #1 hit on Billboard Alternative",
+    "difficulty": "easy",
+    "backgroundSongName": "Misery Business",
+    "backgroundArtist": "Paramore",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0275"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Old Town Road' by Lil Nas X?",
+    "correctAnswer": "None — it became famous through TikTok, not a film",
+    "options": [
+      "None — it became famous through TikTok, not a film",
+      "The Harder They Fall",
+      "Once Upon a Time in Hollywood",
+      "No Country for Old Men"
+    ],
+    "artistName": "Lil Nas X",
+    "funFact": "'Old Town Road' spent 19 weeks at #1, breaking the record held by 'Despacito' — it started as a $30 beat bought online and a TikTok meme",
+    "difficulty": "medium",
+    "backgroundSongName": "Old Town Road",
+    "backgroundArtist": "Lil Nas X",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0276"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Anitta from?",
+    "correctAnswer": "Brazil",
+    "options": [
+      "Brazil",
+      "Colombia",
+      "Mexico",
+      "Portugal"
+    ],
+    "artistName": "Anitta",
+    "funFact": "Anitta grew up in a favela in Rio de Janeiro — she became the first Brazilian solo artist to reach #1 on Spotify Global with 'Envolver'",
+    "difficulty": "medium",
+    "backgroundSongName": "Envolver",
+    "backgroundArtist": "Anitta",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0277"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Neil Young's nickname?",
+    "correctAnswer": "The Godfather of Grunge",
+    "options": [
+      "The Godfather of Grunge",
+      "The Canadian Cowboy",
+      "Old Shakey",
+      "Both The Godfather of Grunge and Old Shakey"
+    ],
+    "artistName": "Neil Young",
+    "funFact": "Kurt Cobain quoted Neil Young's lyric 'it's better to burn out than to fade away' in his suicide note — Young said it was 'the most disturbing thing about the whole thing'",
+    "difficulty": "medium",
+    "backgroundSongName": "Heart of Gold",
+    "backgroundArtist": "Neil Young",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0278"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features a theme by Bear McCreary with war drums and Celtic pipes?",
+    "correctAnswer": "Outlander",
+    "options": [
+      "Outlander",
+      "Vikings",
+      "Poldark",
+      "Peaky Blinders"
+    ],
+    "artistName": "Bear McCreary",
+    "funFact": "Bear McCreary used Robert Louis Stevenson's 'Skye Boat Song' as the basis for the Outlander theme — adapting a centuries-old Scottish folk song for modern TV",
+    "difficulty": "medium",
+    "backgroundSongName": "Outlander Theme",
+    "backgroundArtist": "Bear McCreary",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0279"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Blondie?",
+    "correctAnswer": "Debbie Harry",
+    "options": [
+      "Debbie Harry",
+      "Siouxsie Sioux",
+      "Chrissie Hynde",
+      "Patti Smith"
+    ],
+    "artistName": "Blondie",
+    "funFact": "Many people think 'Blondie' is Debbie Harry's name — she once said 'my name isn't Blondie, Blondie is a group' but the confusion persists to this day",
+    "difficulty": "easy",
+    "backgroundSongName": "Heart of Glass",
+    "backgroundArtist": "Blondie",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0280"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Celia Cruz from?",
+    "correctAnswer": "Cuba",
+    "options": [
+      "Cuba",
+      "Puerto Rico",
+      "Colombia",
+      "Dominican Republic"
+    ],
+    "artistName": "Celia Cruz",
+    "funFact": "Celia Cruz was exiled from Cuba in 1960 and never returned — Fidel Castro personally banned her from entering the country, but she became the 'Queen of Salsa' worldwide",
+    "difficulty": "medium",
+    "backgroundSongName": "La Vida Es Un Carnaval",
+    "backgroundArtist": "Celia Cruz",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0281"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Billie Joe Armstrong from Green Day's side project called?",
+    "correctAnswer": "The Longshot",
+    "options": [
+      "The Longshot",
+      "Foxboro Hot Tubs",
+      "Pinhead Gunpowder",
+      "All of the above"
+    ],
+    "artistName": "Green Day",
+    "funFact": "Billie Joe Armstrong has so many side projects that fans joke he's actually three different musicians — Foxboro Hot Tubs, Pinhead Gunpowder, and The Longshot are all real bands",
+    "difficulty": "hard",
+    "backgroundSongName": "Basket Case",
+    "backgroundArtist": "Green Day",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0282"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Jordan Peele film features 'I Got 5 on It' by Luniz in a terrifying context?",
+    "correctAnswer": "Us",
+    "options": [
+      "Us",
+      "Get Out",
+      "Nope",
+      "Candyman"
+    ],
+    "artistName": "Luniz",
+    "funFact": "Jordan Peele turned a 1995 hip-hop party anthem into one of the scariest movie themes ever — the slowed-down orchestral version of 'I Got 5 on It' became instantly iconic",
+    "difficulty": "medium",
+    "backgroundSongName": "I Got 5 on It",
+    "backgroundArtist": "Luniz",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0283"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is J Balvin from?",
+    "correctAnswer": "Colombia",
+    "options": [
+      "Colombia",
+      "Puerto Rico",
+      "Mexico",
+      "Ecuador"
+    ],
+    "artistName": "J Balvin",
+    "funFact": "J Balvin is called 'The Prince of Reggaeton' — he was the most-streamed Latin artist on Spotify for multiple years running",
+    "difficulty": "easy",
+    "backgroundSongName": "Mi Gente",
+    "backgroundArtist": "J Balvin",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0284"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features a whistled theme that became iconic for Westerns?",
+    "correctAnswer": "The Good, the Bad and the Ugly (film, but the theme is used in TV constantly)",
+    "options": [
+      "The Good, the Bad and the Ugly (film, but the theme is used in TV constantly)",
+      "Bonanza",
+      "Gunsmoke",
+      "Rawhide"
+    ],
+    "artistName": "Ennio Morricone",
+    "funFact": "The iconic whistle was performed by Alessandro Alessandroni — the same session musician who did the Spaghetti Western whistle on almost every Morricone score",
+    "difficulty": "medium",
+    "backgroundSongName": "The Good, the Bad and the Ugly Theme",
+    "backgroundArtist": "Ennio Morricone",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0285"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Linkin Park?",
+    "correctAnswer": "Chester Bennington (until 2017)",
+    "options": [
+      "Chester Bennington (until 2017)",
+      "Mike Shinoda",
+      "Brad Delson",
+      "Rob Bourdon"
+    ],
+    "artistName": "Linkin Park",
+    "funFact": "Chester Bennington's death in 2017 devastated the music world — 'Hybrid Theory' remains one of the best-selling debut albums in history with over 30 million copies",
+    "difficulty": "easy",
+    "backgroundSongName": "In the End",
+    "backgroundArtist": "Linkin Park",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0286"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What record did Olivia Rodrigo break with 'drivers license'?",
+    "correctAnswer": "Most Spotify streams in a single day for a non-holiday song",
+    "options": [
+      "Most Spotify streams in a single day for a non-holiday song",
+      "Youngest #1 artist ever",
+      "Most weeks at #1 for a debut",
+      "First song to reach 1 billion streams in a week"
+    ],
+    "artistName": "Olivia Rodrigo",
+    "funFact": "The drama behind 'drivers license' — rumored to be about Joshua Bassett and Sabrina Carpenter — generated more publicity than any label could have paid for",
+    "difficulty": "medium",
+    "backgroundSongName": "drivers license",
+    "backgroundArtist": "Olivia Rodrigo",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0287"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Harry Styles from?",
+    "correctAnswer": "UK",
+    "options": [
+      "UK",
+      "US",
+      "Ireland",
+      "Australia"
+    ],
+    "artistName": "Harry Styles",
+    "funFact": "Harry Styles was a baker's apprentice in Holmes Chapel, Cheshire before One Direction — the bakery still has photos of him on the wall",
+    "difficulty": "easy",
+    "backgroundSongName": "As It Was",
+    "backgroundArtist": "Harry Styles",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0288"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Guardians of the Galaxy features 'Come and Get Your Love' by Redbone?",
+    "correctAnswer": "Guardians of the Galaxy Vol. 1",
+    "options": [
+      "Guardians of the Galaxy Vol. 1",
+      "Guardians of the Galaxy Vol. 2",
+      "Guardians of the Galaxy Vol. 3",
+      "Thor: Ragnarok"
+    ],
+    "artistName": "Redbone",
+    "funFact": "Redbone is a Native American rock band from the 1970s — James Gunn's use of their song in Guardians of the Galaxy introduced them to an entirely new generation",
+    "difficulty": "easy",
+    "backgroundSongName": "Come and Get Your Love",
+    "backgroundArtist": "Redbone",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0289"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which animated show features a theme by The Dandy Warhols?",
+    "correctAnswer": "Veronica Mars",
+    "options": [
+      "Veronica Mars",
+      "Kim Possible",
+      "Daria",
+      "Invincible"
+    ],
+    "artistName": "The Dandy Warhols",
+    "funFact": "'We Used to Be Friends' by The Dandy Warhols was picked because the show's creator Rob Thomas thought it perfectly captured the bittersweet tone of losing childhood friendships",
+    "difficulty": "hard",
+    "backgroundSongName": "We Used to Be Friends",
+    "backgroundArtist": "The Dandy Warhols",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0290"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Susumu Hirasawa from?",
+    "correctAnswer": "Japan",
+    "options": [
+      "Japan",
+      "South Korea",
+      "China",
+      "Thailand"
+    ],
+    "artistName": "Susumu Hirasawa",
+    "funFact": "Susumu Hirasawa composed the haunting soundtrack for 'Berserk' and 'Paprika' — Satoshi Kon's 'Paprika' later inspired Christopher Nolan's 'Inception'",
+    "difficulty": "hard",
+    "backgroundSongName": "Parade",
+    "backgroundArtist": "Susumu Hirasawa",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0291"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which rapper's real name is Calvin Broadus Jr.?",
+    "correctAnswer": "Snoop Dogg",
+    "options": [
+      "Snoop Dogg",
+      "Dr. Dre",
+      "Ice Cube",
+      "50 Cent"
+    ],
+    "artistName": "Snoop Dogg",
+    "funFact": "Snoop Dogg got his nickname because his mother said he looked like Snoopy from Peanuts — he has since been Snoop Doggy Dogg, Snoop Dogg, Snoop Lion, and DJ Snoopadelic",
+    "difficulty": "medium",
+    "backgroundSongName": "Gin and Juice",
+    "backgroundArtist": "Snoop Dogg",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0292"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the guitarist and co-founder of The Smiths?",
+    "correctAnswer": "Johnny Marr",
+    "options": [
+      "Johnny Marr",
+      "Morrissey",
+      "Andy Rourke",
+      "Mike Joyce"
+    ],
+    "artistName": "The Smiths",
+    "funFact": "Johnny Marr personally knocked on Morrissey's door in 1982 to ask him to form a band — neither knew they'd create one of the most influential bands in indie rock history",
+    "difficulty": "medium",
+    "backgroundSongName": "There Is a Light That Never Goes Out",
+    "backgroundArtist": "The Smiths",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0293"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Gilberto Gil from?",
+    "correctAnswer": "Brazil",
+    "options": [
+      "Brazil",
+      "Portugal",
+      "Angola",
+      "Mozambique"
+    ],
+    "artistName": "Gilberto Gil",
+    "funFact": "Gilberto Gil was exiled from Brazil by the military dictatorship in 1969 for his music — he later became Brazil's Minister of Culture from 2003-2008",
+    "difficulty": "hard",
+    "backgroundSongName": "Aquele Abraço",
+    "backgroundArtist": "Gilberto Gil",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0294"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Pixar film features 'Remember Me' as its central theme?",
+    "correctAnswer": "Coco",
+    "options": [
+      "Coco",
+      "Soul",
+      "Up",
+      "Inside Out"
+    ],
+    "artistName": "Benjamin Bratt",
+    "funFact": "'Remember Me' won the Oscar for Best Original Song — the film beautifully uses both a lullaby version and a bombastic performance version to show how the same song can mean different things",
+    "difficulty": "easy",
+    "backgroundSongName": "Remember Me",
+    "backgroundArtist": "Benjamin Bratt",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0295"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Danish TV series features the theme 'A Drifting Life' by Trentemøller?",
+    "correctAnswer": "Ride Upon the Storm",
+    "options": [
+      "Ride Upon the Storm",
+      "The Rain",
+      "Follow the Money",
+      "Those Who Kill"
+    ],
+    "artistName": "Trentemøller",
+    "funFact": "Trentemøller is one of Denmark's biggest electronic music exports — his dark, atmospheric style made him perfect for scoring Nordic noir television",
+    "difficulty": "hard",
+    "backgroundSongName": "A Drifting Life",
+    "backgroundArtist": "Trentemøller",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0296"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Post Malone's real first name?",
+    "correctAnswer": "Austin",
+    "options": [
+      "Austin",
+      "Tyler",
+      "Blake",
+      "Mason"
+    ],
+    "artistName": "Post Malone",
+    "funFact": "Post Malone got his stage name from a rap name generator when he was 14 — he entered 'Austin Post' and it suggested 'Post Malone'",
+    "difficulty": "medium",
+    "backgroundSongName": "Circles",
+    "backgroundArtist": "Post Malone",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0297"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Caetano Veloso from?",
+    "correctAnswer": "Brazil",
+    "options": [
+      "Brazil",
+      "Portugal",
+      "Cape Verde",
+      "Mozambique"
+    ],
+    "artistName": "Caetano Veloso",
+    "funFact": "Caetano Veloso co-founded Tropicália, a movement that mixed Brazilian folk with psychedelic rock — the military junta arrested and exiled him for it in 1969",
+    "difficulty": "hard",
+    "backgroundSongName": "Cucurrucucú Paloma",
+    "backgroundArtist": "Caetano Veloso",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0298"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Slipknot?",
+    "correctAnswer": "Corey Taylor",
+    "options": [
+      "Corey Taylor",
+      "Mick Thomson",
+      "Jim Root",
+      "Craig Jones"
+    ],
+    "artistName": "Slipknot",
+    "funFact": "Slipknot has 9 members, each identified by a number (0-8) and wearing unique masks — Corey Taylor is #8 and has changed his mask for every album",
+    "difficulty": "medium",
+    "backgroundSongName": "Wait and Bleed",
+    "backgroundArtist": "Slipknot",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0299"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What did Flume sample to create his breakthrough hit 'Holdin On'?",
+    "correctAnswer": "A pitched-up vocal sample",
+    "options": [
+      "A pitched-up vocal sample",
+      "A bird recording",
+      "A washing machine",
+      "A children's choir"
+    ],
+    "artistName": "Flume",
+    "funFact": "Flume was only 21 when his debut album went #1 in Australia — he produced the entire thing in his bedroom in Sydney",
+    "difficulty": "hard",
+    "backgroundSongName": "Holdin On",
+    "backgroundArtist": "Flume",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0300"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features 'Take Me Home, Country Roads' by John Denver in a post-apocalyptic context?",
+    "correctAnswer": "The Last of Us (HBO)",
+    "options": [
+      "The Last of Us (HBO)",
+      "Fallout",
+      "The Walking Dead",
+      "Station Eleven"
+    ],
+    "artistName": "John Denver",
+    "funFact": "'Take Me Home, Country Roads' became synonymous with both the Fallout game franchise AND The Last of Us — turning a cheerful 1971 folk song into a post-apocalyptic anthem",
+    "difficulty": "medium",
+    "backgroundSongName": "Take Me Home, Country Roads",
+    "backgroundArtist": "John Denver",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0301"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which superhero film features 'All the Stars' by Kendrick Lamar and SZA?",
+    "correctAnswer": "Black Panther",
+    "options": [
+      "Black Panther",
+      "Spider-Man: Into the Spider-Verse",
+      "The Batman",
+      "Black Adam"
+    ],
+    "artistName": "Kendrick Lamar",
+    "funFact": "Kendrick Lamar curated the entire Black Panther soundtrack — it was the first superhero film soundtrack to be nominated for Album of the Year at the Grammys",
+    "difficulty": "easy",
+    "backgroundSongName": "All the Stars",
+    "backgroundArtist": "Kendrick Lamar & SZA",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0302"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the frontman of Arctic Monkeys?",
+    "correctAnswer": "Alex Turner",
+    "options": [
+      "Alex Turner",
+      "Jamie Cook",
+      "Matt Helders",
+      "Nick O'Malley"
+    ],
+    "artistName": "Arctic Monkeys",
+    "funFact": "Arctic Monkeys were the first band to reach #1 in the UK primarily through internet hype — fans shared demos on MySpace before the label even knew about them",
+    "difficulty": "easy",
+    "backgroundSongName": "Do I Wanna Know?",
+    "backgroundArtist": "Arctic Monkeys",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0303"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Wyclef Jean from?",
+    "correctAnswer": "Haiti",
+    "options": [
+      "Haiti",
+      "Jamaica",
+      "Trinidad",
+      "US"
+    ],
+    "artistName": "Wyclef Jean",
+    "funFact": "Wyclef Jean actually ran for president of Haiti in 2010 but was disqualified because he hadn't lived there for five consecutive years as required by the constitution",
+    "difficulty": "medium",
+    "backgroundSongName": "Gone Till November",
+    "backgroundArtist": "Wyclef Jean",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0304"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Dolly Parton's response when asked if she was offended that people make fun of her appearance?",
+    "correctAnswer": "'It costs a lot of money to look this cheap'",
+    "options": [
+      "'It costs a lot of money to look this cheap'",
+      "'Beauty is pain, honey'",
+      "'I don't care what they think'",
+      "'My husband likes it'"
+    ],
+    "artistName": "Dolly Parton",
+    "funFact": "Dolly Parton has given away over 200 million free books to children through her Imagination Library — she also funded Moderna's COVID vaccine research with a $1 million donation",
+    "difficulty": "easy",
+    "backgroundSongName": "Jolene",
+    "backgroundArtist": "Dolly Parton",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0305"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which sitcom features a theme written and performed by the Rembrandts that starts with four hand claps?",
+    "correctAnswer": "Friends",
+    "options": [
+      "Friends",
+      "How I Met Your Mother",
+      "Seinfeld",
+      "Will & Grace"
+    ],
+    "artistName": "The Rembrandts",
+    "funFact": "The four hand claps in the Friends theme were added because the producers wanted something the audience could do along — it became the most recognizable TV intro rhythm ever",
+    "difficulty": "easy",
+    "backgroundSongName": "I'll Be There for You",
+    "backgroundArtist": "The Rembrandts",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0306"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Massive Attack from?",
+    "correctAnswer": "UK",
+    "options": [
+      "UK",
+      "US",
+      "Jamaica",
+      "France"
+    ],
+    "artistName": "Massive Attack",
+    "funFact": "Massive Attack is from Bristol, England — they essentially invented trip-hop, a genre that didn't even have a name until journalists needed something to call their music",
+    "difficulty": "medium",
+    "backgroundSongName": "Teardrop",
+    "backgroundArtist": "Massive Attack",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0307"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which David Fincher film features 'Creep' by Radiohead on its soundtrack?",
+    "correctAnswer": "The Social Network (it doesn't — common misconception)",
+    "options": [
+      "The Social Network (it doesn't — common misconception)",
+      "Gone Girl",
+      "Se7en",
+      "Zodiac"
+    ],
+    "artistName": "Trent Reznor",
+    "funFact": "The Social Network's score by Trent Reznor and Atticus Ross won the Oscar — Reznor went from Nine Inch Nails industrial metal to Academy Award-winning film composer",
+    "difficulty": "hard",
+    "backgroundSongName": "In the Hall of the Mountain King (Social Network version)",
+    "backgroundArtist": "Trent Reznor & Atticus Ross",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0308"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who founded Gorillaz with Damon Albarn?",
+    "correctAnswer": "Jamie Hewlett",
+    "options": [
+      "Jamie Hewlett",
+      "Noel Gallagher",
+      "Graham Coxon",
+      "Alex James"
+    ],
+    "artistName": "Gorillaz",
+    "funFact": "Jamie Hewlett is a comic book artist, not a musician — he and Albarn created Gorillaz while sharing a flat, watching too much MTV and complaining about how terrible music videos had become",
+    "difficulty": "medium",
+    "backgroundSongName": "Clint Eastwood",
+    "backgroundArtist": "Gorillaz",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0309"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What language does Sigur Rós often sing in?",
+    "correctAnswer": "Hopelandic (a made-up language)",
+    "options": [
+      "Hopelandic (a made-up language)",
+      "Icelandic only",
+      "Swedish",
+      "Finnish"
+    ],
+    "artistName": "Sigur Rós",
+    "funFact": "'Hopelandic' (Vonlenska) is Jónsi's invented language of nonsense syllables that SOUND like Icelandic but carry no meaning — it lets listeners project their own emotions onto the music",
+    "difficulty": "hard",
+    "backgroundSongName": "Hoppípolla",
+    "backgroundArtist": "Sigur Rós",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0310"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Bonobo from?",
+    "correctAnswer": "UK",
+    "options": [
+      "UK",
+      "Japan",
+      "Germany",
+      "Iceland"
+    ],
+    "artistName": "Bonobo",
+    "funFact": "Bonobo (Simon Green) named himself after the peaceful primate species — his downtempo electronic music is regularly used in yoga studios and nature documentaries worldwide",
+    "difficulty": "medium",
+    "backgroundSongName": "Kerala",
+    "backgroundArtist": "Bonobo",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0311"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which HBO series about a dysfunctional wealthy family features a theme by Nicholas Britell?",
+    "correctAnswer": "Succession",
+    "options": [
+      "Succession",
+      "Billions",
+      "Industry",
+      "The White Lotus"
+    ],
+    "artistName": "Nicholas Britell",
+    "funFact": "The Succession theme mixes classical piano with hip-hop beats — Nicholas Britell originally composed hip-hop beats for Natalie Portman before scoring prestige TV",
+    "difficulty": "medium",
+    "backgroundSongName": "Succession Theme",
+    "backgroundArtist": "Nicholas Britell",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0312"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the real name of the artist known as The Weeknd?",
+    "correctAnswer": "Abel Tesfaye",
+    "options": [
+      "Abel Tesfaye",
+      "Adam Wiles",
+      "Robert Williams",
+      "Michael Abel"
+    ],
+    "artistName": "The Weeknd",
+    "funFact": "Abel Tesfaye dropped out of school at 17, left home, and chose 'The Weeknd' because he left on a weekend — he dropped the 'e' because another band already had that name",
+    "difficulty": "medium",
+    "backgroundSongName": "Blinding Lights",
+    "backgroundArtist": "The Weeknd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0313"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Marvel film features 'Immigrant Song' by Led Zeppelin in an epic fight scene?",
+    "correctAnswer": "Thor: Ragnarok",
+    "options": [
+      "Thor: Ragnarok",
+      "The Avengers",
+      "Black Panther",
+      "Guardians of the Galaxy"
+    ],
+    "artistName": "Led Zeppelin",
+    "funFact": "Director Taika Waititi personally called Robert Plant to get permission to use 'Immigrant Song' — the band almost never licenses their music, but loved the film's concept",
+    "difficulty": "easy",
+    "backgroundSongName": "Immigrant Song",
+    "backgroundArtist": "Led Zeppelin",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0314"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Gojira from?",
+    "correctAnswer": "France",
+    "options": [
+      "France",
+      "Japan",
+      "Sweden",
+      "Norway"
+    ],
+    "artistName": "Gojira",
+    "funFact": "Gojira are from Bayonne in southern France — their name comes from the Japanese word for Godzilla, and they've become the biggest French metal band in history",
+    "difficulty": "hard",
+    "backgroundSongName": "Flying Whales",
+    "backgroundArtist": "Gojira",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0315"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the DJ and producer behind The Chemical Brothers?",
+    "correctAnswer": "Tom Rowlands and Ed Simons",
+    "options": [
+      "Tom Rowlands and Ed Simons",
+      "Fatboy Slim",
+      "The Prodigy",
+      "Underworld"
+    ],
+    "artistName": "The Chemical Brothers",
+    "funFact": "Tom and Ed met at Manchester University in 1989 at a nightclub — they bonded over a shared love of hip-hop and acid house and started DJing together that night",
+    "difficulty": "hard",
+    "backgroundSongName": "Block Rockin' Beats",
+    "backgroundArtist": "The Chemical Brothers",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0316"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Kate Bush's first single that went to #1 when she was just 19?",
+    "correctAnswer": "Wuthering Heights",
+    "options": [
+      "Wuthering Heights",
+      "Running Up That Hill",
+      "Babooshka",
+      "Hounds of Love"
+    ],
+    "artistName": "Kate Bush",
+    "funFact": "Kate Bush became relevant to a new generation in 2022 when 'Running Up That Hill' was featured in Stranger Things — it reached #1 in the UK, 37 years after its original release",
+    "difficulty": "medium",
+    "backgroundSongName": "Running Up That Hill",
+    "backgroundArtist": "Kate Bush",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0317"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Trentemøller from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Sweden",
+      "Norway"
+    ],
+    "artistName": "Trentemøller",
+    "funFact": "Trentemøller's debut 'The Last Resort' is considered one of the best electronic albums of the 2000s — he makes dark, cinematic music from his studio in Copenhagen",
+    "difficulty": "medium",
+    "backgroundSongName": "Moan",
+    "backgroundArtist": "Trentemøller",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0318"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Netflix series about chess features a score that became a standalone classical hit?",
+    "correctAnswer": "The Queen's Gambit",
+    "options": [
+      "The Queen's Gambit",
+      "Genius",
+      "The Crown",
+      "Bridgerton"
+    ],
+    "artistName": "Carlos Rafael Rivera",
+    "funFact": "Carlos Rafael Rivera's Queen's Gambit score was streamed over 4 million times on Spotify — unprecedented for a TV score. It won the Emmy for Outstanding Music Composition",
+    "difficulty": "medium",
+    "backgroundSongName": "Main Title - The Queen's Gambit",
+    "backgroundArtist": "Carlos Rafael Rivera",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0319"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which artist's debut album 'The Miseducation of Lauryn Hill' won 5 Grammys?",
+    "correctAnswer": "Lauryn Hill",
+    "options": [
+      "Lauryn Hill",
+      "Erykah Badu",
+      "Missy Elliott",
+      "Mary J. Blige"
+    ],
+    "artistName": "Lauryn Hill",
+    "funFact": "'Miseducation' was largely recorded in Lauryn Hill's home studio — she played most instruments herself. It won Album of the Year, making her the first hip-hop artist to receive the honor",
+    "difficulty": "medium",
+    "backgroundSongName": "Doo Wop (That Thing)",
+    "backgroundArtist": "Lauryn Hill",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0320"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Guy Ritchie film features 'Disco Science' by Mirwais?",
+    "correctAnswer": "Snatch",
+    "options": [
+      "Snatch",
+      "Lock, Stock and Two Smoking Barrels",
+      "RocknRolla",
+      "The Gentlemen"
+    ],
+    "artistName": "Mirwais",
+    "funFact": "Mirwais Ahmadzaï later produced Madonna's 'Music' and 'American Life' albums — but his Snatch soundtrack moment remains his most culturally embedded work",
+    "difficulty": "hard",
+    "backgroundSongName": "Disco Science",
+    "backgroundArtist": "Mirwais",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0321"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Agnes Obel from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Agnes Obel",
+    "funFact": "Agnes Obel composes music using a technique she calls 'prepared piano' — placing objects on piano strings to create otherworldly sounds in her Berlin apartment studio",
+    "difficulty": "medium",
+    "backgroundSongName": "Riverside",
+    "backgroundArtist": "Agnes Obel",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0322"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the bassist of Muse?",
+    "correctAnswer": "Chris Wolstenholme",
+    "options": [
+      "Chris Wolstenholme",
+      "Matt Bellamy",
+      "Dominic Howard",
+      "Morgan Nicholls"
+    ],
+    "artistName": "Muse",
+    "funFact": "Chris Wolstenholme overcame severe alcoholism during the recording of 'The Resistance' — the band's song 'Save Me' from the next album was his first lead vocal about recovery",
+    "difficulty": "hard",
+    "backgroundSongName": "Hysteria",
+    "backgroundArtist": "Muse",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0323"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What does BTS stand for in Korean?",
+    "correctAnswer": "Bangtan Sonyeondan (Bulletproof Boy Scouts)",
+    "options": [
+      "Bangtan Sonyeondan (Bulletproof Boy Scouts)",
+      "Beyond The Stars",
+      "Beautiful True Stars",
+      "Boys That Sing"
+    ],
+    "artistName": "BTS",
+    "funFact": "BTS started from a tiny Korean label with almost no budget — they built their fanbase through free content on social media, becoming the biggest band in the world without traditional Western marketing",
+    "difficulty": "medium",
+    "backgroundSongName": "Dynamite",
+    "backgroundArtist": "BTS",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0324"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Tinariwen from?",
+    "correctAnswer": "Mali",
+    "options": [
+      "Mali",
+      "Morocco",
+      "Algeria",
+      "Niger"
+    ],
+    "artistName": "Tinariwen",
+    "funFact": "Tinariwen are Tuareg musicians who formed in a Libyan refugee camp — their 'desert blues' guitar style directly influenced post-rock bands worldwide",
+    "difficulty": "hard",
+    "backgroundSongName": "Chabiba",
+    "backgroundArtist": "Tinariwen",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0325"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'A Real Hero' by College & Electric Youth?",
+    "correctAnswer": "Drive",
+    "options": [
+      "Drive",
+      "Nightcrawler",
+      "Only God Forgives",
+      "The Place Beyond the Pines"
+    ],
+    "artistName": "College & Electric Youth",
+    "funFact": "The Drive soundtrack launched the entire 'synthwave' revival genre — suddenly every indie film wanted that 1980s neon-soaked electronic sound",
+    "difficulty": "medium",
+    "backgroundSongName": "A Real Hero",
+    "backgroundArtist": "College & Electric Youth",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0326"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Nordic noir TV series features a moody electronic theme by Trentemøller?",
+    "correctAnswer": "Forbrydelsen (The Killing)",
+    "options": [
+      "Forbrydelsen (The Killing)",
+      "The Bridge",
+      "Borgen",
+      "Trapped"
+    ],
+    "artistName": "Trentemøller",
+    "funFact": "Danish TV soundtracks became a global export alongside the shows themselves — Forbrydelsen's atmospheric sound helped define the 'Nordic noir' aesthetic worldwide",
+    "difficulty": "hard",
+    "backgroundSongName": "The Killing Theme",
+    "backgroundArtist": "Trentemøller",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0327"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Joni Mitchell's real birth name?",
+    "correctAnswer": "Roberta Joan Anderson",
+    "options": [
+      "Roberta Joan Anderson",
+      "Joni Martin",
+      "Joan Michelle",
+      "Janet Mitchell"
+    ],
+    "artistName": "Joni Mitchell",
+    "funFact": "Joni Mitchell gave up a daughter for adoption in 1965 before she was famous — they reunited 32 years later in 1997, and the experience influenced much of her songwriting",
+    "difficulty": "hard",
+    "backgroundSongName": "Both Sides Now",
+    "backgroundArtist": "Joni Mitchell",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0328"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Ravi Shankar from?",
+    "correctAnswer": "India",
+    "options": [
+      "India",
+      "Pakistan",
+      "Bangladesh",
+      "Sri Lanka"
+    ],
+    "artistName": "Ravi Shankar",
+    "funFact": "Ravi Shankar taught George Harrison to play sitar, introducing Indian classical music to the Western world — his daughter Norah Jones also became a multi-Grammy winning artist",
+    "difficulty": "medium",
+    "backgroundSongName": "Raga Jog",
+    "backgroundArtist": "Ravi Shankar",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0329"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the rapper in Run the Jewels alongside El-P?",
+    "correctAnswer": "Killer Mike",
+    "options": [
+      "Killer Mike",
+      "Aesop Rock",
+      "Danny Brown",
+      "Vince Staples"
+    ],
+    "artistName": "Run the Jewels",
+    "funFact": "Killer Mike is also a political activist — he gave a famous speech during the 2020 Atlanta protests that was broadcast nationwide, showing hip-hop's political power",
+    "difficulty": "medium",
+    "backgroundSongName": "Close Your Eyes",
+    "backgroundArtist": "Run the Jewels",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0330"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Tarantino film features 'Battle Without Honor or Humanity' by Tomoyasu Hotei?",
+    "correctAnswer": "Kill Bill: Volume 1",
+    "options": [
+      "Kill Bill: Volume 1",
+      "Pulp Fiction",
+      "Django Unchained",
+      "The Hateful Eight"
+    ],
+    "artistName": "Tomoyasu Hotei",
+    "funFact": "Tomoyasu Hotei is a Japanese rock guitarist — his instrumental became so associated with Kill Bill that most people think it was written for the film, but it existed since 2000",
+    "difficulty": "medium",
+    "backgroundSongName": "Battle Without Honor or Humanity",
+    "backgroundArtist": "Tomoyasu Hotei",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0331"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the name of Kanye West's mother, who inspired the album 'Donda'?",
+    "correctAnswer": "Donda West",
+    "options": [
+      "Donda West",
+      "Dorothy West",
+      "Diana West",
+      "Donna West"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "Donda West was an English professor who left her tenure to manage Kanye's career — her death in 2007 profoundly affected him and shaped the rest of his artistic output",
+    "difficulty": "medium",
+    "backgroundSongName": "Donda Chant",
+    "backgroundArtist": "Kanye West",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0332"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features 'Life on Mars?' by David Bowie as its title and theme?",
+    "correctAnswer": "Life on Mars",
+    "options": [
+      "Life on Mars",
+      "Ashes to Ashes",
+      "The Man Who Fell to Earth",
+      "Lazarus"
+    ],
+    "artistName": "David Bowie",
+    "funFact": "The BBC series 'Life on Mars' was named after the Bowie song because the show's concept — a detective transported to 1973 — felt as alien as the song's lyrics",
+    "difficulty": "medium",
+    "backgroundSongName": "Life on Mars?",
+    "backgroundArtist": "David Bowie",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0333"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who was the original guitarist of D-A-D (Disneyland After Dark)?",
+    "correctAnswer": "Jacob Binzer",
+    "options": [
+      "Jacob Binzer",
+      "Jesper Binzer",
+      "Stig Pedersen",
+      "Laust Sonne"
+    ],
+    "artistName": "D-A-D",
+    "funFact": "D-A-D had to change their name from 'Disneyland After Dark' after Disney threatened to sue — they kept the initials and became one of Denmark's biggest rock exports",
+    "difficulty": "hard",
+    "backgroundSongName": "Sleeping My Day Away",
+    "backgroundArtist": "D-A-D",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0334"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which producer created the 'Wall of Sound' technique in the 1960s?",
+    "correctAnswer": "Phil Spector",
+    "options": [
+      "Phil Spector",
+      "George Martin",
+      "Brian Eno",
+      "Quincy Jones"
+    ],
+    "artistName": "The Ronettes",
+    "funFact": "Phil Spector's Wall of Sound used dozens of musicians playing the same parts simultaneously — the Righteous Brothers' 'You've Lost That Lovin' Feelin'' is considered its masterpiece",
+    "difficulty": "hard",
+    "backgroundSongName": "Be My Baby",
+    "backgroundArtist": "The Ronettes",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0335"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Vangelis from?",
+    "correctAnswer": "Greece",
+    "options": [
+      "Greece",
+      "Italy",
+      "France",
+      "Turkey"
+    ],
+    "artistName": "Vangelis",
+    "funFact": "Vangelis' Chariots of Fire theme is one of the most recognizable pieces of music ever — he composed it in one take on his synthesizer and initially thought it was too simple",
+    "difficulty": "medium",
+    "backgroundSongName": "Chariots of Fire",
+    "backgroundArtist": "Vangelis",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0336"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which James Cameron film features 'I See You' performed by Leona Lewis?",
+    "correctAnswer": "Avatar",
+    "options": [
+      "Avatar",
+      "Titanic",
+      "The Abyss",
+      "True Lies"
+    ],
+    "artistName": "Leona Lewis",
+    "funFact": "James Cameron chose Leona Lewis after hearing her X Factor-winning voice — 'I See You' continued his tradition of massive female-vocal end-credits songs after Celine Dion's Titanic theme",
+    "difficulty": "medium",
+    "backgroundSongName": "I See You",
+    "backgroundArtist": "Leona Lewis",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0337"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the vocalist of Portishead?",
+    "correctAnswer": "Beth Gibbons",
+    "options": [
+      "Beth Gibbons",
+      "Elizabeth Fraser",
+      "Tricky",
+      "Geoff Barrow"
+    ],
+    "artistName": "Portishead",
+    "funFact": "Beth Gibbons suffers from intense stage fright — despite being one of the most acclaimed vocalists in music, she rarely performs live and once said performing makes her physically ill",
+    "difficulty": "hard",
+    "backgroundSongName": "Glory Box",
+    "backgroundArtist": "Portishead",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0338"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What instrument is Yo-Yo Ma famous for playing?",
+    "correctAnswer": "Cello",
+    "options": [
+      "Cello",
+      "Violin",
+      "Viola",
+      "Double bass"
+    ],
+    "artistName": "Yo-Yo Ma",
+    "funFact": "Yo-Yo Ma once left his $2.5 million Stradivarius cello in a New York taxi — it was returned safely. He's done this with instruments worth millions MULTIPLE times",
+    "difficulty": "easy",
+    "backgroundSongName": "The Swan",
+    "backgroundArtist": "Yo-Yo Ma",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T19:30:00Z",
+    "id": "manual-0339"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Nina Simone's original career ambition before music?",
+    "correctAnswer": "Concert pianist — she wanted to be the first Black female classical pianist",
+    "options": [
+      "Concert pianist — she wanted to be the first Black female classical pianist",
+      "Opera singer",
+      "Jazz dancer",
+      "Broadway actress"
+    ],
+    "artistName": "Nina Simone",
+    "funFact": "Nina Simone was denied a scholarship to the Curtis Institute of Music — she believed it was because of her race. This rejection radicalized her and shaped her entire career",
+    "difficulty": "hard",
+    "backgroundSongName": "Feeling Good",
+    "backgroundArtist": "Nina Simone",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0340"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the DJ of The Prodigy?",
+    "correctAnswer": "Liam Howlett",
+    "options": [
+      "Liam Howlett",
+      "Keith Flint",
+      "Maxim",
+      "Leeroy Thornhill"
+    ],
+    "artistName": "The Prodigy",
+    "funFact": "Liam Howlett composed all of The Prodigy's music entirely by himself — Keith Flint was the frontman and dancer, not a musician, which made their live shows uniquely explosive",
+    "difficulty": "medium",
+    "backgroundSongName": "Firestarter",
+    "backgroundArtist": "The Prodigy",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0341"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Wes Anderson film features Alexandre Desplat's whimsical score and 'The Grand Budapest Hotel Waltz'?",
+    "correctAnswer": "The Grand Budapest Hotel",
+    "options": [
+      "The Grand Budapest Hotel",
+      "The French Dispatch",
+      "Isle of Dogs",
+      "Fantastic Mr. Fox"
+    ],
+    "artistName": "Alexandre Desplat",
+    "funFact": "Alexandre Desplat composed the score using a combination of Russian balalaika, zither, and alpine instruments — it won the Oscar for Best Original Score",
+    "difficulty": "medium",
+    "backgroundSongName": "Mr. Moustafa",
+    "backgroundArtist": "Alexandre Desplat",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0342"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features the iconic 'Peter Gunn Theme' by Henry Mancini?",
+    "correctAnswer": "Peter Gunn",
+    "options": [
+      "Peter Gunn",
+      "Dragnet",
+      "The Untouchables",
+      "77 Sunset Strip"
+    ],
+    "artistName": "Henry Mancini",
+    "funFact": "The Peter Gunn Theme is considered the first rock and roll TV theme — its driving bass line influenced everyone from The Blues Brothers to Eminem",
+    "difficulty": "hard",
+    "backgroundSongName": "Peter Gunn Theme",
+    "backgroundArtist": "Henry Mancini",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0343"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Billie Holiday's iconic accessory she always wore while performing?",
+    "correctAnswer": "White gardenia in her hair",
+    "options": [
+      "White gardenia in her hair",
+      "Pearl necklace",
+      "Red gloves",
+      "Diamond earrings"
+    ],
+    "artistName": "Billie Holiday",
+    "funFact": "Billie Holiday started wearing the gardenia to cover a burn mark from a curling iron — it became so iconic that fans would throw gardenias on stage",
+    "difficulty": "medium",
+    "backgroundSongName": "Strange Fruit",
+    "backgroundArtist": "Billie Holiday",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0344"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who was the lead singer of Soundgarden?",
+    "correctAnswer": "Chris Cornell",
+    "options": [
+      "Chris Cornell",
+      "Eddie Vedder",
+      "Layne Staley",
+      "Scott Weiland"
+    ],
+    "artistName": "Soundgarden",
+    "funFact": "Chris Cornell had a four-octave vocal range — his voice on 'Black Hole Sun' was voted one of the greatest in rock history. He also wrote 'You Know My Name' for James Bond",
+    "difficulty": "medium",
+    "backgroundSongName": "Black Hole Sun",
+    "backgroundArtist": "Soundgarden",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0345"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which John Hughes film features 'Don't You (Forget About Me)' by Simple Minds?",
+    "correctAnswer": "The Breakfast Club",
+    "options": [
+      "The Breakfast Club",
+      "Ferris Bueller's Day Off",
+      "Sixteen Candles",
+      "Pretty in Pink"
+    ],
+    "artistName": "Simple Minds",
+    "funFact": "Simple Minds initially rejected the song — they thought it was too pop. After Bryan Ferry and Billy Idol also turned it down, Simple Minds recorded it reluctantly. It became their biggest hit",
+    "difficulty": "easy",
+    "backgroundSongName": "Don't You (Forget About Me)",
+    "backgroundArtist": "Simple Minds",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0346"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV show features 'Suicide is Painless' as its theme?",
+    "correctAnswer": "M*A*S*H",
+    "options": [
+      "M*A*S*H",
+      "ER",
+      "China Beach",
+      "Band of Brothers"
+    ],
+    "artistName": "Johnny Mandel",
+    "funFact": "The MASH theme was written for the 1970 film — director Robert Altman's 14-year-old son wrote the lyrics because Altman needed them to be 'the stupidest lyrics ever written'",
+    "difficulty": "medium",
+    "backgroundSongName": "Suicide is Painless",
+    "backgroundArtist": "Johnny Mandel",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0347"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Miriam Makeba from?",
+    "correctAnswer": "South Africa",
+    "options": [
+      "South Africa",
+      "Nigeria",
+      "Kenya",
+      "Tanzania"
+    ],
+    "artistName": "Miriam Makeba",
+    "funFact": "Miriam Makeba was exiled from South Africa for 30 years for speaking out against apartheid — Nelson Mandela personally invited her back in 1990",
+    "difficulty": "medium",
+    "backgroundSongName": "Pata Pata",
+    "backgroundArtist": "Miriam Makeba",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0348"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Ray Charles' breakthrough that fused gospel with R&B?",
+    "correctAnswer": "'I Got a Woman' (1954) — he put secular lyrics over gospel melodies",
+    "options": [
+      "'I Got a Woman' (1954) — he put secular lyrics over gospel melodies",
+      "His piano technique",
+      "His use of electric guitar",
+      "His backing choir"
+    ],
+    "artistName": "Ray Charles",
+    "funFact": "Ray Charles was called a sinner by churches and too holy by clubs — but by combining gospel and blues, he essentially invented soul music",
+    "difficulty": "hard",
+    "backgroundSongName": "I Got a Woman",
+    "backgroundArtist": "Ray Charles",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0349"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the guitarist of Rage Against the Machine known for unconventional techniques?",
+    "correctAnswer": "Tom Morello",
+    "options": [
+      "Tom Morello",
+      "Kirk Hammett",
+      "Slash",
+      "The Edge"
+    ],
+    "artistName": "Rage Against the Machine",
+    "funFact": "Tom Morello has a degree from Harvard in Political Science — he uses his guitar as a political weapon, creating sounds with toggle switches and Allen keys instead of effects pedals",
+    "difficulty": "medium",
+    "backgroundSongName": "Bulls on Parade",
+    "backgroundArtist": "Rage Against the Machine",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0350"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Tim Burton film features Danny Elfman's most iconic score?",
+    "correctAnswer": "Edward Scissorhands",
+    "options": [
+      "Edward Scissorhands",
+      "Batman",
+      "Beetlejuice",
+      "The Nightmare Before Christmas"
+    ],
+    "artistName": "Danny Elfman",
+    "funFact": "Danny Elfman has scored almost every Tim Burton film since Pee-wee's Big Adventure — their partnership has produced some of the most recognizable film music of the last 40 years",
+    "difficulty": "medium",
+    "backgroundSongName": "Ice Dance",
+    "backgroundArtist": "Danny Elfman",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0351"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which crime drama features 'Get Ready' by Rare Earth in its opening credits?",
+    "correctAnswer": "Brooklyn Nine-Nine does not use this — trick question",
+    "options": [
+      "Brooklyn Nine-Nine does not use this — trick question",
+      "NYPD Blue",
+      "Miami Vice",
+      "Starsky & Hutch"
+    ],
+    "artistName": "Rare Earth",
+    "funFact": "Miami Vice's theme by Jan Hammer is one of the few TV themes to reach #1 on the Billboard Hot 100 — it defined the sound of 1980s television",
+    "difficulty": "hard",
+    "backgroundSongName": "Miami Vice Theme",
+    "backgroundArtist": "Jan Hammer",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0352"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Sean Paul from?",
+    "correctAnswer": "Jamaica",
+    "options": [
+      "Jamaica",
+      "Trinidad",
+      "Barbados",
+      "US"
+    ],
+    "artistName": "Sean Paul",
+    "funFact": "Sean Paul was a competitive water polo player who represented Jamaica internationally before his music career took off with 'Get Busy'",
+    "difficulty": "easy",
+    "backgroundSongName": "Get Busy",
+    "backgroundArtist": "Sean Paul",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0353"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What concept album tells the story of a rock opera about a pinball wizard?",
+    "correctAnswer": "Tommy by The Who",
+    "options": [
+      "Tommy by The Who",
+      "The Wall by Pink Floyd",
+      "Ziggy Stardust by David Bowie",
+      "American Idiot by Green Day"
+    ],
+    "artistName": "The Who",
+    "funFact": "Pete Townshend wrote Tommy while following the teachings of Meher Baba, an Indian spiritual master — the opera's themes of spiritual awakening reflect this influence",
+    "difficulty": "medium",
+    "backgroundSongName": "Pinball Wizard",
+    "backgroundArtist": "The Who",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0354"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Bon Jovi?",
+    "correctAnswer": "Jon Bon Jovi",
+    "options": [
+      "Jon Bon Jovi",
+      "Richie Sambora",
+      "David Bryan",
+      "Tico Torres"
+    ],
+    "artistName": "Bon Jovi",
+    "funFact": "Jon Bon Jovi's real name is John Francis Bongiovi Jr. — he worked as a janitor at his cousin's recording studio before 'Livin' on a Prayer' made him a superstar",
+    "difficulty": "easy",
+    "backgroundSongName": "Livin' on a Prayer",
+    "backgroundArtist": "Bon Jovi",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0355"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Moon River' performed by Audrey Hepburn?",
+    "correctAnswer": "Breakfast at Tiffany's",
+    "options": [
+      "Breakfast at Tiffany's",
+      "Roman Holiday",
+      "My Fair Lady",
+      "Funny Face"
+    ],
+    "artistName": "Audrey Hepburn",
+    "funFact": "The studio wanted to cut 'Moon River' from the film — Audrey Hepburn reportedly said 'Over my dead body!' It went on to win the Oscar for Best Original Song",
+    "difficulty": "easy",
+    "backgroundSongName": "Moon River",
+    "backgroundArtist": "Audrey Hepburn",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0356"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV show features 'Bad Reputation' by Joan Jett?",
+    "correctAnswer": "Freaks and Geeks",
+    "options": [
+      "Freaks and Geeks",
+      "Buffy the Vampire Slayer",
+      "Daria",
+      "Jessica Jones"
+    ],
+    "artistName": "Joan Jett",
+    "funFact": "Joan Jett was rejected by 23 record labels before starting her own — Blackheart Records became one of the first successful female-owned labels in rock history",
+    "difficulty": "medium",
+    "backgroundSongName": "Bad Reputation",
+    "backgroundArtist": "Joan Jett",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0357"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Rachmaninoff from?",
+    "correctAnswer": "Russia",
+    "options": [
+      "Russia",
+      "Poland",
+      "Czech Republic",
+      "Hungary"
+    ],
+    "artistName": "Rachmaninoff",
+    "funFact": "Rachmaninoff had extraordinarily large hands — he could span 12 piano keys, which is why some of his pieces are nearly impossible for pianists with normal-sized hands",
+    "difficulty": "medium",
+    "backgroundSongName": "Piano Concerto No. 2",
+    "backgroundArtist": "Rachmaninoff",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0358"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Ella Fitzgerald's signature vocal technique?",
+    "correctAnswer": "Scat singing — improvised nonsense syllables",
+    "options": [
+      "Scat singing — improvised nonsense syllables",
+      "Whistling",
+      "Yodeling",
+      "Throat singing"
+    ],
+    "artistName": "Ella Fitzgerald",
+    "funFact": "Ella Fitzgerald originally auditioned as a dancer at the Apollo Theater — she was too nervous to dance, so she sang instead and won the amateur contest",
+    "difficulty": "medium",
+    "backgroundSongName": "Summertime",
+    "backgroundArtist": "Ella Fitzgerald",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0359"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Iron Maiden?",
+    "correctAnswer": "Bruce Dickinson",
+    "options": [
+      "Bruce Dickinson",
+      "Steve Harris",
+      "Dave Murray",
+      "Adrian Smith"
+    ],
+    "artistName": "Iron Maiden",
+    "funFact": "Bruce Dickinson is also a licensed commercial airline pilot — he personally flew the band's Boeing 747 'Ed Force One' on world tours",
+    "difficulty": "medium",
+    "backgroundSongName": "The Trooper",
+    "backgroundArtist": "Iron Maiden",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0360"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Ridley Scott film features Vangelis' iconic electronic score?",
+    "correctAnswer": "Blade Runner",
+    "options": [
+      "Blade Runner",
+      "Alien",
+      "Gladiator",
+      "Thelma & Louise"
+    ],
+    "artistName": "Vangelis",
+    "funFact": "The Blade Runner score wasn't officially released for 12 years due to legal disputes — bootleg copies became some of the most sought-after recordings in film music history",
+    "difficulty": "medium",
+    "backgroundSongName": "Blade Runner Blues",
+    "backgroundArtist": "Vangelis",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0361"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV drama features 'You Only Live Twice' reworked by Björk?",
+    "correctAnswer": "None — but Björk performed a Bond-style theme for the film Dancer in the Dark",
+    "options": [
+      "None — but Björk performed a Bond-style theme for the film Dancer in the Dark",
+      "Killing Eve",
+      "The Night Manager",
+      "Alias"
+    ],
+    "artistName": "Björk",
+    "funFact": "Björk won the Best Actress award at Cannes for Dancer in the Dark — the only time she's acted in a film, and she said the experience was so traumatic she'll never act again",
+    "difficulty": "hard",
+    "backgroundSongName": "It's Oh So Quiet",
+    "backgroundArtist": "Björk",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0362"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the longest song ever to reach #1 on the Billboard Hot 100?",
+    "correctAnswer": "All Too Well (10 Minute Version) by Taylor Swift",
+    "options": [
+      "All Too Well (10 Minute Version) by Taylor Swift",
+      "American Pie by Don McLean",
+      "Bohemian Rhapsody by Queen",
+      "November Rain by Guns N' Roses"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "At 10 minutes 13 seconds, 'All Too Well (Taylor's Version)' shattered the record — the previous holder 'American Pie' was 8 minutes 42 seconds and had held the record since 1972",
+    "difficulty": "hard",
+    "backgroundSongName": "All Too Well",
+    "backgroundArtist": "Taylor Swift",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0363"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who was the lead singer of Motörhead?",
+    "correctAnswer": "Lemmy Kilmister",
+    "options": [
+      "Lemmy Kilmister",
+      "Ozzy Osbourne",
+      "Rob Halford",
+      "Tom Araya"
+    ],
+    "artistName": "Motörhead",
+    "funFact": "Lemmy drank a bottle of Jack Daniel's daily for decades and lived to 70 — when asked about health advice he said 'I don't advise it for anyone else. I just got lucky with the genes'",
+    "difficulty": "medium",
+    "backgroundSongName": "Ace of Spades",
+    "backgroundArtist": "Motörhead",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0364"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Christopher Nolan film features a ticking clock sound throughout Hans Zimmer's score?",
+    "correctAnswer": "Dunkirk",
+    "options": [
+      "Dunkirk",
+      "Tenet",
+      "Interstellar",
+      "The Dark Knight"
+    ],
+    "artistName": "Hans Zimmer",
+    "funFact": "Zimmer used recordings of Nolan's personal pocket watch for the ticking — it creates constant tension. The entire score is built around three interlocking timelines at different tempos",
+    "difficulty": "medium",
+    "backgroundSongName": "Supermarine",
+    "backgroundArtist": "Hans Zimmer",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0365"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which animated series features a jazz theme performed by Yoko Kanno?",
+    "correctAnswer": "Cowboy Bebop",
+    "options": [
+      "Cowboy Bebop",
+      "Samurai Champloo",
+      "Space Dandy",
+      "Carole & Tuesday"
+    ],
+    "artistName": "Yoko Kanno",
+    "funFact": "Yoko Kanno composed in nearly every genre for Cowboy Bebop — jazz, blues, heavy metal, country, opera — making it the most musically diverse anime soundtrack ever",
+    "difficulty": "medium",
+    "backgroundSongName": "Tank!",
+    "backgroundArtist": "Yoko Kanno & Seatbelts",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0366"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Aphex Twin from?",
+    "correctAnswer": "UK",
+    "options": [
+      "UK",
+      "Germany",
+      "Iceland",
+      "Japan"
+    ],
+    "artistName": "Aphex Twin",
+    "funFact": "Aphex Twin (Richard D. James) grew up in Cornwall and reportedly slept only 2-3 hours per night — he claims to compose music in his lucid dreams",
+    "difficulty": "medium",
+    "backgroundSongName": "Windowlicker",
+    "backgroundArtist": "Aphex Twin",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0367"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which classical composer went completely deaf but continued composing?",
+    "correctAnswer": "Beethoven",
+    "options": [
+      "Beethoven",
+      "Mozart",
+      "Bach",
+      "Chopin"
+    ],
+    "artistName": "Beethoven",
+    "funFact": "Beethoven composed his 9th Symphony — including the 'Ode to Joy' — while completely deaf. At the premiere, he had to be turned around to see the audience's standing ovation because he couldn't hear it",
+    "difficulty": "easy",
+    "backgroundSongName": "Symphony No. 9",
+    "backgroundArtist": "Beethoven",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0368"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Massive Attack?",
+    "correctAnswer": "Robert '3D' Del Naja",
+    "options": [
+      "Robert '3D' Del Naja",
+      "Daddy G",
+      "Tricky",
+      "Shara Nelson"
+    ],
+    "artistName": "Massive Attack",
+    "funFact": "Robert Del Naja is also a famous graffiti artist — there's a persistent internet theory (never confirmed) that he is actually Banksy",
+    "difficulty": "hard",
+    "backgroundSongName": "Angel",
+    "backgroundArtist": "Massive Attack",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0369"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Gonna Fly Now' as its training montage theme?",
+    "correctAnswer": "Rocky",
+    "options": [
+      "Rocky",
+      "Karate Kid",
+      "Creed",
+      "Raging Bull"
+    ],
+    "artistName": "Bill Conti",
+    "funFact": "'Gonna Fly Now' was composed in one day by Bill Conti — the running-up-the-steps scene was filmed guerilla-style on the streets of Philadelphia with no permits",
+    "difficulty": "easy",
+    "backgroundSongName": "Gonna Fly Now",
+    "backgroundArtist": "Bill Conti",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0370"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features a baroque harpsichord theme composed by Nathan Barr?",
+    "correctAnswer": "True Blood",
+    "options": [
+      "True Blood",
+      "Penny Dreadful",
+      "Interview with the Vampire",
+      "What We Do in the Shadows"
+    ],
+    "artistName": "Jace Everett",
+    "funFact": "The True Blood theme 'Bad Things' by Jace Everett was actually released 3 years before the show — HBO found it and thought it perfectly captured Southern Gothic vampire vibes",
+    "difficulty": "medium",
+    "backgroundSongName": "Bad Things",
+    "backgroundArtist": "Jace Everett",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0371"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What distinction does Missy Elliott hold in the music industry?",
+    "correctAnswer": "First female hip-hop artist inducted into the Rock and Roll Hall of Fame",
+    "options": [
+      "First female hip-hop artist inducted into the Rock and Roll Hall of Fame",
+      "First rapper to win an Oscar",
+      "First female producer to go platinum",
+      "First woman to headline Coachella"
+    ],
+    "artistName": "Missy Elliott",
+    "funFact": "Missy Elliott and Timbaland created some of the most innovative music videos ever — 'Supa Dupa Fly' garbage bag outfit is one of the most iconic images in hip-hop",
+    "difficulty": "hard",
+    "backgroundSongName": "Work It",
+    "backgroundArtist": "Missy Elliott",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0372"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Nephew from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Nephew",
+    "funFact": "Nephew are from Aarhus and sing primarily in Danish — their song 'Igen & Igen & Igen' is one of the most played Danish rock songs of the 2000s",
+    "difficulty": "easy",
+    "backgroundSongName": "Igen & Igen & Igen",
+    "backgroundArtist": "Nephew",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0373"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Tears for Fears?",
+    "correctAnswer": "Curt Smith and Roland Orzabal (both sing lead)",
+    "options": [
+      "Curt Smith and Roland Orzabal (both sing lead)",
+      "Roland Orzabal only",
+      "Curt Smith only",
+      "Ian Stanley"
+    ],
+    "artistName": "Tears for Fears",
+    "funFact": "'Everybody Wants to Rule the World' was nearly left off the album — Roland Orzabal thought it was too pop. It became their biggest hit and one of the definitive songs of the 1980s",
+    "difficulty": "medium",
+    "backgroundSongName": "Everybody Wants to Rule the World",
+    "backgroundArtist": "Tears for Fears",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0374"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which 2017 horror film features a score that uses only a cello?",
+    "correctAnswer": "It Comes at Night",
+    "options": [
+      "It Comes at Night",
+      "Get Out",
+      "Hereditary",
+      "A Quiet Place"
+    ],
+    "artistName": "Brian McOmber",
+    "funFact": "Get Out's score by Michael Abels mixes Swahili chanting with strings — the opening theme translates to 'run, listen to your ancestors, run' which is literally the film's message",
+    "difficulty": "hard",
+    "backgroundSongName": "Sikiliza Kwa Wahenga",
+    "backgroundArtist": "Michael Abels",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0375"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Ryuichi Sakamoto from?",
+    "correctAnswer": "Japan",
+    "options": [
+      "Japan",
+      "South Korea",
+      "China",
+      "Taiwan"
+    ],
+    "artistName": "Ryuichi Sakamoto",
+    "funFact": "Sakamoto won the Oscar for his 'Merry Christmas, Mr. Lawrence' score and later composed for 'The Revenant' — he was equally revered in electronic music as a member of Yellow Magic Orchestra",
+    "difficulty": "hard",
+    "backgroundSongName": "Merry Christmas Mr. Lawrence",
+    "backgroundArtist": "Ryuichi Sakamoto",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0376"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What famous music festival took place on Max Yasgur's dairy farm in 1969?",
+    "correctAnswer": "Woodstock",
+    "options": [
+      "Woodstock",
+      "Monterey Pop",
+      "Isle of Wight",
+      "Altamont"
+    ],
+    "artistName": "Jimi Hendrix",
+    "funFact": "Hendrix played the Star-Spangled Banner at Woodstock at 8 AM Monday morning — most of the 400,000 attendees had already left. The remaining crowd witnessed one of music's most iconic moments",
+    "difficulty": "easy",
+    "backgroundSongName": "Star-Spangled Banner (Woodstock)",
+    "backgroundArtist": "Jimi Hendrix",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0377"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Danish comedy-drama features music by Halfdan E?",
+    "correctAnswer": "Klovn",
+    "options": [
+      "Klovn",
+      "Nikolaj og Julie",
+      "Matador",
+      "Rita"
+    ],
+    "artistName": "Halfdan E",
+    "funFact": "Klovn (Clown) became Denmark's answer to Curb Your Enthusiasm — Halfdan E's scores for Danish film and TV have made him one of the most prolific Danish composers",
+    "difficulty": "hard",
+    "backgroundSongName": "Klovn Theme",
+    "backgroundArtist": "Halfdan E",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0378"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Nicki Minaj from?",
+    "correctAnswer": "Trinidad and Tobago",
+    "options": [
+      "Trinidad and Tobago",
+      "Jamaica",
+      "US",
+      "Barbados"
+    ],
+    "artistName": "Nicki Minaj",
+    "funFact": "Nicki Minaj moved from Trinidad to Queens, New York at age 5 — she's the best-selling female rapper of all time with over 100 million records sold",
+    "difficulty": "medium",
+    "backgroundSongName": "Super Bass",
+    "backgroundArtist": "Nicki Minaj",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0379"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which Motown artist was known as 'The Prince of Motown'?",
+    "correctAnswer": "Marvin Gaye",
+    "options": [
+      "Marvin Gaye",
+      "Stevie Wonder",
+      "Smokey Robinson",
+      "The Temptations"
+    ],
+    "artistName": "Marvin Gaye",
+    "funFact": "Marvin Gaye's 'What's Going On' was initially rejected by Motown boss Berry Gordy who called it 'the worst thing I've ever heard' — it became one of the greatest albums ever made",
+    "difficulty": "medium",
+    "backgroundSongName": "What's Going On",
+    "backgroundArtist": "Marvin Gaye",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0380"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the vocalist of Florence + The Machine?",
+    "correctAnswer": "Florence Welch",
+    "options": [
+      "Florence Welch",
+      "Isabella Summers",
+      "Rob Ackroyd",
+      "Tom Monger"
+    ],
+    "artistName": "Florence + The Machine",
+    "funFact": "Florence Welch has synesthesia — she sees colors when she hears music. She described 'Dog Days Are Over' as 'bright orange and gold'",
+    "difficulty": "easy",
+    "backgroundSongName": "Dog Days Are Over",
+    "backgroundArtist": "Florence + The Machine",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0381"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Spike Lee film features Public Enemy's 'Fight the Power'?",
+    "correctAnswer": "Do the Right Thing",
+    "options": [
+      "Do the Right Thing",
+      "Malcolm X",
+      "BlacKkKlansman",
+      "25th Hour"
+    ],
+    "artistName": "Public Enemy",
+    "funFact": "Spike Lee asked Public Enemy to write a song as powerful as the protest anthems of the 1960s — 'Fight the Power' became one of hip-hop's greatest political statements",
+    "difficulty": "medium",
+    "backgroundSongName": "Fight the Power",
+    "backgroundArtist": "Public Enemy",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0382"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Netflix sci-fi series features a score by Ben Salisbury and Geoff Barrow of Portishead?",
+    "correctAnswer": "Black Mirror",
+    "options": [
+      "Black Mirror",
+      "Stranger Things",
+      "Dark",
+      "The OA"
+    ],
+    "artistName": "Ben Salisbury & Geoff Barrow",
+    "funFact": "Geoff Barrow went from creating Portishead's trip-hop masterpiece 'Dummy' to scoring dystopian TV — proving that genre boundaries are meaningless for truly creative musicians",
+    "difficulty": "hard",
+    "backgroundSongName": "Black Mirror Theme",
+    "backgroundArtist": "Ben Salisbury & Geoff Barrow",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:00:00Z",
+    "id": "manual-0383"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What instrument did Thelonious Monk play?",
+    "correctAnswer": "Piano",
+    "options": [
+      "Piano",
+      "Saxophone",
+      "Trumpet",
+      "Drums"
+    ],
+    "artistName": "Thelonious Monk",
+    "funFact": "Monk had a habit of standing up mid-performance and dancing in circles around the piano — his eccentric behavior was part of his genius",
+    "difficulty": "easy",
+    "backgroundSongName": "Round Midnight",
+    "backgroundArtist": "Thelonious Monk",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0384"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Chopin from?",
+    "correctAnswer": "Poland",
+    "options": [
+      "Poland",
+      "Austria",
+      "France",
+      "Germany"
+    ],
+    "artistName": "Chopin",
+    "funFact": "Chopin's heart was literally smuggled out of France in a jar of cognac after his death — it's preserved in a church pillar in Warsaw to this day",
+    "difficulty": "medium",
+    "backgroundSongName": "Nocturne Op. 9 No. 2",
+    "backgroundArtist": "Chopin",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0385"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who founded Depeche Mode?",
+    "correctAnswer": "Vince Clarke (who then left to form Erasure)",
+    "options": [
+      "Vince Clarke (who then left to form Erasure)",
+      "Dave Gahan",
+      "Martin Gore",
+      "Andy Fletcher"
+    ],
+    "artistName": "Depeche Mode",
+    "funFact": "Vince Clarke left after ONE album and formed Yazoo, then Erasure — Martin Gore took over songwriting and Depeche Mode became much darker and more successful without him",
+    "difficulty": "hard",
+    "backgroundSongName": "Just Can't Get Enough",
+    "backgroundArtist": "Depeche Mode",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0386"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which animated film features 'Into the Unknown' by Idina Menzel?",
+    "correctAnswer": "Frozen II",
+    "options": [
+      "Frozen II",
+      "Moana",
+      "Encanto",
+      "Tangled"
+    ],
+    "artistName": "Idina Menzel",
+    "funFact": "'Into the Unknown' was nominated for the Oscar but lost to '(I'm Gonna) Love Me Again' by Elton John — Frozen fans were outraged",
+    "difficulty": "easy",
+    "backgroundSongName": "Into the Unknown",
+    "backgroundArtist": "Idina Menzel",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0387"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features 'My Way' by Frank Sinatra reinterpreted in its finale?",
+    "correctAnswer": "The Sopranos (cut to black during 'Don't Stop Believin')",
+    "options": [
+      "The Sopranos (cut to black during 'Don't Stop Believin')",
+      "Mad Men",
+      "Breaking Bad",
+      "The Wire"
+    ],
+    "artistName": "Journey",
+    "funFact": "The Sopranos finale cut to black mid-song during Journey's 'Don't Stop Believin'' — it's the most debated ending in TV history. Creator David Chase has never fully explained it",
+    "difficulty": "medium",
+    "backgroundSongName": "Don't Stop Believin'",
+    "backgroundArtist": "Journey",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0388"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What record label did Dr. Dre co-found with Jimmy Iovine?",
+    "correctAnswer": "Beats Electronics (not a label — Aftermath is his label)",
+    "options": [
+      "Beats Electronics (not a label — Aftermath is his label)",
+      "Def Jam",
+      "Interscope",
+      "Cash Money"
+    ],
+    "artistName": "Dr. Dre",
+    "funFact": "Dr. Dre sold Beats to Apple for $3 billion in 2014 — making him briefly the richest person in hip-hop history from selling headphones, not music",
+    "difficulty": "medium",
+    "backgroundSongName": "Still D.R.E.",
+    "backgroundArtist": "Dr. Dre",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0389"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Mew?",
+    "correctAnswer": "Jonas Bjerre",
+    "options": [
+      "Jonas Bjerre",
+      "Bo Madsen",
+      "Silas Graae",
+      "Johan Wohlert"
+    ],
+    "artistName": "Mew",
+    "funFact": "Mew's 'Frengers' album title is a combination of 'friends' and 'strangers' — their art-rock sound made them one of Denmark's most unique musical exports",
+    "difficulty": "hard",
+    "backgroundSongName": "Comforting Sounds",
+    "backgroundArtist": "Mew",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0390"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Denis Villeneuve film features Jóhann Jóhannsson's eerie score with reversed sounds?",
+    "correctAnswer": "Arrival",
+    "options": [
+      "Arrival",
+      "Sicario",
+      "Prisoners",
+      "Enemy"
+    ],
+    "artistName": "Jóhann Jóhannsson",
+    "funFact": "Jóhannsson's Arrival score uses human voices processed until they sound alien — reflecting the film's theme that language shapes reality",
+    "difficulty": "hard",
+    "backgroundSongName": "On the Nature of Daylight",
+    "backgroundArtist": "Max Richter",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0391"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about a chemistry teacher turned drug lord features 'Baby Blue' by Badfinger in its finale?",
+    "correctAnswer": "Breaking Bad",
+    "options": [
+      "Breaking Bad",
+      "Better Call Saul",
+      "Ozark",
+      "Narcos"
+    ],
+    "artistName": "Badfinger",
+    "funFact": "'Baby Blue' by Badfinger was a deep cut from 1972 — after Breaking Bad's finale aired, it re-entered the iTunes Top 10 within hours",
+    "difficulty": "medium",
+    "backgroundSongName": "Baby Blue",
+    "backgroundArtist": "Badfinger",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0392"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Otis Redding's last recording before his death?",
+    "correctAnswer": "(Sittin' On) The Dock of the Bay",
+    "options": [
+      "(Sittin' On) The Dock of the Bay",
+      "Try a Little Tenderness",
+      "These Arms of Mine",
+      "Pain in My Heart"
+    ],
+    "artistName": "Otis Redding",
+    "funFact": "Otis Redding recorded 'Dock of the Bay' just three days before dying in a plane crash at age 26 — the whistling at the end was a placeholder he planned to replace with lyrics",
+    "difficulty": "hard",
+    "backgroundSongName": "(Sittin' On) The Dock of the Bay",
+    "backgroundArtist": "Otis Redding",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0393"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is José González from?",
+    "correctAnswer": "Sweden",
+    "options": [
+      "Sweden",
+      "Argentina",
+      "Spain",
+      "Chile"
+    ],
+    "artistName": "José González",
+    "funFact": "José González has Argentine parents but was born and raised in Gothenburg, Sweden — his cover of 'Heartbeats' for a Sony Bravia bouncing balls commercial made him globally famous",
+    "difficulty": "medium",
+    "backgroundSongName": "Heartbeats",
+    "backgroundArtist": "José González",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0394"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Weezer?",
+    "correctAnswer": "Rivers Cuomo",
+    "options": [
+      "Rivers Cuomo",
+      "Patrick Wilson",
+      "Brian Bell",
+      "Scott Shriner"
+    ],
+    "artistName": "Weezer",
+    "funFact": "Rivers Cuomo went to Harvard between Weezer albums — he studied English literature while 'Pinkerton' was being panned by critics (it's now considered a masterpiece)",
+    "difficulty": "medium",
+    "backgroundSongName": "Buddy Holly",
+    "backgroundArtist": "Weezer",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0395"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which animated film features 'We Don't Talk About Bruno'?",
+    "correctAnswer": "Encanto",
+    "options": [
+      "Encanto",
+      "Coco",
+      "Luca",
+      "Turning Red"
+    ],
+    "artistName": "Lin-Manuel Miranda",
+    "funFact": "'We Don't Talk About Bruno' spent 5 weeks at #1 — making it the first Disney song to top the Billboard Hot 100 since 'A Whole New World' in 1993",
+    "difficulty": "easy",
+    "backgroundSongName": "We Don't Talk About Bruno",
+    "backgroundArtist": "Cast of Encanto",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0396"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV show features 'Love Is the Drug' by Roxy Music?",
+    "correctAnswer": "Nip/Tuck",
+    "options": [
+      "Nip/Tuck",
+      "Sex and the City",
+      "Desperate Housewives",
+      "Ugly Betty"
+    ],
+    "artistName": "Roxy Music",
+    "funFact": "Bryan Ferry's suave persona made Roxy Music perfect for a show about plastic surgery — 'Love Is the Drug' captures superficial beauty culture perfectly",
+    "difficulty": "hard",
+    "backgroundSongName": "Love Is the Drug",
+    "backgroundArtist": "Roxy Music",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0397"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which pianist composed 'Clair de Lune'?",
+    "correctAnswer": "Claude Debussy",
+    "options": [
+      "Claude Debussy",
+      "Erik Satie",
+      "Maurice Ravel",
+      "Frédéric Chopin"
+    ],
+    "artistName": "Debussy",
+    "funFact": "'Clair de Lune' means 'Moonlight' in French — it's been used in over 50 films and TV shows, from Ocean's Eleven to Twilight",
+    "difficulty": "easy",
+    "backgroundSongName": "Clair de Lune",
+    "backgroundArtist": "Debussy",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0398"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Travis Scott from?",
+    "correctAnswer": "US",
+    "options": [
+      "US",
+      "UK",
+      "Canada",
+      "Jamaica"
+    ],
+    "artistName": "Travis Scott",
+    "funFact": "Travis Scott's real name is Jacques Berman Webster II — he took his stage name from a favorite uncle named Travis and Kid Cudi's first name Scott",
+    "difficulty": "easy",
+    "backgroundSongName": "SICKO MODE",
+    "backgroundArtist": "Travis Scott",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0399"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of New Order?",
+    "correctAnswer": "Bernard Sumner",
+    "options": [
+      "Bernard Sumner",
+      "Peter Hook",
+      "Stephen Morris",
+      "Gillian Gilbert"
+    ],
+    "artistName": "New Order",
+    "funFact": "New Order formed from the ashes of Joy Division after Ian Curtis' death — they reinvented themselves with electronic dance music and 'Blue Monday' became the best-selling 12-inch single ever",
+    "difficulty": "hard",
+    "backgroundSongName": "Blue Monday",
+    "backgroundArtist": "New Order",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0400"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which coming-of-age film features 'Asleep' by The Smiths?",
+    "correctAnswer": "The Perks of Being a Wallflower",
+    "options": [
+      "The Perks of Being a Wallflower",
+      "Garden State",
+      "Juno",
+      "500 Days of Summer"
+    ],
+    "artistName": "The Smiths",
+    "funFact": "The Perks of Being a Wallflower captures how discovering The Smiths as a teenager feels like finding a secret language — author Stephen Chbosky wrote the book partly as a love letter to 1980s indie music",
+    "difficulty": "medium",
+    "backgroundSongName": "Asleep",
+    "backgroundArtist": "The Smiths",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0401"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about a paper company features a theme by Jay Ferguson?",
+    "correctAnswer": "The Office (US)",
+    "options": [
+      "The Office (US)",
+      "Parks and Recreation",
+      "Brooklyn Nine-Nine",
+      "Superstore"
+    ],
+    "artistName": "Jay Ferguson",
+    "funFact": "The Office theme was inspired by an English folk melody — Jay Ferguson recorded it in his garage. It's been covered by more YouTube musicians than almost any other TV theme",
+    "difficulty": "easy",
+    "backgroundSongName": "The Office Theme",
+    "backgroundArtist": "Jay Ferguson",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0402"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Tupac's only #1 hit during his lifetime?",
+    "correctAnswer": "How Do U Want It",
+    "options": [
+      "How Do U Want It",
+      "California Love",
+      "Dear Mama",
+      "Changes"
+    ],
+    "artistName": "Tupac Shakur",
+    "funFact": "'Changes' — Tupac's most famous song — was released posthumously in 1998, two years after his death. He recorded it in one take in 1992",
+    "difficulty": "hard",
+    "backgroundSongName": "Changes",
+    "backgroundArtist": "Tupac Shakur",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0403"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is King Diamond from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Germany"
+    ],
+    "artistName": "King Diamond",
+    "funFact": "King Diamond (Kim Bendix Petersen) paints his face like a corpse and sings in a four-octave falsetto — Metallica's Lars Ulrich calls him 'the greatest metal vocalist ever'",
+    "difficulty": "medium",
+    "backgroundSongName": "Welcome Home",
+    "backgroundArtist": "King Diamond",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0404"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who plays bass in Tool?",
+    "correctAnswer": "Justin Chancellor",
+    "options": [
+      "Justin Chancellor",
+      "Maynard James Keenan",
+      "Adam Jones",
+      "Danny Carey"
+    ],
+    "artistName": "Tool",
+    "funFact": "Tool's albums use mathematical sequences like the Fibonacci sequence in their time signatures — Danny Carey's drum patterns are studied in university music programs",
+    "difficulty": "hard",
+    "backgroundSongName": "Schism",
+    "backgroundArtist": "Tool",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0405"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Bond film features Sam Smith's 'Writing's on the Wall'?",
+    "correctAnswer": "Spectre",
+    "options": [
+      "Spectre",
+      "Skyfall",
+      "No Time to Die",
+      "Casino Royale"
+    ],
+    "artistName": "Sam Smith",
+    "funFact": "Sam Smith wrote 'Writing's on the Wall' in 20 minutes and cried while recording it — it became the first Bond theme to reach #1 in the UK since 'A View to a Kill' in 1985",
+    "difficulty": "medium",
+    "backgroundSongName": "Writing's on the Wall",
+    "backgroundArtist": "Sam Smith",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0406"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which animated series features a theme by The Ramones?",
+    "correctAnswer": "Spider-Man: The Animated Series (1994) — though the Ramones covered the 1967 theme separately",
+    "options": [
+      "Spider-Man: The Animated Series (1994) — though the Ramones covered the 1967 theme separately",
+      "Beavis and Butt-Head",
+      "King of the Hill",
+      "Ren & Stimpy"
+    ],
+    "artistName": "The Ramones",
+    "funFact": "The Ramones' cover of the Spider-Man theme captures punk's love of pop culture — they turned a children's TV theme into a 90-second blast of pure energy",
+    "difficulty": "hard",
+    "backgroundSongName": "Spider-Man Theme",
+    "backgroundArtist": "The Ramones",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0407"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which rapper wrote the bestselling poetry book 'The Rose That Grew from Concrete'?",
+    "correctAnswer": "Tupac Shakur",
+    "options": [
+      "Tupac Shakur",
+      "Kendrick Lamar",
+      "Nas",
+      "Jay-Z"
+    ],
+    "artistName": "Tupac Shakur",
+    "funFact": "Tupac wrote poetry throughout his life — 'The Rose That Grew from Concrete' was published posthumously and revealed a deeply sensitive artist behind the gangsta rap persona",
+    "difficulty": "medium",
+    "backgroundSongName": "Dear Mama",
+    "backgroundArtist": "Tupac Shakur",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0408"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Lil Nas X from?",
+    "correctAnswer": "US",
+    "options": [
+      "US",
+      "UK",
+      "Canada",
+      "Nigeria"
+    ],
+    "artistName": "Lil Nas X",
+    "funFact": "Lil Nas X bought the beat for 'Old Town Road' for $30 online — the song spent 19 weeks at #1 and was initially removed from Billboard's country chart, sparking a genre debate",
+    "difficulty": "easy",
+    "backgroundSongName": "Old Town Road",
+    "backgroundArtist": "Lil Nas X",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0409"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the vocalist of Evanescence?",
+    "correctAnswer": "Amy Lee",
+    "options": [
+      "Amy Lee",
+      "Lacey Sturm",
+      "Hayley Williams",
+      "Lzzy Hale"
+    ],
+    "artistName": "Evanescence",
+    "funFact": "Amy Lee classically trained in piano from age 9 — 'Bring Me to Life' blended gothic metal with piano ballad, selling over 17 million copies of 'Fallen'",
+    "difficulty": "easy",
+    "backgroundSongName": "Bring Me to Life",
+    "backgroundArtist": "Evanescence",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0410"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Stanley Kubrick film features Beethoven's 9th Symphony prominently?",
+    "correctAnswer": "A Clockwork Orange",
+    "options": [
+      "A Clockwork Orange",
+      "2001: A Space Odyssey",
+      "The Shining",
+      "Full Metal Jacket"
+    ],
+    "artistName": "Beethoven",
+    "funFact": "Kubrick's use of 'Ode to Joy' during scenes of violence was deeply controversial — it permanently changed how audiences perceive Beethoven's most joyful composition",
+    "difficulty": "medium",
+    "backgroundSongName": "Symphony No. 9",
+    "backgroundArtist": "Beethoven",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0411"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which crime series features a reggae-influenced theme called 'Magnum P.I.'?",
+    "correctAnswer": "Magnum, P.I.",
+    "options": [
+      "Magnum, P.I.",
+      "Hawaii Five-O",
+      "Burn Notice",
+      "Dexter"
+    ],
+    "artistName": "Mike Post",
+    "funFact": "Mike Post composed themes for more hit TV shows than anyone in history — Magnum, Law & Order, NYPD Blue, The A-Team, and many more",
+    "difficulty": "medium",
+    "backgroundSongName": "Magnum P.I. Theme",
+    "backgroundArtist": "Mike Post",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0412"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was the first rap song to reach #1 on the Billboard Hot 100?",
+    "correctAnswer": "Rapture by Blondie (1981)",
+    "options": [
+      "Rapture by Blondie (1981)",
+      "Walk This Way by Run-DMC (1986)",
+      "The Breaks by Kurtis Blow (1980)",
+      "Rapper's Delight by Sugarhill Gang (1979)"
+    ],
+    "artistName": "Blondie",
+    "funFact": "Debbie Harry name-checked Grandmaster Flash and Fab Five Freddy in 'Rapture' — bringing hip-hop culture to mainstream pop audiences for the first time",
+    "difficulty": "hard",
+    "backgroundSongName": "Rapture",
+    "backgroundArtist": "Blondie",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0413"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who was the drummer of Nirvana before Dave Grohl?",
+    "correctAnswer": "Chad Channing",
+    "options": [
+      "Chad Channing",
+      "Dale Crover",
+      "Dan Peters",
+      "Aaron Burckhard"
+    ],
+    "artistName": "Nirvana",
+    "funFact": "Chad Channing played on Nirvana's debut 'Bleach' — when Dave Grohl replaced him, the band's sound became dramatically heavier, leading directly to 'Nevermind'",
+    "difficulty": "hard",
+    "backgroundSongName": "About a Girl",
+    "backgroundArtist": "Nirvana",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0414"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Time After Time' by Cyndi Lauper?",
+    "correctAnswer": "Napoleon Dynamite",
+    "options": [
+      "Napoleon Dynamite",
+      "Romy and Michele's High School Reunion",
+      "The Wedding Singer",
+      "Pretty in Pink"
+    ],
+    "artistName": "Cyndi Lauper",
+    "funFact": "'Time After Time' was so universally loved that Miles Davis covered it — one of the only pop songs the jazz legend ever recorded",
+    "difficulty": "medium",
+    "backgroundSongName": "Time After Time",
+    "backgroundArtist": "Cyndi Lauper",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0415"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features the theme 'Concerning Hobbits' style pastoral music by Howard Shore?",
+    "correctAnswer": "The Lord of the Rings: The Rings of Power",
+    "options": [
+      "The Lord of the Rings: The Rings of Power",
+      "Game of Thrones",
+      "The Witcher",
+      "Wheel of Time"
+    ],
+    "artistName": "Howard Shore",
+    "funFact": "Howard Shore composed over 12 hours of music for the original Lord of the Rings trilogy — it's the largest orchestral film score ever recorded",
+    "difficulty": "medium",
+    "backgroundSongName": "The Shire",
+    "backgroundArtist": "Howard Shore",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0416"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which Danish artist had the international hit 'Move Your Feet'?",
+    "correctAnswer": "Junior Senior",
+    "options": [
+      "Junior Senior",
+      "Aqua",
+      "Alphabeat",
+      "Infernal"
+    ],
+    "artistName": "Junior Senior",
+    "funFact": "Junior Senior's pixel-art music video for 'Move Your Feet' was nominated for a Grammy — the song's infectious energy made it a global club anthem in 2003",
+    "difficulty": "medium",
+    "backgroundSongName": "Move Your Feet",
+    "backgroundArtist": "Junior Senior",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0417"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is WhoMadeWho from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Netherlands",
+      "Belgium"
+    ],
+    "artistName": "WhoMadeWho",
+    "funFact": "WhoMadeWho went from Copenhagen indie to headlining Burning Man and Tale of Us' Afterlife events — becoming one of the most in-demand live electronic acts globally",
+    "difficulty": "medium",
+    "backgroundSongName": "Silence & Secrets",
+    "backgroundArtist": "WhoMadeWho",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0418"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of L.O.C. (Lansen Over Cph)?",
+    "correctAnswer": "Liam O'Connor",
+    "options": [
+      "Liam O'Connor",
+      "Niarn",
+      "MC Einar",
+      "Pede B"
+    ],
+    "artistName": "L.O.C.",
+    "funFact": "L.O.C. is one of Denmark's most successful rappers — his album 'Prespp' went diamond in Denmark and he performed at Roskilde Festival multiple times",
+    "difficulty": "hard",
+    "backgroundSongName": "Momentet",
+    "backgroundArtist": "L.O.C.",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0419"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Marvel film features 'Surrender' by Cheap Trick?",
+    "correctAnswer": "Guardians of the Galaxy Vol. 3",
+    "options": [
+      "Guardians of the Galaxy Vol. 3",
+      "Thor: Love and Thunder",
+      "Ant-Man",
+      "Deadpool"
+    ],
+    "artistName": "Cheap Trick",
+    "funFact": "James Gunn's Guardians trilogy is essentially a love letter to 1970s-80s rock — the 'Awesome Mixes' soundtracks outsold most original scores",
+    "difficulty": "medium",
+    "backgroundSongName": "Surrender",
+    "backgroundArtist": "Cheap Trick",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0420"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features David Bowie's 'Lazarus' in its final season?",
+    "correctAnswer": "The Leftovers (uses 'Let the Mystery Be' but featured Bowie's music)",
+    "options": [
+      "The Leftovers (uses 'Let the Mystery Be' but featured Bowie's music)",
+      "Legion",
+      "American Gods",
+      "Preacher"
+    ],
+    "artistName": "David Bowie",
+    "funFact": "'Lazarus' was recorded just days before Bowie's death — the lyrics 'Look up here, I'm in heaven' were his deliberate farewell to the world",
+    "difficulty": "hard",
+    "backgroundSongName": "Lazarus",
+    "backgroundArtist": "David Bowie",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0421"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the best-selling album of all time?",
+    "correctAnswer": "Thriller by Michael Jackson",
+    "options": [
+      "Thriller by Michael Jackson",
+      "Back in Black by AC/DC",
+      "The Dark Side of the Moon by Pink Floyd",
+      "Their Greatest Hits by Eagles"
+    ],
+    "artistName": "Michael Jackson",
+    "funFact": "Thriller has sold over 70 million copies — every single one of its 9 tracks was released as a single, and 7 reached the top 10. No album will ever match it",
+    "difficulty": "easy",
+    "backgroundSongName": "Thriller",
+    "backgroundArtist": "Michael Jackson",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0422"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Carpark North from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Germany",
+      "Finland"
+    ],
+    "artistName": "Carpark North",
+    "funFact": "Carpark North's 'Human' was used in the FIFA video game series — bringing Danish electronic rock to gamers worldwide",
+    "difficulty": "medium",
+    "backgroundSongName": "Human",
+    "backgroundArtist": "Carpark North",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0423"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the vocalist of Nine Inch Nails?",
+    "correctAnswer": "Trent Reznor",
+    "options": [
+      "Trent Reznor",
+      "Atticus Ross",
+      "Robin Finck",
+      "Danny Lohner"
+    ],
+    "artistName": "Nine Inch Nails",
+    "funFact": "Trent Reznor recorded 'The Downward Spiral' in the house where the Manson family murdered Sharon Tate — he moved out after discovering this, calling it 'a terrible coincidence'",
+    "difficulty": "medium",
+    "backgroundSongName": "Hurt",
+    "backgroundArtist": "Nine Inch Nails",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0424"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which horror film franchise features 'Tubular Bells' by Mike Oldfield?",
+    "correctAnswer": "The Exorcist",
+    "options": [
+      "The Exorcist",
+      "Halloween",
+      "A Nightmare on Elm Street",
+      "The Omen"
+    ],
+    "artistName": "Mike Oldfield",
+    "funFact": "Mike Oldfield was only 19 when he recorded 'Tubular Bells' — he played over 20 instruments himself. Its use in The Exorcist made it one of the most recognizable pieces of music ever",
+    "difficulty": "easy",
+    "backgroundSongName": "Tubular Bells",
+    "backgroundArtist": "Mike Oldfield",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0425"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Danish-Swedish crime series features 'Hollow Talk' by Choir of Young Believers?",
+    "correctAnswer": "The Bridge (Broen/Bron)",
+    "options": [
+      "The Bridge (Broen/Bron)",
+      "The Killing",
+      "Borgen",
+      "Trapped"
+    ],
+    "artistName": "Choir of Young Believers",
+    "funFact": "'Hollow Talk' went from obscure Copenhagen indie track to internationally recognized theme — it was played at Nordic noir conventions and film festivals worldwide",
+    "difficulty": "medium",
+    "backgroundSongName": "Hollow Talk",
+    "backgroundArtist": "Choir of Young Believers",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:30:00Z",
+    "id": "manual-0426"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which singer's voice has been scientifically studied and found to use sub-harmonics?",
+    "correctAnswer": "Freddie Mercury",
+    "options": [
+      "Freddie Mercury",
+      "Robert Plant",
+      "Whitney Houston",
+      "Mariah Carey"
+    ],
+    "artistName": "Queen",
+    "funFact": "Scientists at the University of Vienna found that Mercury used a vocal technique similar to Tibetan throat singing — no other rock singer has been documented doing this",
+    "difficulty": "hard",
+    "backgroundSongName": "Don't Stop Me Now",
+    "backgroundArtist": "Queen",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0427"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Grimes from?",
+    "correctAnswer": "Canada",
+    "options": [
+      "Canada",
+      "US",
+      "UK",
+      "Iceland"
+    ],
+    "artistName": "Grimes",
+    "funFact": "Grimes (Claire Boucher) taught herself to produce music using GarageBand and posted songs on MySpace — she later dated Elon Musk and named their child X Æ A-12",
+    "difficulty": "medium",
+    "backgroundSongName": "Oblivion",
+    "backgroundArtist": "Grimes",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0428"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Twenty One Pilots?",
+    "correctAnswer": "Tyler Joseph",
+    "options": [
+      "Tyler Joseph",
+      "Josh Dun",
+      "Brendon Urie",
+      "Gerard Way"
+    ],
+    "artistName": "Twenty One Pilots",
+    "funFact": "Twenty One Pilots is named after a moral dilemma in Arthur Miller's play 'All My Sons' — where a man must decide between saving 21 pilots or his own family business",
+    "difficulty": "medium",
+    "backgroundSongName": "Stressed Out",
+    "backgroundArtist": "Twenty One Pilots",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0429"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which David Lynch film features 'In Dreams' by Roy Orbison in a disturbing scene?",
+    "correctAnswer": "Blue Velvet",
+    "options": [
+      "Blue Velvet",
+      "Mulholland Drive",
+      "Twin Peaks: Fire Walk with Me",
+      "Lost Highway"
+    ],
+    "artistName": "Roy Orbison",
+    "funFact": "Dennis Hopper lip-syncing to 'In Dreams' while terrorizing Kyle MacLachlan is one of cinema's most unsettling scenes — it completely changed how people hear Roy Orbison",
+    "difficulty": "hard",
+    "backgroundSongName": "In Dreams",
+    "backgroundArtist": "Roy Orbison",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0430"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV show features 'Hannibal' by Brian Reitzell, featuring operatic vocals?",
+    "correctAnswer": "Hannibal",
+    "options": [
+      "Hannibal",
+      "Dexter",
+      "Mindhunter",
+      "The Fall"
+    ],
+    "artistName": "Brian Reitzell",
+    "funFact": "Hannibal's score is so disturbing that Brian Reitzell used sounds of bones cracking, meat tearing, and wine glasses shattering — all processed to sound beautiful",
+    "difficulty": "hard",
+    "backgroundSongName": "Hannibal Theme",
+    "backgroundArtist": "Brian Reitzell",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0431"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Susheela Raman from?",
+    "correctAnswer": "UK (of Indian-Tamil heritage)",
+    "options": [
+      "UK (of Indian-Tamil heritage)",
+      "India",
+      "Sri Lanka",
+      "Australia"
+    ],
+    "artistName": "Susheela Raman",
+    "funFact": "Susheela Raman bridges Tamil classical music with Western rock and electronic — she studied with master vocalists in India before recording in London and Paris",
+    "difficulty": "hard",
+    "backgroundSongName": "Yeh Mera Diwanapan Hai",
+    "backgroundArtist": "Susheela Raman",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0432"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was the first hip-hop song to be preserved in the Library of Congress?",
+    "correctAnswer": "The Message by Grandmaster Flash & the Furious Five",
+    "options": [
+      "The Message by Grandmaster Flash & the Furious Five",
+      "Rapper's Delight by Sugarhill Gang",
+      "Planet Rock by Afrika Bambaataa",
+      "Fight the Power by Public Enemy"
+    ],
+    "artistName": "Grandmaster Flash",
+    "funFact": "'The Message' was one of the first hip-hop songs about poverty and urban decay — before this, rap was primarily party music",
+    "difficulty": "hard",
+    "backgroundSongName": "The Message",
+    "backgroundArtist": "Grandmaster Flash",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0433"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the frontman of My Chemical Romance?",
+    "correctAnswer": "Gerard Way",
+    "options": [
+      "Gerard Way",
+      "Frank Iero",
+      "Ray Toro",
+      "Mikey Way"
+    ],
+    "artistName": "My Chemical Romance",
+    "funFact": "Gerard Way is also the creator of the 'Umbrella Academy' comic book series — the Netflix adaptation became a massive hit, making him a dual-threat creative",
+    "difficulty": "easy",
+    "backgroundSongName": "Welcome to the Black Parade",
+    "backgroundArtist": "My Chemical Romance",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0434"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Spike Jonze film features Arcade Fire's 'Supersymmetry'?",
+    "correctAnswer": "Her",
+    "options": [
+      "Her",
+      "Being John Malkovich",
+      "Where the Wild Things Are",
+      "Adaptation"
+    ],
+    "artistName": "Arcade Fire",
+    "funFact": "Arcade Fire wrote 'Supersymmetry' while Win Butler's grandfather was dying — Spike Jonze heard it and said it perfectly captured the loneliness in his film about loving an AI",
+    "difficulty": "hard",
+    "backgroundSongName": "Supersymmetry",
+    "backgroundArtist": "Arcade Fire",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0435"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which HBO series about drug trade features 'Way Down in the Hole' covered by different artists each season?",
+    "correctAnswer": "The Wire",
+    "options": [
+      "The Wire",
+      "Treme",
+      "The Deuce",
+      "Boardwalk Empire"
+    ],
+    "artistName": "Tom Waits",
+    "funFact": "Each of The Wire's 5 seasons used a different version of the same Tom Waits song — from gospel to punk to kids singing, reflecting each season's perspective on Baltimore",
+    "difficulty": "medium",
+    "backgroundSongName": "Way Down in the Hole",
+    "backgroundArtist": "Tom Waits",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0436"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Astor Piazzolla from?",
+    "correctAnswer": "Argentina",
+    "options": [
+      "Argentina",
+      "Uruguay",
+      "Brazil",
+      "Spain"
+    ],
+    "artistName": "Astor Piazzolla",
+    "funFact": "Piazzolla revolutionized tango by adding jazz and classical elements — traditional tango musicians hated him so much that he received death threats",
+    "difficulty": "hard",
+    "backgroundSongName": "Libertango",
+    "backgroundArtist": "Astor Piazzolla",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0437"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which artist holds the record for the most #1 hits on the Billboard Hot 100?",
+    "correctAnswer": "The Beatles (20 #1 hits)",
+    "options": [
+      "The Beatles (20 #1 hits)",
+      "Elvis Presley (18 #1 hits)",
+      "Mariah Carey (19 #1 hits)",
+      "Madonna (12 #1 hits)"
+    ],
+    "artistName": "The Beatles",
+    "funFact": "The Beatles achieved 20 #1 hits in just 7 years (1964-1970) — an average of nearly 3 per year, a pace no artist has matched",
+    "difficulty": "medium",
+    "backgroundSongName": "Let It Be",
+    "backgroundArtist": "The Beatles",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0438"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who founded The Velvet Underground with Lou Reed?",
+    "correctAnswer": "John Cale",
+    "options": [
+      "John Cale",
+      "Nico",
+      "Sterling Morrison",
+      "Moe Tucker"
+    ],
+    "artistName": "The Velvet Underground",
+    "funFact": "The Velvet Underground's debut album reportedly sold only 30,000 copies — but as Brian Eno said, 'everyone who bought one started a band'",
+    "difficulty": "hard",
+    "backgroundSongName": "Heroin",
+    "backgroundArtist": "The Velvet Underground",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0439"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Studio Ghibli film features Joe Hisaishi's most beloved piano theme?",
+    "correctAnswer": "Spirited Away",
+    "options": [
+      "Spirited Away",
+      "My Neighbor Totoro",
+      "Princess Mononoke",
+      "Howl's Moving Castle"
+    ],
+    "artistName": "Joe Hisaishi",
+    "funFact": "Joe Hisaishi has scored every Hayao Miyazaki film since 1984 — their partnership is the Japanese equivalent of Spielberg and John Williams",
+    "difficulty": "medium",
+    "backgroundSongName": "One Summer's Day",
+    "backgroundArtist": "Joe Hisaishi",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0440"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about advertising in the 1960s features a score by David Carbonara?",
+    "correctAnswer": "Mad Men",
+    "options": [
+      "Mad Men",
+      "The Marvelous Mrs. Maisel",
+      "Masters of Sex",
+      "Pan Am"
+    ],
+    "artistName": "RJD2",
+    "funFact": "Mad Men's opening uses 'A Beautiful Mine' by RJD2 — the silhouette of a man falling through advertising images became one of TV's most iconic opening sequences",
+    "difficulty": "medium",
+    "backgroundSongName": "A Beautiful Mine",
+    "backgroundArtist": "RJD2",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0441"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Susekt from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Germany"
+    ],
+    "artistName": "Suspekt",
+    "funFact": "Suspekt is one of Denmark's most successful and controversial rap groups — their explicit lyrics and wild live shows have made them a cultural phenomenon since the early 2000s",
+    "difficulty": "easy",
+    "backgroundSongName": "Druk Med De Danske",
+    "backgroundArtist": "Suspekt",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0442"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What record did Adele break with her album '25'?",
+    "correctAnswer": "3.38 million copies sold in the first week in the US",
+    "options": [
+      "3.38 million copies sold in the first week in the US",
+      "Most Grammys in one night",
+      "Longest #1 streak",
+      "First album to go diamond in a day"
+    ],
+    "artistName": "Adele",
+    "funFact": "Adele broke *NSYNC's 15-year-old first-week sales record — in an era when physical album sales were supposedly dead. She also refused to put '25' on streaming initially",
+    "difficulty": "medium",
+    "backgroundSongName": "Hello",
+    "backgroundArtist": "Adele",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0443"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Gasolin'?",
+    "correctAnswer": "Kim Larsen",
+    "options": [
+      "Kim Larsen",
+      "Franz Beckerlee",
+      "Wili Jønsson",
+      "Søren Berlev"
+    ],
+    "artistName": "Gasolin'",
+    "funFact": "Kim Larsen went on to have an even bigger solo career after Gasolin' — his song 'Papirsklip' is considered Denmark's unofficial national anthem",
+    "difficulty": "easy",
+    "backgroundSongName": "Rabalderstræde",
+    "backgroundArtist": "Gasolin'",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0444"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Nightcall' by Kavinsky?",
+    "correctAnswer": "Drive",
+    "options": [
+      "Drive",
+      "Tron: Legacy",
+      "John Wick",
+      "The Neon Demon"
+    ],
+    "artistName": "Kavinsky",
+    "funFact": "Kavinsky is a French electronic artist who invented a backstory where he's a zombie who died in a car crash in 1986 — 'Nightcall' perfectly captured Drive's neon-noir atmosphere",
+    "difficulty": "medium",
+    "backgroundSongName": "Nightcall",
+    "backgroundArtist": "Kavinsky",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0445"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV comedy features 'Unpiped' and a very short, catchy bass riff?",
+    "correctAnswer": "Curb Your Enthusiasm",
+    "options": [
+      "Curb Your Enthusiasm",
+      "It's Always Sunny in Philadelphia",
+      "Arrested Development",
+      "Veep"
+    ],
+    "artistName": "Luciano Michelini",
+    "funFact": "'Frolic' by Italian composer Luciano Michelini was written in 1974 for an Italian film — Larry David discovered it 26 years later and made it the most recognizable comedy theme of the 2000s",
+    "difficulty": "medium",
+    "backgroundSongName": "Frolic",
+    "backgroundArtist": "Luciano Michelini",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0446"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is D-A-D from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Netherlands",
+      "Sweden"
+    ],
+    "artistName": "D-A-D",
+    "funFact": "D-A-D were originally called 'Disneyland After Dark' until Disney's lawyers came calling — they became one of Scandinavia's biggest hard rock bands despite the name change",
+    "difficulty": "easy",
+    "backgroundSongName": "Sleeping My Day Away",
+    "backgroundArtist": "D-A-D",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0447"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which composer wrote the 'Moonlight Sonata'?",
+    "correctAnswer": "Beethoven",
+    "options": [
+      "Beethoven",
+      "Mozart",
+      "Chopin",
+      "Debussy"
+    ],
+    "artistName": "Beethoven",
+    "funFact": "'Moonlight Sonata' wasn't Beethoven's name — a critic called it 'moonlight' after Beethoven's death. Beethoven himself just called it 'Sonata quasi una fantasia'",
+    "difficulty": "easy",
+    "backgroundSongName": "Moonlight Sonata",
+    "backgroundArtist": "Beethoven",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0448"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead vocalist of Panic! at the Disco?",
+    "correctAnswer": "Brendon Urie",
+    "options": [
+      "Brendon Urie",
+      "Ryan Ross",
+      "Spencer Smith",
+      "Jon Walker"
+    ],
+    "artistName": "Panic! at the Disco",
+    "funFact": "Brendon Urie became the ONLY member of Panic! at the Disco — all other original members left, but he continued as a one-man band until officially disbanding in 2023",
+    "difficulty": "easy",
+    "backgroundSongName": "I Write Sins Not Tragedies",
+    "backgroundArtist": "Panic! at the Disco",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0449"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Bond film features Billie Eilish's 'No Time to Die'?",
+    "correctAnswer": "No Time to Die",
+    "options": [
+      "No Time to Die",
+      "Spectre",
+      "Skyfall",
+      "Casino Royale"
+    ],
+    "artistName": "Billie Eilish",
+    "funFact": "Billie Eilish was 17 when she recorded 'No Time to Die' with her brother Finneas — she's the youngest artist ever to write and record a Bond theme",
+    "difficulty": "easy",
+    "backgroundSongName": "No Time to Die",
+    "backgroundArtist": "Billie Eilish",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0450"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Apple TV+ series features a score inspired by 1970s synth?",
+    "correctAnswer": "Severance",
+    "options": [
+      "Severance",
+      "Foundation",
+      "For All Mankind",
+      "Invasion"
+    ],
+    "artistName": "Theodore Shapiro",
+    "funFact": "Severance's score uses vintage Moog synthesizers and reverse recordings — it creates a sterile, unsettling corporate feeling that perfectly matches the show's dystopian office setting",
+    "difficulty": "hard",
+    "backgroundSongName": "Severance Theme",
+    "backgroundArtist": "Theodore Shapiro",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0451"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Laid Back from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Jamaica",
+      "Netherlands",
+      "UK"
+    ],
+    "artistName": "Laid Back",
+    "funFact": "Laid Back's 'Sunshine Reggae' and 'Bakerman' were huge international hits in the 1980s — two Danes making reggae-influenced synth-pop that topped charts across Europe",
+    "difficulty": "medium",
+    "backgroundSongName": "Sunshine Reggae",
+    "backgroundArtist": "Laid Back",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0452"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which Danish jazz bassist is considered one of the greatest in history?",
+    "correctAnswer": "Niels-Henning Ørsted Pedersen",
+    "options": [
+      "Niels-Henning Ørsted Pedersen",
+      "Palle Mikkelborg",
+      "Niels Lan Doky",
+      "Jesper Lundgaard"
+    ],
+    "artistName": "Niels-Henning Ørsted Pedersen",
+    "funFact": "NHØP played with Oscar Peterson, Dexter Gordon, and almost every jazz great of the 20th century — he was offered a spot in the Count Basie Orchestra at age 17 but his mother said he was too young",
+    "difficulty": "hard",
+    "backgroundSongName": "My Little Anna",
+    "backgroundArtist": "Niels-Henning Ørsted Pedersen",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0453"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Imagine Dragons?",
+    "correctAnswer": "Dan Reynolds",
+    "options": [
+      "Dan Reynolds",
+      "Wayne Sermon",
+      "Daniel Platzman",
+      "Ben McKee"
+    ],
+    "artistName": "Imagine Dragons",
+    "funFact": "'Radioactive' held the record for longest stay on the Billboard Hot 100 at 87 weeks — it spent nearly two years on the chart",
+    "difficulty": "easy",
+    "backgroundSongName": "Believer",
+    "backgroundArtist": "Imagine Dragons",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0454"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Tarantino film features 'Cat People (Putting Out Fire)' by David Bowie?",
+    "correctAnswer": "Inglourious Basterds",
+    "options": [
+      "Inglourious Basterds",
+      "Django Unchained",
+      "The Hateful Eight",
+      "Once Upon a Time in Hollywood"
+    ],
+    "artistName": "David Bowie",
+    "funFact": "Tarantino used the Giorgio Moroder version of 'Cat People' for one of cinema's most tense scenes — Shosanna preparing for revenge, applying makeup like war paint",
+    "difficulty": "hard",
+    "backgroundSongName": "Cat People (Putting Out Fire)",
+    "backgroundArtist": "David Bowie",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0455"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about a high school chemistry teacher features Dave Porter's score?",
+    "correctAnswer": "Breaking Bad",
+    "options": [
+      "Breaking Bad",
+      "Better Call Saul",
+      "Ozark",
+      "Weeds"
+    ],
+    "artistName": "Dave Porter",
+    "funFact": "Dave Porter used sounds of meth-making equipment (beakers, tubes, burners) as percussion elements in the Breaking Bad score — the music literally sounds like cooking",
+    "difficulty": "medium",
+    "backgroundSongName": "Breaking Bad Theme",
+    "backgroundArtist": "Dave Porter",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0456"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Mercyful Fate from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Norway",
+      "Sweden",
+      "Finland"
+    ],
+    "artistName": "Mercyful Fate",
+    "funFact": "King Diamond's falsetto and face paint inspired an entire generation of black metal musicians in Norway — without Danish Mercyful Fate, Norwegian black metal might not exist",
+    "difficulty": "medium",
+    "backgroundSongName": "Evil",
+    "backgroundArtist": "Mercyful Fate",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0457"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What did Radiohead famously do with the release of 'In Rainbows'?",
+    "correctAnswer": "Let fans pay whatever they wanted",
+    "options": [
+      "Let fans pay whatever they wanted",
+      "Released it only on vinyl",
+      "Gave it away on USB drives",
+      "Sold it only at concerts"
+    ],
+    "artistName": "Radiohead",
+    "funFact": "The 'pay what you want' experiment was revolutionary in 2007 — most fans paid between £4-8, and the album still debuted at #1 on traditional charts when the physical release followed",
+    "difficulty": "medium",
+    "backgroundSongName": "15 Step",
+    "backgroundArtist": "Radiohead",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0458"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Stuck in the Middle with You' by Stealers Wheel during an ear-cutting scene?",
+    "correctAnswer": "Reservoir Dogs",
+    "options": [
+      "Reservoir Dogs",
+      "Pulp Fiction",
+      "Django Unchained",
+      "Kill Bill"
+    ],
+    "artistName": "Stealers Wheel",
+    "funFact": "Stealers Wheel were a Scottish folk-pop duo — they never imagined their cheerful song would become synonymous with one of cinema's most violent scenes",
+    "difficulty": "medium",
+    "backgroundSongName": "Stuck in the Middle with You",
+    "backgroundArtist": "Stealers Wheel",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0459"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about the British royal family features 'Crown' by Hans Zimmer?",
+    "correctAnswer": "The Crown",
+    "options": [
+      "The Crown",
+      "Victoria",
+      "Downton Abbey",
+      "Bridgerton"
+    ],
+    "artistName": "Hans Zimmer",
+    "funFact": "Hans Zimmer composed the Crown theme in his signature minimalist style — the piano melody has become as recognizable as the show's cast",
+    "difficulty": "easy",
+    "backgroundSongName": "Crown Theme",
+    "backgroundArtist": "Hans Zimmer",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:00:00Z",
+    "id": "manual-0460"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which artist created the concept of 'ambient music' with the album 'Music for Airports'?",
+    "correctAnswer": "Brian Eno",
+    "options": [
+      "Brian Eno",
+      "Tangerine Dream",
+      "Vangelis",
+      "Jean-Michel Jarre"
+    ],
+    "artistName": "Brian Eno",
+    "funFact": "Eno coined the term 'ambient music' after being bedridden and hearing harp music at low volume — he realized music could be 'as ignorable as it is interesting'",
+    "difficulty": "hard",
+    "backgroundSongName": "Music for Airports",
+    "backgroundArtist": "Brian Eno",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0461"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Sort Sol from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Sweden",
+      "Iceland"
+    ],
+    "artistName": "Sort Sol",
+    "funFact": "Sort Sol (originally Sods) were Denmark's first punk band — they evolved into post-punk and goth rock, and their collaboration with Lydia Lunch remains a Danish underground classic",
+    "difficulty": "hard",
+    "backgroundSongName": "Let Your Fingers Do the Walking",
+    "backgroundArtist": "Sort Sol",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0462"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Patti Smith Group?",
+    "correctAnswer": "Patti Smith",
+    "options": [
+      "Patti Smith",
+      "Debbie Harry",
+      "Chrissie Hynde",
+      "Kim Gordon"
+    ],
+    "artistName": "Patti Smith",
+    "funFact": "Patti Smith is called the 'Godmother of Punk' — her 1975 debut 'Horses' merged poetry with rock and directly inspired The Sex Pistols, Joy Division, and R.E.M.",
+    "difficulty": "medium",
+    "backgroundSongName": "Because the Night",
+    "backgroundArtist": "Patti Smith",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0463"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features Jonny Greenwood's dissonant string score?",
+    "correctAnswer": "There Will Be Blood",
+    "options": [
+      "There Will Be Blood",
+      "Phantom Thread",
+      "The Power of the Dog",
+      "Spencer"
+    ],
+    "artistName": "Jonny Greenwood",
+    "funFact": "Radiohead guitarist Jonny Greenwood became one of cinema's most acclaimed composers — his There Will Be Blood score was initially disqualified from the Oscars for containing pre-existing material",
+    "difficulty": "hard",
+    "backgroundSongName": "Open Spaces",
+    "backgroundArtist": "Jonny Greenwood",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0464"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series features a country-rock theme by Jamey Johnson?",
+    "correctAnswer": "Justified",
+    "options": [
+      "Justified",
+      "Yellowstone",
+      "Longmire",
+      "Deputy"
+    ],
+    "artistName": "Jamey Johnson",
+    "funFact": "Justified's theme 'Long Hard Times to Come' by Gangstagrass fused bluegrass with hip-hop — perfectly capturing the show's blend of old Kentucky and modern crime",
+    "difficulty": "hard",
+    "backgroundSongName": "Long Hard Times to Come",
+    "backgroundArtist": "Gangstagrass",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0465"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Jean-Michel Jarre from?",
+    "correctAnswer": "France",
+    "options": [
+      "France",
+      "Germany",
+      "Switzerland",
+      "Belgium"
+    ],
+    "artistName": "Jean-Michel Jarre",
+    "funFact": "Jean-Michel Jarre holds the record for the largest concert audience — 3.5 million people attended his 1997 concert in Moscow. His light shows are literally visible from space",
+    "difficulty": "medium",
+    "backgroundSongName": "Oxygène, Pt. 4",
+    "backgroundArtist": "Jean-Michel Jarre",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0466"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the most sampled song in hip-hop history?",
+    "correctAnswer": "Amen, Brother by The Winstons (the 'Amen Break')",
+    "options": [
+      "Amen, Brother by The Winstons (the 'Amen Break')",
+      "Funky Drummer by James Brown",
+      "Impeach the President by The Honey Drippers",
+      "Think by Lyn Collins"
+    ],
+    "artistName": "The Winstons",
+    "funFact": "The 'Amen Break' is a 6-second drum solo that has been sampled thousands of times — in NWA, Oasis, David Bowie, and virtually every jungle and drum & bass track ever",
+    "difficulty": "hard",
+    "backgroundSongName": "Amen, Brother",
+    "backgroundArtist": "The Winstons",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0467"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the guitarist of Blur known for his indie rock experimentation?",
+    "correctAnswer": "Graham Coxon",
+    "options": [
+      "Graham Coxon",
+      "Damon Albarn",
+      "Alex James",
+      "Dave Rowntree"
+    ],
+    "artistName": "Blur",
+    "funFact": "Graham Coxon left Blur during 'Think Tank' and the album went in a completely different direction — when he returned for 'The Magic Whip', fans said the band found its soul again",
+    "difficulty": "hard",
+    "backgroundSongName": "Song 2",
+    "backgroundArtist": "Blur",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0468"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Coen Brothers film features Carter Burwell's iconic whistled theme?",
+    "correctAnswer": "Fargo",
+    "options": [
+      "Fargo",
+      "No Country for Old Men",
+      "The Big Lebowski",
+      "True Grit"
+    ],
+    "artistName": "Carter Burwell",
+    "funFact": "Carter Burwell based the Fargo theme on a Norwegian folk song — the deceptively cheerful melody playing over the bleak Minnesota landscape is pure Coen Brothers irony",
+    "difficulty": "medium",
+    "backgroundSongName": "Fargo Theme",
+    "backgroundArtist": "Carter Burwell",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0469"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Spanish TV thriller features an operatic opening by Manel Santisteban?",
+    "correctAnswer": "Money Heist (La Casa de Papel)",
+    "options": [
+      "Money Heist (La Casa de Papel)",
+      "Elite",
+      "Vis a Vis",
+      "Sky Rojo"
+    ],
+    "artistName": "Cecilia Krull",
+    "funFact": "'My Life Is Going On' by Cecilia Krull became a global protest anthem — fans sang it during political rallies from France to India, far beyond its use as a TV theme",
+    "difficulty": "medium",
+    "backgroundSongName": "My Life Is Going On",
+    "backgroundArtist": "Cecilia Krull",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0470"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Tom Waits from?",
+    "correctAnswer": "US",
+    "options": [
+      "US",
+      "UK",
+      "Ireland",
+      "Canada"
+    ],
+    "artistName": "Tom Waits",
+    "funFact": "Tom Waits once sued Frito-Lay for using a vocal impersonator in a commercial — he won, establishing that artists' voices are legally protected",
+    "difficulty": "medium",
+    "backgroundSongName": "Tom Traubert's Blues",
+    "backgroundArtist": "Tom Waits",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0471"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Aphex Twin's most famous music video, featuring a disturbing grinning face?",
+    "correctAnswer": "Windowlicker",
+    "options": [
+      "Windowlicker",
+      "Come to Daddy",
+      "Donkey Rhubarb",
+      "Film"
+    ],
+    "artistName": "Aphex Twin",
+    "funFact": "The Windowlicker video by Chris Cunningham cost $400,000 — Richard D. James' face morphed onto bikini dancers and random bystanders. MTV refused to air the full version",
+    "difficulty": "hard",
+    "backgroundSongName": "Windowlicker",
+    "backgroundArtist": "Aphex Twin",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0472"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead guitarist of The Strokes?",
+    "correctAnswer": "Albert Hammond Jr.",
+    "options": [
+      "Albert Hammond Jr.",
+      "Nick Valensi",
+      "Julian Casablancas",
+      "Nikolai Fraiture"
+    ],
+    "artistName": "The Strokes",
+    "funFact": "Albert Hammond Jr. is the son of Albert Hammond Sr. who wrote 'It Never Rains in Southern California' — both father and son became rock legends in different eras",
+    "difficulty": "hard",
+    "backgroundSongName": "Last Nite",
+    "backgroundArtist": "The Strokes",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0473"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features Lisa Gerrard's haunting vocals in a Hans Zimmer score?",
+    "correctAnswer": "Gladiator",
+    "options": [
+      "Gladiator",
+      "Troy",
+      "Kingdom of Heaven",
+      "Alexander"
+    ],
+    "artistName": "Lisa Gerrard",
+    "funFact": "Lisa Gerrard of Dead Can Dance sang in an invented language for Gladiator — Zimmer couldn't understand the words but said her voice 'sounds like the whole of humanity crying'",
+    "difficulty": "medium",
+    "backgroundSongName": "Now We Are Free",
+    "backgroundArtist": "Lisa Gerrard & Hans Zimmer",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0474"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about medieval politics features a choral Latin theme?",
+    "correctAnswer": "The Tudors",
+    "options": [
+      "The Tudors",
+      "Vikings",
+      "Medici",
+      "The Borgias"
+    ],
+    "artistName": "Trevor Morris",
+    "funFact": "Trevor Morris went on to compose the Vikings soundtrack — his dramatic orchestral style defined the sound of historical TV drama in the 2010s",
+    "difficulty": "hard",
+    "backgroundSongName": "The Tudors Theme",
+    "backgroundArtist": "Trevor Morris",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0475"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Nik & Jay from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Netherlands"
+    ],
+    "artistName": "Nik & Jay",
+    "funFact": "Nik & Jay became Denmark's biggest pop-rap duo in the 2000s — their party hits like 'Bansen' and 'Hot!' defined a generation of Danish youth",
+    "difficulty": "easy",
+    "backgroundSongName": "Hot!",
+    "backgroundArtist": "Nik & Jay",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0476"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was ABBA's winning Eurovision Song Contest entry?",
+    "correctAnswer": "Waterloo",
+    "options": [
+      "Waterloo",
+      "Dancing Queen",
+      "Mamma Mia",
+      "SOS"
+    ],
+    "artistName": "ABBA",
+    "funFact": "ABBA won Eurovision in 1974 — the contest was watched by 500 million people, making 'Waterloo' an overnight global sensation. It changed Eurovision from a niche event to a career launcher",
+    "difficulty": "easy",
+    "backgroundSongName": "Waterloo",
+    "backgroundArtist": "ABBA",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0477"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the bassist of The White Stripes?",
+    "correctAnswer": "There is no bassist — only Jack White (guitar) and Meg White (drums)",
+    "options": [
+      "There is no bassist — only Jack White (guitar) and Meg White (drums)",
+      "Jack White",
+      "Meg White",
+      "Jack Lawrence"
+    ],
+    "artistName": "The White Stripes",
+    "funFact": "The White Stripes were a two-piece with no bass — Jack White's guitar tone was so heavy it filled the entire frequency range. They claimed to be siblings but were actually ex-married",
+    "difficulty": "medium",
+    "backgroundSongName": "Seven Nation Army",
+    "backgroundArtist": "The White Stripes",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0478"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Bong Joon-ho film features a score by Jung Jae-il?",
+    "correctAnswer": "Parasite",
+    "options": [
+      "Parasite",
+      "Snowpiercer",
+      "Okja",
+      "Memories of Murder"
+    ],
+    "artistName": "Jung Jae-il",
+    "funFact": "Parasite's score uses a classical string arrangement to satirize the wealthy family — the music gets more dissonant as the class conflict intensifies",
+    "difficulty": "hard",
+    "backgroundSongName": "The Belt of Faith",
+    "backgroundArtist": "Jung Jae-il",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0479"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which Netflix series features a theme by Jeff Beal that evokes Washington D.C. power?",
+    "correctAnswer": "House of Cards",
+    "options": [
+      "House of Cards",
+      "Designated Survivor",
+      "Scandal",
+      "The West Wing"
+    ],
+    "artistName": "Jeff Beal",
+    "funFact": "The House of Cards theme uses a solo trumpet against dark strings — it sounds like a funeral march for democracy, perfectly matching Frank Underwood's ruthless ambition",
+    "difficulty": "medium",
+    "backgroundSongName": "House of Cards Theme",
+    "backgroundArtist": "Jeff Beal",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0480"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Kesi from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "UK",
+      "France"
+    ],
+    "artistName": "Kesi",
+    "funFact": "Kesi is one of Denmark's biggest new-generation rappers — his blend of Afrobeats, R&B, and Danish hip-hop represents the multicultural future of Danish music",
+    "difficulty": "easy",
+    "backgroundSongName": "Helt Ansen",
+    "backgroundArtist": "Kesi",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0481"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Who produced Michael Jackson's 'Thriller' album?",
+    "correctAnswer": "Quincy Jones",
+    "options": [
+      "Quincy Jones",
+      "Phil Collins",
+      "Rick Rubin",
+      "Dr. Dre"
+    ],
+    "artistName": "Michael Jackson",
+    "funFact": "Quincy Jones almost didn't produce Thriller — MJ's label thought he was 'too jazzy' for pop. The album sold 70 million copies, making it the best-selling album ever",
+    "difficulty": "easy",
+    "backgroundSongName": "Beat It",
+    "backgroundArtist": "Michael Jackson",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0482"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead singer of Franz Ferdinand?",
+    "correctAnswer": "Alex Kapranos",
+    "options": [
+      "Alex Kapranos",
+      "Nick McCarthy",
+      "Bob Hardy",
+      "Paul Thomson"
+    ],
+    "artistName": "Franz Ferdinand",
+    "funFact": "Alex Kapranos named the band after Archduke Franz Ferdinand — partly because 'it's a good name for a band' and partly because 'the archduke's assassination started WWI, and we wanted to start something too'",
+    "difficulty": "medium",
+    "backgroundSongName": "Take Me Out",
+    "backgroundArtist": "Franz Ferdinand",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0483"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which Edgar Wright film features Queen's 'Don't Stop Me Now' during a zombie fight?",
+    "correctAnswer": "Shaun of the Dead",
+    "options": [
+      "Shaun of the Dead",
+      "Hot Fuzz",
+      "Baby Driver",
+      "Scott Pilgrim"
+    ],
+    "artistName": "Queen",
+    "funFact": "The jukebox zombie fight scene in Shaun of the Dead was choreographed to match the music — Edgar Wright times every action beat to the song, a technique he perfected later in Baby Driver",
+    "difficulty": "easy",
+    "backgroundSongName": "Don't Stop Me Now",
+    "backgroundArtist": "Queen",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0484"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which anime series features 'A Cruel Angel's Thesis'?",
+    "correctAnswer": "Neon Genesis Evangelion",
+    "options": [
+      "Neon Genesis Evangelion",
+      "Attack on Titan",
+      "Death Note",
+      "Dragon Ball Z"
+    ],
+    "artistName": "Yoko Takahashi",
+    "funFact": "'A Cruel Angel's Thesis' is the most popular karaoke song in Japan — it's been #1 on karaoke charts for over 20 consecutive years",
+    "difficulty": "medium",
+    "backgroundSongName": "A Cruel Angel's Thesis",
+    "backgroundArtist": "Yoko Takahashi",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0485"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What instrument does Yo-Yo Ma play?",
+    "correctAnswer": "Cello",
+    "options": [
+      "Cello",
+      "Violin",
+      "Piano",
+      "Flute"
+    ],
+    "artistName": "Yo-Yo Ma",
+    "funFact": "Yo-Yo Ma performed at the inaugurations of both Obama and Biden — he's performed for every US president since Reagan and is considered a cultural ambassador for classical music",
+    "difficulty": "easy",
+    "backgroundSongName": "Unaccompanied Cello Suite No. 1",
+    "backgroundArtist": "Bach (performed by Yo-Yo Ma)",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0486"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the frontman of Rammstein known for pyrotechnics?",
+    "correctAnswer": "Till Lindemann",
+    "options": [
+      "Till Lindemann",
+      "Richard Kruspe",
+      "Flake",
+      "Oliver Riedel"
+    ],
+    "artistName": "Rammstein",
+    "funFact": "Till Lindemann is a certified pyrotechnician — he personally operates flamethrowers on stage and has set himself on fire during performances more times than he can count",
+    "difficulty": "easy",
+    "backgroundSongName": "Feuer Frei!",
+    "backgroundArtist": "Rammstein",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0487"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which film features 'Where Is My Mind?' by Pixies as buildings collapse?",
+    "correctAnswer": "Fight Club",
+    "options": [
+      "Fight Club",
+      "Mr. Robot",
+      "Donnie Darko",
+      "The Social Network"
+    ],
+    "artistName": "Pixies",
+    "funFact": "David Fincher specifically chose 'Where Is My Mind?' because the lyrics mirror the film's themes of mental fragmentation — it's now inseparable from the film's iconic ending",
+    "difficulty": "easy",
+    "backgroundSongName": "Where Is My Mind?",
+    "backgroundArtist": "Pixies",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0488"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which TV series about a family of superheroes features 'Istanbul (Not Constantinople)' by They Might Be Giants?",
+    "correctAnswer": "The Umbrella Academy",
+    "options": [
+      "The Umbrella Academy",
+      "The Boys",
+      "Invincible",
+      "Doom Patrol"
+    ],
+    "artistName": "They Might Be Giants",
+    "funFact": "The Umbrella Academy uses a wildly eclectic soundtrack — mixing indie rock, classical, and pop in ways that mirror the dysfunctional family's chaotic energy",
+    "difficulty": "medium",
+    "backgroundSongName": "Istanbul (Not Constantinople)",
+    "backgroundArtist": "They Might Be Giants",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:30:00Z",
+    "id": "manual-0489"
   }
 ]
