@@ -2295,7 +2295,7 @@
     "backgroundSongName": "Dynamite",
     "backgroundArtist": "BTS",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0114"
   },
@@ -3575,7 +3575,7 @@
     "backgroundSongName": "Skyfall",
     "backgroundArtist": "Adele",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0178"
   },
@@ -4655,7 +4655,7 @@
     "backgroundSongName": "HUMBLE.",
     "backgroundArtist": "Kendrick Lamar",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0232"
   },
@@ -6635,7 +6635,7 @@
     "backgroundSongName": "Battle Without Honor or Humanity",
     "backgroundArtist": "Tomoyasu Hotei",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0331"
   },
@@ -6895,7 +6895,7 @@
     "backgroundSongName": "Strange Fruit",
     "backgroundArtist": "Billie Holiday",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0344"
   },
@@ -7415,7 +7415,7 @@
     "backgroundSongName": "Gonna Fly Now",
     "backgroundArtist": "Bill Conti",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0370"
   },
@@ -8235,7 +8235,7 @@
     "backgroundSongName": "Symphony No. 9",
     "backgroundArtist": "Beethoven",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0411"
   },
@@ -8955,7 +8955,7 @@
     "backgroundSongName": "Sleeping My Day Away",
     "backgroundArtist": "D-A-D",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0447"
   },
@@ -9978,5 +9978,425 @@
     "timesUsed": 0,
     "createdAt": "2026-04-03T22:00:00Z",
     "id": "manual-0498"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Burna Boy from?",
+    "correctAnswer": "Nigeria",
+    "options": [
+      "Nigeria",
+      "Ghana",
+      "Kenya",
+      "South Africa"
+    ],
+    "artistName": "Burna Boy",
+    "funFact": "Burna Boy's real name is Damini Ogulu, and his album 'Love, Damini' debuted at #1 on the Billboard 200 — making him the first Nigerian artist to achieve this feat!",
+    "difficulty": "easy",
+    "backgroundSongName": "Last Last",
+    "backgroundArtist": "Burna Boy",
+    "id": "49eda49e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:03:13.013Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which R&B singer was convicted on sex trafficking charges and sentenced to 30 years in prison?",
+    "correctAnswer": "R. Kelly",
+    "options": [
+      "R. Kelly",
+      "Chris Brown",
+      "Trey Songz",
+      "Usher"
+    ],
+    "artistName": "MoBlack & Salif Keïta",
+    "funFact": "🗞️ LEGAL — R. Kelly was convicted in 2021 and sentenced to 30 years in 2022 — the 'Surviving R. Kelly' docuseries was instrumental in bringing decades of abuse allegations to court",
+    "difficulty": "easy",
+    "backgroundSongName": "Yamore (feat. Cesária Evora, Benja (NL) & Franc Fala)",
+    "backgroundArtist": "MoBlack & Salif Keïta",
+    "id": "550bbeda",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:08:47.425Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star's fans crashed Ticketmaster in 2022, leading to a Congressional hearing?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Beyonce",
+      "Adele",
+      "Harry Styles"
+    ],
+    "artistName": "DJ Premier",
+    "funFact": "🗞️ CONTROVERSY — The Eras Tour presale in November 2022 crashed Ticketmaster entirely — 14 million people tried to buy tickets simultaneously, leading to Senate hearings on Ticketmaster's monopoly",
+    "difficulty": "easy",
+    "backgroundSongName": "Our Streets (feat. A$AP Ferg)",
+    "backgroundArtist": "DJ Premier",
+    "id": "778cab8a",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:08:47.425Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Celia Cruz from?",
+    "correctAnswer": "Cuba",
+    "options": [
+      "Cuba",
+      "Puerto Rico",
+      "Dominican Republic",
+      "Colombia"
+    ],
+    "artistName": "Celia Cruz",
+    "funFact": "Celia Cruz was so iconic that her legacy inspired a Hollywood film — 'La Negra' was a lifelong nickname that became her crown jewel!",
+    "difficulty": "easy",
+    "backgroundSongName": "La Vida Es un Carnaval",
+    "backgroundArtist": "Celia Cruz",
+    "id": "30f177cf",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:08:47.425Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country do the Swedish House Mafia producers come from?",
+    "correctAnswer": "Sweden",
+    "options": [
+      "Sweden",
+      "Norway",
+      "Denmark",
+      "Finland"
+    ],
+    "artistName": "Swedish House Mafia",
+    "funFact": "Swedish House Mafia literally put Swedish electronic music on the global map — before them, Scandinavian EDM was almost underground!",
+    "difficulty": "easy",
+    "backgroundSongName": "Don't You Worry Child (Radio Edit) [feat. John Martin]",
+    "backgroundArtist": "Swedish House Mafia",
+    "id": "b8ca173e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T20:08:47.425Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Grammy-winning artist was revealed to be in a secret relationship with NFL star Odell Beckham Jr?",
+    "correctAnswer": "Kim Kardashian",
+    "options": [
+      "Kim Kardashian",
+      "SZA",
+      "Doja Cat",
+      "Megan Thee Stallion"
+    ],
+    "artistName": "Dizzee Rascal",
+    "funFact": "🗞️ DATING — Kim and Odell were first spotted together in late 2023 — after Pete Davidson and Kanye drama, fans joked that Kim was building an All-Star team of ex-boyfriends",
+    "difficulty": "hard",
+    "backgroundSongName": "Dance Wiv Me (feat. Calvin Harris & Chrome)",
+    "backgroundArtist": "Dizzee Rascal",
+    "id": "0dc567e5",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:42:59.248Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which British singer was spotted at EVERY Kansas City Chiefs game in 2023-2024?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Adele",
+      "Dua Lipa",
+      "Billie Eilish"
+    ],
+    "artistName": "Mitski",
+    "funFact": "🗞️ DATING — Taylor Swift's presence at Chiefs games boosted NFL viewership among 18-24 women by 53% — the NFL reportedly loved the attention",
+    "difficulty": "easy",
+    "backgroundSongName": "My Love Mine All Mine",
+    "backgroundArtist": "Mitski",
+    "id": "58bf56b5",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:42:59.248Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which artist won the first-ever Grammy for Best African Music Performance in 2024?",
+    "correctAnswer": "Tyla",
+    "options": [
+      "Tyla",
+      "Burna Boy",
+      "Wizkid",
+      "Tems"
+    ],
+    "artistName": "Zach Bryan",
+    "funFact": "🗞️ CAREER — South African singer Tyla's 'Water' became a global phenomenon partly thanks to TikTok — her amapiano-influenced sound introduced millions to South African music culture",
+    "difficulty": "medium",
+    "backgroundSongName": "Something in the Orange",
+    "backgroundArtist": "Zach Bryan",
+    "id": "8c9c120d",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:42:59.248Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Barbadian singer finally returned to music in 2024 after a 6-year hiatus?",
+    "correctAnswer": "No major return in 2024",
+    "options": [
+      "Adele",
+      "Lauryn Hill",
+      "SZA",
+      "FKA twigs"
+    ],
+    "artistName": "Berlin Philharmonic & Rafael Kubelik",
+    "funFact": "🗞️ CAREER — Rihanna released 'Lift Me Up' for Black Panther: Wakanda Forever in 2022, ending her 6-year music hiatus since 'Anti' in 2016",
+    "difficulty": "easy",
+    "backgroundSongName": "Symphony No. 8 in G Major, Op. 88: I. Allegro con brio",
+    "backgroundArtist": "Berlin Philharmonic & Rafael Kubelik",
+    "id": "03300ff7",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:42:59.248Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer won her first-ever Grammy in 2024 for 'Flowers', the biggest hit of 2023?",
+    "correctAnswer": "Miley Cyrus",
+    "options": [
+      "Miley Cyrus",
+      "SZA",
+      "Olivia Rodrigo",
+      "Dua Lipa"
+    ],
+    "artistName": "Dave Brubeck",
+    "funFact": "🗞️ BREAKUP — Miley won Record of the Year for 'Flowers' at the 2024 Grammys — the song was widely interpreted as a diss to ex-husband Liam Hemsworth, as its lyrics flipped Bruno Mars' 'When I Was Your Man'",
+    "difficulty": "easy",
+    "backgroundSongName": "Take Five",
+    "backgroundArtist": "Dave Brubeck",
+    "id": "6fc2f1f3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T21:42:59.248Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer became embroiled in controversy after fans noticed AI-generated images of her circulating online in 2024?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Billie Eilish",
+      "Selena Gomez",
+      "Ariana Grande"
+    ],
+    "artistName": "Wardruna",
+    "funFact": "🗞️ SCANDAL — Explicit AI-generated images of Taylor Swift went viral on X/Twitter in January 2024, prompting bipartisan outrage in Congress and accelerating legislation against non-consensual deepfakes",
+    "difficulty": "medium",
+    "backgroundSongName": "Helvegen",
+    "backgroundArtist": "Wardruna",
+    "id": "8ce092c7",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:03:55.635Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Black Flag?",
+    "correctAnswer": "Ian MacKaye",
+    "options": [
+      "Greg Ginn",
+      "Dez Cadena",
+      "Henry Rollins",
+      "Ian MacKaye"
+    ],
+    "artistName": "Black Flag",
+    "funFact": "Henry Rollins joined Black Flag at just 20 years old and became a screaming legend — he literally brought a megaphone's worth of intensity to hardcore punk!",
+    "difficulty": "hard",
+    "backgroundSongName": "Rise Above",
+    "backgroundArtist": "Black Flag",
+    "id": "5053d704",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:03:55.635Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Danish artist won Eurovision in 2013 and later became a coach on Voice Junior Denmark?",
+    "correctAnswer": "Emmelie de Forest",
+    "options": [
+      "Emmelie de Forest",
+      "Lukas Graham",
+      "MO",
+      "Aqua"
+    ],
+    "artistName": "Metallica",
+    "funFact": "🗞️ CAREER — Emmelie de Forest's 'Only Teardrops' won Eurovision 2013 in Malmo — she remains one of Denmark's most famous Eurovision entrants alongside the Olsen Brothers",
+    "difficulty": "hard",
+    "backgroundSongName": "Moth Into Flame",
+    "backgroundArtist": "Metallica",
+    "id": "3333d4ab",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:23:56.674Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Gary Moore from?",
+    "correctAnswer": "Ireland",
+    "options": [
+      "Ireland",
+      "United Kingdom",
+      "United States",
+      "Canada"
+    ],
+    "artistName": "Gary Moore",
+    "funFact": "Gary Moore was a blues guitar legend who could shred so hard, he once played a 45-minute guitar solo that made audiences forget he'd even dropped the microphone!",
+    "difficulty": "medium",
+    "backgroundSongName": "Still Got the Blues",
+    "backgroundArtist": "Gary Moore",
+    "id": "62020b4e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:28:51.489Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Marilyn Manson's real first name?",
+    "correctAnswer": "Brian",
+    "options": [
+      "Brian",
+      "Michael",
+      "David",
+      "Christopher"
+    ],
+    "artistName": "Marilyn Manson",
+    "funFact": "Marilyn Manson's stage name is a mashup of Marilyn Monroe and Charles Manson — basically the ultimate shock rock flex!",
+    "difficulty": "medium",
+    "backgroundSongName": "The Beautiful People",
+    "backgroundArtist": "Marilyn Manson",
+    "id": "c9e038af",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:28:51.489Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is PSY from?",
+    "correctAnswer": "South Korea",
+    "options": [
+      "South Korea",
+      "Japan",
+      "Thailand",
+      "Vietnam"
+    ],
+    "artistName": "PSY",
+    "funFact": "'Gangnam Style' became the first YouTube video to reach 1 billion views — and it took just 5 months!",
+    "difficulty": "easy",
+    "backgroundSongName": "Gentleman",
+    "backgroundArtist": "PSY",
+    "id": "00d962bd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:31:13.135Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Black Sabbath's classic lineup?",
+    "correctAnswer": "Randy Rhoads",
+    "options": [
+      "Ozzy Osbourne",
+      "Tony Iommi",
+      "Randy Rhoads",
+      "Geezer Butler"
+    ],
+    "artistName": "Black Sabbath",
+    "funFact": "Black Sabbath's 'Paranoid' album was recorded in just four days and became one of the most influential heavy metal albums of all time",
+    "difficulty": "medium",
+    "backgroundSongName": "Paranoid (2012 - Remaster)",
+    "backgroundArtist": "Black Sabbath",
+    "id": "c9f33be6",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:31:13.135Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer-actress starred in Wicked (2024) and began dating her co-star while still married?",
+    "correctAnswer": "Ariana Grande",
+    "options": [
+      "Ariana Grande",
+      "Lady Gaga",
+      "Dua Lipa",
+      "Selena Gomez"
+    ],
+    "artistName": "Katy Perry",
+    "funFact": "🗞️ DATING — Ariana Grande and Ethan Slater (who played Boq) both left their spouses around the same time Wicked was filming — fans dubbed it 'Wickedly complicated'",
+    "difficulty": "medium",
+    "backgroundSongName": "California Gurls (feat. Snoop Dogg)",
+    "backgroundArtist": "Katy Perry",
+    "id": "919ca27e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:37:45.080Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of The National?",
+    "correctAnswer": "Win Butler",
+    "options": [
+      "Aaron Dessner",
+      "Bryce Dessner",
+      "Win Butler",
+      "Matt Berninger"
+    ],
+    "artistName": "The National",
+    "funFact": "The National's frontman Matt Berninger once worked as a typist for a medical company — very rock and roll!",
+    "difficulty": "medium",
+    "backgroundSongName": "I Need My Girl",
+    "backgroundArtist": "The National",
+    "id": "1631c097",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:37:45.080Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer married a member of the Italian royal family in a lavish ceremony in 2024?",
+    "correctAnswer": "No singer married Italian royalty in 2024",
+    "options": [
+      "Lady Gaga",
+      "Gwen Stefani",
+      "Jessica Simpson",
+      "No one did this"
+    ],
+    "artistName": "Jason Isbell",
+    "funFact": "🗞️ DATING — Kourtney Kardashian married Travis Barker in a lavish Italian ceremony in 2022, but he's a musician not royalty",
+    "difficulty": "medium",
+    "backgroundSongName": "Cover Me Up",
+    "backgroundArtist": "Jason Isbell",
+    "id": "28e77907",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:52:45.972Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country does David Gilmour, the legendary guitarist, call home?",
+    "correctAnswer": "United Kingdom",
+    "options": [
+      "United Kingdom",
+      "Australia",
+      "Canada",
+      "Germany"
+    ],
+    "artistName": "David Gilmour",
+    "funFact": "David Gilmour famously said he taught himself guitar by listening to records — no formal lessons required!",
+    "difficulty": "easy",
+    "backgroundSongName": "On an Island",
+    "backgroundArtist": "David Gilmour",
+    "id": "92aacddb",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-03T22:52:45.972Z"
   }
 ]

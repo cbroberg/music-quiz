@@ -3,6 +3,25 @@
  * Connects to /quiz-ws WebSocket, manages all 7 screens.
  */
 
+// ─── Fullscreen ──────────────────────────────────────────
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+document.addEventListener('fullscreenchange', () => {
+  const icon = document.getElementById('fs-icon');
+  if (!icon) return;
+  if (document.fullscreenElement) {
+    icon.innerHTML = '<polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>';
+  } else {
+    icon.innerHTML = '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>';
+  }
+});
+
 // ─── State ────────────────────────────────────────────────
 
 let ws = null;
@@ -171,6 +190,7 @@ function createSession() {
     decade: document.getElementById('cfg-decade').value || undefined,
     answerMode: document.getElementById('cfg-answer-mode').value,
     excludeRecentPlays: document.getElementById('cfg-exclude-recent').checked,
+    includeGossip: document.getElementById('cfg-include-gossip').checked || document.getElementById('cfg-type').value === 'gossip',
   };
 
   timeLimit = config.timeLimit;
@@ -197,11 +217,23 @@ function startGame() {
   send({ type: 'start_quiz' });
 }
 
-// ─── Show/Hide Genre ──────────────────────────────────────
+// ─── Show/Hide Genre & Gossip ─────────────────────────────
 
 document.getElementById('cfg-source').addEventListener('change', (e) => {
   document.getElementById('genre-container').style.display =
     e.target.value === 'charts-genre' ? '' : 'none';
+});
+
+document.getElementById('cfg-type').addEventListener('change', (e) => {
+  const isGossipRound = e.target.value === 'gossip';
+  const gossipCheckbox = document.getElementById('cfg-include-gossip');
+  const gossipContainer = document.getElementById('gossip-container');
+  if (isGossipRound) {
+    gossipCheckbox.checked = true;
+    gossipContainer.style.display = 'none'; // implicit — gossip round = all gossip
+  } else {
+    gossipContainer.style.display = 'flex';
+  }
 });
 
 // ─── Keyboard Shortcuts ───────────────────────────────────
@@ -443,6 +475,7 @@ function showCountdown(qNum, total, questionType) {
     'artist-trivia': 'Music Trivia',
     'film-soundtrack': 'Name That Movie!',
     'tv-theme': 'Name That Show!',
+    'gossip': 'Celebrity Gossip!',
   };
   typeEl.textContent = typeLabels[questionType] || '';
 
@@ -482,6 +515,7 @@ function showQuestion(msg) {
     'guess-the-album': 'Guess the Album',
     'guess-the-year': 'Guess the Year',
     'intro-quiz': 'Name That Tune!',
+    'gossip': 'Celebrity Gossip!',
     'mixed': 'Mixed',
   };
   document.getElementById('q-type').textContent = typeLabels[msg.question?.questionType] || '';
@@ -817,8 +851,8 @@ const _origShowScreen = showScreen;
 showScreen = function(id) {
   _origShowScreen(id);
   const exitBtn = document.getElementById('exit-btn');
-  // Show exit button on quiz game screens only (not setup, final, or dj)
-  exitBtn.style.display = (id !== 'setup' && id !== 'final' && id !== 'dj') ? '' : 'none';
+  // Show exit button on quiz game screens only (not setup, final, dj, or np)
+  exitBtn.style.display = (id !== 'setup' && id !== 'final' && id !== 'dj' && id !== 'np') ? '' : 'none';
 };
 
 // ─── DJ Mode ──────────────────────────────────────────────
@@ -859,6 +893,24 @@ function deactivateDjMode() {
 
 function djPlayNext() {
   send({ type: 'dj_next' });
+}
+
+let djPaused = false;
+function djPlayPause() {
+  const btn = document.getElementById('dj-btn-playpause');
+  if (djPaused) {
+    Player.togglePlayPause();
+    btn.textContent = '⏸ Pause';
+    btn.style.color = 'var(--green)';
+    btn.style.borderColor = 'var(--green)';
+    djPaused = false;
+  } else {
+    Player.togglePlayPause();
+    btn.textContent = '▶ Play';
+    btn.style.color = 'var(--muted)';
+    btn.style.borderColor = 'var(--border)';
+    djPaused = true;
+  }
 }
 
 let djAutoplay = true;

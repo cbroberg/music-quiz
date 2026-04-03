@@ -75,6 +75,7 @@ async function main() {
     document.getElementById('cfg-timer').value = t;
     document.getElementById('cfg-source').value = 'mixed';
     document.getElementById('cfg-type').value = 'mixed';
+    document.getElementById('cfg-include-gossip').checked = true;
   }, { q: String(QUESTIONS), t: String(TIMER) });
   await sleep(300);
 

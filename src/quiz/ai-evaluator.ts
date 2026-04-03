@@ -39,6 +39,7 @@ export async function evaluateAnswers(
     "artist-trivia": "Accept reasonable variations. Be generous with dates (±1 year) and name spelling.",
     "film-soundtrack": "Accept the film title without 'The' prefix, sequel numbers in any format. E.g. 'Rocky 4' = 'Rocky IV'.",
     "tv-theme": "Accept the show name without 'The' prefix or subtitle. E.g. 'Friends' = 'Friends: The One Where...'.",
+    "gossip": "Accept reasonable variations of names, couple pairings in any order. Be generous — this is celebrity gossip, not a test.",
   };
 
   const hint = typeHints[questionType] || "Be generous with spelling and abbreviations.";

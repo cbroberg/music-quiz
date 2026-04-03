@@ -16,6 +16,8 @@ import { getActiveProviderType, getProvider, setActiveProvider } from "./playbac
 import type { ProviderType } from "./playback/provider-manager.js";
 import { pushNowPlaying as pushNowPlayingData, trackChangeLog } from "../browser-ws.js";
 import { getAllPlaylists, getPlaylist, savePlaylist, updatePlaylist, deletePlaylist } from "./playlist-store.js";
+import { getBankSize } from "./question-bank.js";
+import { getGossipBankSize } from "./gossip-bank.js";
 import type { AppleMusicClient } from "../apple-music.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -194,6 +196,57 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   // Track change log (everything that actually played)
   router.get("/quiz/api/admin/track-log", (_req, res) => {
     res.json(trackChangeLog.slice(-100));
+  });
+
+  // Stats dashboard
+  router.get("/quiz/api/admin/stats", async (_req, res) => {
+    const events = await getAllEvents();
+    const triviaBank = await getBankSize();
+    const gossipBank = await getGossipBankSize();
+    const playlists = await getAllPlaylists();
+    const sessions = listActiveSessions();
+    res.json({
+      triviaBank,
+      gossipBank,
+      totalQuestions: triviaBank + gossipBank,
+      events: {
+        total: events.length,
+        active: events.filter(e => e.status === "active").length,
+        completed: events.filter(e => e.status === "completed").length,
+        scheduled: events.filter(e => e.status === "scheduled").length,
+      },
+      playlists: playlists.length,
+      activeSessions: sessions.length,
+      songsPlayed: trackChangeLog.length,
+      playRequests: playLog.length,
+    });
+  });
+
+  // System audio output (macOS)
+  router.get("/quiz/api/admin/audio-output", async (_req, res) => {
+    try {
+      const { execSync } = await import("node:child_process");
+      const raw = execSync("system_profiler SPAudioDataType", { encoding: "utf-8", timeout: 5000 });
+      const lines = raw.split("\n");
+      let currentDevice: string | null = null;
+      let isOutput = false;
+      let transport = "";
+      for (const line of lines) {
+        const stripped = line.trim();
+        if (stripped.endsWith(":") && !stripped.includes("=") && stripped !== "Devices:" && stripped !== "Audio:") {
+          currentDevice = stripped.replace(/:$/, "");
+          isOutput = false;
+        }
+        if (stripped.includes("Default Output Device: Yes")) isOutput = true;
+        if (isOutput && stripped.startsWith("Transport:")) {
+          transport = stripped.split(":")[1]?.trim() || "";
+          break;
+        }
+      }
+      res.json({ device: currentDevice || "Unknown", transport });
+    } catch {
+      res.json({ device: "Unknown", transport: "" });
+    }
   });
 
   // Playback control (passes body as params to HC)

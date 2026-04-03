@@ -17,6 +17,9 @@
   <!-- Top nav — Admin only -->
   <nav style="position:fixed;top:0;right:0;display:flex;align-items:center;gap:12px;padding:24px;font-size:13px;z-index:40">
     <a href="/quiz/admin" style="color:#888;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Admin</a>
+    <button onclick="toggleFullscreen()" style="background:none;border:1px solid #333;color:#888;border-radius:8px;padding:5px 8px;cursor:pointer;display:flex;align-items:center;transition:color 0.15s,border-color 0.15s" onmouseover="this.style.color='#fafafa';this.style.borderColor='#555'" onmouseout="this.style.color='#888';this.style.borderColor='#333'" title="Fullscreen">
+      <svg id="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+    </button>
   </nav>
 
   <!-- 1. Setup / Lobby -->
@@ -36,6 +39,7 @@
             <div class="config-label">Quiz Type</div>
             <select id="cfg-type" class="config-select">
               <option value="mixed">Mixed (music + trivia)</option>
+              <option value="gossip">Gossip Round</option>
               <option value="intro-quiz">Intro Quiz</option>
               <option value="guess-the-artist">Guess the Artist</option>
               <option value="guess-the-song">Guess the Song</option>
@@ -109,17 +113,17 @@
             </select>
           </div>
           <div class="config-item" style="display:flex;align-items:center;gap:10px">
-            <input type="checkbox" id="cfg-show-artwork" style="width:18px;height:18px;accent-color:var(--red)">
-            <div>
-              <div class="config-label">Show artwork</div>
-              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Show album cover during questions</div>
-            </div>
-          </div>
-          <div class="config-item" style="display:flex;align-items:center;gap:10px">
             <input type="checkbox" id="cfg-exclude-recent" checked style="width:18px;height:18px;accent-color:var(--red)">
             <div>
               <div class="config-label">Skip recent plays</div>
               <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Exclude songs you've played recently</div>
+            </div>
+          </div>
+          <div class="config-item" id="gossip-container" style="display:flex;align-items:center;gap:10px">
+            <input type="checkbox" id="cfg-include-gossip" style="width:18px;height:18px;accent-color:var(--red)">
+            <div>
+              <div class="config-label">Include gossip</div>
+              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Celebrity drama, beefs, scandals & breakups</div>
             </div>
           </div>
         </div>
@@ -232,8 +236,8 @@
       </div>
       <div style="display:flex;gap:8px">
         <button onclick="showScreen('np')" style="background:var(--card);border:1px solid var(--blue);color:var(--blue);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">Now Playing</button>
+        <button id="dj-btn-playpause" onclick="djPlayPause()" style="background:var(--card);border:1px solid var(--green);color:var(--green);border-radius:10px;padding:12px 24px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer">⏸ Pause</button>
         <button onclick="djPlayNext()" style="background:var(--red);color:white;border:none;border-radius:10px;padding:12px 24px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer">Next Song</button>
-        <button id="btn-autoplay" onclick="toggleAutoplay()" style="background:var(--card);border:1px solid var(--green);color:var(--green);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">Autoplay: ON</button>
         <button onclick="startNewRound()" style="background:var(--card);border:1px solid var(--yellow);color:var(--yellow);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">New Round</button>
         <button onclick="endEvent()" style="background:var(--card);border:1px solid var(--red);color:var(--red);border-radius:10px;padding:12px 24px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer">End Event</button>
       </div>
@@ -275,7 +279,7 @@
       <div class="np-glow-outer"></div>
       <div class="np-glow-core" id="hnp-glow"></div>
       <div class="np-vinyl" id="hnp-vinyl">
-        <img id="hnp-artwork" src="" alt="">
+        <img id="hnp-artwork" src="/favicon.svg" onerror="this.src='/favicon.svg'" alt="">
         <div class="np-vinyl-grooves"></div>
         <div class="np-vinyl-center"></div>
         <div class="np-vinyl-edge"></div>

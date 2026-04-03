@@ -348,6 +348,7 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
     // ─── DJ Mode (host) ─────────────────────────────────
     case "activate_dj": {
       activateDjMode();
+      // Let Champions keep playing — DJ Mode takes over when first song hits the queue
       startDjAutoplayPolling(musicClient);
       // Transition Party to playlist state (between rounds)
       const djParty = conn.partyId ? getParty(conn.partyId) : undefined;
@@ -724,14 +725,17 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
   const djProvider = getProvider();
   if (!djProvider.isAvailable()) return;
   try {
+    // Stop whatever is currently playing (Champions, previous song, etc.)
+    await djProvider.pause().catch(() => {});
+
     // Add to library first so it's available for exact match search
     if (musicClient?.hasUserToken()) {
       await musicClient.addToLibrary({ songs: [song.songId] }).catch(() => {});
       trackAddedToLibrary(song.name, song.artistName);
-      await new Promise(r => setTimeout(r, 800));
+      await new Promise(r => setTimeout(r, 2000));
     }
 
-    // Primary: exact name + artist match (no fuzzy search, no wrong songs)
+    // Primary: exact name + artist match
     const artist = song.artistName.split(/[,&]/)[0].trim();
     const result = await djProvider.playExact(song.name, artist, { retries: 3 });
     if (result.playing) {
@@ -747,8 +751,13 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
         return;
       }
     }
-    // No fuzzy fallback — silence is better than wrong song
-    console.error(`🎧 DJ exact match failed: ${song.name} — ${song.artistName} (no fallback)`);
+    // Last resort: searchAndPlay (may not be exact but better than silence)
+    const search = await djProvider.searchAndPlay(`${song.name} ${artist}`);
+    if (search.playing) {
+      console.log(`🎧 DJ playing (search fallback): ${search.track}`);
+      return;
+    }
+    console.error(`🎧 DJ play failed entirely: ${song.name} — ${song.artistName}`);
   } catch (err) {
     console.error("🎧 DJ play failed:", err);
   }

@@ -95,6 +95,8 @@ export function awardPicks(rankings: FinalRanking[]): void {
 
 export function activateDjMode(): DjSession {
   djSession.active = true;
+  djSession.isPlaying = false;
+  djSession.currentIndex = -1;
   console.log(`🎧 DJ Mode activated — ${djSession.players.size} players, ${getTotalAvailablePicks()} picks available`);
   return djSession;
 }
@@ -169,8 +171,9 @@ export function addToQueue(
 
   console.log(`🎧 ${player.avatar} ${playerName} queued "${song.name}" (${player.availablePicks} picks left)`);
 
-  // Auto-play first song when nothing is playing
+  // Auto-play only the very first song — after that, polling handles advancement
   const shouldAutoPlay = !djSession.isPlaying && djSession.currentIndex < 0;
+  if (shouldAutoPlay) djSession.isPlaying = true; // prevent duplicate autoPlay triggers
 
   return { success: true, queue: djSession.queue, autoPlay: shouldAutoPlay };
 }

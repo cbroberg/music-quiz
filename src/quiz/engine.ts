@@ -16,9 +16,10 @@ import type { AppleMusicClient } from "../apple-music.js";
 import { isHomeConnected } from "../home-ws.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
 import { awardPicks, resetDjMode } from "./dj-mode.js";
-import { getProvider } from "./playback/provider-manager.js";
+import { getProvider, getActiveProviderType } from "./playback/provider-manager.js";
 import { generateTriviaQuestions, type GeneratedTrivia } from "./ai-enricher.js";
 import { getRandomQuestions, saveQuestions } from "./question-bank.js";
+import { getRandomGossipQuestions, getGossipBankSize } from "./gossip-bank.js";
 
 import { writeFileSync, mkdirSync } from "node:fs";
 
@@ -405,8 +406,13 @@ export async function createSession(
 
   // Step 2: Verify which songs are actually playable
   const muteAll = process.env.MUTE_ALL === "true";
+  const isMusicKit = getActiveProviderType() === "musickit-web";
   const verifiedSongs: typeof allRawSongs = [];
-  if (provider.isAvailable() && !muteAll) {
+  if (isMusicKit || muteAll) {
+    // MusicKit JS plays any catalog song by ID — no verify needed
+    verifiedSongs.push(...allRawSongs.filter(q => q.songId));
+    console.log(`🎮 MusicKit: ${verifiedSongs.length}/${allRawSongs.length} songs (skip verify — plays by catalog ID)`);
+  } else if (provider.isAvailable()) {
     for (const q of allRawSongs) {
       if (!q.songId) continue;
       const artist = q.artistName.split(/[,&]/)[0].trim();
@@ -494,9 +500,20 @@ export async function createSession(
   // Resolve artwork for all (parallel)
   await Promise.all(dedupedVerified.map(q => resolveArtwork(q)));
 
-  // ─── Trivia ────────────────────────────────────────────
-  const triviaCount = Math.max(2, Math.round(config.questionCount * 0.35));
-  const musicCount = config.questionCount - triviaCount;
+  // ─── Gossip + Trivia ────────────────────────────────────
+  const isGossipRound = config.quizType === "gossip";
+  const includeGossip = isGossipRound || config.includeGossip === true;
+
+  // For gossip round: ALL questions are gossip (with background music)
+  // For mixed with gossip: split trivia budget between gossip + regular trivia
+  const triviaCount = isGossipRound
+    ? config.questionCount  // all gossip
+    : Math.max(2, Math.round(config.questionCount * 0.35));
+  const musicCount = isGossipRound ? 0 : config.questionCount - triviaCount;
+  const gossipCount = isGossipRound
+    ? config.questionCount
+    : includeGossip ? Math.max(1, Math.ceil(triviaCount * 0.4)) : 0;
+  const regularTriviaCount = triviaCount - gossipCount;
 
   // Trivia should use DIFFERENT artists than music questions for maximum variety
   const musicArtistKeys = new Set(dedupedVerified.slice(0, musicCount).map(q => q.artistName.toLowerCase()));
@@ -516,14 +533,20 @@ export async function createSession(
 
   console.log(`🧠 Trivia artist pool: ${triviaOnlyArtists.length} artists not in music questions`);
 
-  const [freshTrivia, bankedQuestions] = await Promise.all([
-    generateTriviaQuestions(
-      { artists: triviaOnlyArtists.length >= triviaCount ? triviaOnlyArtists : [...triviaOnlyArtists, ...dedupedVerified.slice(0, musicCount).map(q => ({ name: q.artistName }))],
+  // Fetch gossip + trivia in parallel
+  const [freshTrivia, bankedQuestions, gossipQuestions] = await Promise.all([
+    regularTriviaCount > 0 ? generateTriviaQuestions(
+      { artists: triviaOnlyArtists.length >= regularTriviaCount ? triviaOnlyArtists : [...triviaOnlyArtists, ...dedupedVerified.slice(0, musicCount).map(q => ({ name: q.artistName }))],
         songs: songPool },
-      triviaCount + 4  // request extra — some will be filtered
-    ).catch(() => [] as GeneratedTrivia[]),
-    getRandomQuestions(Math.max(1, Math.ceil(triviaCount * 0.3))).catch(() => []),
+      regularTriviaCount + 4  // request extra — some will be filtered
+    ).catch(() => [] as GeneratedTrivia[]) : Promise.resolve([] as GeneratedTrivia[]),
+    regularTriviaCount > 0 ? getRandomQuestions(Math.max(1, Math.ceil(regularTriviaCount * 0.3))).catch(() => []) : Promise.resolve([]),
+    gossipCount > 0 ? getRandomGossipQuestions(gossipCount + 4).catch(() => []) : Promise.resolve([]),
   ]);
+
+  if (gossipCount > 0) {
+    console.log(`🗞️ Gossip: requested ${gossipCount}, got ${gossipQuestions.length} from bank`);
+  }
 
   // Track used SONGS across all questions (music + trivia) — no song twice
   const usedSongKeysInQuiz = new Set(
@@ -569,10 +592,58 @@ export async function createSession(
     };
   }
 
-  const triviaQuestions: QuizQuestion[] = [
+  // Convert gossip to quiz questions
+  // Unlike regular trivia, gossip doesn't require the artist to be in the pool.
+  // If the gossip artist has a song in the pool, use it. Otherwise, use ANY unused song.
+  function gossipToQuestion(g: typeof gossipQuestions[0]): QuizQuestion | null {
+    const gossipArtist = g.backgroundArtist || g.artistName;
+    // Try to find song by gossip artist first
+    let bgSong = songPool.find(s =>
+      s.artistName.toLowerCase() === gossipArtist.toLowerCase() &&
+      !usedSongKeysInQuiz.has(normalizeForDedup(s.name) + "|" + s.artistName.toLowerCase())
+    );
+    // Fallback: use any unused song from the pool
+    if (!bgSong) {
+      bgSong = songPool.find(s =>
+        !usedSongKeysInQuiz.has(normalizeForDedup(s.name) + "|" + s.artistName.toLowerCase())
+      );
+    }
+    if (!bgSong) {
+      console.log(`🗞️ Gossip skipped: no unused songs left for "${g.questionText.slice(0, 40)}"`);
+      return null;
+    }
+    usedSongKeysInQuiz.add(normalizeForDedup(bgSong.name) + "|" + bgSong.artistName.toLowerCase());
+    return {
+      songId: bgSong.id,
+      songName: bgSong.name,
+      artistName: bgSong.artistName,
+      albumName: bgSong.albumName,
+      releaseYear: bgSong.releaseYear,
+      questionText: g.questionText,
+      correctAnswer: g.correctAnswer,
+      options: g.options,
+      questionType: "gossip",
+      difficulty: g.difficulty || "medium",
+      isTrivia: true,
+      backgroundSongId: bgSong.id,
+      backgroundSongName: bgSong.name,
+      backgroundArtist: bgSong.artistName,
+      funFact: g.funFact ? `🗞️ ${g.category.toUpperCase()} — ${g.funFact}` : undefined,
+    };
+  }
+
+  const gossipAsTrivia: QuizQuestion[] = gossipQuestions
+    .map(g => gossipToQuestion(g))
+    .filter((q): q is QuizQuestion => q !== null)
+    .slice(0, gossipCount);
+
+  const regularTrivia: QuizQuestion[] = [
     ...freshTrivia.map(t => triviaToQuestion(t)),
     ...bankedQuestions.map(t => triviaToQuestion(t)),
-  ].filter((q): q is QuizQuestion => q !== null).slice(0, triviaCount);
+  ].filter((q): q is QuizQuestion => q !== null).slice(0, regularTriviaCount);
+
+  // Merge: gossip first, then regular trivia
+  const triviaQuestions: QuizQuestion[] = [...gossipAsTrivia, ...regularTrivia].slice(0, triviaCount);
 
   // Bank fresh trivia that matched verified songs
   const freshToBank = triviaQuestions.filter(q => q.songId && !bankedQuestions.some(b => b.questionText === q.questionText));
@@ -611,9 +682,11 @@ export async function createSession(
   // No alternatives needed — all songs verified playable
   const alternatives: QuizQuestion[] = [];
 
-  console.log(`🧠 Quiz: ${mIdx} music + ${tIdx} trivia = ${questions.length} (from ${verifiedSongs.length} verified songs)`);
+  const gossipUsed = questions.filter(q => q.questionType === 'gossip').length;
+  console.log(`🧠 Quiz: ${mIdx} music + ${tIdx - gossipUsed} trivia + ${gossipUsed} gossip = ${questions.length} (from ${verifiedSongs.length} verified songs)`);
   for (const q of questions) {
-    console.log(`🧠  ${q.isTrivia ? 'TRIVIA' : 'MUSIC '} Q: "${q.questionText}" → ${q.correctAnswer} (plays: ${q.songName} by ${q.artistName})`);
+    const tag = q.questionType === 'gossip' ? 'GOSSIP' : q.isTrivia ? 'TRIVIA' : 'MUSIC ';
+    console.log(`🧠  ${tag} Q: "${q.questionText}" → ${q.correctAnswer} (plays: ${q.songName} by ${q.artistName})`);
   }
 
   // Use Party's join code if within a Party, otherwise generate new
@@ -1375,7 +1448,7 @@ function finishGame(session: GameSession): void {
   // Emit results first so UI shows podium
   emit(session.id, { type: "final_results", session, rankings });
 
-  // Play Champions async — starts immediately (applause.mp3 is a browser sound, doesn't conflict)
+  // Play Champions async — plays until DJ Mode takes over or admin stops it
   const victoryProvider = getProvider();
   if (victoryProvider.isAvailable()) {
     (async () => {

@@ -10,35 +10,32 @@
 <body>
   <div class="admin-layout">
 
-    <!-- ═══ Fixed Top: Audio Setup + Mini Player ═══ -->
+    <!-- ═══ Fixed Top: Compact Header + Mini Player ═══ -->
     <div class="audio-setup">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;gap:8px;align-items:center">
-          <div class="provider-toggle" id="provider-toggle">
-            <button id="btn-prov-mk" onclick="switchProvider('musickit-web')" class="prov-btn">Apple Music</button>
-            <button id="btn-prov-hc" onclick="switchProvider('home-controller')" class="prov-btn">Home Controller</button>
-          </div>
-          <button id="btn-setup-connect" onclick="setupConnectAppleMusic()" style="display:none;background:none;border:1px solid var(--red);color:var(--red);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer">Connect Apple Music</button>
-          <button id="btn-setup-test" onclick="setupTestPlay()" style="display:none;background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;transition:border-color 0.15s,color 0.15s" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Test</button>
-          <button id="btn-setup-stop" onclick="setupStop()" style="display:none;background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer;transition:border-color 0.15s,color 0.15s" onmouseover="this.style.borderColor='var(--dimmer)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Stop</button>
-          <button id="btn-setup-airplay" onclick="setupAirPlay()" style="display:none;background:none;border:1px solid #5ac8fa;color:#5ac8fa;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer">AirPlay</button>
-          <input id="vol-slider" type="range" min="0" max="100" value="75" oninput="setVolume(this.value)" style="display:none;width:80px;accent-color:var(--red);cursor:pointer" title="Volume">
-          <svg id="vol-icon" style="display:none;width:16px;height:16px;color:var(--dimmer)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="/favicon.svg" alt="Music Quiz" style="width:32px;height:32px;flex-shrink:0">
+          <span style="font-size:18px;font-weight:800;letter-spacing:-0.5px">Music Quiz</span>
         </div>
-        <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex;gap:10px;align-items:center">
           <button onclick="openSearch()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 12px;font-size:12px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px" title="Search (⌘K)">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             Search
             <span style="font-size:10px;color:var(--dimmer);border:1px solid var(--border);border-radius:3px;padding:1px 4px">⌘K</span>
           </button>
-          <span id="setup-provider-icon">🔇</span>
-          <span id="setup-provider-label" style="color:var(--muted);font-size:13px">No music source</span>
+          <a href="#" onclick="event.preventDefault();switchTab('setup')" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:12px;font-weight:600;transition:color 0.15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+            <span id="setup-provider-icon">🔇</span>
+            <span id="setup-provider-label">No source</span>
+          </a>
+          <button onclick="toggleFullscreen()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:5px 8px;cursor:pointer;display:flex;align-items:center;transition:color 0.15s,border-color 0.15s" onmouseover="this.style.color='var(--text)';this.style.borderColor='var(--dimmer)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'" title="Fullscreen">
+            <svg id="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+          </button>
         </div>
       </div>
       <!-- Mini Player -->
-      <div id="mini-player" style="display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+      <div id="mini-player" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
         <div style="display:flex;align-items:center;gap:14px">
-          <img id="mp-artwork" src="" style="width:48px;height:48px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="toggleNowPlayingOverlay()">
+          <img id="mp-artwork" src="/favicon.svg" onerror="this.src='/favicon.svg'" style="width:48px;height:48px;border-radius:8px;object-fit:cover;cursor:pointer" onclick="toggleNowPlayingOverlay()">
           <div style="flex:1;min-width:0">
             <div style="display:flex;align-items:center;gap:8px">
               <div id="mp-track" style="font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
@@ -69,6 +66,7 @@
       <button class="admin-tab" data-tab="favorites" onclick="switchTab('favorites')">Favorites</button>
       <!-- Quiz Builder removed — Playlists replaces it -->
       <button class="admin-tab" data-tab="quiz" onclick="switchTab('quiz')">Quiz</button>
+      <button class="admin-tab" data-tab="setup" onclick="switchTab('setup')">Setup</button>
     </nav>
 
     <!-- ═══ Tab Content ═══ -->
@@ -173,6 +171,94 @@
       </div>
     </div>
 
+    <!-- Setup -->
+    <div id="tab-setup" class="tab-content">
+      <div class="tab-header">
+        <h1>Setup</h1>
+      </div>
+
+      <!-- Audio Source -->
+      <div class="setup-section">
+        <h2 class="setup-section-title">Audio Source</h2>
+        <div class="setup-card">
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div class="provider-toggle" id="provider-toggle">
+              <button id="btn-prov-mk" onclick="switchProvider('musickit-web')" class="prov-btn">Apple Music</button>
+              <button id="btn-prov-hc" onclick="switchProvider('home-controller')" class="prov-btn">Home Controller</button>
+            </div>
+            <button id="btn-setup-connect" onclick="setupConnectAppleMusic()" style="display:none;background:none;border:1px solid var(--red);color:var(--red);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">Connect Apple Music</button>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;margin-top:14px">
+            <button id="btn-setup-test" onclick="setupTestPlay()" style="display:none" class="setup-action-btn">Test Playback</button>
+            <button id="btn-setup-stop" onclick="setupStop()" style="display:none" class="setup-action-btn secondary">Stop</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volume & AirPlay -->
+      <div class="setup-section">
+        <h2 class="setup-section-title">Volume & AirPlay</h2>
+        <div class="setup-card">
+          <div style="display:flex;gap:16px;align-items:center">
+            <svg style="width:20px;height:20px;color:var(--muted);flex-shrink:0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            <input id="vol-slider" type="range" min="0" max="100" value="75" oninput="setVolume(this.value)" style="flex:1;max-width:300px;accent-color:var(--red);cursor:pointer" title="Volume">
+            <span id="vol-value" style="color:var(--dimmer);font-size:13px;min-width:35px">75%</span>
+          </div>
+          <div style="margin-top:14px">
+            <button id="btn-setup-airplay" onclick="setupAirPlay()" style="display:none;background:none;border:1px solid #5ac8fa;color:#5ac8fa;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer">AirPlay Devices</button>
+          </div>
+          <div id="airplay-devices" style="margin-top:10px"></div>
+          <div id="audio-output" style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px">
+            <span style="font-size:13px;color:var(--dimmer)">System Output:</span>
+            <span id="audio-output-device" style="font-size:13px;font-weight:600;color:var(--text)">—</span>
+            <span id="audio-output-transport" style="font-size:11px;color:var(--dimmer);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Dashboard -->
+      <div class="setup-section">
+        <h2 class="setup-section-title">Stats</h2>
+        <div class="stats-grid" id="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-trivia">—</div>
+            <div class="stat-label">Trivia Questions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-gossip">—</div>
+            <div class="stat-label">Gossip Questions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-total-q">—</div>
+            <div class="stat-label">Total Questions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-events">—</div>
+            <div class="stat-label">Events</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-songs">—</div>
+            <div class="stat-label">Songs Played</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-playlists">—</div>
+            <div class="stat-label">Playlists</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="setup-section">
+        <h2 class="setup-section-title">Quick Links</h2>
+        <div class="setup-card" style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="/quiz/host" class="setup-link-btn">Quiz</a>
+          <a href="/quiz/host" class="setup-link-btn" id="link-dj-mode" style="border-color:var(--green);color:var(--green)">DJ Mode</a>
+          <a href="/quiz/play" class="setup-link-btn">Player PWA</a>
+          <a href="/quiz/now-playing" class="setup-link-btn">Now Playing</a>
+        </div>
+      </div>
+    </div>
+
     <!-- ═══ Content Pages (Artist / Album) ═══ -->
 
     <div id="page-artist" class="content-page">
@@ -227,7 +313,7 @@
       <div class="np-glow-outer"></div>
       <div class="np-glow-core" id="npo-glow"></div>
       <div class="np-vinyl" id="npo-vinyl">
-        <img id="npo-artwork" src="" alt="">
+        <img id="npo-artwork" src="/favicon.svg" onerror="this.src='/favicon.svg'" alt="">
         <div class="np-vinyl-grooves"></div>
         <div class="np-vinyl-center"></div>
         <div class="np-vinyl-edge"></div>
@@ -294,6 +380,7 @@
       if (tabId === 'playlists') loadPlaylists();
       if (tabId === 'favorites') renderFavorites();
       if (tabId === 'quiz') loadEvents();
+      if (tabId === 'setup') loadStats();
     }
 
     // ─── Playlists Tab ───────────────────────────────────────
@@ -953,6 +1040,45 @@
       loadEvents();
     }
 
+    // ─── Setup / Stats ─────────────────────────────────────────
+
+    async function loadStats() {
+      try {
+        const [statsRes, audioRes] = await Promise.all([
+          fetch('/quiz/api/admin/stats'),
+          fetch('/quiz/api/admin/audio-output'),
+        ]);
+        const stats = await statsRes.json();
+        document.getElementById('stat-trivia').textContent = stats.triviaBank;
+        document.getElementById('stat-gossip').textContent = stats.gossipBank;
+        document.getElementById('stat-total-q').textContent = stats.totalQuestions;
+        document.getElementById('stat-events').textContent = stats.events.total;
+        document.getElementById('stat-songs').textContent = stats.songsPlayed;
+        document.getElementById('stat-playlists').textContent = stats.playlists;
+
+        const audio = await audioRes.json();
+        document.getElementById('audio-output-device').textContent = audio.device || 'Unknown';
+        const transportEl = document.getElementById('audio-output-transport');
+        if (audio.transport) {
+          transportEl.textContent = audio.transport;
+          transportEl.style.display = '';
+        } else {
+          transportEl.style.display = 'none';
+        }
+      } catch (err) {
+        console.warn('Failed to load stats:', err);
+      }
+    }
+
+    // Update volume display
+    const volSlider = document.getElementById('vol-slider');
+    if (volSlider) {
+      volSlider.addEventListener('input', () => {
+        const valEl = document.getElementById('vol-value');
+        if (valEl) valEl.textContent = volSlider.value + '%';
+      });
+    }
+
     // ─── Favorites (special playlist with reserved ID) ────────
 
     // FAVORITES_ID + favoritesSet declared at top
@@ -1109,19 +1235,22 @@
 
       if (prov === 'home-controller') {
         icon.textContent = '🏠'; label.textContent = 'Home Controller'; label.style.color = '#5ac8fa';
-        connectBtn.style.display = 'none'; testBtn.style.display = ''; stopBtn.style.display = '';
-        airplayBtn.style.display = '';
-        volSlider.style.display = ''; document.getElementById('vol-icon').style.display = '';
+        if (connectBtn) connectBtn.style.display = 'none';
+        if (testBtn) testBtn.style.display = '';
+        if (stopBtn) stopBtn.style.display = '';
+        if (airplayBtn) airplayBtn.style.display = '';
       } else if (Player.isMusicKitAuthorized()) {
         icon.textContent = '🎵'; label.textContent = 'Apple Music'; label.style.color = '#34c759';
-        connectBtn.style.display = 'none'; testBtn.style.display = ''; stopBtn.style.display = '';
-        airplayBtn.style.display = '';
-        volSlider.style.display = ''; document.getElementById('vol-icon').style.display = '';
+        if (connectBtn) connectBtn.style.display = 'none';
+        if (testBtn) testBtn.style.display = '';
+        if (stopBtn) stopBtn.style.display = '';
+        if (airplayBtn) airplayBtn.style.display = '';
       } else {
         icon.textContent = '🔇'; label.textContent = 'Not connected'; label.style.color = 'var(--muted)';
-        connectBtn.style.display = ''; testBtn.style.display = 'none'; stopBtn.style.display = 'none';
-        airplayBtn.style.display = 'none';
-        volSlider.style.display = 'none'; document.getElementById('vol-icon').style.display = 'none';
+        if (connectBtn) connectBtn.style.display = '';
+        if (testBtn) testBtn.style.display = 'none';
+        if (stopBtn) stopBtn.style.display = 'none';
+        if (airplayBtn) airplayBtn.style.display = 'none';
       }
     }
 
@@ -1284,16 +1413,15 @@
       // Auto-advance Play All queue
       checkPlayAllAdvance(s);
 
-      const miniEl = document.getElementById('mini-player');
-      if (!s.track && s.state === 'stopped') { miniEl.style.display = 'none'; }
-      else if (s.track) {
-        miniEl.style.display = '';
+      if (s.track) {
         const artEl = document.getElementById('mp-artwork');
         const artUrl = s.artworkSmall || s.artworkUrl;
         if (artUrl && artEl.src !== artUrl) artEl.src = artUrl;
         document.getElementById('mp-track').textContent = s.track || '';
         document.getElementById('mp-artist').textContent = s.artist || '';
         document.getElementById('mp-play-btn').textContent = s.state === 'playing' ? '⏸' : '▶';
+      } else if (s.state === 'stopped') {
+        document.getElementById('mp-play-btn').textContent = '▶';
       }
 
       const overlay = document.getElementById('np-overlay');
@@ -1933,7 +2061,7 @@
         location.hash = savedHash;
       } else {
         const savedTab = localStorage.getItem('admin-tab');
-        if (savedTab && ['playlists', 'favorites', 'quiz'].includes(savedTab)) {
+        if (savedTab && ['playlists', 'favorites', 'quiz', 'setup'].includes(savedTab)) {
           switchTab(savedTab);
         }
       }
@@ -1941,6 +2069,26 @@
 
     // ─── Expose + Init ───────────────────────────────────────
 
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+    document.addEventListener('fullscreenchange', () => {
+      const icon = document.getElementById('fs-icon');
+      const layout = document.querySelector('.admin-layout');
+      if (document.fullscreenElement) {
+        icon.innerHTML = '<polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>';
+        if (layout) layout.classList.add('is-fullscreen');
+      } else {
+        icon.innerHTML = '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>';
+        if (layout) layout.classList.remove('is-fullscreen');
+      }
+    });
+
+    window.toggleFullscreen = toggleFullscreen;
     window.switchTab = switchTab;
     window.switchProvider = switchProvider;
     window.setupConnectAppleMusic = setupConnectAppleMusic;

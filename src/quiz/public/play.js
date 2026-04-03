@@ -300,6 +300,7 @@ function onGameState(msg) {
         'guess-the-album': 'Guess the Album!',
         'guess-the-year': 'Guess the Year!',
         'intro-quiz': 'Name That Tune!',
+        'gossip': 'Celebrity Gossip!',
       };
       const typeHint = typeLabels[msg.questionType] || '';
       document.querySelector('.lobby-waiting').innerHTML =
@@ -364,6 +365,7 @@ function showMultipleChoice(msg) {
     'artist-trivia': 'Music trivia!',
     'film-soundtrack': 'Name that movie!',
     'tv-theme': 'Name that show!',
+    'gossip': 'Celebrity gossip!',
     'mixed': msg.questionText || 'Listen and answer!',
   };
   // For trivia, use the actual question text from AI (more specific than label)
@@ -423,6 +425,7 @@ function showFreeText(msg) {
     'artist-trivia': 'Your answer?',
     'film-soundtrack': 'Which film?',
     'tv-theme': 'Which show?',
+    'gossip': 'Gossip time!',
   };
   document.getElementById('ft-type').textContent = typeLabels[msg.questionType] || msg.questionText || 'Type your answer';
 

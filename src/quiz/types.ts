@@ -33,6 +33,8 @@ export type QuizType =
   | "artist-trivia"
   | "film-soundtrack"
   | "tv-theme"
+  // Gossip (time-limited trivia with expiry dates)
+  | "gossip"
   | "mixed";
 
 export type AnswerMode = "multiple-choice" | "free-text" | "mixed";
@@ -70,6 +72,7 @@ export interface QuizConfig {
   decade?: string;
   answerMode: AnswerMode;
   excludeRecentPlays?: boolean;
+  includeGossip?: boolean;
   customTracks?: Array<{ id: string; name: string; artistName: string; albumName: string; releaseYear: string; artworkUrl?: string; previewUrl?: string }>;
   customName?: string;
 }

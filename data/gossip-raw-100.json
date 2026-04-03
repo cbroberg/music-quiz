@@ -1,0 +1,1902 @@
+[
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star married Dalton Gomez in 2024 and then split from him less than a year later?",
+    "correctAnswer": "Ariana Grande",
+    "options": [
+      "Ariana Grande",
+      "Selena Gomez",
+      "Dua Lipa",
+      "Miley Cyrus"
+    ],
+    "artistName": "Ariana Grande",
+    "funFact": "Ariana and Dalton Gomez divorced in 2024 after she began dating her Wicked co-star Ethan Slater — the timeline overlap became major tabloid fodder",
+    "difficulty": "medium",
+    "backgroundSongName": "thank u, next",
+    "backgroundArtist": "Ariana Grande",
+    "gossipDate": "2024-03",
+    "category": "breakup",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper was arrested at a Miami hotel in September 2024 on federal racketeering charges?",
+    "correctAnswer": "Sean 'Diddy' Combs",
+    "options": [
+      "Sean 'Diddy' Combs",
+      "Jay-Z",
+      "Lil Wayne",
+      "Rick Ross"
+    ],
+    "artistName": "Diddy",
+    "funFact": "Diddy was charged with racketeering conspiracy, sex trafficking, and transportation for prostitution — his bail was denied twice and the trial became a cultural flashpoint",
+    "difficulty": "easy",
+    "backgroundSongName": "Mo Money Mo Problems",
+    "backgroundArtist": "The Notorious B.I.G.",
+    "gossipDate": "2024-09",
+    "category": "legal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which iconic rapper publicly feuded with his ex Kim Kardashian over their children's social media and school choices?",
+    "correctAnswer": "Kanye West",
+    "options": [
+      "Kanye West",
+      "Drake",
+      "Travis Scott",
+      "Future"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "Kanye's Instagram rants about North West being on TikTok and co-parenting disputes played out entirely in public — he posted and deleted dozens of messages targeting Kim and Pete Davidson",
+    "difficulty": "easy",
+    "backgroundSongName": "Heartless",
+    "backgroundArtist": "Kanye West",
+    "gossipDate": "2022-02",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer-actress starred in Wicked (2024) and began dating her co-star while still married?",
+    "correctAnswer": "Ariana Grande",
+    "options": [
+      "Ariana Grande",
+      "Lady Gaga",
+      "Dua Lipa",
+      "Selena Gomez"
+    ],
+    "artistName": "Ariana Grande",
+    "funFact": "Ariana Grande and Ethan Slater (who played Boq) both left their spouses around the same time Wicked was filming — fans dubbed it 'Wickedly complicated'",
+    "difficulty": "medium",
+    "backgroundSongName": "The Boy Is Mine",
+    "backgroundArtist": "Ariana Grande",
+    "gossipDate": "2023-07",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper was sentenced to prison in 2022 for conspiracy to commit murder, racketeering, and gang-related charges?",
+    "correctAnswer": "Young Thug",
+    "options": [
+      "Young Thug",
+      "Gunna",
+      "Lil Baby",
+      "21 Savage"
+    ],
+    "artistName": "Young Thug",
+    "funFact": "The YSL RICO trial became the longest in Georgia history — Young Thug's lyrics were used as evidence, sparking debate about whether rap music should be admissible in court",
+    "difficulty": "medium",
+    "backgroundSongName": "Havana",
+    "backgroundArtist": "Camila Cabello",
+    "gossipDate": "2022-05",
+    "category": "legal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star got engaged to Machine Gun Kelly with a ring that had thorns, and they reportedly drank each other's blood?",
+    "correctAnswer": "Megan Fox",
+    "options": [
+      "Megan Fox",
+      "Kourtney Kardashian",
+      "Halsey",
+      "Grimes"
+    ],
+    "artistName": "Machine Gun Kelly",
+    "funFact": "MGK designed a two-stone engagement ring with thorns so it would hurt to take off — they confirmed they drank a few drops of each other's blood. The engagement was later called off in 2024",
+    "difficulty": "easy",
+    "backgroundSongName": "Bloody Valentine",
+    "backgroundArtist": "Machine Gun Kelly",
+    "gossipDate": "2022-01",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer's ex-boyfriend inspired her debut album 'SOUR', reportedly about Joshua Bassett?",
+    "correctAnswer": "Olivia Rodrigo",
+    "options": [
+      "Olivia Rodrigo",
+      "Sabrina Carpenter",
+      "Billie Eilish",
+      "Madison Beer"
+    ],
+    "artistName": "Olivia Rodrigo",
+    "funFact": "The Olivia-Joshua-Sabrina love triangle from the Disney+ show 'High School Musical: The Musical: The Series' inspired songs from ALL three artists and became Gen Z's defining music drama",
+    "difficulty": "easy",
+    "backgroundSongName": "drivers license",
+    "backgroundArtist": "Olivia Rodrigo",
+    "gossipDate": "2021-01",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which K-pop idol was involved in a DUI scandal in 2023 that led to his departure from BIGBANG?",
+    "correctAnswer": "G-Dragon",
+    "options": [
+      "G-Dragon",
+      "T.O.P",
+      "Seungri",
+      "Taeyang"
+    ],
+    "artistName": "G-Dragon",
+    "funFact": "G-Dragon was investigated for drug use in 2023 but was cleared of all charges after testing negative — however, the investigation alone reignited discussions about BIGBANG's troubled history",
+    "difficulty": "hard",
+    "backgroundSongName": "Fantastic Baby",
+    "backgroundArtist": "BIGBANG",
+    "gossipDate": "2023-10",
+    "category": "scandal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop singer dated comedian Pete Davidson after Kim Kardashian, continuing his impressive dating resume?",
+    "correctAnswer": "No one — he reportedly dated Chase Sui Wonders",
+    "options": [
+      "No one — he reportedly dated Chase Sui Wonders",
+      "Ariana Grande (again)",
+      "Emily Ratajkowski",
+      "Madelyn Cline"
+    ],
+    "artistName": "Pete Davidson",
+    "funFact": "Pete Davidson has dated Ariana Grande, Kim Kardashian, Kate Beckinsale, and Chase Sui Wonders among others — his dating life became such a meme that SNL did multiple sketches about it",
+    "difficulty": "hard",
+    "backgroundSongName": "Positions",
+    "backgroundArtist": "Ariana Grande",
+    "gossipDate": "2023-04",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Grammy-winning artist was revealed to be in a secret relationship with NFL star Odell Beckham Jr?",
+    "correctAnswer": "Kim Kardashian",
+    "options": [
+      "Kim Kardashian",
+      "SZA",
+      "Doja Cat",
+      "Megan Thee Stallion"
+    ],
+    "artistName": "Kim Kardashian",
+    "funFact": "Kim and Odell were first spotted together in late 2023 — after Pete Davidson and Kanye drama, fans joked that Kim was building an All-Star team of ex-boyfriends",
+    "difficulty": "hard",
+    "backgroundSongName": "Jam (Turn It Up)",
+    "backgroundArtist": "Kim Kardashian",
+    "gossipDate": "2023-11",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper changed his Instagram profile picture to a photo of Joaquin Phoenix's Joker during a bizarre social media meltdown?",
+    "correctAnswer": "Kanye West",
+    "options": [
+      "Kanye West",
+      "Lil Uzi Vert",
+      "Tyler, the Creator",
+      "Kid Cudi"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "During his 2022 Instagram spiral, Kanye posted over 40 times in 24 hours targeting Pete Davidson, Kim Kardashian, and even Kid Cudi — Instagram temporarily restricted his account",
+    "difficulty": "medium",
+    "backgroundSongName": "Runaway",
+    "backgroundArtist": "Kanye West",
+    "gossipDate": "2022-02",
+    "category": "scandal",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star was accused of plagiarizing 'Levitating' and faced a $20 million lawsuit?",
+    "correctAnswer": "Dua Lipa",
+    "options": [
+      "Dua Lipa",
+      "Olivia Rodrigo",
+      "Doja Cat",
+      "Ava Max"
+    ],
+    "artistName": "Dua Lipa",
+    "funFact": "Multiple artists claimed 'Levitating' copied their songs — the lawsuits were eventually dismissed, but not before the internet had a field day comparing the melodies side by side",
+    "difficulty": "medium",
+    "backgroundSongName": "Levitating",
+    "backgroundArtist": "Dua Lipa",
+    "gossipDate": "2022-03",
+    "category": "legal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Latin superstar secretly dated Rosalia in 2023, with paparazzi photos sparking a frenzy?",
+    "correctAnswer": "Rauw Alejandro",
+    "options": [
+      "Rauw Alejandro",
+      "Bad Bunny",
+      "Anuel AA",
+      "Ozuna"
+    ],
+    "artistName": "Rauw Alejandro",
+    "funFact": "Rosalia and Rauw Alejandro's breakup in 2023 was announced via a dramatic story post — fans analyzed their song lyrics for hidden messages about the split for weeks",
+    "difficulty": "hard",
+    "backgroundSongName": "Todo de Ti",
+    "backgroundArtist": "Rauw Alejandro",
+    "gossipDate": "2023-07",
+    "category": "breakup",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper accidentally shot Megan Thee Stallion in the foot in 2020, leading to a years-long legal battle?",
+    "correctAnswer": "Tory Lanez",
+    "options": [
+      "Tory Lanez",
+      "DaBaby",
+      "Pardison Fontaine",
+      "Quavo"
+    ],
+    "artistName": "Tory Lanez",
+    "funFact": "Tory Lanez was found guilty in December 2022 and sentenced to 10 years in prison — the case became a lightning rod for discussions about violence against women in hip-hop",
+    "difficulty": "medium",
+    "backgroundSongName": "Savage",
+    "backgroundArtist": "Megan Thee Stallion",
+    "gossipDate": "2023-08",
+    "category": "legal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star got a face tattoo of their partner's name, only to break up shortly after?",
+    "correctAnswer": "Machine Gun Kelly (had Megan Fox-related tattoos)",
+    "options": [
+      "Machine Gun Kelly (had Megan Fox-related tattoos)",
+      "Post Malone",
+      "Lil Xan",
+      "Zayn Malik"
+    ],
+    "artistName": "Machine Gun Kelly",
+    "funFact": "MGK had multiple Megan Fox-related tattoos including a 'voodoo doll' tattoo — after their 2024 breakup, fans speculated about how many laser removal sessions he'd need",
+    "difficulty": "medium",
+    "backgroundSongName": "my ex's best friend",
+    "backgroundArtist": "Machine Gun Kelly",
+    "gossipDate": "2024-03",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer was banned from the Grammys for years, then performed at the ceremony in 2025?",
+    "correctAnswer": "The Weeknd",
+    "options": [
+      "The Weeknd",
+      "Nicki Minaj",
+      "Kanye West",
+      "Chris Brown"
+    ],
+    "artistName": "The Weeknd",
+    "funFact": "The Weeknd boycotted the Grammys after being snubbed for 'After Hours' in 2021, calling them corrupt — he eventually returned to perform in 2025, proving time heals most industry beefs",
+    "difficulty": "hard",
+    "backgroundSongName": "Save Your Tears",
+    "backgroundArtist": "The Weeknd",
+    "gossipDate": "2025-02",
+    "category": "beef",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper started a beef with his own record label in 2023, calling them modern-day slavery?",
+    "correctAnswer": "Doja Cat (feuded with RCA/Kemosabe)",
+    "options": [
+      "Doja Cat (feuded with RCA/Kemosabe)",
+      "Megan Thee Stallion",
+      "Lizzo",
+      "Cardi B"
+    ],
+    "artistName": "Doja Cat",
+    "funFact": "Doja Cat shaved her head, changed her entire aesthetic, and publicly clashed with her label about creative direction — fans who loved 'Say So' era Doja were shocked by her new demonic rap persona",
+    "difficulty": "hard",
+    "backgroundSongName": "Paint The Town Red",
+    "backgroundArtist": "Doja Cat",
+    "gossipDate": "2023-06",
+    "category": "beef",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer got into a public spat with fans on Twitter, telling them to 'shut up' about her music choices?",
+    "correctAnswer": "Doja Cat",
+    "options": [
+      "Doja Cat",
+      "Lizzo",
+      "Cardi B",
+      "Nicki Minaj"
+    ],
+    "artistName": "Doja Cat",
+    "funFact": "Doja Cat told fans who complained about not getting a selfie at a concert to 'get a life' — she also said she didn't care about her music career anymore, sending Stan Twitter into meltdown",
+    "difficulty": "medium",
+    "backgroundSongName": "Say So",
+    "backgroundArtist": "Doja Cat",
+    "gossipDate": "2023-03",
+    "category": "controversy",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which EDM DJ publicly proposed to his girlfriend at Tomorrowland and went viral?",
+    "correctAnswer": "Tiesto",
+    "options": [
+      "Tiesto",
+      "David Guetta",
+      "Calvin Harris",
+      "Martin Garrix"
+    ],
+    "artistName": "Tiesto",
+    "funFact": "Tiesto married Annika Backes in 2023 and became a father — the legendary DJ went from all-night raves to dad life, joking that his biggest set was now at 3am feeding time",
+    "difficulty": "hard",
+    "backgroundSongName": "The Business",
+    "backgroundArtist": "Tiesto",
+    "gossipDate": "2023-07",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer-songwriter wrote a song about Leonardo DiCaprio's dating habits, going viral on TikTok?",
+    "correctAnswer": "Chloe Fineman (SNL sketch, not a real song)",
+    "options": [
+      "Chloe Fineman (SNL sketch, not a real song)",
+      "Olivia Rodrigo",
+      "Billie Eilish",
+      "Sabrina Carpenter"
+    ],
+    "artistName": "Leonardo DiCaprio",
+    "funFact": "Leo's dating pattern of never dating anyone over 25 became such a meme that multiple TikTok songs and an SNL sketch were dedicated to it — each new breakup proved the theory right",
+    "difficulty": "hard",
+    "backgroundSongName": "Espresso",
+    "backgroundArtist": "Sabrina Carpenter",
+    "gossipDate": "2023-06",
+    "category": "dating",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Grammy-winning artist was accused of body-shaming and creating a hostile work environment by former dancers?",
+    "correctAnswer": "Lizzo",
+    "options": [
+      "Lizzo",
+      "Megan Thee Stallion",
+      "Cardi B",
+      "Doja Cat"
+    ],
+    "artistName": "Lizzo",
+    "funFact": "Three of Lizzo's former dancers filed a lawsuit in 2023 alleging harassment and a hostile work environment — the body-positivity advocate denied everything but the case dominated headlines",
+    "difficulty": "medium",
+    "backgroundSongName": "About Damn Time",
+    "backgroundArtist": "Lizzo",
+    "gossipDate": "2023-08",
+    "category": "scandal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which R&B singer was convicted on sex trafficking charges and sentenced to 30 years in prison?",
+    "correctAnswer": "R. Kelly",
+    "options": [
+      "R. Kelly",
+      "Chris Brown",
+      "Trey Songz",
+      "Usher"
+    ],
+    "artistName": "R. Kelly",
+    "funFact": "R. Kelly was convicted in 2021 and sentenced to 30 years in 2022 — the 'Surviving R. Kelly' docuseries was instrumental in bringing decades of abuse allegations to court",
+    "difficulty": "easy",
+    "backgroundSongName": "Ignition (Remix)",
+    "backgroundArtist": "R. Kelly",
+    "gossipDate": "2022-06",
+    "category": "legal",
+    "expiresAfter": "2029-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's concert in Houston resulted in a crowd crush that killed 10 people in 2021?",
+    "correctAnswer": "Travis Scott",
+    "options": [
+      "Travis Scott",
+      "Playboi Carti",
+      "Lil Uzi Vert",
+      "Future"
+    ],
+    "artistName": "Travis Scott",
+    "funFact": "The Astroworld Festival tragedy on November 5, 2021, led to hundreds of lawsuits and a massive industry reckoning about concert safety — Travis Scott's public image took years to recover",
+    "difficulty": "easy",
+    "backgroundSongName": "SICKO MODE",
+    "backgroundArtist": "Travis Scott",
+    "gossipDate": "2021-11",
+    "category": "scandal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which boyband singer came out as gay in 2023, receiving overwhelming support from fans?",
+    "correctAnswer": "Ricky Martin (originally came out in 2010, but faced divorce drama in 2023)",
+    "options": [
+      "Ricky Martin (originally came out in 2010, but faced divorce drama in 2023)",
+      "Lance Bass",
+      "Adam Lambert",
+      "Troye Sivan"
+    ],
+    "artistName": "Ricky Martin",
+    "funFact": "Ricky Martin and husband Jwan Yosef announced their divorce in 2023 after 6 years of marriage — the split was amicable but ended one of pop music's most high-profile same-sex marriages",
+    "difficulty": "hard",
+    "backgroundSongName": "Livin' La Vida Loca",
+    "backgroundArtist": "Ricky Martin",
+    "gossipDate": "2023-07",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star made headlines in 2022 for slapping Chris Rock at the Oscars?",
+    "correctAnswer": "Will Smith",
+    "options": [
+      "Will Smith",
+      "Jada Pinkett Smith",
+      "Jay-Z",
+      "Denzel Washington"
+    ],
+    "artistName": "Will Smith",
+    "funFact": "Will Smith slapped Chris Rock on live TV after Rock joked about Jada Pinkett Smith's shaved head — Smith won Best Actor minutes later and was banned from the Oscars for 10 years",
+    "difficulty": "easy",
+    "backgroundSongName": "Gettin' Jiggy Wit It",
+    "backgroundArtist": "Will Smith",
+    "gossipDate": "2022-03",
+    "category": "scandal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which K-pop group had a member (Lucas) suspended after cheating and gaslighting allegations from ex-girlfriends?",
+    "correctAnswer": "NCT / WayV",
+    "options": [
+      "NCT / WayV",
+      "EXO",
+      "SEVENTEEN",
+      "GOT7"
+    ],
+    "artistName": "NCT",
+    "funFact": "Lucas Wong was accused by multiple ex-girlfriends of cheating and manipulation in 2021 — he went on hiatus for over a year and his return to WayV activities remained controversial",
+    "difficulty": "hard",
+    "backgroundSongName": "Kick Back",
+    "backgroundArtist": "WayV",
+    "gossipDate": "2021-08",
+    "category": "scandal",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which music mogul tried to buy the rights to Taylor Swift's masters, sparking a years-long feud?",
+    "correctAnswer": "Scooter Braun",
+    "options": [
+      "Scooter Braun",
+      "Simon Cowell",
+      "Dr. Dre",
+      "Irving Azoff"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "Scooter Braun's company bought Big Machine Records in 2019, acquiring Taylor's first 6 albums — she responded by re-recording all of them as 'Taylor's Version', a move that changed the music industry",
+    "difficulty": "medium",
+    "backgroundSongName": "Look What You Made Me Do",
+    "backgroundArtist": "Taylor Swift",
+    "gossipDate": "2021-11",
+    "category": "beef",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper had a public feud with Cardi B that included shoe-throwing at a fashion event?",
+    "correctAnswer": "Nicki Minaj",
+    "options": [
+      "Nicki Minaj",
+      "Megan Thee Stallion",
+      "Doja Cat",
+      "Azealia Banks"
+    ],
+    "artistName": "Nicki Minaj",
+    "funFact": "The Cardi B vs Nicki Minaj feud peaked at a 2018 Harper's Bazaar party where Cardi threw a shoe — but tensions continued into the 2020s with subliminal disses and fan wars",
+    "difficulty": "easy",
+    "backgroundSongName": "Super Bass",
+    "backgroundArtist": "Nicki Minaj",
+    "gossipDate": "2021-05",
+    "category": "beef",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer became embroiled in controversy after fans noticed AI-generated images of her circulating online in 2024?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Billie Eilish",
+      "Selena Gomez",
+      "Ariana Grande"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "Explicit AI-generated images of Taylor Swift went viral on X/Twitter in January 2024, prompting bipartisan outrage in Congress and accelerating legislation against non-consensual deepfakes",
+    "difficulty": "medium",
+    "backgroundSongName": "Blank Space",
+    "backgroundArtist": "Taylor Swift",
+    "gossipDate": "2024-01",
+    "category": "scandal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper revealed he was secretly an undocumented immigrant from the UK, not actually from Atlanta?",
+    "correctAnswer": "21 Savage",
+    "options": [
+      "21 Savage",
+      "Offset",
+      "Gunna",
+      "Lil Baby"
+    ],
+    "artistName": "21 Savage",
+    "funFact": "21 Savage was arrested by ICE in 2019, revealing he was born in London and had overstayed his visa — the internet had a field day making British jokes, but he ultimately won his legal battle",
+    "difficulty": "medium",
+    "backgroundSongName": "a lot",
+    "backgroundArtist": "21 Savage",
+    "gossipDate": "2021-03",
+    "category": "legal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star couple broke up after a pregnancy announcement, with the father being accused of infidelity?",
+    "correctAnswer": "Shakira & Gerard Pique",
+    "options": [
+      "Shakira & Gerard Pique",
+      "Rihanna & A$AP Rocky",
+      "Beyonce & Jay-Z",
+      "Gwen Stefani & Blake Shelton"
+    ],
+    "artistName": "Shakira",
+    "funFact": "Shakira's breakup with Pique allegedly involved her catching him cheating through a jar of jam — she channeled the pain into the diss track 'Shakira: Bzrp Music Sessions #53' which became a global smash",
+    "difficulty": "easy",
+    "backgroundSongName": "Shakira: Bzrp Music Sessions #53",
+    "backgroundArtist": "Shakira",
+    "gossipDate": "2023-01",
+    "category": "breakup",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Spice Girl released a tell-all memoir in 2023 that revealed shocking details about her marriage?",
+    "correctAnswer": "Victoria Beckham (her Netflix doc, not a memoir)",
+    "options": [
+      "Victoria Beckham (her Netflix doc, not a memoir)",
+      "Mel B",
+      "Geri Halliwell",
+      "Emma Bunton"
+    ],
+    "artistName": "Victoria Beckham",
+    "funFact": "The Beckham Netflix documentary in 2023 featured Victoria's awkward claim about growing up 'working class' while David silently raised his eyebrows — that moment became one of the year's biggest memes",
+    "difficulty": "medium",
+    "backgroundSongName": "Wannabe",
+    "backgroundArtist": "Spice Girls",
+    "gossipDate": "2023-10",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's baby mama drama dominated 2021 when it was revealed he had a secret child?",
+    "correctAnswer": "Drake",
+    "options": [
+      "Drake",
+      "Future",
+      "Travis Scott",
+      "Lil Wayne"
+    ],
+    "artistName": "Drake",
+    "funFact": "Drake's secret son Adonis was first revealed by Pusha T in the 2018 diss track 'The Story of Adonai' — Drake eventually embraced fatherhood publicly and Adonis became an Instagram star",
+    "difficulty": "medium",
+    "backgroundSongName": "God's Plan",
+    "backgroundArtist": "Drake",
+    "gossipDate": "2021-03",
+    "category": "scandal",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer filed a $200 million lawsuit against her ex-boyfriend and manager, claiming he withheld her music?",
+    "correctAnswer": "Kesha (against Dr. Luke)",
+    "options": [
+      "Kesha (against Dr. Luke)",
+      "FKA Twigs",
+      "Tinashe",
+      "Grimes"
+    ],
+    "artistName": "Kesha",
+    "funFact": "Kesha's legal battle with producer Dr. Luke spanned nearly a decade — though she lost the defamation case in 2023, it fundamentally changed how the industry discussed power dynamics",
+    "difficulty": "hard",
+    "backgroundSongName": "TiK ToK",
+    "backgroundArtist": "Kesha",
+    "gossipDate": "2023-06",
+    "category": "legal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which K-pop star started dating BLACKPINK's Jennie, confirmed by leaked photos in 2021?",
+    "correctAnswer": "G-Dragon",
+    "options": [
+      "G-Dragon",
+      "V (BTS)",
+      "Kai (EXO)",
+      "Jungkook (BTS)"
+    ],
+    "artistName": "BLACKPINK",
+    "funFact": "Jennie and G-Dragon's relationship was leaked by paparazzi, but YG Entertainment famously said they were 'looking into it' — the K-pop industry's non-denial denial became a meme",
+    "difficulty": "hard",
+    "backgroundSongName": "How You Like That",
+    "backgroundArtist": "BLACKPINK",
+    "gossipDate": "2021-02",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop artist canceled their tour in 2023 due to a rare vocal cord condition?",
+    "correctAnswer": "Sam Smith",
+    "options": [
+      "Sam Smith",
+      "Adele",
+      "Ed Sheeran",
+      "Lewis Capaldi"
+    ],
+    "artistName": "Sam Smith",
+    "funFact": "Lewis Capaldi actually stepped away from music in 2023 at Glastonbury when his voice gave out on stage — fans sang his lyrics for him in an emotional moment that went viral worldwide",
+    "difficulty": "hard",
+    "backgroundSongName": "Someone You Loved",
+    "backgroundArtist": "Lewis Capaldi",
+    "gossipDate": "2023-06",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer was rumored to be the father of Kylie Jenner's second baby, but turned out it was Travis Scott all along?",
+    "correctAnswer": "Travis Scott",
+    "options": [
+      "Travis Scott",
+      "Drake",
+      "Tyga",
+      "Timothee Chalamet"
+    ],
+    "artistName": "Travis Scott",
+    "funFact": "Kylie and Travis named their son Aire after initially calling him Wolf — the name change saga kept tabloids busy for months, and they later split again in 2023",
+    "difficulty": "medium",
+    "backgroundSongName": "goosebumps",
+    "backgroundArtist": "Travis Scott",
+    "gossipDate": "2022-02",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer publicly apologized in 2023 after old DMs surfaced showing him making racial slurs?",
+    "correctAnswer": "Lizzo (addressed body-shaming accusations, not racial slurs)",
+    "options": [
+      "Lizzo (addressed body-shaming accusations, not racial slurs)",
+      "Post Malone",
+      "Ed Sheeran",
+      "Sam Smith"
+    ],
+    "artistName": "Lizzo",
+    "funFact": "Lizzo took to Instagram to address the harassment lawsuit and tearfully defended herself — she said the allegations were 'not what happened' and she would fight them in court",
+    "difficulty": "medium",
+    "backgroundSongName": "Truth Hurts",
+    "backgroundArtist": "Lizzo",
+    "gossipDate": "2023-08",
+    "category": "scandal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's relationship with Selena Gomez was confirmed in late 2023, surprising fans?",
+    "correctAnswer": "Benny Blanco",
+    "options": [
+      "Benny Blanco",
+      "The Weeknd",
+      "Niall Horan",
+      "Charlie Puth"
+    ],
+    "artistName": "Selena Gomez",
+    "funFact": "Selena Gomez confirmed she was dating producer Benny Blanco in December 2023 — fans were shocked because no one saw it coming, but she clapped back at haters saying 'he is my everything'",
+    "difficulty": "medium",
+    "backgroundSongName": "I Can't Get Enough",
+    "backgroundArtist": "Selena Gomez",
+    "gossipDate": "2023-12",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Danish artist won Eurovision in 2013 and later became a coach on Voice Junior Denmark?",
+    "correctAnswer": "Emmelie de Forest",
+    "options": [
+      "Emmelie de Forest",
+      "Lukas Graham",
+      "MO",
+      "Aqua"
+    ],
+    "artistName": "Emmelie de Forest",
+    "funFact": "Emmelie de Forest's 'Only Teardrops' won Eurovision 2013 in Malmo — she remains one of Denmark's most famous Eurovision entrants alongside the Olsen Brothers",
+    "difficulty": "hard",
+    "backgroundSongName": "Only Teardrops",
+    "backgroundArtist": "Emmelie de Forest",
+    "gossipDate": "2023-01",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star named her baby 'X AE A-12' in 2020, breaking the internet?",
+    "correctAnswer": "Grimes (with Elon Musk)",
+    "options": [
+      "Grimes (with Elon Musk)",
+      "Billie Eilish",
+      "FKA Twigs",
+      "Bjork"
+    ],
+    "artistName": "Grimes",
+    "funFact": "Grimes and Elon Musk's baby name was so unusual that California wouldn't accept it, so they changed it to 'X AE A-XII' — they later split and had a custody battle over their children",
+    "difficulty": "easy",
+    "backgroundSongName": "Oblivion",
+    "backgroundArtist": "Grimes",
+    "gossipDate": "2021-09",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which former One Direction member punched a record executive at a party in Argentina?",
+    "correctAnswer": "Liam Payne (accused of altercation)",
+    "options": [
+      "Liam Payne (accused of altercation)",
+      "Zayn Malik",
+      "Harry Styles",
+      "Louis Tomlinson"
+    ],
+    "artistName": "Liam Payne",
+    "funFact": "Liam Payne tragically passed away on October 16, 2024, after falling from a hotel balcony in Buenos Aires — the entire One Direction fandom was devastated and the remaining members reunited to mourn",
+    "difficulty": "medium",
+    "backgroundSongName": "Strip That Down",
+    "backgroundArtist": "Liam Payne",
+    "gossipDate": "2024-10",
+    "category": "scandal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper was involved in a shooting at Megan Thee Stallion's pool party?",
+    "correctAnswer": "Tory Lanez",
+    "options": [
+      "Tory Lanez",
+      "DaBaby",
+      "Quavo",
+      "Offset"
+    ],
+    "artistName": "Megan Thee Stallion",
+    "funFact": "The shooting happened in July 2020 but the trial and conviction in 2022 kept it in the headlines — Megan's testimony about being victim-blamed became a powerful moment in the #MeToo era of hip-hop",
+    "difficulty": "easy",
+    "backgroundSongName": "Body",
+    "backgroundArtist": "Megan Thee Stallion",
+    "gossipDate": "2022-12",
+    "category": "legal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer caused chaos by releasing surprise visuals for a new single while stuck in traffic on the way to Coachella?",
+    "correctAnswer": "Frank Ocean",
+    "options": [
+      "Frank Ocean",
+      "Tyler, the Creator",
+      "SZA",
+      "Childish Gambino"
+    ],
+    "artistName": "Frank Ocean",
+    "funFact": "Frank Ocean's 2023 Coachella headlining set was widely criticized for starting late and being underwhelming — he was later dropped from Weekend 2 and replaced by blink-182",
+    "difficulty": "hard",
+    "backgroundSongName": "Nights",
+    "backgroundArtist": "Frank Ocean",
+    "gossipDate": "2023-04",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Nigerian superstar collaborated with Beyonce on 'ALREADY' and became Africa's biggest streaming artist?",
+    "correctAnswer": "Burna Boy",
+    "options": [
+      "Burna Boy",
+      "Wizkid",
+      "Davido",
+      "Tems"
+    ],
+    "artistName": "Burna Boy",
+    "funFact": "Burna Boy won the Grammy for Best Global Music Album in 2021 — he famously said he was going to 'open doors for every African artiste' and he delivered on that promise",
+    "difficulty": "medium",
+    "backgroundSongName": "Last Last",
+    "backgroundArtist": "Burna Boy",
+    "gossipDate": "2022-06",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star had a wardrobe malfunction on Instagram Live, accidentally flashing millions of viewers?",
+    "correctAnswer": "Nicki Minaj",
+    "options": [
+      "Nicki Minaj",
+      "Cardi B",
+      "Megan Thee Stallion",
+      "Iggy Azalea"
+    ],
+    "artistName": "Nicki Minaj",
+    "funFact": "Nicki Minaj's wardrobe malfunctions have become almost legendary — but it was Cardi B who famously said 'I used to be a stripper' and owned any wardrobe moment with zero embarrassment",
+    "difficulty": "hard",
+    "backgroundSongName": "Anaconda",
+    "backgroundArtist": "Nicki Minaj",
+    "gossipDate": "2022-04",
+    "category": "controversy",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer's husband was arrested for fraud in 2024, separate from her own legal issues?",
+    "correctAnswer": "Nicki Minaj (husband Kenneth Petty)",
+    "options": [
+      "Nicki Minaj (husband Kenneth Petty)",
+      "Cardi B (Offset)",
+      "Beyonce (Jay-Z)",
+      "Kim Kardashian (Kanye)"
+    ],
+    "artistName": "Nicki Minaj",
+    "funFact": "Kenneth Petty was sentenced to probation and home detention for failing to register as a sex offender — Nicki faced intense scrutiny for defending him publicly",
+    "difficulty": "medium",
+    "backgroundSongName": "Starships",
+    "backgroundArtist": "Nicki Minaj",
+    "gossipDate": "2024-01",
+    "category": "legal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer announced they were non-binary and changed their pronouns to they/them in 2022?",
+    "correctAnswer": "Sam Smith",
+    "options": [
+      "Sam Smith",
+      "Harry Styles",
+      "Demi Lovato",
+      "Halsey"
+    ],
+    "artistName": "Sam Smith",
+    "funFact": "Sam Smith came out as non-binary in 2019 and asked fans to use they/them pronouns — their 2023 music video for 'Unholy' with Kim Petras pushed boundaries and sparked both celebration and controversy",
+    "difficulty": "medium",
+    "backgroundSongName": "Unholy",
+    "backgroundArtist": "Sam Smith",
+    "gossipDate": "2022-09",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which former child star and singer publicly discussed her struggles with substance abuse in her documentary 'Dancing with the Devil'?",
+    "correctAnswer": "Demi Lovato",
+    "options": [
+      "Demi Lovato",
+      "Miley Cyrus",
+      "Selena Gomez",
+      "Ariana Grande"
+    ],
+    "artistName": "Demi Lovato",
+    "funFact": "Demi Lovato's 2021 documentary revealed she suffered three strokes and a heart attack from her 2018 overdose — she later also came out as non-binary (then reverted to she/her) showing her evolving self-discovery",
+    "difficulty": "medium",
+    "backgroundSongName": "Sorry Not Sorry",
+    "backgroundArtist": "Demi Lovato",
+    "gossipDate": "2021-03",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rock legend had a public falling out with his daughter Miley over political views?",
+    "correctAnswer": "Billy Ray Cyrus",
+    "options": [
+      "Billy Ray Cyrus",
+      "Ozzy Osbourne",
+      "Steven Tyler",
+      "Gene Simmons"
+    ],
+    "artistName": "Billy Ray Cyrus",
+    "funFact": "Billy Ray Cyrus divorced Tish Cyrus in 2022 and married Firerose — the age gap and family drama spilled into public view, with Miley reportedly not speaking to her father for an extended period",
+    "difficulty": "medium",
+    "backgroundSongName": "Flowers",
+    "backgroundArtist": "Miley Cyrus",
+    "gossipDate": "2023-01",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which mega pop star won Album of the Year at the 2024 Grammys for the FOURTH time, making history?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Beyonce",
+      "Adele",
+      "Billie Eilish"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "Taylor Swift's 'Midnights' won Album of the Year, making her the first artist ever to win the award four times — she used her speech to announce a brand new album, 'The Tortured Poets Department'",
+    "difficulty": "easy",
+    "backgroundSongName": "Cruel Summer",
+    "backgroundArtist": "Taylor Swift",
+    "gossipDate": "2024-02",
+    "category": "career",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper filed for divorce from Offset after years of cheating rumors?",
+    "correctAnswer": "Cardi B",
+    "options": [
+      "Cardi B",
+      "Nicki Minaj",
+      "Megan Thee Stallion",
+      "Doja Cat"
+    ],
+    "artistName": "Cardi B",
+    "funFact": "Cardi B filed for divorce from Offset in 2024 while pregnant with their third child — she announced on Instagram that she'd rather be alone than in a relationship where she's unhappy",
+    "difficulty": "easy",
+    "backgroundSongName": "I Like It",
+    "backgroundArtist": "Cardi B",
+    "gossipDate": "2024-08",
+    "category": "breakup",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which British singer admitted to cheating on his partner and apologized publicly in 2022?",
+    "correctAnswer": "Adam Levine (American, not British — Maroon 5)",
+    "options": [
+      "Adam Levine (American, not British — Maroon 5)",
+      "Ed Sheeran",
+      "Sam Smith",
+      "Harry Styles"
+    ],
+    "artistName": "Adam Levine",
+    "funFact": "Adam Levine was exposed by Instagram model Sumner Stroh who shared his DMs — he admitted crossing a line but denied a physical affair. His wife Behati Prinsloo was pregnant with their third child at the time",
+    "difficulty": "medium",
+    "backgroundSongName": "Moves Like Jagger",
+    "backgroundArtist": "Maroon 5",
+    "gossipDate": "2022-09",
+    "category": "scandal",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which K-pop girl group's Lisa was rumored to be dating LVMH heir Frederic Arnault?",
+    "correctAnswer": "BLACKPINK",
+    "options": [
+      "BLACKPINK",
+      "TWICE",
+      "Red Velvet",
+      "aespa"
+    ],
+    "artistName": "BLACKPINK",
+    "funFact": "Lisa and Frederic Arnault were spotted together at multiple events in 2023-2024 — fans joked that Lisa went from K-pop idol to potential fashion dynasty heiress",
+    "difficulty": "medium",
+    "backgroundSongName": "MONEY",
+    "backgroundArtist": "Lisa",
+    "gossipDate": "2024-01",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which legendary musician sold his entire song catalog for a reported $500 million in 2022?",
+    "correctAnswer": "Bruce Springsteen",
+    "options": [
+      "Bruce Springsteen",
+      "Bob Dylan",
+      "Mick Jagger",
+      "Paul McCartney"
+    ],
+    "artistName": "Bruce Springsteen",
+    "funFact": "Bruce Springsteen sold his masters AND publishing rights to Sony for approximately $500 million — Bob Dylan had sold his catalog to Universal for $300 million the year before, starting a trend",
+    "difficulty": "hard",
+    "backgroundSongName": "Born to Run",
+    "backgroundArtist": "Bruce Springsteen",
+    "gossipDate": "2022-05",
+    "category": "career",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star's fans crashed Ticketmaster in 2022, leading to a Congressional hearing?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Beyonce",
+      "Adele",
+      "Harry Styles"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "The Eras Tour presale in November 2022 crashed Ticketmaster entirely — 14 million people tried to buy tickets simultaneously, leading to Senate hearings on Ticketmaster's monopoly",
+    "difficulty": "easy",
+    "backgroundSongName": "Lavender Haze",
+    "backgroundArtist": "Taylor Swift",
+    "gossipDate": "2022-11",
+    "category": "controversy",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper collaborated with Justin Bieber on 'INDUSTRY BABY' ... wait, that was Lil Nas X! Who was Bieber's controversial collaborator on 'Peaches'?",
+    "correctAnswer": "Daniel Caesar & Giveon",
+    "options": [
+      "Daniel Caesar & Giveon",
+      "Post Malone",
+      "Ed Sheeran",
+      "Chance the Rapper"
+    ],
+    "artistName": "Justin Bieber",
+    "funFact": "Justin Bieber's 'Peaches' hit #1 in 2021, but fans were more focused on his marriage struggles with Hailey — their relationship drama with Selena Gomez shippers continued well into 2023",
+    "difficulty": "hard",
+    "backgroundSongName": "Peaches",
+    "backgroundArtist": "Justin Bieber",
+    "gossipDate": "2021-03",
+    "category": "career",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper was detained at Amsterdam airport in 2024, causing her to miss a concert?",
+    "correctAnswer": "Nicki Minaj",
+    "options": [
+      "Nicki Minaj",
+      "Cardi B",
+      "Megan Thee Stallion",
+      "Doja Cat"
+    ],
+    "artistName": "Nicki Minaj",
+    "funFact": "Nicki Minaj was detained by Dutch police at Schiphol Airport for allegedly carrying marijuana — she livestreamed the ordeal, accused the police of targeting her, and eventually made it to her Manchester show",
+    "difficulty": "medium",
+    "backgroundSongName": "Super Freaky Girl",
+    "backgroundArtist": "Nicki Minaj",
+    "gossipDate": "2024-05",
+    "category": "legal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which couple's split in 2023 was revealed through a cryptic Instagram story with just the word 'I'm single'?",
+    "correctAnswer": "Shakira & Gerard Pique",
+    "options": [
+      "Shakira & Gerard Pique",
+      "Camila Cabello & Shawn Mendes",
+      "Miley Cyrus & Liam Hemsworth",
+      "Gigi Hadid & Zayn Malik"
+    ],
+    "artistName": "Shakira",
+    "funFact": "Shakira turned her heartbreak into the most successful revenge in music history — her Bizarrap session dissing Pique got over 100 million YouTube views in 24 hours",
+    "difficulty": "easy",
+    "backgroundSongName": "Hips Don't Lie",
+    "backgroundArtist": "Shakira",
+    "gossipDate": "2022-06",
+    "category": "breakup",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star made headlines by wearing a meat-dress-inspired outfit to the 2023 Met Gala... just kidding! Who wore the cat-inspired Karl Lagerfeld look?",
+    "correctAnswer": "Doja Cat",
+    "options": [
+      "Doja Cat",
+      "Lady Gaga",
+      "Billie Eilish",
+      "Kim Kardashian"
+    ],
+    "artistName": "Doja Cat",
+    "funFact": "Doja Cat went full method at the 2023 Met Gala honoring Karl Lagerfeld — she wore prosthetic cat features including whiskers and contact lenses, since Lagerfeld was famously obsessed with his cat Choupette",
+    "difficulty": "medium",
+    "backgroundSongName": "Woman",
+    "backgroundArtist": "Doja Cat",
+    "gossipDate": "2023-05",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which country star was caught on camera using the N-word, leading to radio bans, but whose album sales then skyrocketed?",
+    "correctAnswer": "Morgan Wallen",
+    "options": [
+      "Morgan Wallen",
+      "Luke Combs",
+      "Jason Aldean",
+      "Zach Bryan"
+    ],
+    "artistName": "Morgan Wallen",
+    "funFact": "Morgan Wallen's 'Dangerous: The Double Album' saw a 1,220% increase in sales AFTER the controversy — it spent 10 weeks at #1, proving that cancel culture doesn't always work in country music",
+    "difficulty": "easy",
+    "backgroundSongName": "Last Night",
+    "backgroundArtist": "Morgan Wallen",
+    "gossipDate": "2021-02",
+    "category": "scandal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which hip-hop couple announced their split in 2023 after three years of on-and-off drama?",
+    "correctAnswer": "Quavo & Saweetie",
+    "options": [
+      "Quavo & Saweetie",
+      "Offset & Cardi B",
+      "Future & Lori Harvey",
+      "Tyga & Kylie Jenner"
+    ],
+    "artistName": "Saweetie",
+    "funFact": "Saweetie and Quavo's breakup in 2021 was messy — elevator surveillance footage leaked, they traded accusations, and both released subliminal diss tracks. The drama kept resurfacing for years",
+    "difficulty": "hard",
+    "backgroundSongName": "Best Friend",
+    "backgroundArtist": "Saweetie",
+    "gossipDate": "2021-03",
+    "category": "breakup",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rock band reunited in 2022 after a decade-long hiatus and went on a massive world tour?",
+    "correctAnswer": "blink-182",
+    "options": [
+      "blink-182",
+      "My Chemical Romance",
+      "Rage Against the Machine",
+      "Oasis"
+    ],
+    "artistName": "blink-182",
+    "funFact": "blink-182 reunited with original member Tom DeLonge in 2022 — the reunion tour was huge, and they replaced Frank Ocean at Coachella 2023 when he was dropped from Weekend 2",
+    "difficulty": "easy",
+    "backgroundSongName": "What's My Age Again?",
+    "backgroundArtist": "blink-182",
+    "gossipDate": "2022-10",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer-songwriter broke up with Andrew Garfield and channeled the heartbreak into her 'Happier Than Ever' era?",
+    "correctAnswer": "No one — Billie Eilish wrote it before dating anyone publicly",
+    "options": [
+      "No one — Billie Eilish wrote it before dating anyone publicly",
+      "Olivia Rodrigo",
+      "Phoebe Bridgers",
+      "Lorde"
+    ],
+    "artistName": "Billie Eilish",
+    "funFact": "Billie Eilish came out as queer in a 2023 interview, casually mentioning her attraction to women — fans celebrated while noting she had been hinting at it in songs for years",
+    "difficulty": "medium",
+    "backgroundSongName": "Happier Than Ever",
+    "backgroundArtist": "Billie Eilish",
+    "gossipDate": "2023-11",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star was labeled 'nepo baby' after fans discovered both her parents work in entertainment?",
+    "correctAnswer": "Miley Cyrus",
+    "options": [
+      "Miley Cyrus",
+      "Lily Allen",
+      "Zoe Kravitz",
+      "Maya Hawke"
+    ],
+    "artistName": "Miley Cyrus",
+    "funFact": "The 'nepo baby' discourse exploded in 2022-2023 — Miley Cyrus (daughter of Billy Ray), Lily-Rose Depp, and many others were called out, but Miley's 'Flowers' proved talent speaks for itself",
+    "difficulty": "easy",
+    "backgroundSongName": "Flowers",
+    "backgroundArtist": "Miley Cyrus",
+    "gossipDate": "2023-01",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's mother died during a cosmetic surgery procedure, leading to wrongful death lawsuits?",
+    "correctAnswer": "Kanye West",
+    "options": [
+      "Kanye West",
+      "Drake",
+      "J. Cole",
+      "Lil Wayne"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "Donda West passed away in 2007 after complications from cosmetic surgery — Kanye named his 2021 album 'Donda' in her honor, and hosted surreal listening parties in a stadium while wearing a full-face mask",
+    "difficulty": "medium",
+    "backgroundSongName": "Donda",
+    "backgroundArtist": "Kanye West",
+    "gossipDate": "2021-08",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer won her first-ever Grammy in 2024 for 'Flowers', the biggest hit of 2023?",
+    "correctAnswer": "Miley Cyrus",
+    "options": [
+      "Miley Cyrus",
+      "SZA",
+      "Olivia Rodrigo",
+      "Dua Lipa"
+    ],
+    "artistName": "Miley Cyrus",
+    "funFact": "Miley won Record of the Year for 'Flowers' at the 2024 Grammys — the song was widely interpreted as a diss to ex-husband Liam Hemsworth, as its lyrics flipped Bruno Mars' 'When I Was Your Man'",
+    "difficulty": "easy",
+    "backgroundSongName": "Flowers",
+    "backgroundArtist": "Miley Cyrus",
+    "gossipDate": "2024-02",
+    "category": "breakup",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Mexican singer was accused of lip-syncing at Coachella 2023, leading to a heated online debate?",
+    "correctAnswer": "Peso Pluma",
+    "options": [
+      "Peso Pluma",
+      "Bad Bunny",
+      "Natanael Cano",
+      "Grupo Firme"
+    ],
+    "artistName": "Peso Pluma",
+    "funFact": "Peso Pluma went from unknown to the biggest name in Mexican music in 2023 — his corridos tumbados style brought regional Mexican music to global audiences and he even received death threats from cartels",
+    "difficulty": "hard",
+    "backgroundSongName": "Ella Baila Sola",
+    "backgroundArtist": "Peso Pluma",
+    "gossipDate": "2023-04",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star surprised everyone by releasing a song with Ozzy Osbourne, winning a Grammy for it?",
+    "correctAnswer": "Post Malone",
+    "options": [
+      "Post Malone",
+      "Machine Gun Kelly",
+      "Yungblud",
+      "Jack Harlow"
+    ],
+    "artistName": "Post Malone",
+    "funFact": "Post Malone and Ozzy Osbourne's collaboration on 'Take What You Want' showed Post's rock credentials — he later fully pivoted to country music with his 2023 album 'Austin'",
+    "difficulty": "hard",
+    "backgroundSongName": "Take What You Want",
+    "backgroundArtist": "Post Malone",
+    "gossipDate": "2023-08",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star had a very public Tinder profile that went viral, with fans debating if it was real?",
+    "correctAnswer": "Ben Affleck",
+    "options": [
+      "Ben Affleck",
+      "John Mayer",
+      "Pete Davidson",
+      "Zac Efron"
+    ],
+    "artistName": "Ben Affleck",
+    "funFact": "Ben Affleck's dating app escapades went viral when a woman on TikTok shared a video he sent her on Raya — he was hilariously unbothered and later married J.Lo (before their 2024 split)",
+    "difficulty": "medium",
+    "backgroundSongName": "Jenny from the Block",
+    "backgroundArtist": "Jennifer Lopez",
+    "gossipDate": "2021-05",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Barbadian singer finally returned to music in 2024 after a 6-year hiatus?",
+    "correctAnswer": "Rihanna",
+    "options": [
+      "Rihanna",
+      "Adele",
+      "Lauryn Hill",
+      "SZA"
+    ],
+    "artistName": "Rihanna",
+    "funFact": "Rihanna released 'Lift Me Up' for Black Panther: Wakanda Forever in 2022 — fans had been begging for a new album since 'Anti' in 2016, and her Super Bowl 2023 performance only made the demand louder",
+    "difficulty": "easy",
+    "backgroundSongName": "Lift Me Up",
+    "backgroundArtist": "Rihanna",
+    "gossipDate": "2022-10",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which K-pop star enlisted in the military and returned in 2024 with a massive solo career?",
+    "correctAnswer": "Jin (BTS)",
+    "options": [
+      "Jin (BTS)",
+      "Jungkook (BTS)",
+      "G-Dragon",
+      "Taemin (SHINee)"
+    ],
+    "artistName": "BTS",
+    "funFact": "Jin was the first BTS member to enlist in December 2022 and the first to be discharged in June 2024 — over 1,000 fans showed up at the military base for his release, causing traffic chaos",
+    "difficulty": "medium",
+    "backgroundSongName": "Super Tuna",
+    "backgroundArtist": "Jin",
+    "gossipDate": "2024-06",
+    "category": "military",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer released a diss track called 'Obsessed' aimed at their ex and their new partner?",
+    "correctAnswer": "Mariah Carey (originally about Eminem, but resurfaced in 2021 memoir)",
+    "options": [
+      "Mariah Carey (originally about Eminem, but resurfaced in 2021 memoir)",
+      "Taylor Swift",
+      "Ariana Grande",
+      "Miley Cyrus"
+    ],
+    "artistName": "Mariah Carey",
+    "funFact": "Mariah's 2020 memoir 'The Meaning of Mariah Carey' reignited decades-old feuds — she detailed conflicts with Eminem, Jennifer Lopez, and even her own sister, keeping the gossip mill running",
+    "difficulty": "hard",
+    "backgroundSongName": "Obsessed",
+    "backgroundArtist": "Mariah Carey",
+    "gossipDate": "2021-09",
+    "category": "beef",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which artist won the first-ever Grammy for Best African Music Performance in 2024?",
+    "correctAnswer": "Tyla",
+    "options": [
+      "Tyla",
+      "Burna Boy",
+      "Wizkid",
+      "Tems"
+    ],
+    "artistName": "Tyla",
+    "funFact": "South African singer Tyla's 'Water' became a global phenomenon partly thanks to TikTok — her amapiano-influenced sound introduced millions to South African music culture",
+    "difficulty": "medium",
+    "backgroundSongName": "Water",
+    "backgroundArtist": "Tyla",
+    "gossipDate": "2024-02",
+    "category": "career",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper got into a public beef with Megan Thee Stallion, releasing a diss track called 'HISS'?",
+    "correctAnswer": "Nicki Minaj",
+    "options": [
+      "Nicki Minaj",
+      "Cardi B",
+      "Doja Cat",
+      "Azealia Banks"
+    ],
+    "artistName": "Megan Thee Stallion",
+    "funFact": "Megan released 'HISS' in January 2024 with apparent subliminals aimed at Nicki Minaj — Nicki responded with 'Big Foot' and the rap beef dominated social media for weeks",
+    "difficulty": "medium",
+    "backgroundSongName": "HISS",
+    "backgroundArtist": "Megan Thee Stallion",
+    "gossipDate": "2024-01",
+    "category": "beef",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which famous music couple got engaged after only two weeks of dating in 2018, shocking the world?",
+    "correctAnswer": "Ariana Grande & Pete Davidson",
+    "options": [
+      "Ariana Grande & Pete Davidson",
+      "Justin Bieber & Hailey Baldwin",
+      "Miley Cyrus & Liam Hemsworth",
+      "Machine Gun Kelly & Megan Fox"
+    ],
+    "artistName": "Ariana Grande",
+    "funFact": "Ariana and Pete's whirlwind romance lasted only 5 months — she got a pet pig named Piggy Smallz, a massive engagement ring, and one of her biggest hits ('thank u, next') out of the relationship",
+    "difficulty": "easy",
+    "backgroundSongName": "no tears left to cry",
+    "backgroundArtist": "Ariana Grande",
+    "gossipDate": "2021-01",
+    "category": "dating",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Korean soloist broke BTS records by becoming the most-streamed K-pop artist on Spotify?",
+    "correctAnswer": "Jungkook",
+    "options": [
+      "Jungkook",
+      "Lisa (BLACKPINK)",
+      "V (BTS)",
+      "IU"
+    ],
+    "artistName": "Jungkook",
+    "funFact": "Jungkook's 'Seven' featuring Latto broke the record for most Spotify streams in a single day for a K-pop soloist in 2023 — he also performed at the 2022 FIFA World Cup opening ceremony in Qatar",
+    "difficulty": "medium",
+    "backgroundSongName": "Seven",
+    "backgroundArtist": "Jungkook",
+    "gossipDate": "2023-07",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which artist was caught lip-syncing at their own concert and got booed off stage in 2023?",
+    "correctAnswer": "Lana Del Rey (accused but she was singing live with a backing track)",
+    "options": [
+      "Lana Del Rey (accused but she was singing live with a backing track)",
+      "Dua Lipa",
+      "Selena Gomez",
+      "Britney Spears"
+    ],
+    "artistName": "Lana Del Rey",
+    "funFact": "Lana Del Rey faced criticism for her live performances but silenced doubters by headlining Glastonbury 2024 — she also made headlines for dating a reportedly unknown man she met at a music festival",
+    "difficulty": "hard",
+    "backgroundSongName": "Summertime Sadness",
+    "backgroundArtist": "Lana Del Rey",
+    "gossipDate": "2023-09",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer's ex-wife wrote a tell-all book in 2023 that revealed decades of alleged infidelity?",
+    "correctAnswer": "Jada Pinkett Smith (about Will Smith)",
+    "options": [
+      "Jada Pinkett Smith (about Will Smith)",
+      "Nicole Kidman (about Tom Cruise)",
+      "Gwen Stefani (about Gavin Rossdale)",
+      "Madonna (about Guy Ritchie)"
+    ],
+    "artistName": "Will Smith",
+    "funFact": "Jada Pinkett Smith's memoir 'Worthy' revealed she and Will had been secretly separated since 2016 — she also confirmed the 'entanglement' with August Alsina that rocked the internet in 2020",
+    "difficulty": "medium",
+    "backgroundSongName": "Whip My Hair",
+    "backgroundArtist": "Willow Smith",
+    "gossipDate": "2023-10",
+    "category": "scandal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Oasis member publicly feuded with his brother on Twitter, dashing hopes of a reunion?",
+    "correctAnswer": "Noel Gallagher (feuding with Liam)",
+    "options": [
+      "Noel Gallagher (feuding with Liam)",
+      "Liam Gallagher",
+      "Keith Richards",
+      "Roger Waters"
+    ],
+    "artistName": "Oasis",
+    "funFact": "After years of Twitter insults between Noel and Liam Gallagher, Oasis FINALLY announced a 2025 reunion tour — tickets sold out instantly and the Gallagher brothers proved that family beef is temporary but nostalgia is forever",
+    "difficulty": "medium",
+    "backgroundSongName": "Wonderwall",
+    "backgroundArtist": "Oasis",
+    "gossipDate": "2024-08",
+    "category": "beef",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer was Sabrina Carpenter's 'Espresso' rumored to be about?",
+    "correctAnswer": "Joshua Bassett",
+    "options": [
+      "Joshua Bassett",
+      "Shawn Mendes",
+      "Barry Keoghan",
+      "Griffin Gluck"
+    ],
+    "artistName": "Sabrina Carpenter",
+    "funFact": "Sabrina Carpenter went from Disney star to pop superstar in 2024 — 'Espresso' became the song of the summer, and she rode the wave of the Olivia Rodrigo love triangle narrative she'd been part of since 2021",
+    "difficulty": "medium",
+    "backgroundSongName": "Espresso",
+    "backgroundArtist": "Sabrina Carpenter",
+    "gossipDate": "2024-04",
+    "category": "dating",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper surprised fans by releasing an album produced entirely by Pharrell Williams for his new label?",
+    "correctAnswer": "A$AP Rocky (rumored Pharrell collab, but actually Clipse reunited on Pharrell's label)",
+    "options": [
+      "A$AP Rocky (rumored Pharrell collab, but actually Clipse reunited on Pharrell's label)",
+      "Tyler, the Creator",
+      "21 Savage",
+      "Travis Scott"
+    ],
+    "artistName": "A$AP Rocky",
+    "funFact": "A$AP Rocky became more famous for his relationship with Rihanna and their two children — the couple became fashion's ultimate power couple, showing up matching at every event imaginable",
+    "difficulty": "hard",
+    "backgroundSongName": "Praise The Lord (Da Shine)",
+    "backgroundArtist": "A$AP Rocky",
+    "gossipDate": "2024-03",
+    "category": "career",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer split from Shawn Mendes after two years, with both releasing breakup songs?",
+    "correctAnswer": "Camila Cabello",
+    "options": [
+      "Camila Cabello",
+      "Taylor Swift",
+      "Dua Lipa",
+      "Selena Gomez"
+    ],
+    "artistName": "Camila Cabello",
+    "funFact": "Camila and Shawn's breakup in 2021 was amicable according to their joint statement — but fans noticed they kept getting spotted together at coffee shops for months after, fueling reconciliation rumors",
+    "difficulty": "easy",
+    "backgroundSongName": "Senorita",
+    "backgroundArtist": "Camila Cabello",
+    "gossipDate": "2021-11",
+    "category": "breakup",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which music producer was exposed for abusive behavior by ex-girlfriend FKA Twigs in a 2021 lawsuit?",
+    "correctAnswer": "Shia LaBeouf",
+    "options": [
+      "Shia LaBeouf",
+      "Dr. Luke",
+      "Marilyn Manson",
+      "Chris Brown"
+    ],
+    "artistName": "FKA Twigs",
+    "funFact": "FKA Twigs' lawsuit against Shia LaBeouf detailed alleged physical and emotional abuse — the case was settled in 2024, and Twigs said she spoke out to help other women in similar situations",
+    "difficulty": "hard",
+    "backgroundSongName": "Cellophane",
+    "backgroundArtist": "FKA Twigs",
+    "gossipDate": "2021-01",
+    "category": "legal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer's song 'Unholy' caused outrage from conservative groups for its provocative music video?",
+    "correctAnswer": "Sam Smith (featuring Kim Petras)",
+    "options": [
+      "Sam Smith (featuring Kim Petras)",
+      "Lil Nas X",
+      "Doja Cat",
+      "Troye Sivan"
+    ],
+    "artistName": "Sam Smith",
+    "funFact": "Sam Smith and Kim Petras' Grammy performance of 'Unholy' was called 'satanic' by critics — it actually made the song even MORE popular. Kim Petras became the first openly trans woman to win a Grammy",
+    "difficulty": "easy",
+    "backgroundSongName": "Unholy",
+    "backgroundArtist": "Sam Smith",
+    "gossipDate": "2023-02",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star was sued by Kesha's ex-manager for alleged defamation in a decade-long legal saga?",
+    "correctAnswer": "Lady Gaga",
+    "options": [
+      "Lady Gaga",
+      "Katy Perry",
+      "Pink",
+      "Madonna"
+    ],
+    "artistName": "Lady Gaga",
+    "funFact": "Lady Gaga was pulled into the Kesha vs Dr. Luke legal battle when texts between Gaga and Kesha were subpoenaed — Gaga had supported Kesha publicly and the legal entanglement dragged on for years",
+    "difficulty": "hard",
+    "backgroundSongName": "Til It Happens to You",
+    "backgroundArtist": "Lady Gaga",
+    "gossipDate": "2023-02",
+    "category": "legal",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper had a 'Montero' Satan-themed shoe that Nike sued over?",
+    "correctAnswer": "Lil Nas X",
+    "options": [
+      "Lil Nas X",
+      "Tyler, the Creator",
+      "Playboi Carti",
+      "Kid Cudi"
+    ],
+    "artistName": "Lil Nas X",
+    "funFact": "Lil Nas X's 'Satan Shoes' contained a drop of human blood and were limited to 666 pairs — Nike sued the manufacturer MSCHF and won an injunction, but the shoes had already sold out in under a minute",
+    "difficulty": "easy",
+    "backgroundSongName": "MONTERO (Call Me By Your Name)",
+    "backgroundArtist": "Lil Nas X",
+    "gossipDate": "2021-03",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which BTS member went solo with the album 'Indigo' featuring collaborations with J. Cole and Anderson .Paak?",
+    "correctAnswer": "RM (Kim Namjoon)",
+    "options": [
+      "RM (Kim Namjoon)",
+      "Suga",
+      "J-Hope",
+      "V"
+    ],
+    "artistName": "BTS",
+    "funFact": "RM's 'Indigo' was a critically acclaimed solo debut that showed his artistic range beyond BTS — he enlisted in the military shortly after, making fans treasure the album even more",
+    "difficulty": "hard",
+    "backgroundSongName": "Wild Flower",
+    "backgroundArtist": "RM",
+    "gossipDate": "2022-12",
+    "category": "military",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer married a member of the Italian royal family in a lavish ceremony in 2024?",
+    "correctAnswer": "Kourtney Kardashian (married Travis Barker in Italy, not royalty though)",
+    "options": [
+      "Kourtney Kardashian (married Travis Barker in Italy, not royalty though)",
+      "Lady Gaga",
+      "Gwen Stefani",
+      "Jessica Simpson"
+    ],
+    "artistName": "Travis Barker",
+    "funFact": "The Kravis Italian wedding at a medieval castle in Portofino was peak celebrity excess — Dolce & Gabbana designed the entire event, and the Kardashians turned it into a multi-day content extravaganza",
+    "difficulty": "medium",
+    "backgroundSongName": "I Miss You",
+    "backgroundArtist": "blink-182",
+    "gossipDate": "2022-05",
+    "category": "dating",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which former Disney star and singer went through a very public mental health crisis in 2024?",
+    "correctAnswer": "Selena Gomez",
+    "options": [
+      "Selena Gomez",
+      "Demi Lovato",
+      "Miley Cyrus",
+      "Zendaya"
+    ],
+    "artistName": "Selena Gomez",
+    "funFact": "Selena Gomez has been remarkably open about her bipolar diagnosis, lupus, and kidney transplant — her 2024 Apple TV documentary 'My Mind & Me' continuation showed her ongoing mental health journey",
+    "difficulty": "medium",
+    "backgroundSongName": "Lose You to Love Me",
+    "backgroundArtist": "Selena Gomez",
+    "gossipDate": "2024-05",
+    "category": "career",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rock legend was accused of sexual misconduct by multiple women, leading to dropped tours and label suspension?",
+    "correctAnswer": "Marilyn Manson",
+    "options": [
+      "Marilyn Manson",
+      "Steven Tyler",
+      "Axl Rose",
+      "Gene Simmons"
+    ],
+    "artistName": "Marilyn Manson",
+    "funFact": "Marilyn Manson was accused by Evan Rachel Wood and several other women of abuse starting in 2021 — he denied the allegations and countersued, but was dropped by his label and lost acting roles",
+    "difficulty": "medium",
+    "backgroundSongName": "The Beautiful People",
+    "backgroundArtist": "Marilyn Manson",
+    "gossipDate": "2021-02",
+    "category": "scandal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper legally changed his name to just a symbol, confusing everyone on social media?",
+    "correctAnswer": "Ye (Kanye West)",
+    "options": [
+      "Ye (Kanye West)",
+      "The Weeknd",
+      "Diddy",
+      "Snoop Dogg"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "Kanye's legal name change to 'Ye' in October 2021 was a relatively quiet moment compared to what came next — his 2022 antisemitic rants cost him his Adidas deal worth an estimated $1.5 billion",
+    "difficulty": "easy",
+    "backgroundSongName": "Gold Digger",
+    "backgroundArtist": "Kanye West",
+    "gossipDate": "2021-10",
+    "category": "controversy",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which boy band from the 2000s announced a surprise reunion tour in 2023?",
+    "correctAnswer": "NSYNC (brief reunion at VMAs)",
+    "options": [
+      "NSYNC (brief reunion at VMAs)",
+      "Backstreet Boys",
+      "98 Degrees",
+      "Westlife"
+    ],
+    "artistName": "NSYNC",
+    "funFact": "NSYNC reunited on stage at the 2023 VMAs to present an award, and even released a new single 'Better Place' for the Trolls movie — it was their first new music together in over 20 years",
+    "difficulty": "medium",
+    "backgroundSongName": "Bye Bye Bye",
+    "backgroundArtist": "NSYNC",
+    "gossipDate": "2023-09",
+    "category": "career",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper had their concert shut down in 2024 after allegedly inciting a riot?",
+    "correctAnswer": "Playboi Carti",
+    "options": [
+      "Playboi Carti",
+      "Travis Scott",
+      "Lil Uzi Vert",
+      "Yeat"
+    ],
+    "artistName": "Playboi Carti",
+    "funFact": "Playboi Carti became known for chaotic shows with mosh pits and crowd surges — multiple concerts were shut down by police due to overcrowding, drawing comparisons to the Astroworld tragedy",
+    "difficulty": "hard",
+    "backgroundSongName": "Magnolia",
+    "backgroundArtist": "Playboi Carti",
+    "gossipDate": "2024-06",
+    "category": "scandal",
+    "expiresAfter": "2027-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer was spotted kissing Timothee Chalamet at a Beyonce concert, confirming their relationship?",
+    "correctAnswer": "Kylie Jenner",
+    "options": [
+      "Kylie Jenner",
+      "Zendaya",
+      "Florence Pugh",
+      "Selena Gomez"
+    ],
+    "artistName": "Kylie Jenner",
+    "funFact": "Kylie and Timothee's kiss cam moment at Beyonce's Renaissance tour in LA went viral — after Travis Scott, fans were thrilled to see Kylie with someone from a completely different world",
+    "difficulty": "easy",
+    "backgroundSongName": "CUFF IT",
+    "backgroundArtist": "Beyonce",
+    "gossipDate": "2023-09",
+    "category": "dating",
+    "expiresAfter": "2027-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer married Hailey Baldwin in a secret courthouse wedding, then had a lavish second ceremony?",
+    "correctAnswer": "Justin Bieber",
+    "options": [
+      "Justin Bieber",
+      "Shawn Mendes",
+      "Ed Sheeran",
+      "Nick Jonas"
+    ],
+    "artistName": "Justin Bieber",
+    "funFact": "Justin and Hailey Bieber welcomed their first baby in 2024 — Justin's journey from troubled teen star to married father became one of pop culture's most compelling redemption arcs",
+    "difficulty": "easy",
+    "backgroundSongName": "Baby",
+    "backgroundArtist": "Justin Bieber",
+    "gossipDate": "2024-08",
+    "category": "dating",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rock star was at the center of a custody battle that played out on social media in 2023?",
+    "correctAnswer": "Gigi Hadid & Zayn Malik",
+    "options": [
+      "Gigi Hadid & Zayn Malik",
+      "Kourtney Kardashian & Scott Disick",
+      "Ciara & Future",
+      "Blac Chyna & Rob Kardashian"
+    ],
+    "artistName": "Zayn Malik",
+    "funFact": "Zayn Malik's altercation with Gigi's mother Yolanda Hadid in 2021 led to criminal charges and a custody agreement — the former One Direction member pleaded no contest and the couple split",
+    "difficulty": "medium",
+    "backgroundSongName": "Pillowtalk",
+    "backgroundArtist": "Zayn Malik",
+    "gossipDate": "2021-10",
+    "category": "legal",
+    "expiresAfter": "2026-12"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper lost his Adidas deal worth billions after making antisemitic comments?",
+    "correctAnswer": "Kanye West",
+    "options": [
+      "Kanye West",
+      "Meek Mill",
+      "DaBaby",
+      "Travis Scott"
+    ],
+    "artistName": "Kanye West",
+    "funFact": "Kanye's 2022 antisemitic remarks cost him the Adidas Yeezy partnership worth an estimated $1.5 billion — it was the largest celebrity brand deal termination in history",
+    "difficulty": "easy",
+    "backgroundSongName": "Flashing Lights",
+    "backgroundArtist": "Kanye West",
+    "gossipDate": "2022-10",
+    "category": "scandal",
+    "expiresAfter": "2028-01"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer had the most-watched Instagram Live ever in 2021, battling against Timbaland?",
+    "correctAnswer": "Swizz Beatz (Verzuz battle)",
+    "options": [
+      "Swizz Beatz (Verzuz battle)",
+      "DJ Khaled",
+      "Pharrell",
+      "Kanye West"
+    ],
+    "artistName": "Swizz Beatz",
+    "funFact": "Verzuz, created by Swizz Beatz and Timbaland during COVID lockdowns, became a cultural phenomenon — the series was acquired by Triller in 2021 for a reported $50 million",
+    "difficulty": "hard",
+    "backgroundSongName": "Ruff Ryders' Anthem",
+    "backgroundArtist": "DMX",
+    "gossipDate": "2021-03",
+    "category": "career",
+    "expiresAfter": "2026-06"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which J-Hope was the first BTS member to release a solo album AND perform solo at Lollapalooza?",
+    "correctAnswer": "J-Hope (Jung Hoseok)",
+    "options": [
+      "J-Hope (Jung Hoseok)",
+      "Suga",
+      "Jimin",
+      "V"
+    ],
+    "artistName": "BTS",
+    "funFact": "J-Hope headlined Lollapalooza in July 2022, becoming the first South Korean artist to headline a major US festival — he enlisted in the military shortly after, making it a bittersweet milestone",
+    "difficulty": "hard",
+    "backgroundSongName": "MORE",
+    "backgroundArtist": "J-Hope",
+    "gossipDate": "2022-07",
+    "category": "military",
+    "expiresAfter": "2027-01"
+  }
+]
