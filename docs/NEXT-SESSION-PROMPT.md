@@ -8,116 +8,153 @@ Paste this to start a new session:
 
 Læs `CLAUDE.md` i project root — den indeholder komplet status over hele projektet.
 
-## Hvad blev lavet i denne session (2. april 2026, aften)
+## Hvad blev lavet i denne session (3. april 2026)
 
-### F20: Global Search (Cmd+K) ✅
-- Cmd+K command palette med Apple Music search (artists, albums, songs)
-- Keyboard navigation (piletaster + Enter + ESC)
-- Search-knap i Admin header
-- Artist Page (`#artist/{id}`) — hero med cirkulært artwork, top songs 3-kolonne grid, albums grid
-- Album Page (`#album/{id}`) — hero, numbered tracks med hover play (num→▶ ved hover), Play All, Add All to Playlist
-- Song Context Menu (···) — ▶ Play, 💿 Go to Album, 🎤 Go to Artist, Add to Playlist dropdown
-- Hash routing inden for Admin, Back-knap med navigation history
-- localStorage husker tab + hash position ved reload
-- API: `GET /quiz/api/artist/:id` (top songs via view API + albums via search)
-- `getArtistTopSongs()` tilføjet til AppleMusicClient
+### Quiz Engine v2 — AI Trivia + Verified Pool ✅
+- 5 nye trivia-typer: country-of-origin, band-members, artist-trivia, film-soundtrack, tv-theme
+- AI Enricher: Claude Haiku genererer trivia, Claude Sonnet (4) fact-checker
+- Token tracking: Haiku ~5K + Sonnet ~4K per quiz
+- Verified Pool approach: download → verify → build questions (ZERO runtime failures)
+- 1158-artist bruttoliste i `data/artist-pool.json` (37 lande, alle genrer, 1700s-2020s)
+- 67 danske kunstnere (Gasolin', Kim Larsen, TV-2, D-A-D, Kashmir, L.O.C., Kesi, Gilli, etc.)
+- Artist-dedup: ingen kunstner to gange i en quiz, ingen sang to gange
+- Normalize-dedup: stripper (Live), (Remastered), English Version, feat. etc.
+- Interleaving: ~50% trivia fra bank, ~50% frisk fra AI. Aldrig to trivia i træk
+- "Researching..." modal med live sekunder-nedtælling under quiz-generation
 
-### Events (Quiz tab → Events) ✅
-- Event store: disk-persisteret (`quiz-events.json`)
-- Create event med navn + dato (native date picker dark mode) + kl. (selects)
-- Edit Event modal: navn, dato, rounds (Unlimited/1-10 custom select), playlist picker (custom select)
-- Active / Scheduled / Previous filter tabs
-- Event card klik = Edit (ingen separat Edit-knap)
-- Start Quiz fra Event → preloader playlist, viser event name + rounds i Host titel
-- Safe update: kun overskriver felter der er sendt (ingen undefined-nuking)
-- `showNewEventForm()` (renamed fra `createEvent` — kolliderede med native DOM metode)
+### Trivia Question Bank ✅
+- **499 validerede trivia-spørgsmål** i `data/quiz-question-bank.json`
+- 114 artist-trivia, 105 country-of-origin, 97 band-members, 92 film-soundtrack, 82 tv-theme
+- 8 batches manuelt kurateret (0 API cost)
+- Bank vokser automatisk: nye trivia fra AI gemmes efter fact-check + pool-match
+- Alle persisteret i `data/` (IKKE /tmp/ — var en kritisk bug der blev fixet)
 
-### Admin UI Improvements ✅
-- Provider toggle: "Apple Music" / "Home Controller"
-- AirPlay selector for HC med **active vs selected status** (grøn ● = active, rød − = selected men offline)
-- Volume slider for begge providers (sender til Music.app + alle aktive AirPlay devices)
-- Speaker SVG ikon efter slider
-- Custom confirm dialogs OVERALT (ALDRIG native confirm/alert/prompt — Hard Rule #10)
-- Custom select buttons (dark theme dropdowns via song-ctx-menu)
-- SVG close button på Now Playing overlay (perfekt centreret)
-- Test-knap renamed "Test" (fra "Test Play"), subtile outlined knapper
-- Host playlists modal: ⌘K-style med søg + artwork mosaic + keyboard nav (piletaster)
-- "No playlist loaded" → "press ⌘K to search and add songs"
+### Gossip Bank Design ✅
+- 10 gossip-eksempler i `data/gossip-examples.json`
+- Format: questionType "gossip", gossipDate, category, expiresAfter
+- Kategorier: breakup, controversy, dating, scandal, military, beef, legal, career
+- Klar til implementation som egen DB + question type
 
-### Playback Fixes ✅
-- **play-exact med fuldt navn** — sender fuldt tracknavn (inkl. "(Remastered 2003)") før simplified. Root cause: osascript `whose name is` kræver exact match
-- **addToLibrary + retry** fallback for sange ikke i bibliotek
-- **Play log**: `GET /quiz/api/admin/play-log` — requested vs actual track
-- **Track change log**: `GET /quiz/api/admin/track-log` — alt der faktisk spillede (HC poll + MusicKit push)
-- **MusicKit CDN loaded dynamisk** kun for Apple Music provider (fjerner Safari autoplay dialog)
-- **Revert open location** — poppede Music.app i forgrunden, fjernet helt
-- Play playlist API: `POST /quiz/api/admin/play-playlist/:id`
-- `playAllQueue` scope fix (`window.` prefix overalt)
+### Song Pool ✅
+- `data/artist-pool.json`: 1158 kunstnere → shuffle → søg Apple Music → verified pool
+- Fjernet hardcoded max 25 sang cap i generateQuiz
+- Pool skalerer med question count (5x)
+- 95% hit rate på Apple Music søgning per kunstner
+- Covers filtreres fra (matcher artistnavn)
+
+### AirPlay Toggle ✅
+- osascript `set selected of device to true/false` virker
+- Wake af sovende Apple TV virker via osascript
+- Toggle UI i Admin med live status-refresh
 
 ### PWA Fixes ✅
-- Wake Lock fra lobby (ikke kun DJ Mode) + NoSleep video fallback for iOS Safari
-- Auto-rejoin kun når `sessionStorage.inActiveSession` er sat (ikke på fresh QR scan)
-- Avatar persisteret i localStorage, 18 avatarer (🪕🔔 tilføjet) i 3x6 grid
-- Service Worker v2: network-first med cache update, auto-checks hvert 30s
-- `overflow-x: hidden` på html/body (ingen horizontal wiggle)
-- Preparation modal: Cancel knap + ESC
+- Wake Lock: native + NoSleep video parallelt
+- WS reconnect auto-rejoin med `inActiveSession` guard
+- Service Worker v3
 
-### Engine ✅
-- Fallback artist/song/album names i `generateOptions` — aldrig "—" som svarmulighed
-- Questions default 3 (dev mode), min 1
-- Host: Exit Game reloader ikke (lader game flow til finished/DJ naturligt)
-- Host: "No playlist loaded" tekst, "Playlists" knap (renamed fra "Load Custom Quiz")
+### UI Improvements ✅
+- Timer sekunder på player PWA (ved siden af progress bar)
+- Fun fact callout (💡) under reveal — større, tydeligere
+- Podium-højder: 1. > 2. > 3. (CSS padding)
+- Picks earned: rounded corners + padding
+- ··· context menu på Recently Played tracks
+- ··· context menu i Cmd+K søgeresultater (songs)
+- Mini player: forbliver synlig ved pause/stop
+- Provider status ved page load (Home Controller vises korrekt)
+- Howler.js + applause.mp3 ved podium
+- "Researching..." → "Preparing Your Quiz" modal transition
+
+### Bug Fixes ✅
+- TDZ: hostNpState + musicKitAuthorized variabler moved before usage
+- Duplicate players: reconnect sletter gammel session-entry
+- Theme songs: hardcoded Apple Music catalog IDs (Frank Sinatra, Queen)
+- Double verifyPlaying log entries removed
+- MUTE_ALL=true skips song verification
+
+### E2E Testing ✅
+- `e2e-screenshot-test-3players.js`: 4 vinduer, screenshots, post-test validation
+- `e2e-headless-muted-1player.js`: headless, 1 browser, stabil
+- `e2e-observer.js`: headless watcher under manuel test
+- Post-test validation: duplicate artists, question types, music match, bank growth
+- Anthropic SDK 0.82.0
 
 ## KRITISK: Næste session prioriteter
 
-### 1. Play-by-ID uden open location 🔴
-**Problem:** Vi kan ikke spille en sang direkte via Apple Music catalog ID uden at Music.app popper i forgrunden. `open location` vækker appen. osascript `play-exact` kræver at sangen er i lokalt bibliotek med exact name match.
-**Research:** Find en måde at spille en Apple Music catalog track via osascript UDEN at bringe Music.app i forgrunden og uden at søge lokalt bibliotek.
-**Workaround nu:** `addToLibrary(songId)` + `play-exact(fullName, artist)` — virker men langsomt for nye sange.
+### 1. Gossip Bank Implementation 🔴
+- Ny `quiz-gossip-bank.json` i `data/`
+- Ny question type `gossip` i types.ts
+- Populate med 50+ gossip spørgsmål
+- Quiz setting: "Include gossip" toggle
+- Gossip kan køres som selvstændig runde
 
-### 2. AirPlay Wake (Wake-on-LAN) 🟡
-**Problem:** osascript `set selected of device to true` vækker IKKE Apple TV fra dvale. Music.app UI kan det (klik checkbox).
-**Mulig løsning:** Wake-on-LAN packet til Apple TV MAC-adresse. Stue MAC: `f0:d5:bf:ac:30:a5` (fra ARP cache).
-**Note:** `active` property på AirPlay devices er nu eksponeret (grøn/rød status i UI).
+### 2. Quiz Mix 50/50 Bank/Frisk 🔴
+- Wire quiz til at hente 50% trivia fra bank, 50% frisk fra AI
+- Trivia bank runner script (kør manuelt for at vokse banken)
+- Bed Haiku om flere trivia (30+ i stedet for 20) for bedre coverage
 
-### 3. PWA Stabilitet 🟡
-- Join virkede i E2E men var ustabil fra telefon (fixed: `showQuestion` crash fjernet)
-- Wake Lock + screen lock recovery: NoSleep video tilføjet men utestet på device
-- Service Worker cache kan give stale content (v2 med auto-update tilføjet)
+### 3. Sonnet Fact-Check Læmpning 🟡
+- "Cannot verify" bør IKKE afvise — kun "bevisligt forkert"
+- Ændr prompt til: kun reject det der er FAKTUELT FORKERT
+- Stikprøver: fact-check 50% tilfældigt i stedet for alle
 
-### 4. Recently Played mangler songId fra live tracks 🟡
-- Tracks fra HC now-playing poll har ingen songId
-- Klik på dem sender `songId: undefined` → `addToLibrary` sker ikke → `playExact` kan fejle
-- Fix: slå songId op via Apple Music catalog search når track mangler id
+### 4. E2E Script Fixes 🟡
+- Script timeout efter Q38 (venter på Q39 der ikke eksisterer)
+- Auto-close efter 10s Champions (virker ikke altid)
+- Test med 100Q kræver større pool (pool-skalering virker men verify er bottleneck)
 
-### 5. UI Polish 🟡
-- Play All / Next Song auto-advance mangler robust test
-- Event creation: custom dropdowns i stedet for native `<select>` for timer/minutter
-- Loader/spinner når en sang downloades til bibliotek
+### 5. Sound Design (SOUND.md) 🟡
+- Kun applause.mp3 implementeret — resten mangler (correct, wrong, countdown, tick, etc.)
+- Howler.js er klar — mangler CC0 lydeffekter fra Pixabay
+
+### 6. Setup Tab i Admin 🟡
+- Flyt controller/AirPlay/volume til Setup tab
+- Stats dashboard: bank size, quizzes completed, songs played, events held
+- Logo top-left i header
+
+### 7. Exclude List 🟡
+- Admin UI: ekskluder kunstnere fra quiz (f.eks. Kanye)
+
+### 8. Nye Kunstnere i Pool Automatisk 🟡
+- Når AI trivia nævner en kunstner der ikke er i pool → tilføj automatisk
 
 ## Hard Rules (opdateret)
 10. **ALDRIG native confirm/alert/prompt** — brug altid custom dark-theme modal dialogs
+11. **ALDRIG foreslå at stoppe** — brugeren bestemmer hvornår sessionen slutter
+12. **Data i `data/`** — ALDRIG `/tmp/` for persisterede data
+13. **Trivia = fakta (permanent)** — Gossip = tidsbestemt (har expiry)
 
 ## Filer ændret i denne session
 | Fil | Ændring |
 |-----|---------|
-| `src/apple-music.ts` | `getArtistTopSongs()` metode |
-| `src/quiz/engine.ts` | Fallback options i `generateOptions` |
-| `src/quiz/event-store.ts` | NY: disk-persisteret event store |
-| `src/quiz/routes.ts` | Artist API, events CRUD, play-exact flow, play-log, track-log |
-| `src/quiz/ws-handler.ts` | Game state + currentQuestion i join response |
-| `src/quiz/public/admin.html` | Cmd+K, artist/album pages, events tab, context menu, volume, AirPlay, confirms |
-| `src/quiz/public/admin.css` | Search overlay, content pages, custom selects, song rows, volume slider |
-| `src/quiz/public/admin.js` | Custom confirm, removed alert |
-| `src/quiz/public/host.html` | Playlists modal, confirm dialog, MusicKit CDN removed |
-| `src/quiz/public/host.js` | Event loading, provider status, keyboard nav, prep cancel, questions default 3 |
-| `src/quiz/public/play.js` | Wake lock, avatar persistence, auto-rejoin fix, 18 avatars |
-| `src/quiz/public/play.css` | 6-column avatar grid, overflow-x hidden |
-| `src/quiz/public/player.js` | Dynamic MusicKit CDN load, skip init for HC |
-| `src/quiz/public/sw.js` | Service Worker v2: network-first, cache bust, auto-update |
-| `src/browser-ws.ts` | Track change log |
-| `home/server.ts` | AirPlay active property, play-by-id (reverted) |
-| `CLAUDE.md` | Hard Rule #10 |
+| `src/quiz/ai-enricher.ts` | NY: AI trivia generation + Sonnet fact-check + token logging |
+| `src/quiz/question-bank.ts` | NY: global question bank persistence (data/ dir) |
+| `src/quiz/engine.ts` | Verified pool, trivia integration, artist dedup, no verify backoff |
+| `src/quiz.ts` | Artist pool approach (1158 artists), removed 25-cap, pool scaling |
+| `src/quiz/types.ts` | 5 nye QuizTypes, isTrivia, backgroundSong fields, funFact |
+| `src/quiz/ai-evaluator.ts` | Type hints for nye trivia-typer |
+| `src/quiz/ws-handler.ts` | isTrivia + funFact i WS messages, researching phase |
+| `src/quiz/playlist-store.ts` | data/ dir i stedet for /tmp/ |
+| `src/quiz/event-store.ts` | data/ dir i stedet for /tmp/ |
+| `src/quiz/public/host.html` | Fun fact element, researching modal, timer default 5, Mixed label |
+| `src/quiz/public/host.js` | Researching modal, type labels, funFact reveal, TDZ fixes, Howler |
+| `src/quiz/public/host.css` | Podium heights |
+| `src/quiz/public/play.js` | Timer seconds, type labels, answer result artist+year+funFact |
+| `src/quiz/public/play.html` | Timer seconds span |
+| `src/quiz/public/play.css` | Timer padding, stat row rounded corners |
+| `src/quiz/public/admin.html` | AirPlay toggle, song ctx in search, mini player pause state |
+| `src/quiz/public/admin.js` | ··· context menu on Recently Played |
+| `src/quiz/public/admin.css` | Search item ctx button |
+| `src/quiz/public/sw.js` | v3 cache bust |
+| `server.js` | /quiz/sounds/ route |
+| `data/artist-pool.json` | NY: 1158 kunstnere |
+| `data/quiz-question-bank.json` | NY: 499 validerede trivia |
+| `data/gossip-examples.json` | NY: 10 gossip format eksempler |
+| `data/trivia-batch-001-008.json` | NY: trivia batches |
+| `scripts/e2e-screenshot-test-3players.js` | NY: 3-player visual test |
+| `scripts/e2e-headless-muted-1player.js` | NY: headless 1-player test |
+| `scripts/e2e-observer.js` | NY: headless observer |
+| `scripts/merge-artist-pool.js` | NY: merge artist pools |
+| `scripts/list-artist-pool.js` | NY: generate text list |
 
 ## Server start
 ```bash
@@ -125,8 +162,7 @@ NODE_ENV=development node server.js
 source .env && MCP_WS_URL=ws://localhost:3000/home-ws HOME_API_KEY=$HOME_API_KEY node home/dist/server.js
 ```
 
-## Debug endpoints
-- `GET /quiz/api/admin/play-log` — hvad blev requested vs hvad spillede
-- `GET /quiz/api/admin/track-log` — alt der faktisk spillede
-- `GET /quiz/api/events` — alle events
-- `GET /quiz/api/playback-provider` — aktiv provider
+## Husk før lørdag
+- Fjern `MUTE_ALL=true` fra `.env`
+- Kør en manual test med lyd for at verificere Frank Sinatra + Champions
+- Test fra telefon (PWA wake lock, join sound, timer seconds)
