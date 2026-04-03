@@ -30,9 +30,11 @@ export interface BankedQuestion {
 }
 
 function getStorePath(): string {
+  // Use data/ dir in project root (persisted in repo)
+  // Falls back to TOKEN_FILE dir for Fly.io deployment
   const dataDir = process.env.TOKEN_FILE
     ? join(process.env.TOKEN_FILE, "..")
-    : "/tmp";
+    : join(process.cwd(), "data");
   return join(dataDir, "quiz-question-bank.json");
 }
 

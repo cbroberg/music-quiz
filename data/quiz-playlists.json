@@ -1,0 +1,969 @@
+[
+  {
+    "id": "91d92bcf",
+    "name": "Rock Night",
+    "tracks": [
+      {
+        "id": "171216512",
+        "name": "Goodbye Pork Pie Hat",
+        "artistName": "Jeff Beck",
+        "albumName": "Wired",
+        "releaseYear": "1976",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d9/66/ab/d966abcb-6f21-f9e7-6efa-40acdff089c9/696998543928.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/ba/c0/c9/bac0c9a7-248c-0102-f4bd-bff970330ad0/mzaf_1761523854347765234.plus.aac.p.m4a"
+      },
+      {
+        "id": "1115961295",
+        "name": "Right Now",
+        "artistName": "Jeff Beck",
+        "albumName": "Loud Hailer",
+        "releaseYear": "2016",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music18/v4/06/54/e6/0654e6ee-f382-bcc6-536f-2ad6b23f4972/603497877331.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b9/d0/4b/b9d04bff-53f5-1504-987f-b5587f50228e/mzaf_12217993956526460361.plus.aac.p.m4a"
+      },
+      {
+        "id": "1678422816",
+        "name": "Moon River",
+        "artistName": "Eric Clapton & Jeff Beck",
+        "albumName": "Moon River - Single",
+        "releaseYear": "2023",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/18/92/af/1892affa-341b-03ae-ae8c-b40d00e8141f/197188376017.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/35/a2/bd/35a2bdb4-8c32-c8e4-9a22-acc6486ae2dd/mzaf_3895922607976614680.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576788122",
+        "name": "Upside Downside",
+        "artistName": "Mike Stern",
+        "albumName": "Upside Downside",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/ae/97/c2ae9706-321e-4103-a141-ea5f8e9dace0/18CRGIM06085.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/29/59/a0/2959a011-f6de-6b48-d285-4a5f2e021bd5/mzaf_10953952698276064428.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576788390",
+        "name": "Mood Swings",
+        "artistName": "Mike Stern",
+        "albumName": "Upside Downside",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/ae/97/c2ae9706-321e-4103-a141-ea5f8e9dace0/18CRGIM06085.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/32/b5/b6/32b5b6cb-eb01-933d-2872-d76f9ff704a8/mzaf_17193983473914854055.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787604",
+        "name": "Gossip",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c8/19/5e/c8195eb2-ab77-4c73-6c18-e3fee8d0962f/mzaf_8823311140927973042.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787738",
+        "name": "Time In Place",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ca/92/b6/ca92b6ab-8808-c5e5-3cfe-0eb22abca943/mzaf_8799628636533506143.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787756",
+        "name": "Chromazone",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/80/51/48/805148a9-7435-f812-e8fa-2a781a224e0e/mzaf_6242734858299727506.plus.aac.p.m4a"
+      },
+      {
+        "id": "1641923666",
+        "name": "Fast Track (2022 Remaster) [Live at the Kix Club, Boston, MA - June 1981]",
+        "artistName": "Miles Davis",
+        "albumName": "We Want Miles (Live - 2022 Remaster)",
+        "releaseYear": "1982",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b2/f3/ea/b2f3ea45-7808-c179-acee-b79e40ac92bd/196589320131.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/dd/87/23/dd87237b-5552-f271-d3ec-9f23e6b35e14/mzaf_16287816199225929888.plus.aac.p.m4a"
+      },
+      {
+        "id": "1444033746",
+        "name": "Camelus",
+        "artistName": "John Scofield",
+        "albumName": "Überjam Deux",
+        "releaseYear": "2013",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/87/98/fb/8798fbfe-2aa0-6634-28cd-cce18e5bf928/00602537352463.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/4d/5a/c9/4d5ac94d-23f3-0c51-17c5-c144190715aa/mzaf_8271713567002995220.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440859107",
+        "name": "Heart-Shaped Box",
+        "artistName": "Nirvana",
+        "albumName": "In Utero (20th Anniversary Edition)",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/20/03/e32003a4-99bc-1c70-40ba-001882f35dba/00602537526840.rgb.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "334812065",
+        "name": "Everlong (Acoustic Version)",
+        "artistName": "Foo Fighters",
+        "albumName": "Greatest Hits",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f8/c5/db/f8c5db15-620a-1ec6-36c5-43ba3c7c690a/dj.djjzfxdd.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      },
+      {
+        "id": "1205671304",
+        "name": "Psychobabble",
+        "artistName": "The Alan Parsons Project",
+        "albumName": "Eye In the Sky",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/c4/46/fec446f8-30e6-b526-0f71-58e7ff0b17f5/886446379685.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      },
+      {
+        "id": "1440783625",
+        "name": "Smells Like Teen Spirit",
+        "artistName": "Nirvana",
+        "albumName": "Nevermind",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/95/fd/b9/95fdb9b2-6d2b-92a6-97f2-51c1a6d77f1a/00602527874609.rgb.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      },
+      {
+        "id": "i.RVgoFkg92g",
+        "name": "Du Hast",
+        "artistName": "Rammstein",
+        "albumName": "Matrix",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/4c/f1/d6/mzi.gmyrasnx.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      },
+      {
+        "id": "1441134371",
+        "name": "Hey Jude",
+        "artistName": "The Beatles",
+        "albumName": "Past Masters, Vols. 1 & 2",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/01/69/02/01690216-48fc-1c54-b1de-48170d16b1c3/00602567725268.rgb.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      }
+    ],
+    "createdAt": "2026-03-31T17:34:45.206Z",
+    "updatedAt": "2026-04-03T14:11:20.178Z"
+  },
+  {
+    "id": "__favorites__",
+    "name": "Favorites",
+    "tracks": [
+      {
+        "id": "1576788390",
+        "name": "Mood Swings",
+        "artistName": "Mike Stern",
+        "albumName": "Upside Downside",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/ae/97/c2ae9706-321e-4103-a141-ea5f8e9dace0/18CRGIM06085.rgb.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1576787756",
+        "name": "Chromazone",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1641923666",
+        "name": "Fast Track (2022 Remaster) [Live at the Kix Club, Boston, MA - June 1981]",
+        "artistName": "Miles Davis",
+        "albumName": "We Want Miles (Live - 2022 Remaster)",
+        "releaseYear": "1982",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b2/f3/ea/b2f3ea45-7808-c179-acee-b79e40ac92bd/196589320131.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1641923665",
+        "name": "Back Seat Betty (2022 Remaster) [Live at Avery Fisher Hall/Lincoln Center, New York, NY - July 1981]",
+        "artistName": "Miles Davis",
+        "albumName": "We Want Miles (Live - 2022 Remaster)",
+        "releaseYear": "1982",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b2/f3/ea/b2f3ea45-7808-c179-acee-b79e40ac92bd/196589320131.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1389717268",
+        "name": "Générique (BOF \"Ascenseur pour l'échafaud\")",
+        "artistName": "Miles Davis",
+        "albumName": "Ascenseur pour l'échafaud",
+        "releaseYear": "1958",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ba/73/b6/ba73b6d3-4c91-f42a-3c1d-b5f80dc0b1d1/00600753836583.rgb.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1454594890",
+        "name": "Heart-Shaped Box (Orchestral)",
+        "artistName": "Ramin Djawadi",
+        "albumName": "Westworld: Season 2 (Music from the HBO Series)",
+        "releaseYear": "2018",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/63/3d/31633d20-c542-b37a-5603-80d8a7d45c18/794043197161.jpg/200x200bb.jpg"
+      },
+      {
+        "id": "1440859107",
+        "name": "Heart-Shaped Box",
+        "artistName": "Nirvana",
+        "albumName": "In Utero (20th Anniversary Edition)",
+        "releaseYear": "",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/20/03/e32003a4-99bc-1c70-40ba-001882f35dba/00602537526840.rgb.jpg/200x200bb.jpg"
+      }
+    ],
+    "createdAt": "2026-04-02T13:54:55.978Z",
+    "updatedAt": "2026-04-02T20:30:56.784Z"
+  },
+  {
+    "id": "3abda361",
+    "name": "Mike Stern",
+    "tracks": [
+      {
+        "id": "1576788390",
+        "name": "Mood Swings",
+        "artistName": "Mike Stern",
+        "albumName": "Upside Downside",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/ae/97/c2ae9706-321e-4103-a141-ea5f8e9dace0/18CRGIM06085.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/32/b5/b6/32b5b6cb-eb01-933d-2872-d76f9ff704a8/mzaf_17193983473914854055.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787604",
+        "name": "Gossip",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/c8/19/5e/c8195eb2-ab77-4c73-6c18-e3fee8d0962f/mzaf_8823311140927973042.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787738",
+        "name": "Time In Place",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ca/92/b6/ca92b6ab-8808-c5e5-3cfe-0eb22abca943/mzaf_8799628636533506143.plus.aac.p.m4a"
+      },
+      {
+        "id": "1576787756",
+        "name": "Chromazone",
+        "artistName": "Mike Stern",
+        "albumName": "Time In Place",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/80/51/48/805148a9-7435-f812-e8fa-2a781a224e0e/mzaf_6242734858299727506.plus.aac.p.m4a"
+      }
+    ],
+    "createdAt": "2026-04-02T14:27:51.173Z",
+    "updatedAt": "2026-04-02T14:54:19.830Z"
+  },
+  {
+    "id": "fd3669c1",
+    "name": "Miles Davis",
+    "tracks": [
+      {
+        "id": "268443097",
+        "name": "So What",
+        "artistName": "Miles Davis",
+        "albumName": "Kind of Blue",
+        "releaseYear": "1959",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/7f/9f/d6/mzi.vtnaewef.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/54/e8/0a/54e80a8b-1d60-6b59-e908-6fd65c4ff783/mzaf_2469862574651846302.plus.aac.p.m4a"
+      },
+      {
+        "id": "1641923666",
+        "name": "Fast Track (2022 Remaster) [Live at the Kix Club, Boston, MA - June 1981]",
+        "artistName": "Miles Davis",
+        "albumName": "We Want Miles (Live - 2022 Remaster)",
+        "releaseYear": "1982",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/b2/f3/ea/b2f3ea45-7808-c179-acee-b79e40ac92bd/196589320131.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/dd/87/23/dd87237b-5552-f271-d3ec-9f23e6b35e14/mzaf_16287816199225929888.plus.aac.p.m4a"
+      },
+      {
+        "id": "193603880",
+        "name": "Shhh / Peaceful (LP Mix)",
+        "artistName": "Miles Davis",
+        "albumName": "In a Silent Way",
+        "releaseYear": "1969",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/6c/db/4a6cdbee-444e-9416-93da-c448f5ad5ea1/696998655621.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a9/75/c5/a975c555-4af8-4abe-2674-c91fdd69f93b/mzaf_9523457053677183894.plus.aac.p.m4a"
+      },
+      {
+        "id": "193604625",
+        "name": "In a Silent Way (LP Mix)",
+        "artistName": "Miles Davis",
+        "albumName": "In a Silent Way",
+        "releaseYear": "1969",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4a/6c/db/4a6cdbee-444e-9416-93da-c448f5ad5ea1/696998655621.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/76/f0/13/76f01312-b049-1f36-0b5d-ff1055dfa7e9/mzaf_12806606923128653010.plus.aac.p.m4a"
+      },
+      {
+        "id": "1389717268",
+        "name": "Générique (BOF \"Ascenseur pour l'échafaud\")",
+        "artistName": "Miles Davis",
+        "albumName": "Ascenseur pour l'échafaud",
+        "releaseYear": "1958",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ba/73/b6/ba73b6d3-4c91-f42a-3c1d-b5f80dc0b1d1/00600753836583.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/db/70/af/db70afc9-a64b-2258-59f2-db0b50d933e2/mzaf_7498640269933409063.plus.aac.p.m4a"
+      },
+      {
+        "id": "168376434",
+        "name": "Pharaoh's Dance (feat. Wayne Shorter, Bennie Maupin, John McLaughlin, Chick Corea, Joe Zawinul, Dave Holland & Harvey Brooks)",
+        "artistName": "Miles Davis",
+        "albumName": "Bitches Brew",
+        "releaseYear": "1970",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/9b/e1/63/9be1630c-486d-760c-76cf-04282174700a/074646577424.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/af/15/b1/af15b1dc-7e3f-e825-0634-0fed7ee4e349/mzaf_6573002663503766177.plus.aac.p.m4a"
+      },
+      {
+        "id": "828544713",
+        "name": "Tutu",
+        "artistName": "Miles Davis",
+        "albumName": "Tutu",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/40/de/69/40de6964-245d-f678-26e3-06248fed8976/075992549028.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/e4/95/a3/e495a342-385d-e029-2205-039c9905fbac/mzaf_1542848751937035249.plus.aac.p.m4a"
+      },
+      {
+        "id": "754384961",
+        "name": "So What (Mono Version)",
+        "artistName": "Miles Davis",
+        "albumName": "Kind of Blue",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/1a/02/77/1a02770a-a45e-ebed-6eff-5b87ce390dc4/886444350761.jpg/200x200bb.jpg",
+        "releaseYear": ""
+      }
+    ],
+    "createdAt": "2026-04-02T14:52:24.889Z",
+    "updatedAt": "2026-04-03T14:11:08.341Z"
+  },
+  {
+    "id": "ce24a909",
+    "name": "Police",
+    "tracks": [
+      {
+        "id": "1440754951",
+        "name": "Spirits in the Material World (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/ce/8e/9b/ce8e9ba3-a393-07e5-51bb-3a59275d6d17/mzaf_12683601334672449693.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440754954",
+        "name": "Every Little Thing She Does Is Magic (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/a0/ba/b9/a0bab9c8-1503-7dee-1e24-0a2101b2e098/mzaf_668051474209471528.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440754955",
+        "name": "Invisible Sun (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/91/70/21/9170219f-de7c-bdc4-b222-d07ceed15efc/mzaf_8912106215363966793.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440754957",
+        "name": "Hungry for You (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/59/13/c0/5913c031-d0ae-7c2f-7f3d-8e12555a0909/mzaf_4549611290080061816.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440754958",
+        "name": "Demolition Man (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d8/dd/c0/d8ddc073-0cd1-58b9-88e5-592852d37cf6/mzaf_14981293767627923845.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440754960",
+        "name": "Too Much Information (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6d/d3/61/6dd361a3-988c-acbe-e317-d65186233d28/mzaf_2687572592440846717.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440755622",
+        "name": "Re-Humanise Yourself (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b1/6c/2e/b16c2ec6-0c54-4c89-f066-4e99b02d4c77/mzaf_14524282654856188064.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440755625",
+        "name": "One World (Not Three) [Remastered 2003]",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/0d/d8/90/0dd890af-5f29-df4f-dc27-82e1698bcc17/mzaf_8043743131510779322.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440755629",
+        "name": "Omegaman (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/7a/e9/c3/7ae9c357-312c-1bae-7da3-19ac068edebc/mzaf_4587731776112995349.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440755634",
+        "name": "Secret Journey (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/44/2b/f9/442bf99a-c6da-f523-bfeb-43a91ada5125/mzaf_10359605666592335284.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440755638",
+        "name": "Darkness (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Ghost in the Machine (Remastered)",
+        "releaseYear": "1981",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8d/22/a8/8d22a8f9-fe4f-880a-667e-6127fbd78375/16UMGIM60878.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/40/f4/8e/40f48e57-ac24-6310-c175-e0577e07a675/mzaf_2815666867669241497.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744163",
+        "name": "Message In A Bottle (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/48/b0/a5/48b0a569-d4a1-2605-e7b5-c5088a7d6b49/mzaf_1984960004193242977.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744164",
+        "name": "Reggatta De Blanc (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ca/82/fa/ca82fa87-3a73-1317-98a0-7f315520c3d5/mzaf_18127522047247021000.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744166",
+        "name": "It's Alright For You (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/18/47/a2/1847a2db-80a1-d226-870e-20dbdedad094/mzaf_8469279634233965126.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744167",
+        "name": "Bring On The Night (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/9c/78/a7/9c78a784-7b52-7d12-1957-6f5999e95ba2/mzaf_7771168336699581843.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744170",
+        "name": "Deathwish (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/86/d4/d8/86d4d814-b190-8b7d-b7ff-023e8164d84a/mzaf_18149735500699810288.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744171",
+        "name": "Walking On The Moon (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/71/26/13/71261390-6fd0-8398-17b7-400d4d0c733a/mzaf_2910416754931934094.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744172",
+        "name": "On Any Other Day (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/23/77/a2/2377a2d6-b4fb-2955-3ef5-351907105d85/mzaf_6858816069453166421.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744173",
+        "name": "The Bed's Too Big Without You (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/9a/73/ae/9a73aed3-1e3b-f53d-cd31-f13f816f16c6/mzaf_6557653149560809675.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744180",
+        "name": "Contact (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/8d/d5/6f/8dd56f0e-e819-1b57-29e3-1acf5dc03590/mzaf_4588827868772067738.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744184",
+        "name": "Does Everyone Stare (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cb/19/fa/cb19fad8-0454-d440-1f3c-3218ae380c9b/mzaf_5451174526629534117.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440744185",
+        "name": "No Time This Time (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Reggatta De Blanc (Remastered 2003)",
+        "releaseYear": "1979",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/74/2a/da/742ada22-9a00-1620-b72e-6667745b010a/16UMGIM60881.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a6/11/8d/a6118d04-1140-4f6e-d005-6522e2356b8b/mzaf_4673094774622547227.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797197",
+        "name": "Next To You (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/82/0e/3b/820e3bc3-8c6f-6768-ee04-90e0517c9e4e/mzaf_14784745750125263549.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797607",
+        "name": "So Lonely (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/d1/c1/d4/d1c1d4af-9909-fa4c-dea8-45888e4a840b/mzaf_7452762849547587878.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797616",
+        "name": "Roxanne (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/e1/d7/c2/e1d7c2b3-8f62-b0a0-dad8-e2b53c1619c5/mzaf_4298174769759597967.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797807",
+        "name": "Hole In My Life (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/aa/18/77/aa1877f5-b991-d74f-7a36-8b8dcc7e8007/mzaf_649223324143986268.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797819",
+        "name": "Peanuts (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/fd/e8/b2/fde8b2ef-eb32-6419-4168-1ebfbe5235bc/mzaf_11199552925232795770.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797981",
+        "name": "Can't Stand Losing You (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/50/d1/fb/50d1fbed-0c08-c969-3983-6836e31ef23e/mzaf_8181596043292838653.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797987",
+        "name": "Truth Hits Everybody (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/d9/58/a5/d958a5c1-d20d-24d7-e60a-35dfe607d3d7/mzaf_2335541474884922364.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797992",
+        "name": "Born In The 50's (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6c/cf/13/6ccf13bf-3eec-42d7-e5ea-b3e39bd98ec1/mzaf_11171002811506685463.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440797997",
+        "name": "Be My Girl - Sally (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/2d/70/23/2d702367-bb2d-8c72-014a-9cd5a3abba9c/mzaf_12807139713862891082.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440798000",
+        "name": "Masoko Tanga (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Outlandos D'Amour (Remastered 2003)",
+        "releaseYear": "1978",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/47/de/29/47de29d9-5109-2020-d296-1021a7378574/16UMGIM60880.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/ef/2c/e8/ef2ce867-39fb-2b4b-e6d4-82bb70c2c8ef/mzaf_14999043226112695090.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637314",
+        "name": "Don't Stand So Close to Me (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/3d/0f/05/3d0f0576-ba19-6b0a-090c-aa3ee8f4b154/mzaf_11408465138728181186.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637318",
+        "name": "Driven to Tears (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/46/7c/45/467c4561-6729-1e10-b4c7-ec33dee19b96/mzaf_12886364343284430267.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637319",
+        "name": "When the World Is Running Down, You Make the Best of What's Still Around (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/fa/99/8b/fa998bbf-6b51-63a1-8156-bd4730398481/mzaf_3831896105095308982.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637322",
+        "name": "Canary in a Coalmine (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/04/cb/8e/04cb8e6f-0fc1-3d40-f6fc-05feb35ed071/mzaf_42409625182480667.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637324",
+        "name": "Voices Inside My Head (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/a5/99/43/a5994381-a42b-c155-c5e1-3925d95a34db/mzaf_8217406306031146990.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637639",
+        "name": "Bombs Away (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/62/41/36/624136f2-b081-d82b-d2d9-ef7b49d5009c/mzaf_7826837394718332422.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637648",
+        "name": "De Do Do Do, De Da Da Da (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/8e/14/85/8e1485eb-42dc-e71a-243c-19bbf3ab86b9/mzaf_13222792588448325814.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637655",
+        "name": "Behind My Camel (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/be/4f/2a/be4f2aa5-c753-75c8-2c10-2b45288a5835/mzaf_10276395129920201278.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637765",
+        "name": "Man in a Suitcase (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e9/63/4b/e9634bb1-9f91-5edd-c126-fa0365d1b0a1/mzaf_18316062766991998503.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637818",
+        "name": "Shadows in the Rain (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c4/62/75/c462751d-90d7-5874-5e72-47dabaca2d6e/mzaf_14957263390560451661.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440637832",
+        "name": "The Other Way of Stopping (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Zenyatta Mondatta (Remastered)",
+        "releaseYear": "1980",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/2b/6f/c1/2b6fc116-cb69-91eb-5401-e71383a7d1bc/16UMGIM60883.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/76/bf/19/76bf197d-4515-1994-fb0a-c02ad88a1187/mzaf_11515237806729711227.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440673960",
+        "name": "Synchronicity I (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/48/15/47/481547b8-c9d4-0db8-d0c2-242bb48def49/mzaf_17496794010612887796.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674141",
+        "name": "Walking In Your Footsteps (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f7/5f/ec/f75fece1-9a0d-8b57-f08c-f2b93293a273/mzaf_14467075372152783736.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674142",
+        "name": "O My God (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6f/a0/4d/6fa04d16-90d7-e8d0-b013-23b2b981a65b/mzaf_1095471439779996574.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674150",
+        "name": "Mother (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/85/90/39/859039cc-0008-1f2e-27b7-8868cbaca737/mzaf_8551942825108635019.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674155",
+        "name": "Miss Gradenko (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d1/35/3a/d1353a73-6d3d-65d3-b522-fb4512697ab2/mzaf_8957811158754311797.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674159",
+        "name": "Synchronicity II (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b1/f9/fb/b1f9fb93-dffd-cd0f-ad03-f84e55147734/mzaf_17115672058268955962.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674160",
+        "name": "Every Breath You Take (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/fe/e4/66/fee46681-9bbc-358a-ba0f-51d39feabf8b/mzaf_16980938720718099101.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674163",
+        "name": "King Of Pain (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/57/b5/4b/57b54b97-e8f1-8ab9-9278-017d449b5803/mzaf_14077415660221328098.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674166",
+        "name": "Wrapped Around Your Finger (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5a/66/29/5a6629df-86ab-9f46-8151-407b328a9a90/mzaf_5283403741644575589.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674167",
+        "name": "Tea In The Sahara (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4d/9f/ad/4d9fad69-4469-c053-b0af-6037867baf92/mzaf_6483136172417754903.plus.aac.p.m4a"
+      },
+      {
+        "id": "1440674168",
+        "name": "Murder By Numbers (Remastered 2003)",
+        "artistName": "The Police",
+        "albumName": "Synchronicity (Remastered 2003)",
+        "releaseYear": "1983",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a4/67/ba/a467ba62-87df-9d10-98d2-c517f68ac870/16UMGIM60882.rgb.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b3/bd/cd/b3bdcde0-7931-38bb-bc7b-a144629aad21/mzaf_3810866983841090114.plus.aac.p.m4a"
+      }
+    ],
+    "createdAt": "2026-04-02T15:57:43.241Z",
+    "updatedAt": "2026-04-02T16:15:47.168Z"
+  },
+  {
+    "id": "927ec5c0",
+    "name": "Movies",
+    "tracks": [
+      {
+        "id": "1454594890",
+        "name": "Heart-Shaped Box (Orchestral)",
+        "artistName": "Ramin Djawadi",
+        "albumName": "Westworld: Season 2 (Music from the HBO Series)",
+        "releaseYear": "2018",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/31/63/3d/31633d20-c542-b37a-5603-80d8a7d45c18/794043197161.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview112/v4/2b/4a/c8/2b4ac8eb-c6ff-a6b8-c746-c3212784c62b/mzaf_73432936366522873.plus.aac.p.m4a"
+      }
+    ],
+    "createdAt": "2026-04-02T19:37:05.424Z",
+    "updatedAt": "2026-04-02T19:37:05.424Z"
+  },
+  {
+    "id": "96023196",
+    "name": "Chick Corea",
+    "tracks": [
+      {
+        "id": "1881315892",
+        "name": "City Gate (feat. Dave Weckl, John Patitucci & Scott Henderson)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/8a/28/198a2853-9377-9a66-2a45-735f1bec1064/mzaf_3520602875217540015.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881315894",
+        "name": "Rumble (feat. Dave Weckl)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/5c/e9/1e/5ce91e4e-8e09-59b9-6352-16b71a2ae3f2/mzaf_9144152810416172514.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881315896",
+        "name": "Side Walk (feat. Dave Weckl)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6d/67/f8/6d67f885-cc89-5ca6-5584-85f01d4cc32b/mzaf_13654806144930150797.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881315897",
+        "name": "Cool Weasel Boogie (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/eb/79/d1eb799e-dec8-75ed-8f13-26126e3d9bd8/mzaf_12022569732155564758.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881315900",
+        "name": "Got A Match? (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b7/e4/78/b7e4782d-3ee5-7352-d52f-d52893b9a458/mzaf_15890399767195362317.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316143",
+        "name": "Elektric City (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/57/52/a5/5752a573-3885-ef63-74fd-96169e674fcb/mzaf_2825260018031839040.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316144",
+        "name": "No Zone (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f1/d7/39/f1d73989-8f56-f72a-d82e-55de2161a561/mzaf_16488977917126108305.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316145",
+        "name": "King Cockroach (feat. Dave Weckl, John Patitucci & Scott Henderson)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/11/be/da/11beda95-bfa7-81e0-c636-fa9045ad2646/mzaf_5998340061664283734.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316146",
+        "name": "India Town (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7b/50/e0/7b50e085-206c-2e82-4d00-9dbd47a3a36a/mzaf_10186506172552682296.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316147",
+        "name": "All Love (feat. Dave Weckl & John Patitucci)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a5/33/08/a5330813-c33c-3dbd-9fbb-5ceffd04f395/mzaf_16792260078868050078.plus.aac.p.m4a"
+      },
+      {
+        "id": "1881316148",
+        "name": "Silver Temple (feat. Dave Weckl, John Patitucci & Scott Henderson)",
+        "artistName": "Chick Corea Elektric Band & Chick Corea",
+        "albumName": "The Chick Corea Elektric Band (feat. Dave Weckl)",
+        "releaseYear": "1986",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/0c/cd/fa/0ccdfa59-4cee-4548-3269-a2fd076135a0/111593.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/47/dc/a0/47dca02c-d31d-751a-62ac-a47c725e0dd9/mzaf_12820925795481672605.plus.aac.p.m4a"
+      }
+    ],
+    "createdAt": "2026-04-02T20:29:26.892Z",
+    "updatedAt": "2026-04-02T20:29:26.892Z"
+  },
+  {
+    "id": "dcd95c7f",
+    "name": "Dansk Pop/Rock",
+    "tracks": [
+      {
+        "id": "339382044",
+        "name": "Dig & Mig",
+        "artistName": "Johan Gerup, Dieters Lieder, Martin Gerup, Morten Kaufmann & Halfdane E. Nielsen",
+        "albumName": "Hvor Flink Kan Man Blive",
+        "releaseYear": "1988",
+        "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/7a/ed/8b/7aed8b9b-a26d-ee8d-e81a-c62a798897b7/743216453726.jpg/200x200bb.jpg",
+        "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e2/4e/5a/e24e5a5d-0130-3033-a1c7-28df038fe787/mzaf_7322463104105470740.plus.aac.p.m4a"
+      }
+    ],
+    "createdAt": "2026-04-02T21:01:23.826Z",
+    "updatedAt": "2026-04-02T21:01:23.826Z"
+  }
+]

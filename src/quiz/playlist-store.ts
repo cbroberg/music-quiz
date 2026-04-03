@@ -29,7 +29,7 @@ export interface SavedPlaylist {
 function getStorePath(): string {
   const dataDir = process.env.TOKEN_FILE
     ? join(process.env.TOKEN_FILE, "..")
-    : "/tmp";
+    : join(process.cwd(), "data");
   return join(dataDir, "quiz-playlists.json");
 }
 

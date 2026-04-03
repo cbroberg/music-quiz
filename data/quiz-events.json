@@ -1,0 +1,29 @@
+[
+  {
+    "id": "d769170e-975",
+    "status": "scheduled",
+    "createdAt": "2026-04-02T17:47:26.085Z",
+    "updatedAt": "2026-04-03T12:21:24.988Z",
+    "players": [],
+    "rounds": [],
+    "totalSongsPlayed": 0,
+    "joinCode": "UUC38H",
+    "name": "Famile Music Quiz",
+    "scheduledAt": "2026-04-04T10:00:00.000Z",
+    "maxRounds": 0
+  },
+  {
+    "id": "84e06e08-133",
+    "name": "Right now",
+    "status": "completed",
+    "playlistId": "91d92bcf",
+    "createdAt": "2026-04-02T18:20:24.630Z",
+    "updatedAt": "2026-04-03T10:52:04.106Z",
+    "players": [],
+    "rounds": [],
+    "totalSongsPlayed": 0,
+    "joinCode": "BYEG34",
+    "maxRounds": 3,
+    "completedAt": "2026-04-03T10:52:04.105Z"
+  }
+]
