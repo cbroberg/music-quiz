@@ -27,6 +27,12 @@ export type QuizType =
   | "guess-the-album"
   | "guess-the-year"
   | "intro-quiz"
+  // Trivia types (music plays as background, answer is not about the song)
+  | "country-of-origin"
+  | "band-members"
+  | "artist-trivia"
+  | "film-soundtrack"
+  | "tv-theme"
   | "mixed";
 
 export type AnswerMode = "multiple-choice" | "free-text" | "mixed";
@@ -83,6 +89,12 @@ export interface QuizQuestion {
   options: string[];          // 4 choices for multiple-choice
   questionType: QuizType;
   difficulty: "easy" | "medium" | "hard";
+  // Trivia fields (music plays but answer is not about the song)
+  isTrivia?: boolean;           // true = answer is not about the playing song
+  backgroundSongId?: string;    // song to play as background for trivia
+  backgroundSongName?: string;
+  backgroundArtist?: string;
+  funFact?: string;             // AI-generated fact shown during reveal
 }
 
 // ─── Game Session ─────────────────────────────────────────
@@ -215,7 +227,7 @@ export type ServerToPlayerMessage =
   | { type: "player_joined"; player: { id: string; name: string; avatar: string } }
   | { type: "player_left"; playerId: string; playerName: string }
   | { type: "game_state"; state: GameState; options?: string[]; timeLimit?: number; questionNumber?: number; totalQuestions?: number; questionType?: QuizType; questionText?: string; answerMode?: AnswerMode; artworkUrl?: string }
-  | { type: "answer_result"; correct: boolean; points: number; totalScore: number; rank: number; streak: number; aiExplanation?: string; correctAnswer: string }
+  | { type: "answer_result"; correct: boolean; points: number; totalScore: number; rank: number; streak: number; aiExplanation?: string; correctAnswer: string; artistName?: string; releaseYear?: string; funFact?: string }
   | { type: "scoreboard"; rankings: Array<{ rank: number; playerId: string; playerName: string; avatar: string; score: number; streak: number }> }
   | { type: "final_result"; rank: number; totalScore: number; stats: { correctAnswers: number; totalAnswers: number; longestStreak: number; averageTimeMs: number } }
   | { type: "error"; message: string };
@@ -230,6 +242,8 @@ export interface HostQuestionData {
   options: string[];
   answerMode: AnswerMode;
   homeConnected?: boolean;   // whether Home Controller is available
+  isTrivia?: boolean;        // trivia question — answer not about the playing song
+  funFact?: string;          // AI fun fact shown during reveal
   // Only included in reveal/results
   correctAnswer?: string;
   songName?: string;

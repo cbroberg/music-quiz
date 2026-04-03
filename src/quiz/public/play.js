@@ -100,7 +100,24 @@ function connect() {
 
   ws.onclose = () => {
     console.log('🎮 Disconnected — reconnecting in 2s');
-    setTimeout(connect, 2000);
+    setTimeout(() => {
+      connect();
+      // Auto-rejoin if player was in an active session
+      const wasInSession = sessionStorage.getItem('inActiveSession') === 'true';
+      if (wasInSession) {
+        const savedName = localStorage.getItem('quizPlayerName');
+        const code = new URLSearchParams(location.search).get('code');
+        if (savedName && code) {
+          const tryRejoin = setInterval(() => {
+            if (ws?.readyState === WebSocket.OPEN) {
+              clearInterval(tryRejoin);
+              send({ type: 'join_session', joinCode: code.toUpperCase(), name: savedName, avatar: selectedAvatar });
+            }
+          }, 200);
+          setTimeout(() => clearInterval(tryRejoin), 5000);
+        }
+      }
+    }, 2000);
   };
 
   ws.onerror = (err) => console.error('🎮 Error:', err);
@@ -342,9 +359,16 @@ function showMultipleChoice(msg) {
     'guess-the-album': 'Which album?',
     'guess-the-year': 'What year?',
     'intro-quiz': 'Name that tune!',
+    'country-of-origin': 'Where are they from?',
+    'band-members': "Who's in the band?",
+    'artist-trivia': 'Music trivia!',
+    'film-soundtrack': 'Name that movie!',
+    'tv-theme': 'Name that show!',
     'mixed': msg.questionText || 'Listen and answer!',
   };
-  document.getElementById('mc-type').textContent = typeLabels[msg.questionType] || msg.questionText || '';
+  // For trivia, use the actual question text from AI (more specific than label)
+  const displayText = msg.isTrivia ? (msg.questionText || typeLabels[msg.questionType]) : typeLabels[msg.questionType];
+  document.getElementById('mc-type').textContent = displayText || msg.questionText || '';
 
   const grid = document.getElementById('mc-grid');
   grid.innerHTML = '';
@@ -394,6 +418,11 @@ function showFreeText(msg) {
     'guess-the-album': 'Type the album name',
     'guess-the-year': 'Type the year',
     'intro-quiz': 'Song and artist?',
+    'country-of-origin': 'Which country?',
+    'band-members': 'Who is it?',
+    'artist-trivia': 'Your answer?',
+    'film-soundtrack': 'Which film?',
+    'tv-theme': 'Which show?',
   };
   document.getElementById('ft-type').textContent = typeLabels[msg.questionType] || msg.questionText || 'Type your answer';
 
@@ -467,7 +496,8 @@ function onAnswerResult(msg) {
     ${msg.correct ? `<div class="result-points">+${msg.points}</div>` : ''}
     ${msg.streak >= 3 ? `<div class="result-streak">🔥 ${msg.streak} streak!</div>` : ''}
     <div class="result-rank">${getRankText(msg.rank)} place · ${msg.totalScore} points</div>
-    <div class="result-answer">Answer: ${msg.correctAnswer}</div>
+    <div class="result-answer">${msg.correctAnswer}${msg.artistName ? ` — ${msg.artistName}` : ''}${msg.releaseYear && msg.releaseYear !== 'unknown' ? ` (${msg.releaseYear})` : ''}</div>
+    ${msg.funFact ? `<div class="result-ai" style="font-style:italic">💡 ${msg.funFact}</div>` : ''}
     ${msg.aiExplanation ? `<div class="result-ai">${msg.aiExplanation}</div>` : ''}
   `;
 }
@@ -839,10 +869,10 @@ async function requestWakeLock() {
     if ('wakeLock' in navigator) {
       wakeLock = await navigator.wakeLock.request('screen');
       console.log('Screen wake lock acquired');
-      return;
+      // Also start video fallback — native lock can be released on tab switch
     }
   } catch {}
-  // Fallback: invisible looping video keeps iOS Safari awake
+  // Always start invisible looping video as belt-and-suspenders for iOS Safari
   if (!noSleepVideo) {
     noSleepVideo = document.createElement('video');
     noSleepVideo.setAttribute('playsinline', '');
@@ -860,19 +890,22 @@ document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') {
     // Re-acquire wake lock
     requestWakeLock();
-    // Reconnect WS if dead + auto-rejoin current session
-    if (ws?.readyState !== WebSocket.OPEN && sessionId) {
+    // Reconnect WS if dead — only rejoin if player was in an active session
+    const wasInSession = sessionStorage.getItem('inActiveSession') === 'true';
+    if (ws?.readyState !== WebSocket.OPEN) {
       connect();
-      const savedName = localStorage.getItem('quizPlayerName');
-      const code = new URLSearchParams(location.search).get('code');
-      if (savedName && code) {
-        const tryRejoin = setInterval(() => {
-          if (ws?.readyState === WebSocket.OPEN) {
-            clearInterval(tryRejoin);
-            send({ type: 'join_session', joinCode: code.toUpperCase(), name: savedName, avatar: selectedAvatar });
-          }
-        }, 200);
-        setTimeout(() => clearInterval(tryRejoin), 5000);
+      if (wasInSession) {
+        const savedName = localStorage.getItem('quizPlayerName');
+        const code = new URLSearchParams(location.search).get('code');
+        if (savedName && code) {
+          const tryRejoin = setInterval(() => {
+            if (ws?.readyState === WebSocket.OPEN) {
+              clearInterval(tryRejoin);
+              send({ type: 'join_session', joinCode: code.toUpperCase(), name: savedName, avatar: selectedAvatar });
+            }
+          }, 200);
+          setTimeout(() => clearInterval(tryRejoin), 5000);
+        }
       }
     }
   }

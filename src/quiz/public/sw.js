@@ -1,5 +1,5 @@
 // Service Worker — network-first with auto-update
-const CACHE = 'quiz-v2';
+const CACHE = 'quiz-v3';
 const SHELL = ['/quiz/play', '/quiz/static/play.css', '/quiz/static/play.js'];
 
 self.addEventListener('install', (e) => {

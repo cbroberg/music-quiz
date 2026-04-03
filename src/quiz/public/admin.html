@@ -1196,29 +1196,45 @@
       menu.style.display = '';
       ctxMenuVisible = true;
 
-      let html = '<div class="song-ctx-header">AirPlay</div>';
-      for (const d of devices) {
-        const icon = d.selected ? '🔊' : '🔈';
-        const dot = d.selected ? '<span style="color:var(--green);font-size:11px;margin-left:4px">●</span>' : '';
-        html += '<div class="song-ctx-item" data-device="' + d.name.replace(/"/g, '&quot;') + '">' +
-          '<span class="ctx-icon">' + icon + '</span>' + d.name + dot +
-        '</div>';
-      }
-      menu.innerHTML = html;
+      function renderDeviceList(devs) {
+        let html = '<div class="song-ctx-header">AirPlay</div>';
+        for (const d of devs) {
+          const icon = d.selected ? '🔊' : '🔇';
+          const statusDot = d.selected
+            ? '<span style="color:var(--green);font-size:11px;margin-left:auto;padding-left:8px">●</span>'
+            : '<span style="color:#666;font-size:11px;margin-left:auto;padding-left:8px">○</span>';
+          html += '<div class="song-ctx-item" style="display:flex;align-items:center" data-device="' + d.name.replace(/"/g, '&quot;') + '" data-selected="' + d.selected + '">' +
+            '<span class="ctx-icon">' + icon + '</span>' + d.name + statusDot +
+          '</div>';
+        }
+        menu.innerHTML = html;
 
-      menu.querySelectorAll('.song-ctx-item').forEach(item => {
-        item.addEventListener('click', async () => {
-          const name = item.dataset.device;
-          item.querySelector('.ctx-icon').textContent = '...';
-          await fetch('/quiz/api/admin/playback/airplay', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ device: name, enabled: true }),
+        menu.querySelectorAll('.song-ctx-item').forEach(item => {
+          item.addEventListener('click', async () => {
+            const name = item.dataset.device;
+            const wasSelected = item.dataset.selected === 'true';
+            const newEnabled = !wasSelected;
+            item.querySelector('.ctx-icon').textContent = '⏳';
+            try {
+              await fetch('/quiz/api/admin/playback/airplay', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ device: name, enabled: newEnabled }),
+              });
+              // Refresh device list to show updated state
+              const res = await fetch('/quiz/api/admin/playback/airplay-devices', { method: 'POST' });
+              const data = await res.json();
+              const updated = data.devices || [];
+              cachedAirplayDevices = updated;
+              renderDeviceList(updated);
+            } catch {
+              item.querySelector('.ctx-icon').textContent = '❌';
+            }
           });
-          cachedAirplayDevices = []; // refresh on next volume change
-          hideContextMenu();
         });
-      });
+      }
+
+      renderDeviceList(devices);
     }
 
     function toggleNowPlayingOverlay() {
@@ -1269,8 +1285,8 @@
       checkPlayAllAdvance(s);
 
       const miniEl = document.getElementById('mini-player');
-      if (s.state === 'stopped' || !s.track) { miniEl.style.display = 'none'; }
-      else {
+      if (!s.track && s.state === 'stopped') { miniEl.style.display = 'none'; }
+      else if (s.track) {
         miniEl.style.display = '';
         const artEl = document.getElementById('mp-artwork');
         const artUrl = s.artworkSmall || s.artworkUrl;
@@ -1466,7 +1482,17 @@
                 '<div class="search-item-name">' + s.name + '</div>' +
                 '<div class="search-item-meta">' + s.artistName + (s.albumName ? ' · ' + s.albumName : '') + '</div>' +
               '</div>' +
+              '<button class="search-item-ctx" title="More options">···</button>' +
               '<span class="search-item-action">▶</span>';
+            // ··· button opens context menu; clicking the row plays
+            const ctxBtn = el.querySelector('.search-item-ctx');
+            ctxBtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              closeSearch();
+              const track = { id: s.id, name: s.name, artistName: s.artistName, albumName: s.albumName, artworkUrl: s.artworkUrl };
+              // Position context menu at center of screen (search just closed)
+              showSongContextMenuAt(window.innerWidth / 2 - 110, window.innerHeight / 3, track);
+            });
             const item = { type: 'song', data: s, el };
             el.addEventListener('click', () => activateSearchItem(item));
             section.appendChild(el);
@@ -1708,16 +1734,18 @@
 
     async function showSongContextMenu(e, track) {
       e.stopPropagation();
-      const menu = document.getElementById('song-ctx-menu');
-
       if (ctxMenuVisible) { hideContextMenu(); return; }
-
-      // Position clamped to viewport
       const rect = e.currentTarget.getBoundingClientRect();
       const top = Math.min(rect.bottom + 4, window.innerHeight - 350);
       const left = Math.min(rect.left, window.innerWidth - 240);
+      await showSongContextMenuAt(Math.max(8, left), top, track);
+    }
+
+    async function showSongContextMenuAt(left, top, track) {
+      const menu = document.getElementById('song-ctx-menu');
+      if (ctxMenuVisible) { hideContextMenu(); }
       menu.style.top = top + 'px';
-      menu.style.left = Math.max(8, left) + 'px';
+      menu.style.left = left + 'px';
       menu.style.display = '';
       ctxMenuVisible = true;
 

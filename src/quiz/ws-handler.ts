@@ -134,6 +134,7 @@ function setupGameEvents(sessionId: string): void {
           questionText: q?.questionText,
           answerMode,
           artworkUrl: (session.state === "reveal" || session.state === "scoreboard") ? q?.artworkUrl : undefined,
+          isTrivia: q?.isTrivia || false,
           roundNumber,
         } as any);
 
@@ -182,6 +183,9 @@ function setupGameEvents(sessionId: string): void {
             streak: result.streak,
             aiExplanation: result.aiExplanation,
             correctAnswer: hostQuestion.correctAnswer!,
+            artistName: hostQuestion.artistName,
+            releaseYear: hostQuestion.releaseYear,
+            funFact: hostQuestion.funFact,
           });
         }
         break;

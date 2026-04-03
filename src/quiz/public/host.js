@@ -338,10 +338,9 @@ function onPlayerJoined(player) {
   players.set(player.id, player);
   updatePlayersGrid();
   document.getElementById('btn-start').disabled = players.size === 0;
-  // Instrument sound only in lobby (not on reconnect during DJ Mode)
-  if (currentGameState === 'lobby') {
-    playInstrumentSound(player.avatar);
-  }
+  // Instrument sound on join
+  console.log(`🎵 onPlayerJoined: ${player.name} (${player.avatar}), state=${currentGameState}, muteAll=${muteAll}`);
+  playInstrumentSound(player.avatar);
 }
 
 function onPlayerLeft(playerId, playerName) {
@@ -405,6 +404,11 @@ function showCountdown(qNum, total, questionType) {
     'guess-the-album': 'Guess the Album',
     'guess-the-year': 'Guess the Year',
     'intro-quiz': 'Name That Tune!',
+    'country-of-origin': 'Where Are They From?',
+    'band-members': "Who's in the Band?",
+    'artist-trivia': 'Music Trivia',
+    'film-soundtrack': 'Name That Movie!',
+    'tv-theme': 'Name That Show!',
   };
   typeEl.textContent = typeLabels[questionType] || '';
 
@@ -544,16 +548,33 @@ function onQuestionResults(msg) {
 
   const q = msg.question;
 
-  // Song info
-  document.getElementById('reveal-song').textContent = q.songName || q.correctAnswer || '';
-  document.getElementById('reveal-artist').textContent = q.artistName || '';
-  document.getElementById('reveal-album').textContent = q.albumName ? `${q.albumName} (${q.releaseYear || ''})` : '';
+  // Song info — for trivia, show correct answer prominently
+  if (q.isTrivia) {
+    document.getElementById('reveal-song').textContent = q.correctAnswer || '';
+    document.getElementById('reveal-artist').textContent = q.artistName ? `About: ${q.artistName}` : '';
+    document.getElementById('reveal-album').textContent = '';
+  } else {
+    document.getElementById('reveal-song').textContent = q.songName || q.correctAnswer || '';
+    document.getElementById('reveal-artist').textContent = q.artistName || '';
+    document.getElementById('reveal-album').textContent = q.albumName ? `${q.albumName} (${q.releaseYear || ''})` : '';
+  }
 
   if (q.artworkUrl) {
     document.getElementById('reveal-artwork').src = q.artworkUrl;
     document.getElementById('reveal-artwork-box').style.display = '';
   } else {
     document.getElementById('reveal-artwork-box').style.display = 'none';
+  }
+
+  // Fun fact callout (AI-generated trivia nugget)
+  const funFactEl = document.getElementById('fun-fact');
+  if (funFactEl) {
+    if (q.funFact) {
+      funFactEl.textContent = '💡 ' + q.funFact;
+      funFactEl.style.display = '';
+    } else {
+      funFactEl.style.display = 'none';
+    }
   }
 
   // Results grid
@@ -913,6 +934,22 @@ function showHostToast(msg, isError) {
 // ─── Tick Sound (Web Audio API) ───────────────────────────
 
 let audioCtx = null;
+
+// Unlock AudioContext on first ANY interaction (click, touch, keydown)
+// This is needed because browsers block audio until user interacts with page
+// Without this, join sounds don't play because no click has happened yet
+(function unlockAudio() {
+  function unlock() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    document.removeEventListener('click', unlock);
+    document.removeEventListener('touchstart', unlock);
+    document.removeEventListener('keydown', unlock);
+  }
+  document.addEventListener('click', unlock);
+  document.addEventListener('touchstart', unlock);
+  document.addEventListener('keydown', unlock);
+})();
 function playTick() {
   if (muteAll) return;
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -933,6 +970,7 @@ function playTick() {
 function playInstrumentSound(avatar) {
   if (muteAll) return;
   if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
   const t = audioCtx.currentTime;
 
   const instruments = {
@@ -1153,43 +1191,15 @@ function playDefaultChime(t) {
   });
 }
 
+// ─── Howler Sound Manager ────────────────────────────────
+
+const quizSounds = {
+  applause: typeof Howl !== 'undefined' ? new Howl({ src: ['/quiz/sounds/applause.mp3'], volume: 0.8 }) : null,
+};
+
 function playApplause() {
   if (muteAll) return;
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const t = audioCtx.currentTime;
-  const duration = 3;
-  // White noise burst through bandpass filter = applause-like
-  const bufferSize = audioCtx.sampleRate * duration;
-  const buffer = audioCtx.createBuffer(2, bufferSize, audioCtx.sampleRate);
-  for (let ch = 0; ch < 2; ch++) {
-    const data = buffer.getChannelData(ch);
-    for (let i = 0; i < bufferSize; i++) {
-      // Random noise with amplitude modulation for clapping texture
-      data[i] = (Math.random() * 2 - 1) * (1 + 0.5 * Math.sin(i / 80));
-    }
-  }
-  const source = audioCtx.createBufferSource();
-  source.buffer = buffer;
-  // Bandpass filter to shape noise into applause
-  const bp = audioCtx.createBiquadFilter();
-  bp.type = 'bandpass';
-  bp.frequency.value = 3000;
-  bp.Q.value = 0.5;
-  // Highpass to remove rumble
-  const hp = audioCtx.createBiquadFilter();
-  hp.type = 'highpass';
-  hp.frequency.value = 500;
-  const gain = audioCtx.createGain();
-  gain.gain.setValueAtTime(0, t);
-  gain.gain.linearRampToValueAtTime(0.35, t + 0.2);
-  gain.gain.setValueAtTime(0.35, t + 1.0);
-  gain.gain.exponentialRampToValueAtTime(0.001, t + duration);
-  source.connect(bp);
-  bp.connect(hp);
-  hp.connect(gain);
-  gain.connect(audioCtx.destination);
-  source.start(t);
-  source.stop(t + duration);
+  quizSounds.applause?.play();
 }
 
 // ─── Load Custom Quiz ─────────────────────────────────────
@@ -1409,6 +1419,7 @@ checkCustomQuiz();
 initCustomSelects();
 connect();
 startHostNpUpdater();
+updateProviderStatus();
 
 // ─── Custom Select Dropdowns ──────────────────────────────
 

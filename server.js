@@ -29,7 +29,7 @@ const EXPRESS_API_PREFIXES = [
   "/api/quiz",
 ];
 // Quiz multiplayer routes served by Express (host, play, static, api, manifest, sw)
-const QUIZ_EXPRESS_PREFIXES = ["/quiz/host", "/quiz/play", "/quiz/admin", "/quiz/builder", "/quiz/now-playing", "/quiz/static/", "/quiz/api/", "/quiz/manifest.json", "/quiz/sw.js"];
+const QUIZ_EXPRESS_PREFIXES = ["/quiz/host", "/quiz/play", "/quiz/admin", "/quiz/builder", "/quiz/now-playing", "/quiz/static/", "/quiz/sounds/", "/quiz/api/", "/quiz/manifest.json", "/quiz/sw.js"];
 const EXPRESS_PREFIXES = ["/.well-known/"];
 
 function isExpressRoute(pathname) {

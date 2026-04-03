@@ -34,6 +34,11 @@ export async function evaluateAnswers(
     "guess-the-album": "Accept the album name without deluxe/remaster/edition suffixes.",
     "guess-the-year": "Accept answers within ±2 years of the correct year.",
     "intro-quiz": "Player must get both song AND artist approximately correct. Accept partial if they got one of them right.",
+    "country-of-origin": "Accept the country in any language or common abbreviation. E.g. 'UK' = 'United Kingdom', 'US' = 'USA' = 'United States', 'Sverige' = 'Sweden'.",
+    "band-members": "Accept common nicknames for band members. Must match the specific member asked about.",
+    "artist-trivia": "Accept reasonable variations. Be generous with dates (±1 year) and name spelling.",
+    "film-soundtrack": "Accept the film title without 'The' prefix, sequel numbers in any format. E.g. 'Rocky 4' = 'Rocky IV'.",
+    "tv-theme": "Accept the show name without 'The' prefix or subtitle. E.g. 'Friends' = 'Friends: The One Where...'.",
   };
 
   const hint = typeHints[questionType] || "Be generous with spelling and abbreviations.";

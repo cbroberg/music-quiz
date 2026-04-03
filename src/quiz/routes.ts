@@ -58,6 +58,12 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     res.sendFile(join(publicDir, file));
   });
 
+  // Sound effects
+  router.get("/quiz/sounds/:file", (req, res) => {
+    const file = String(req.params.file).replace(/\.\./g, "");
+    res.sendFile(join(publicDir, "sounds", file));
+  });
+
   // Session info API (for player join validation)
   router.get("/quiz/api/session/:code", (req, res) => {
     const code = String(req.params.code).toUpperCase();
