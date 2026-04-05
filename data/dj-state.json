@@ -1,0 +1,56 @@
+{
+  "credits": {
+    "Christian": {
+      "total": 5,
+      "used": 5,
+      "avatar": "🎸"
+    }
+  },
+  "queue": [
+    {
+      "id": "1",
+      "songId": "1576787604",
+      "name": "Gossip",
+      "artistName": "Mike Stern",
+      "albumName": "Time In Place",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": true
+    },
+    {
+      "id": "3",
+      "songId": "1576787738",
+      "name": "Time In Place",
+      "artistName": "Mike Stern",
+      "albumName": "Time In Place",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": true
+    },
+    {
+      "id": "2",
+      "songId": "1576787756",
+      "name": "Chromazone",
+      "artistName": "Mike Stern",
+      "albumName": "Time In Place",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/75/43/f8/7543f886-332a-a71a-c793-39847c8b96e5/18CRGIM06079.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": true
+    },
+    {
+      "id": "4",
+      "songId": "1576788122",
+      "name": "Upside Downside",
+      "artistName": "Mike Stern",
+      "albumName": "Upside Downside",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c2/ae/97/c2ae9706-321e-4103-a141-ea5f8e9dace0/18CRGIM06085.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": false
+    }
+  ],
+  "currentIndex": 3
+}

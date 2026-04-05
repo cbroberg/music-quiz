@@ -109,8 +109,7 @@ const djSession: DjSession = {
   autoplay: true,
 };
 
-// Restore credits from disk on module load
-restoreDjState();
+// restoreDjState() called after queueIdCounter is declared (below)
 
 // ─── Credit Calculation ──────────────────────────────────
 
@@ -196,6 +195,9 @@ function getTotalAvailableCredits(): number {
 // ─── Queue Management ─────────────────────────────────────
 
 let queueIdCounter = 0;
+
+// Restore DJ state from disk (must be after queueIdCounter declaration)
+restoreDjState();
 
 /** Admin adds directly to queue (no credit check) */
 export function addToQueueDirect(

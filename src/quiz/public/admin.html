@@ -671,11 +671,14 @@
         if (btnEl) btnEl.textContent = '▶ Empty';
         return;
       }
-      window.playAllQueue = pl.tracks;
-      window.playAllIndex = 0;
-      if (btnEl) btnEl.textContent = '▶ Playing';
-      setTimeout(() => { if (btnEl) btnEl.textContent = '▶ Play All'; }, 2000);
-      await playNextInQueue();
+      // Add all tracks to DJ queue
+      let added = 0;
+      for (const t of pl.tracks) {
+        adminDjAddSong({ id: t.id, name: t.name, artistName: t.artistName, albumName: t.albumName || '', artworkUrl: t.artworkUrl || '' });
+        added++;
+      }
+      if (btnEl) btnEl.textContent = '▶ Play All';
+      showToast('Added ' + added + ' songs to DJ', 'success');
     }
 
     async function playNextInQueue() {
@@ -1085,6 +1088,8 @@
           if (msg.type === 'dj_activated' || msg.type === 'dj_state' || msg.type === 'dj_inactive') {
             djActive = true;
             renderDjState(msg);
+          } else if (msg.type === 'playback_command') {
+            handleAdminPlaybackCommand(msg);
           }
         } catch {}
       };
@@ -1105,6 +1110,13 @@
         mpEl.classList.add('mp-maxi');
         addedByEl.style.display = '';
         addedByEl.textContent = (current.addedByAvatar || '🎧') + ' Added by ' + (current.addedBy || 'DJ');
+        // Set mini player track info from DJ state (in case Player hasn't updated yet)
+        const mpTrack = document.getElementById('mp-track');
+        const mpArtist = document.getElementById('mp-artist');
+        const mpArt = document.getElementById('mp-artwork');
+        if (mpTrack && !mpTrack.textContent) mpTrack.textContent = current.name || '';
+        if (mpArtist && !mpArtist.textContent) mpArtist.textContent = current.artistName || '';
+        if (current.artworkUrl && mpArt.src.includes('favicon')) mpArt.src = current.artworkUrl;
       } else {
         mpEl.classList.remove('mp-maxi');
         addedByEl.style.display = 'none';
@@ -1193,6 +1205,53 @@
         artworkUrl: track.artworkUrl || '',
       }));
       showToast('🎧 ' + track.name + ' added to DJ', 'success');
+    }
+
+    async function handleAdminPlaybackCommand(msg) {
+      const { command, params, commandId } = msg;
+      const respond = (result) => {
+        if (adminWs?.readyState === 1) {
+          adminWs.send(JSON.stringify({ type: 'playback_response', commandId, result }));
+        }
+      };
+      try {
+        switch (command) {
+          case 'play_by_id':
+            const playResult = await Player.play(params.songId, '', '');
+            respond({ playing: true, track: params.songId });
+            break;
+          case 'play_exact':
+            await Player.playExact(params.name, params.artist);
+            respond({ playing: true, track: params.name });
+            break;
+          case 'search_and_play':
+            await Player.searchAndPlay(params.query);
+            respond({ playing: true });
+            break;
+          case 'pause':
+            Player.togglePlayPause();
+            respond({});
+            break;
+          case 'resume':
+            Player.togglePlayPause();
+            respond({});
+            break;
+          case 'set_volume':
+            respond({});
+            break;
+          case 'now_playing':
+            const s = Player.getState();
+            respond({ state: s.state || 'stopped', track: s.track, artist: s.artist, position: s.position, duration: s.duration });
+            break;
+          case 'check_library':
+            respond({ found: true }); // MusicKit can play anything
+            break;
+          default:
+            respond(null);
+        }
+      } catch (err) {
+        respond({ playing: false });
+      }
     }
 
     // Connect admin WS on load
@@ -1449,7 +1508,18 @@
       setTimeout(() => { btn.textContent = 'Stop'; }, 1500);
     }
 
-    function setupPlayPause() { Player.togglePlayPause(); }
+    function setupPlayPause() {
+      const s = Player.getState();
+      if (s.track && s.state !== 'stopped') {
+        // Something loaded — toggle play/pause
+        Player.togglePlayPause();
+      } else if (djActive && adminWs && adminWs.readyState === 1) {
+        // Nothing playing — start DJ queue
+        adminDjNext();
+      } else {
+        Player.togglePlayPause();
+      }
+    }
     function setupNextSong() {
       // DJ queue takes priority
       if (djActive) {
