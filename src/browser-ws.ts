@@ -43,17 +43,39 @@ async function resolveArtwork(
   return undefined;
 }
 
-// Track change log (accessible via routes)
-export const trackChangeLog: Array<{ ts: string; track: string; artist: string; source: string }> = [];
+// Track change log (accessible via routes) — persisted to disk
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+
+const TRACK_LOG_PATH = join(process.cwd(), "data", "track-log.json");
+
+export const trackChangeLog: Array<{ ts: string; track: string; artist: string; artworkUrl?: string; source: string }> = [];
 let lastLoggedTrack = "";
 
-function logTrackChange(track: string, artist: string, source: string) {
+// Restore from disk on startup
+try {
+  const stored = JSON.parse(readFileSync(TRACK_LOG_PATH, "utf-8"));
+  if (Array.isArray(stored)) {
+    trackChangeLog.push(...stored.slice(-100));
+    console.log(`🎵 Restored ${trackChangeLog.length} recently played tracks`);
+  }
+} catch {}
+
+function saveTrackLog() {
+  try {
+    mkdirSync(join(process.cwd(), "data"), { recursive: true });
+    writeFileSync(TRACK_LOG_PATH, JSON.stringify(trackChangeLog, null, 2));
+  } catch {}
+}
+
+function logTrackChange(track: string, artist: string, source: string, artworkUrl?: string) {
   const key = `${track}|${artist}`;
   if (key === lastLoggedTrack) return;
   lastLoggedTrack = key;
-  const entry = { ts: new Date().toISOString(), track, artist, source };
+  const entry = { ts: new Date().toISOString(), track, artist, artworkUrl, source };
   trackChangeLog.push(entry);
   if (trackChangeLog.length > 100) trackChangeLog.shift();
+  saveTrackLog();
   console.log(`🎵 NOW PLAYING: "${track}" — ${artist} [${source}]`);
 }
 
@@ -105,7 +127,7 @@ async function pollNowPlaying(musicClient: AppleMusicClient) {
       }
     }
 
-    if (np.track && np.artist) logTrackChange(np.track, np.artist, "hc-poll");
+    if (np.track && np.artist) logTrackChange(np.track, np.artist, "hc-poll", artworkUrl);
     broadcast({
       type: "now-playing",
       data: { ...np, artworkUrl },
@@ -126,7 +148,7 @@ export function pushNowPlaying(data: {
   position?: number;
 }): void {
   lastPushTime = Date.now();
-  if (data.track && data.artist) logTrackChange(data.track, data.artist, "musickit-push");
+  if (data.track && data.artist) logTrackChange(data.track, data.artist, "musickit-push", data.artworkUrl);
   broadcast({ type: "now-playing", data });
 }
 

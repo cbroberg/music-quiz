@@ -77,6 +77,7 @@ const Player = (() => {
   }
 
   function _onMkAuthorized() {
+    _markMkReady();
     if (getPreferredProvider() === 'musickit-web') {
       _startMkPush();
     }
@@ -89,11 +90,48 @@ const Player = (() => {
   function isMusicKitAuthorized() { return mkAuthorized; }
   function getMusicKitInstance() { return mk; }
 
+  // ─── MusicKit Ready Gate ─────────────────────────────────
+  // Ensures mk is initialized before playback attempts
+
+  let _mkReadyResolve = null;
+  let _mkReadyPromise = new Promise(r => { _mkReadyResolve = r; });
+
+  function _markMkReady() {
+    if (_mkReadyResolve) { _mkReadyResolve(); _mkReadyResolve = null; }
+  }
+
+  /** Wait up to timeoutMs for MusicKit to be ready. If not ready, try to initialize. */
+  async function _waitForMk(timeoutMs = 5000) {
+    if (mk && mkAuthorized) return true;
+
+    // Try to initialize if not yet done
+    if (!mk && typeof MusicKit !== 'undefined') {
+      console.log('🎵 _waitForMk: MusicKit available but not initialized — initializing now');
+      await initMusicKit();
+      if (mk && mkAuthorized) return true;
+    }
+
+    // Wait for async init to complete
+    return Promise.race([
+      _mkReadyPromise.then(() => true),
+      new Promise(r => setTimeout(() => r(false), timeoutMs)),
+    ]);
+  }
+
   // ─── Play ──────────────────────────────────────────────
 
   async function play(songId, name, artist) {
     if (isUsingMusicKit() && songId) {
-      return _mkPlay(songId);
+      return await _mkPlay(songId);
+    }
+    // If MusicKit preferred but not ready yet, wait briefly
+    if (getPreferredProvider() === 'musickit-web' && songId) {
+      const ready = await _waitForMk(3000);
+      if (ready) return await _mkPlay(songId);
+    }
+    // No songId but have name — search and play (MusicKit or HC)
+    if (!songId && name && getPreferredProvider() === 'musickit-web') {
+      return await playExact(name, artist || '');
     }
     // Home Controller (server-side)
     return _hcPlay(name || songId, artist || '', songId);
@@ -105,7 +143,90 @@ const Player = (() => {
       await mk.setQueue({ song: songId });
       await mk.play();
       return true;
-    } catch { return false; }
+    } catch (err) {
+      console.error('🎵 MusicKit play failed:', err);
+      return false;
+    }
+  }
+
+  /** Search catalog and play exact match by name + artist */
+  async function playExact(name, artist, options) {
+    if (getPreferredProvider() === 'musickit-web') {
+      if (!mk || !mkAuthorized) {
+        const ready = await _waitForMk(3000);
+        if (!ready) return false;
+      }
+      return await _mkPlayExact(name, artist, options?.randomSeek);
+    }
+    return _hcPlay(name, artist);
+  }
+
+  async function _mkPlayExact(name, artist, randomSeek) {
+    if (!mk) return false;
+    try {
+      const query = `${name} ${artist}`;
+      const results = await mk.api.music(`/v1/catalog/${mk.storefrontId || 'dk'}/search`, {
+        term: query, types: 'songs', limit: 5,
+      });
+      const songs = results?.data?.results?.songs?.data || [];
+      if (songs.length === 0) return false;
+
+      // Find best match
+      const nameLower = name.toLowerCase();
+      const artistLower = artist.toLowerCase();
+      let bestMatch = songs[0];
+      for (const s of songs) {
+        const sName = (s.attributes?.name || '').toLowerCase();
+        const sArtist = (s.attributes?.artistName || '').toLowerCase();
+        if (sName.includes(nameLower.slice(0, 10)) && sArtist.includes(artistLower.slice(0, 10))) {
+          bestMatch = s; break;
+        }
+      }
+
+      await mk.setQueue({ song: bestMatch.id });
+      await mk.play();
+
+      if (randomSeek) {
+        await new Promise(r => setTimeout(r, 500));
+        const duration = mk.currentPlaybackDuration;
+        if (duration > 30) {
+          await mk.seekToTime(((20 + Math.random() * 50) / 100) * duration);
+        }
+      }
+      return true;
+    } catch (err) {
+      console.error('🎵 MusicKit playExact failed:', err);
+      return false;
+    }
+  }
+
+  /** Search and play first result */
+  async function searchAndPlay(query) {
+    if (getPreferredProvider() === 'musickit-web') {
+      if (!mk || !mkAuthorized) {
+        const ready = await _waitForMk(3000);
+        if (!ready) return false;
+      }
+      return await _mkSearchAndPlay(query);
+    }
+    return _hcPlay(query, '');
+  }
+
+  async function _mkSearchAndPlay(query) {
+    if (!mk) return false;
+    try {
+      const results = await mk.api.music(`/v1/catalog/${mk.storefrontId || 'dk'}/search`, {
+        term: query, types: 'songs', limit: 1,
+      });
+      const song = results?.data?.results?.songs?.data?.[0];
+      if (!song) return false;
+      await mk.setQueue({ song: song.id });
+      await mk.play();
+      return true;
+    } catch (err) {
+      console.error('🎵 MusicKit searchAndPlay failed:', err);
+      return false;
+    }
   }
 
   async function _hcPlay(name, artist, songId) {
@@ -318,8 +439,15 @@ const Player = (() => {
     document.addEventListener('musickitloaded', () => {
       if (getPreferredProvider() === 'musickit-web') initMusicKit();
     });
-    // Start HC if needed
     _init();
+
+    // Retry MusicKit init after delay — catches case where musickitloaded fired before we registered
+    setTimeout(() => {
+      if (!mk && typeof MusicKit !== 'undefined' && getPreferredProvider() === 'musickit-web') {
+        console.log('🎵 MusicKit retry init (musickitloaded may have fired early)');
+        initMusicKit();
+      }
+    }, 2000);
   }
 
   return {
@@ -329,7 +457,7 @@ const Player = (() => {
     // MusicKit
     authorize, isMusicKitAuthorized, getMusicKitInstance, initMusicKit,
     // Playback
-    play, pause, resume, togglePlayPause, stop,
+    play, playExact, searchAndPlay, pause, resume, togglePlayPause, stop,
     // State
     getState, onUpdate,
     // AirPlay

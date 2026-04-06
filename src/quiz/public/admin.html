@@ -165,7 +165,7 @@
             <button class="toggle-btn" id="btn-ev-scheduled" onclick="setEventFilter('scheduled')">Scheduled</button>
             <button class="toggle-btn" id="btn-ev-completed" onclick="setEventFilter('completed')">Previous</button>
           </div>
-          <button class="action-btn" onclick="location.href='/quiz/host'">Quick Quiz</button>
+          <button class="action-btn" onclick="showQuizOverlay()">Quick Quiz</button>
           <button class="action-btn secondary" onclick="showNewEventForm()">New Event</button>
         </div>
       </div>
@@ -273,8 +273,8 @@
       <div class="setup-section">
         <h2 class="setup-section-title">Quick Links</h2>
         <div class="setup-card" style="display:flex;gap:10px;flex-wrap:wrap">
-          <a href="/quiz/host" class="setup-link-btn">Quiz</a>
-          <a href="/quiz/host" class="setup-link-btn" id="link-dj-mode" style="border-color:var(--green);color:var(--green)">DJ Mode</a>
+          <a href="#" onclick="event.preventDefault();showQuizOverlay()" class="setup-link-btn">Quiz</a>
+          <a href="#" onclick="event.preventDefault();switchTab('dj')" class="setup-link-btn" id="link-dj-mode" style="border-color:var(--green);color:var(--green)">DJ Mode</a>
           <a href="/quiz/play" class="setup-link-btn">Player PWA</a>
           <a href="/quiz/now-playing" class="setup-link-btn">Now Playing</a>
         </div>
@@ -298,6 +298,221 @@
       <div id="album-tracks"></div>
     </div>
 
+  </div>
+
+  <!-- ═══ Quiz Overlay (fullscreen, hides admin layout) ═══ -->
+  <div id="quiz-overlay" style="display:none;position:fixed;inset:0;z-index:500;background:var(--bg)">
+
+    <!-- Nav (top-right) -->
+    <nav style="position:fixed;top:0;right:0;display:flex;align-items:center;gap:12px;padding:24px;font-size:13px;z-index:540">
+      <button onclick="QuizDisplay.backToAdmin()" style="color:#888;text-decoration:none;background:none;border:none;font-size:13px;font-family:inherit;cursor:pointer;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Admin</button>
+      <button onclick="toggleFullscreen()" style="background:none;border:1px solid #333;color:#888;border-radius:8px;padding:5px 8px;cursor:pointer;display:flex;align-items:center;transition:color 0.15s,border-color 0.15s" onmouseover="this.style.color='#fafafa';this.style.borderColor='#555'" onmouseout="this.style.color='#888';this.style.borderColor='#333'" title="Fullscreen">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </nav>
+
+    <!-- 1. Setup / Lobby -->
+    <div id="qz-screen-setup" class="qz-screen active">
+      <div id="qz-lobby-view" style="display:none"></div>
+      <div id="qz-setup-config" class="setup-container">
+        <div class="setup-left">
+          <h1 class="setup-title" id="qz-setup-title">Music Quiz</h1>
+          <p class="setup-subtitle" id="qz-setup-subtitle">Set up your quiz and wait for players</p>
+          <div id="qz-custom-quiz-banner" style="display:none"></div>
+          <div class="config-grid">
+            <div class="config-item">
+              <div class="config-label">Quiz Type</div>
+              <select id="qz-cfg-type" class="config-select">
+                <option value="mixed">Mixed (music + trivia)</option>
+                <option value="gossip">Gossip Round</option>
+                <option value="intro-quiz">Intro Quiz</option>
+                <option value="guess-the-artist">Guess the Artist</option>
+                <option value="guess-the-song">Guess the Song</option>
+                <option value="guess-the-album">Guess the Album</option>
+                <option value="guess-the-year">Guess the Year</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Music Source</div>
+              <select id="qz-cfg-source" class="config-select">
+                <option value="mixed">Mixed (all sources)</option>
+                <option value="recently-played">Recently Played</option>
+                <option value="charts">Top Charts</option>
+                <option value="library">My Library</option>
+                <option value="charts-genre">Genre</option>
+                <option value="charts-soundtrack">Movie Soundtracks</option>
+                <option value="dansk">Danish Music</option>
+                <option value="live">Live Music</option>
+                <option value="random">Random Shuffle</option>
+              </select>
+            </div>
+            <div class="config-item" id="qz-genre-container" style="display:none">
+              <div class="config-label">Genre</div>
+              <select id="qz-cfg-genre" class="config-select">
+                <option value="20">Alternative</option>
+                <option value="2">Blues</option>
+                <option value="5">Classical</option>
+                <option value="17">Dance</option>
+                <option value="7">Electronic</option>
+                <option value="18">Hip-Hop/Rap</option>
+                <option value="11">Jazz</option>
+                <option value="12">Latin</option>
+                <option value="1153">Metal</option>
+                <option value="14">Pop</option>
+                <option value="15">R&amp;B/Soul</option>
+                <option value="24">Reggae</option>
+                <option value="21">Rock</option>
+                <option value="10">Singer/Songwriter</option>
+                <option value="16">Soundtrack</option>
+                <option value="19">World</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Answer Mode</div>
+              <select id="qz-cfg-answer-mode" class="config-select">
+                <option value="multiple-choice">Multiple Choice</option>
+                <option value="free-text">Free Text (AI)</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Questions</div>
+              <input type="number" id="qz-cfg-count" class="config-input" value="5" min="1" max="25">
+            </div>
+            <div class="config-item">
+              <div class="config-label">Timer (sec)</div>
+              <input type="number" id="qz-cfg-timer" class="config-input" value="30" min="10" max="60">
+            </div>
+            <div class="config-item">
+              <div class="config-label">Decade</div>
+              <select id="qz-cfg-decade" class="config-select">
+                <option value="">All</option>
+                <option value="1960">60s</option>
+                <option value="1970">70s</option>
+                <option value="1980">80s</option>
+                <option value="1990">90s</option>
+                <option value="2000">00s</option>
+                <option value="2010">10s</option>
+                <option value="2020">20s</option>
+              </select>
+            </div>
+            <div class="config-item" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="qz-cfg-exclude-recent" checked style="width:18px;height:18px;accent-color:var(--red)">
+              <div>
+                <div class="config-label">Skip recent plays</div>
+                <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Exclude songs you've played recently</div>
+              </div>
+            </div>
+            <div class="config-item" id="qz-gossip-container" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="qz-cfg-include-gossip" style="width:18px;height:18px;accent-color:var(--red)">
+              <div>
+                <div class="config-label">Include gossip</div>
+                <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Celebrity drama, beefs, scandals &amp; breakups</div>
+              </div>
+            </div>
+          </div>
+          <button id="qz-btn-create" class="start-btn" onclick="QuizDisplay.createSession()">Create Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Countdown -->
+    <div id="qz-screen-countdown" class="qz-screen">
+      <div class="countdown-type" id="qz-countdown-type"></div>
+      <div class="countdown-number" id="qz-countdown-number">3</div>
+      <div class="countdown-label" id="qz-countdown-label">Get ready!</div>
+    </div>
+
+    <!-- 3. Question -->
+    <div id="qz-screen-question" class="qz-screen question-screen">
+      <div class="question-header">
+        <span class="question-number" id="qz-q-number">Question 1 / 10</span>
+        <span class="question-type" id="qz-q-type">Guess the Artist</span>
+        <div class="timer-container">
+          <svg width="80" height="80" viewBox="0 0 80 80" class="timer-circle">
+            <circle cx="40" cy="40" r="36" class="timer-bg"/>
+            <circle cx="40" cy="40" r="36" class="timer-progress" id="qz-timer-progress" stroke-dasharray="226.2" stroke-dashoffset="0"/>
+          </svg>
+          <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;top:0;left:0">
+            <text x="40" y="40" class="timer-text" id="qz-timer-text">30</text>
+          </svg>
+        </div>
+      </div>
+      <div class="question-body">
+        <div class="artwork-container" id="qz-artwork-container">
+          <img id="qz-q-artwork" src="" alt="">
+        </div>
+        <div class="question-content">
+          <div class="question-text" id="qz-q-text"></div>
+          <div class="options-grid" id="qz-options-grid"></div>
+          <div class="free-text-hint" id="qz-free-text-hint" style="display:none">Players are typing their answers...</div>
+        </div>
+      </div>
+      <div class="answers-counter" id="qz-answers-counter">0 / 0 answered</div>
+    </div>
+
+    <!-- 4. Evaluating -->
+    <div id="qz-screen-evaluating" class="qz-screen">
+      <div class="evaluating-container">
+        <div class="evaluating-icon">🤖</div>
+        <div class="evaluating-text">AI is evaluating answers...</div>
+      </div>
+    </div>
+
+    <!-- 5. Reveal -->
+    <div id="qz-screen-reveal" class="qz-screen reveal-screen">
+      <div class="reveal-answer" id="qz-reveal-answer">
+        <div class="reveal-artwork" id="qz-reveal-artwork-box">
+          <img id="qz-reveal-artwork" src="" alt="">
+        </div>
+        <div>
+          <div class="reveal-song" id="qz-reveal-song"></div>
+          <div class="reveal-artist" id="qz-reveal-artist"></div>
+          <div class="reveal-album" id="qz-reveal-album"></div>
+        </div>
+      </div>
+      <div id="qz-fun-fact" style="display:none;margin:20px auto;max-width:700px;padding:20px 28px;background:rgba(252,60,68,0.12);border:2px solid rgba(252,60,68,0.35);border-radius:14px;color:#fff;font-size:18px;line-height:1.5;text-align:center;font-style:italic;font-weight:500">💡 </div>
+      <div class="results-grid" id="qz-results-grid"></div>
+    </div>
+
+    <!-- 6. Scoreboard -->
+    <div id="qz-screen-scoreboard" class="qz-screen scoreboard-screen">
+      <div class="scoreboard-title">Scoreboard</div>
+      <div class="scoreboard-list" id="qz-scoreboard-list"></div>
+    </div>
+
+    <!-- 7. Final / Podium -->
+    <div id="qz-screen-final" class="qz-screen final-screen">
+      <div class="final-title" id="qz-final-title">Quiz Complete!</div>
+      <div class="podium" id="qz-podium"></div>
+      <div class="final-stats" id="qz-final-stats"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:24px">
+        <div style="display:flex;gap:12px">
+          <button class="play-again-btn" onclick="QuizDisplay.createSession()">New Quiz</button>
+          <button class="play-again-btn" style="border-color:var(--red);color:var(--red)" onclick="QuizDisplay.backToAdmin()">DJ</button>
+        </div>
+        <div style="color:var(--dimmer);font-size:13px">Quiz again to earn more song credits</div>
+      </div>
+      <div class="confetti-container" id="qz-confetti"></div>
+    </div>
+
+    <!-- Playlists modal -->
+    <div id="qz-load-quiz-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:600;align-items:flex-start;justify-content:center;padding-top:min(18vh,140px)">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:min(560px,92vw);max-height:65vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">
+        <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dimmer)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="qz-pl-search" type="text" placeholder="Search playlists..." style="flex:1;background:none;border:none;color:var(--text);font-size:15px;font-family:inherit;outline:none" autocomplete="off">
+          <span style="font-size:11px;color:var(--dimmer);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px">ESC</span>
+        </div>
+        <div id="qz-saved-list" style="padding:8px;overflow-y:auto"></div>
+      </div>
+    </div>
+
+    <!-- Preview audio -->
+    <audio id="qz-preview-audio" preload="none"></audio>
+
+    <!-- Exit Game button -->
+    <button id="qz-exit-btn" class="exit-btn" style="display:none" onclick="QuizDisplay.exitGame()">Exit Game</button>
   </div>
 
   <!-- ═══ Cmd+K Search Overlay ═══ -->
@@ -356,7 +571,10 @@
   </div>
 
   <script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
   <script src="/quiz/static/player.js" defer></script>
+  <script src="/quiz/static/quiz-display.js" defer></script>
   <script src="/quiz/static/admin.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -380,6 +598,36 @@
         'onclick="event.stopPropagation(); toggleFavorite({id:\'' + esc(track.id) + '\',name:\'' + esc(track.name) + '\',artistName:\'' + esc(track.artistName) + '\',albumName:\'' + esc(track.albumName || '') + '\',releaseYear:\'' + esc(track.releaseYear || '') + '\',artworkUrl:\'' + esc(track.artworkUrl || '') + '\'})">' +
         heartSvg + '</button>';
     }
+
+    // ─── Quiz Overlay ──────────────────────────────────────────
+
+    function showQuizOverlay() {
+      document.getElementById('quiz-overlay').style.display = '';
+      document.querySelector('.admin-layout').style.display = 'none';
+    }
+
+    function hideQuizOverlay() {
+      document.getElementById('quiz-overlay').style.display = 'none';
+      document.querySelector('.admin-layout').style.display = '';
+      // Refresh DJ state after returning from quiz
+      switchTab('dj');
+      if (adminWs?.readyState === WebSocket.OPEN) {
+        adminWs.send(JSON.stringify({ type: 'activate_dj' }));
+      }
+    }
+    window.showQuizOverlay = showQuizOverlay;
+
+    // Init QuizDisplay module
+    QuizDisplay.init({
+      send: (msg) => {
+        if (adminWs?.readyState === WebSocket.OPEN) {
+          adminWs.send(JSON.stringify(msg));
+        }
+      },
+      onQuizStart: showQuizOverlay,
+      onQuizEnd: hideQuizOverlay,
+      showToast: showToast,
+    });
 
     // ─── Tab Switching ───────────────────────────────────────
 
@@ -709,7 +957,8 @@
       fetch('/quiz/api/builder/playlists/' + id).then(r => r.json()).then(pl => {
         sessionStorage.setItem('customQuizPlaylist', JSON.stringify(pl.tracks));
         sessionStorage.setItem('customQuizName', name);
-        location.href = '/quiz/host?source=custom';
+        history.replaceState(null, '', '/quiz/admin?source=custom');
+        showQuizOverlay();
       });
     }
 
@@ -894,7 +1143,9 @@
 
     function openEvent(joinCode, eventName) {
       if (eventName) sessionStorage.setItem('eventName', eventName);
-      location.href = '/quiz/host?event=' + joinCode;
+      // Open quiz overlay with event parameter
+      history.replaceState(null, '', '/quiz/admin?event=' + joinCode);
+      showQuizOverlay();
     }
 
     async function editEvent(id) {
@@ -1085,6 +1336,10 @@
       adminWs.onmessage = (e) => {
         try {
           const msg = JSON.parse(e.data);
+
+          // Route quiz messages to QuizDisplay first
+          if (QuizDisplay.handleMessage(msg)) return;
+
           if (msg.type === 'dj_activated' || msg.type === 'dj_state' || msg.type === 'dj_inactive') {
             djActive = true;
             renderDjState(msg);
@@ -1207,49 +1462,143 @@
       showToast('🎧 ' + track.name + ' added to DJ', 'success');
     }
 
+    // Get MusicKit instance — wait up to 5s if not ready yet
+    async function getMk() {
+      let mk = Player.getMusicKitInstance();
+      if (mk) return mk;
+      // MusicKit not ready — try init and wait
+      await Player.initMusicKit();
+      mk = Player.getMusicKitInstance();
+      if (mk) return mk;
+      // Last resort: wait for it
+      for (let i = 0; i < 10; i++) {
+        await new Promise(r => setTimeout(r, 500));
+        mk = Player.getMusicKitInstance();
+        if (mk) return mk;
+      }
+      return null;
+    }
+
     async function handleAdminPlaybackCommand(msg) {
       const { command, params, commandId } = msg;
+      console.log('🎵 Playback:', command, params?.songId || params?.name || '');
       const respond = (result) => {
+        console.log('🎵 Response:', command, result?.playing ?? '—');
         if (adminWs?.readyState === 1) {
           adminWs.send(JSON.stringify({ type: 'playback_response', commandId, result }));
         }
       };
       try {
+        // Use MusicKit directly (bypass Player abstraction's auth gates)
+        const mk = await getMk();
+
         switch (command) {
-          case 'play_by_id':
-            const playResult = await Player.play(params.songId, '', '');
-            respond({ playing: true, track: params.songId });
+          case 'play_by_id': {
+            if (mk) {
+              await mk.setQueue({ song: params.songId }).catch(() => {});
+              await mk.play().catch(() => {});
+              if (params.seekToPercent && mk.currentPlaybackDuration > 0) {
+                await mk.seekToTime((params.seekToPercent / 100) * mk.currentPlaybackDuration);
+              }
+              const np = mk.nowPlayingItem;
+              respond({ playing: true, track: np?.title || params.songId });
+            } else {
+              // Fallback to HC
+              const ok = await Player.play(params.songId, '', '');
+              respond({ playing: !!ok, track: params.songId });
+            }
             break;
-          case 'play_exact':
-            await Player.playExact(params.name, params.artist);
-            respond({ playing: true, track: params.name });
+          }
+          case 'play_exact': {
+            if (mk) {
+              const query = `${params.name} ${params.artist}`;
+              const results = await mk.api.music(`/v1/catalog/${mk.storefrontId || 'dk'}/search`, {
+                term: query, types: 'songs', limit: 5,
+              });
+              const songs = results?.data?.results?.songs?.data || [];
+              if (songs.length > 0) {
+                // Find best match
+                const nameLower = params.name.toLowerCase();
+                const artistLower = (params.artist || '').toLowerCase();
+                let best = songs[0];
+                for (const s of songs) {
+                  const sn = (s.attributes?.name || '').toLowerCase();
+                  const sa = (s.attributes?.artistName || '').toLowerCase();
+                  if (sn.includes(nameLower.slice(0, 10)) && sa.includes(artistLower.slice(0, 10))) {
+                    best = s; break;
+                  }
+                }
+                await mk.setQueue({ song: best.id }).catch(() => {});
+                await mk.play().catch(() => {});
+                if (params.randomSeek) {
+                  await new Promise(r => setTimeout(r, 500));
+                  const dur = mk.currentPlaybackDuration;
+                  if (dur > 30) await mk.seekToTime(((20 + Math.random() * 50) / 100) * dur);
+                }
+                respond({ playing: true, track: `${best.attributes?.name} — ${best.attributes?.artistName}` });
+              } else {
+                respond({ playing: false });
+              }
+            } else {
+              const ok = await Player.playExact(params.name, params.artist, { randomSeek: params.randomSeek });
+              respond({ playing: !!ok, track: params.name });
+            }
             break;
-          case 'search_and_play':
-            await Player.searchAndPlay(params.query);
-            respond({ playing: true });
+          }
+          case 'search_and_play': {
+            if (mk) {
+              const results = await mk.api.music(`/v1/catalog/${mk.storefrontId || 'dk'}/search`, {
+                term: params.query, types: 'songs', limit: 1,
+              });
+              const song = results?.data?.results?.songs?.data?.[0];
+              if (song) {
+                await mk.setQueue({ song: song.id }).catch(() => {});
+                await mk.play();
+                respond({ playing: true, track: `${song.attributes?.name}` });
+              } else {
+                respond({ playing: false });
+              }
+            } else {
+              const ok = await Player.searchAndPlay(params.query);
+              respond({ playing: !!ok });
+            }
             break;
+          }
           case 'pause':
-            Player.togglePlayPause();
+            if (mk) mk.pause(); else Player.pause();
             respond({});
             break;
           case 'resume':
-            Player.togglePlayPause();
+            if (mk) await mk.play().catch(() => {}); else Player.resume();
             respond({});
             break;
           case 'set_volume':
+            if (mk) mk.volume = (params.level || 75) / 100;
             respond({});
             break;
-          case 'now_playing':
-            const s = Player.getState();
-            respond({ state: s.state || 'stopped', track: s.track, artist: s.artist, position: s.position, duration: s.duration });
+          case 'now_playing': {
+            if (mk) {
+              const stateMap = { 2: 'playing', 3: 'paused', 0: 'stopped' };
+              const np = mk.nowPlayingItem;
+              respond({
+                state: stateMap[mk.playbackState] || 'stopped',
+                track: np?.title, artist: np?.artistName,
+                position: mk.currentPlaybackTime || 0, duration: mk.currentPlaybackDuration || 0,
+              });
+            } else {
+              const s = Player.getState();
+              respond({ state: s.state || 'stopped', track: s.track, artist: s.artist, position: s.position, duration: s.duration });
+            }
             break;
+          }
           case 'check_library':
-            respond({ found: true }); // MusicKit can play anything
+            respond({ found: true });
             break;
           default:
             respond(null);
         }
       } catch (err) {
+        console.error('🎵 Playback command failed:', command, err);
         respond({ playing: false });
       }
     }
@@ -1514,8 +1863,8 @@
         // Something loaded — toggle play/pause
         Player.togglePlayPause();
       } else if (djActive && adminWs && adminWs.readyState === 1) {
-        // Nothing playing — start DJ queue
-        adminDjNext();
+        // Nothing playing — play current DJ song (don't advance queue)
+        adminWs.send(JSON.stringify({ type: 'dj_play_current' }));
       } else {
         Player.togglePlayPause();
       }

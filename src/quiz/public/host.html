@@ -10,239 +10,226 @@
   <link rel="icon" href="/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/quiz/static/host.css">
+  <link rel="stylesheet" href="/quiz/static/admin.css">
 </head>
-<body>
+<body style="background:var(--bg);margin:0;overflow:hidden">
 
-  <!-- Top nav — Admin only -->
-  <nav style="position:fixed;top:0;right:0;display:flex;align-items:center;gap:12px;padding:24px;font-size:13px;z-index:40">
-    <a href="/quiz/admin" style="color:#888;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Admin</a>
-    <button onclick="toggleFullscreen()" style="background:none;border:1px solid #333;color:#888;border-radius:8px;padding:5px 8px;cursor:pointer;display:flex;align-items:center;transition:color 0.15s,border-color 0.15s" onmouseover="this.style.color='#fafafa';this.style.borderColor='#555'" onmouseout="this.style.color='#888';this.style.borderColor='#333'" title="Fullscreen">
-      <svg id="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-    </button>
-  </nav>
+  <!-- Quiz overlay shown immediately (this IS the quiz page) -->
+  <div id="quiz-overlay" style="position:fixed;inset:0;z-index:500;background:var(--bg)">
 
-  <!-- 1. Setup / Lobby -->
-  <div id="screen-setup" class="screen active">
-    <!-- Lobby view (shown after Create Game) -->
-    <div id="lobby-view" style="display:none"></div>
+    <!-- Nav -->
+    <nav style="position:fixed;top:0;right:0;display:flex;align-items:center;gap:12px;padding:24px;font-size:13px;z-index:540">
+      <a href="/quiz/admin" style="color:#888;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#fafafa'" onmouseout="this.style.color='#888'">Admin</a>
+      <button onclick="toggleFullscreen()" style="background:none;border:1px solid #333;color:#888;border-radius:8px;padding:5px 8px;cursor:pointer;display:flex;align-items:center;transition:color 0.15s,border-color 0.15s" onmouseover="this.style.color='#fafafa';this.style.borderColor='#555'" onmouseout="this.style.color='#888';this.style.borderColor='#333'" title="Fullscreen">
+        <svg id="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </nav>
 
-    <!-- Config view (shown initially) -->
-    <div id="setup-config" class="setup-container">
-      <div class="setup-left">
-        <h1 class="setup-title">Music Quiz</h1>
-        <p class="setup-subtitle" id="setup-subtitle">Set up your quiz and wait for players</p>
-        <div id="custom-quiz-banner" style="display:none"></div>
-
-        <div class="config-grid">
-          <div class="config-item">
-            <div class="config-label">Quiz Type</div>
-            <select id="cfg-type" class="config-select">
-              <option value="mixed">Mixed (music + trivia)</option>
-              <option value="gossip">Gossip Round</option>
-              <option value="intro-quiz">Intro Quiz</option>
-              <option value="guess-the-artist">Guess the Artist</option>
-              <option value="guess-the-song">Guess the Song</option>
-              <option value="guess-the-album">Guess the Album</option>
-              <option value="guess-the-year">Guess the Year</option>
-            </select>
-            <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px">Mixed includes AI trivia: band members, countries, film soundtracks, fun facts</div>
-          </div>
-          <div class="config-item">
-            <div class="config-label">Music Source</div>
-            <select id="cfg-source" class="config-select">
-              <option value="mixed">Mixed (all sources)</option>
-              <option value="recently-played">Recently Played</option>
-              <option value="charts">Top Charts</option>
-              <option value="library">My Library</option>
-              <option value="charts-genre">Genre</option>
-              <option value="charts-soundtrack">Movie Soundtracks</option>
-              <option value="dansk">Danish Music</option>
-              <option value="live">Live Music</option>
-              <option value="random">Random Shuffle</option>
-            </select>
-          </div>
-          <div class="config-item" id="genre-container" style="display:none">
-            <div class="config-label">Genre</div>
-            <select id="cfg-genre" class="config-select">
-              <option value="20">Alternative</option>
-              <option value="2">Blues</option>
-              <option value="5">Classical</option>
-              <option value="17">Dance</option>
-              <option value="7">Electronic</option>
-              <option value="18">Hip-Hop/Rap</option>
-              <option value="11">Jazz</option>
-              <option value="12">Latin</option>
-              <option value="1153">Metal</option>
-              <option value="14">Pop</option>
-              <option value="15">R&B/Soul</option>
-              <option value="24">Reggae</option>
-              <option value="21">Rock</option>
-              <option value="10">Singer/Songwriter</option>
-              <option value="16">Soundtrack</option>
-              <option value="19">World</option>
-            </select>
-          </div>
-          <div class="config-item">
-            <div class="config-label">Answer Mode</div>
-            <select id="cfg-answer-mode" class="config-select">
-              <option value="multiple-choice">Multiple Choice</option>
-              <option value="free-text">Free Text (AI)</option>
-              <option value="mixed">Mixed</option>
-            </select>
-          </div>
-          <div class="config-item">
-            <div class="config-label">Questions</div>
-            <input type="number" id="cfg-count" class="config-input" value="5" min="1" max="25">
-          </div>
-          <div class="config-item">
-            <div class="config-label">Timer (sec)</div>
-            <input type="number" id="cfg-timer" class="config-input" value="30" min="10" max="60">
-          </div>
-          <div class="config-item">
-            <div class="config-label">Decade</div>
-            <select id="cfg-decade" class="config-select">
-              <option value="">All</option>
-              <option value="1960">60s</option>
-              <option value="1970">70s</option>
-              <option value="1980">80s</option>
-              <option value="1990">90s</option>
-              <option value="2000">00s</option>
-              <option value="2010">10s</option>
-              <option value="2020">20s</option>
-            </select>
-          </div>
-          <div class="config-item" style="display:flex;align-items:center;gap:10px">
-            <input type="checkbox" id="cfg-exclude-recent" checked style="width:18px;height:18px;accent-color:var(--red)">
-            <div>
-              <div class="config-label">Skip recent plays</div>
-              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Exclude songs you've played recently</div>
+    <!-- 1. Setup / Lobby -->
+    <div id="qz-screen-setup" class="qz-screen active">
+      <div id="qz-lobby-view" style="display:none"></div>
+      <div id="qz-setup-config" class="setup-container">
+        <div class="setup-left">
+          <h1 class="setup-title" id="qz-setup-title">Music Quiz</h1>
+          <p class="setup-subtitle" id="qz-setup-subtitle">Set up your quiz and wait for players</p>
+          <div id="qz-custom-quiz-banner" style="display:none"></div>
+          <div class="config-grid">
+            <div class="config-item">
+              <div class="config-label">Quiz Type</div>
+              <select id="qz-cfg-type" class="config-select">
+                <option value="mixed">Mixed (music + trivia)</option>
+                <option value="gossip">Gossip Round</option>
+                <option value="intro-quiz">Intro Quiz</option>
+                <option value="guess-the-artist">Guess the Artist</option>
+                <option value="guess-the-song">Guess the Song</option>
+                <option value="guess-the-album">Guess the Album</option>
+                <option value="guess-the-year">Guess the Year</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Music Source</div>
+              <select id="qz-cfg-source" class="config-select">
+                <option value="mixed">Mixed (all sources)</option>
+                <option value="recently-played">Recently Played</option>
+                <option value="charts">Top Charts</option>
+                <option value="library">My Library</option>
+                <option value="charts-genre">Genre</option>
+                <option value="charts-soundtrack">Movie Soundtracks</option>
+                <option value="dansk">Danish Music</option>
+                <option value="live">Live Music</option>
+                <option value="random">Random Shuffle</option>
+              </select>
+            </div>
+            <div class="config-item" id="qz-genre-container" style="display:none">
+              <div class="config-label">Genre</div>
+              <select id="qz-cfg-genre" class="config-select">
+                <option value="20">Alternative</option>
+                <option value="2">Blues</option>
+                <option value="5">Classical</option>
+                <option value="17">Dance</option>
+                <option value="7">Electronic</option>
+                <option value="18">Hip-Hop/Rap</option>
+                <option value="11">Jazz</option>
+                <option value="12">Latin</option>
+                <option value="1153">Metal</option>
+                <option value="14">Pop</option>
+                <option value="15">R&amp;B/Soul</option>
+                <option value="24">Reggae</option>
+                <option value="21">Rock</option>
+                <option value="10">Singer/Songwriter</option>
+                <option value="16">Soundtrack</option>
+                <option value="19">World</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Answer Mode</div>
+              <select id="qz-cfg-answer-mode" class="config-select">
+                <option value="multiple-choice">Multiple Choice</option>
+                <option value="free-text">Free Text (AI)</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="config-item">
+              <div class="config-label">Questions</div>
+              <input type="number" id="qz-cfg-count" class="config-input" value="5" min="1" max="25">
+            </div>
+            <div class="config-item">
+              <div class="config-label">Timer (sec)</div>
+              <input type="number" id="qz-cfg-timer" class="config-input" value="30" min="10" max="60">
+            </div>
+            <div class="config-item">
+              <div class="config-label">Decade</div>
+              <select id="qz-cfg-decade" class="config-select">
+                <option value="">All</option>
+                <option value="1960">60s</option>
+                <option value="1970">70s</option>
+                <option value="1980">80s</option>
+                <option value="1990">90s</option>
+                <option value="2000">00s</option>
+                <option value="2010">10s</option>
+                <option value="2020">20s</option>
+              </select>
+            </div>
+            <div class="config-item" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="qz-cfg-exclude-recent" checked style="width:18px;height:18px;accent-color:var(--red)">
+              <div>
+                <div class="config-label">Skip recent plays</div>
+                <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Exclude songs you've played recently</div>
+              </div>
+            </div>
+            <div class="config-item" id="qz-gossip-container" style="display:flex;align-items:center;gap:10px">
+              <input type="checkbox" id="qz-cfg-include-gossip" style="width:18px;height:18px;accent-color:var(--red)">
+              <div>
+                <div class="config-label">Include gossip</div>
+                <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Celebrity drama, beefs, scandals &amp; breakups</div>
+              </div>
             </div>
           </div>
-          <div class="config-item" id="gossip-container" style="display:flex;align-items:center;gap:10px">
-            <input type="checkbox" id="cfg-include-gossip" style="width:18px;height:18px;accent-color:var(--red)">
-            <div>
-              <div class="config-label">Include gossip</div>
-              <div style="font-size:12px;color:var(--dimmer);margin-top:2px">Celebrity drama, beefs, scandals & breakups</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Playback Provider (auto-detected, setup via Admin page) -->
-        <div id="playback-provider" class="playback-provider">
-          <div id="provider-status" class="provider-status">
-            <span id="provider-icon">🔇</span>
-            <span id="provider-label">No music source</span>
-            <a id="provider-setup-link" href="/quiz/admin" style="margin-left:auto;color:var(--red);font-size:13px;font-weight:600;text-decoration:none">Setup</a>
-            <button id="btn-connect-music" style="display:none" onclick="showAirPlayPicker()" class="provider-btn">AirPlay</button>
-          </div>
-        </div>
-
-        <button id="btn-create" class="start-btn" onclick="createSession()">Create Game</button>
-        <button id="btn-start" class="start-btn" style="display:none" disabled onclick="startGame()">
-          Start Quiz
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 2. Countdown -->
-  <div id="screen-countdown" class="screen">
-    <div class="countdown-type" id="countdown-type"></div>
-    <div class="countdown-number" id="countdown-number">3</div>
-    <div class="countdown-label" id="countdown-label">Get ready!</div>
-  </div>
-
-  <!-- 3. Question -->
-  <div id="screen-question" class="screen question-screen">
-    <div class="question-header">
-      <span class="question-number" id="q-number">Question 1 / 10</span>
-      <span class="question-type" id="q-type">Guess the Artist</span>
-      <div class="timer-container">
-        <svg width="80" height="80" viewBox="0 0 80 80" class="timer-circle">
-          <circle cx="40" cy="40" r="36" class="timer-bg"/>
-          <circle cx="40" cy="40" r="36" class="timer-progress" id="timer-progress"
-            stroke-dasharray="226.2" stroke-dashoffset="0"/>
-        </svg>
-        <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;top:0;left:0">
-          <text x="40" y="40" class="timer-text" id="timer-text">30</text>
-        </svg>
-      </div>
-    </div>
-    <div class="question-body">
-      <div class="artwork-container" id="artwork-container">
-        <img id="q-artwork" src="" alt="">
-      </div>
-      <div class="question-content">
-        <div class="question-text" id="q-text"></div>
-        <div class="options-grid" id="options-grid"></div>
-        <div class="free-text-hint" id="free-text-hint" style="display:none">
-          Players are typing their answers...
+          <button id="qz-btn-create" class="start-btn" onclick="QuizDisplay.createSession()">Create Game</button>
         </div>
       </div>
     </div>
-    <div class="answers-counter" id="answers-counter">0 / 0 answered</div>
-  </div>
 
-  <!-- 4. Evaluating -->
-  <div id="screen-evaluating" class="screen">
-    <div class="evaluating-container">
-      <div class="evaluating-icon">🤖</div>
-      <div class="evaluating-text">AI is evaluating answers...</div>
+    <!-- 2. Countdown -->
+    <div id="qz-screen-countdown" class="qz-screen">
+      <div class="countdown-type" id="qz-countdown-type"></div>
+      <div class="countdown-number" id="qz-countdown-number">3</div>
+      <div class="countdown-label" id="qz-countdown-label">Get ready!</div>
     </div>
-  </div>
 
-  <!-- 5. Reveal -->
-  <div id="screen-reveal" class="screen reveal-screen">
-    <div class="reveal-answer" id="reveal-answer">
-      <div class="reveal-artwork" id="reveal-artwork-box">
-        <img id="reveal-artwork" src="" alt="">
+    <!-- 3. Question -->
+    <div id="qz-screen-question" class="qz-screen question-screen">
+      <div class="question-header">
+        <span class="question-number" id="qz-q-number">Question 1 / 10</span>
+        <span class="question-type" id="qz-q-type">Guess the Artist</span>
+        <div class="timer-container">
+          <svg width="80" height="80" viewBox="0 0 80 80" class="timer-circle">
+            <circle cx="40" cy="40" r="36" class="timer-bg"/>
+            <circle cx="40" cy="40" r="36" class="timer-progress" id="qz-timer-progress" stroke-dasharray="226.2" stroke-dashoffset="0"/>
+          </svg>
+          <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;top:0;left:0">
+            <text x="40" y="40" class="timer-text" id="qz-timer-text">30</text>
+          </svg>
+        </div>
       </div>
-      <div>
-        <div class="reveal-song" id="reveal-song"></div>
-        <div class="reveal-artist" id="reveal-artist"></div>
-        <div class="reveal-album" id="reveal-album"></div>
+      <div class="question-body">
+        <div class="artwork-container" id="qz-artwork-container">
+          <img id="qz-q-artwork" src="" alt="">
+        </div>
+        <div class="question-content">
+          <div class="question-text" id="qz-q-text"></div>
+          <div class="options-grid" id="qz-options-grid"></div>
+          <div class="free-text-hint" id="qz-free-text-hint" style="display:none">Players are typing their answers...</div>
+        </div>
+      </div>
+      <div class="answers-counter" id="qz-answers-counter">0 / 0 answered</div>
+    </div>
+
+    <!-- 4. Evaluating -->
+    <div id="qz-screen-evaluating" class="qz-screen">
+      <div class="evaluating-container">
+        <div class="evaluating-icon">🤖</div>
+        <div class="evaluating-text">AI is evaluating answers...</div>
       </div>
     </div>
-    <div id="fun-fact" style="display:none;margin:20px auto;max-width:700px;padding:20px 28px;background:rgba(252,60,68,0.12);border:2px solid rgba(252,60,68,0.35);border-radius:14px;color:#fff;font-size:18px;line-height:1.5;text-align:center;font-style:italic;font-weight:500">💡 </div>
-    <div class="results-grid" id="results-grid"></div>
-  </div>
 
-  <!-- 6. Scoreboard -->
-  <div id="screen-scoreboard" class="screen scoreboard-screen">
-    <div class="scoreboard-title">Scoreboard</div>
-    <div class="scoreboard-list" id="scoreboard-list"></div>
-  </div>
-
-  <!-- 7. Final / Podium -->
-  <div id="screen-final" class="screen final-screen">
-    <div class="final-title" id="final-title">Quiz Complete!</div>
-    <div class="podium" id="podium"></div>
-    <div class="final-stats" id="final-stats"></div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:24px">
-      <div style="display:flex;gap:12px">
-        <button class="play-again-btn" onclick="location.reload()">New Quiz</button>
-        <button class="play-again-btn" style="border-color:var(--red);color:var(--red)" onclick="localStorage.setItem('admin-tab','dj');location.href='/quiz/admin'">DJ</button>
+    <!-- 5. Reveal -->
+    <div id="qz-screen-reveal" class="qz-screen reveal-screen">
+      <div class="reveal-answer">
+        <div class="reveal-artwork" id="qz-reveal-artwork-box">
+          <img id="qz-reveal-artwork" src="" alt="">
+        </div>
+        <div>
+          <div class="reveal-song" id="qz-reveal-song"></div>
+          <div class="reveal-artist" id="qz-reveal-artist"></div>
+          <div class="reveal-album" id="qz-reveal-album"></div>
+        </div>
       </div>
-      <div style="color:var(--dimmer);font-size:13px">Quiz again to earn more song credits</div>
+      <div id="qz-fun-fact" style="display:none;margin:20px auto;max-width:700px;padding:20px 28px;background:rgba(252,60,68,0.12);border:2px solid rgba(252,60,68,0.35);border-radius:14px;color:#fff;font-size:18px;line-height:1.5;text-align:center;font-style:italic;font-weight:500">💡 </div>
+      <div class="results-grid" id="qz-results-grid"></div>
     </div>
-    <div class="confetti-container" id="confetti"></div>
-  </div>
 
-  <!-- Playlists modal (Cmd+K style) -->
-  <div id="load-quiz-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:100;align-items:flex-start;justify-content:center;padding-top:min(18vh,140px)">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:min(560px,92vw);max-height:65vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">
-      <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dimmer)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="host-pl-search" type="text" placeholder="Search playlists..." style="flex:1;background:none;border:none;color:var(--text);font-size:15px;font-family:inherit;outline:none" autocomplete="off">
-        <span style="font-size:11px;color:var(--dimmer);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px">ESC</span>
+    <!-- 6. Scoreboard -->
+    <div id="qz-screen-scoreboard" class="qz-screen scoreboard-screen">
+      <div class="scoreboard-title">Scoreboard</div>
+      <div class="scoreboard-list" id="qz-scoreboard-list"></div>
+    </div>
+
+    <!-- 7. Final / Podium -->
+    <div id="qz-screen-final" class="qz-screen final-screen">
+      <div class="final-title">Quiz Complete!</div>
+      <div class="podium" id="qz-podium"></div>
+      <div class="final-stats" id="qz-final-stats"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:24px">
+        <div style="display:flex;gap:12px">
+          <button class="play-again-btn" onclick="location.reload()">New Quiz</button>
+          <button class="play-again-btn" style="border-color:var(--red);color:var(--red)" onclick="location.href='/quiz/admin'">DJ</button>
+        </div>
+        <div style="color:var(--dimmer);font-size:13px">Quiz again to earn more song credits</div>
       </div>
-      <div id="host-saved-list" style="padding:8px;overflow-y:auto"></div>
+      <div class="confetti-container" id="qz-confetti"></div>
     </div>
+
+    <!-- Playlists modal -->
+    <div id="qz-load-quiz-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);z-index:600;align-items:flex-start;justify-content:center;padding-top:min(18vh,140px)">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:min(560px,92vw);max-height:65vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">
+        <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dimmer)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="qz-pl-search" type="text" placeholder="Search playlists..." style="flex:1;background:none;border:none;color:var(--text);font-size:15px;font-family:inherit;outline:none" autocomplete="off">
+          <span style="font-size:11px;color:var(--dimmer);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px">ESC</span>
+        </div>
+        <div id="qz-saved-list" style="padding:8px;overflow-y:auto"></div>
+      </div>
+    </div>
+
+    <!-- Preview audio -->
+    <audio id="qz-preview-audio" preload="none"></audio>
+
+    <!-- Exit Game button -->
+    <button id="qz-exit-btn" class="exit-btn" style="display:none" onclick="QuizDisplay.exitGame()">Exit Game</button>
   </div>
 
-  <!-- Confirm Dialog -->
+  <!-- Confirm Dialog (shared) -->
   <div id="confirm-dialog" style="display:none;position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center">
     <div style="background:#141414;border:1px solid #1e1e1e;border-radius:14px;width:min(380px,90vw);padding:24px;text-align:center">
       <div id="confirm-msg" style="font-size:15px;font-weight:500;margin-bottom:20px"></div>
@@ -253,22 +240,47 @@
     </div>
   </div>
 
-  <!-- Toast -->
-  <div id="host-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
-    background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 24px;
-    font-size:14px;font-weight:500;z-index:200;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);
-    pointer-events:none"></div>
-
-  <!-- Audio element for preview fallback (no Home Controller) -->
-  <audio id="preview-audio" preload="none"></audio>
-
-  <!-- Exit Game button (visible during game) -->
-  <button id="exit-btn" class="exit-btn" style="display:none" onclick="exitGame()">Exit Game</button>
-
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1/build/qrcode.min.js"></script>
-  <!-- MusicKit CDN loaded dynamically by player.js only when needed -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
-  <script src="/quiz/static/player.js" defer></script>
-  <script src="/quiz/static/host.js" defer></script>
+  <script src="/quiz/static/quiz-display.js" defer></script>
+  <script>
+    // Fullscreen toggle
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+      else document.exitFullscreen().catch(() => {});
+    }
+    document.addEventListener('fullscreenchange', () => {
+      const icon = document.getElementById('fs-icon');
+      if (!icon) return;
+      icon.innerHTML = document.fullscreenElement
+        ? '<polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/>'
+        : '<polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>';
+    });
+
+    // WebSocket connection (host role — does NOT register as admin)
+    let ws = null;
+    function connect() {
+      const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      ws = new WebSocket(`${proto}//${location.host}/quiz-ws`);
+      ws.onopen = () => console.log('🎮 Host connected');
+      ws.onmessage = (e) => {
+        try {
+          const msg = JSON.parse(e.data);
+          QuizDisplay.handleMessage(msg);
+        } catch {}
+      };
+      ws.onclose = () => setTimeout(connect, 2000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      connect();
+      QuizDisplay.init({
+        send: (msg) => { if (ws?.readyState === 1) ws.send(JSON.stringify(msg)); },
+        onQuizStart: () => {},  // already showing quiz
+        onQuizEnd: () => location.reload(),
+        showToast: (msg) => console.log(msg),
+      });
+    });
+  </script>
 </body>
 </html>

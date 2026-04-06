@@ -33,9 +33,10 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   // Ensure JSON body parsing for quiz API routes
   router.use(json());
 
-  // Host UI
-  router.get("/quiz/host", (_req, res) => {
-    res.sendFile(join(publicDir, "host.html"));
+  // Host UI — redirects to admin (quiz display merged into admin)
+  router.get("/quiz/host", (req, res) => {
+    const query = req.url.includes("?") ? req.url.slice(req.url.indexOf("?")) : "";
+    res.redirect("/quiz/admin" + query);
   });
 
   // Player PWA
@@ -103,36 +104,16 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     res.sendFile(join(publicDir, "now-playing.html"));
   });
 
-  // Admin API: recently played tracks with artwork
-  router.get("/quiz/api/admin/recent-tracks", async (_req, res) => {
-    if (!musicClient) {
-      res.json({ tracks: [] });
-      return;
-    }
-    try {
-      const data = await musicClient.getRecentlyPlayedTracks(50) as {
-        data?: Array<{
-          id?: string;
-          attributes?: {
-            name?: string;
-            artistName?: string;
-            albumName?: string;
-            artwork?: { url?: string };
-          };
-        }>;
-      };
-      const tracks = (data.data || []).map((t) => ({
-        id: t.id || "",
-        name: t.attributes?.name || "",
-        artistName: t.attributes?.artistName || "",
-        albumName: t.attributes?.albumName || "",
-        artworkUrl: t.attributes?.artwork?.url
-          ?.replace("{w}", "200").replace("{h}", "200") || "",
-      }));
-      res.json({ tracks });
-    } catch (err) {
-      res.status(500).json({ error: String(err) });
-    }
+  // Admin API: recently played tracks (from track change log — persisted to disk)
+  router.get("/quiz/api/admin/recent-tracks", (_req, res) => {
+    const tracks = [...trackChangeLog].reverse().map((t) => ({
+      id: "",
+      name: t.track,
+      artistName: t.artist,
+      albumName: "",
+      artworkUrl: t.artworkUrl || "",
+    }));
+    res.json({ tracks });
   });
 
   // Play log: tracks what was requested vs what actually played

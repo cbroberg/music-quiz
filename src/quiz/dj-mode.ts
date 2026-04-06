@@ -310,6 +310,7 @@ export function advanceQueue(): QueuedSong | undefined {
   const nextIdx = djSession.queue.findIndex((q, i) => i > djSession.currentIndex && !q.played);
   if (nextIdx === -1) {
     djSession.isPlaying = false;
+    saveDjState();
     return undefined;
   }
 
@@ -317,6 +318,15 @@ export function advanceQueue(): QueuedSong | undefined {
   djSession.isPlaying = true;
   saveDjState();
   return djSession.queue[nextIdx];
+}
+
+/** Mark current song as failed — revert played state so it can be retried */
+export function markCurrentFailed(): void {
+  if (djSession.currentIndex >= 0 && djSession.queue[djSession.currentIndex]) {
+    console.log(`🎧 Playback failed: "${djSession.queue[djSession.currentIndex].name}" — will retry`);
+    // Don't mark as played — leave it for retry
+    djSession.isPlaying = false;
+  }
 }
 
 export function removeFromQueue(songQueueId: string): boolean {

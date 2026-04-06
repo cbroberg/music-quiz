@@ -199,6 +199,7 @@ export type HostMessage =
   | { type: "activate_dj" }
   | { type: "deactivate_dj" }
   | { type: "dj_next" }
+  | { type: "dj_play_current" }
   | { type: "dj_remove"; songQueueId: string }
   | { type: "dj_autoplay"; enabled: boolean }
   | { type: "dj_status" }

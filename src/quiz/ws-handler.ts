@@ -28,7 +28,7 @@ import {
 import {
   activateDjMode, deactivateDjMode, isDjModeActive,
   getAllPlayerCredits, getPlayerCredits, addToQueue, getQueue,
-  advanceQueue, getCurrentSong, removeFromQueue,
+  advanceQueue, getCurrentSong, removeFromQueue, markCurrentFailed,
   setAutoplay, isAutoplay, getPlayerQueueCount,
   calculateCreditsForRank, addToQueueDirect,
 } from "./dj-mode.js";
@@ -42,6 +42,7 @@ interface WsConnection {
   ws: WebSocket;
   id: string;
   role: "host" | "admin" | "player" | "waiting" | "unknown";
+  isAdmin: boolean;            // true if registered as admin (survives role change to host)
   sessionId: string | null;
   partyId: string | null;
   playerName: string | null;   // stored for DJ Mode lookup
@@ -400,10 +401,27 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
       sendToWs(conn.ws, { type: "dj_deactivated" } as any);
       break;
     }
+    case "dj_play_current": {
+      // Play current song WITHOUT advancing queue (retry / resume)
+      const current = getCurrentSong();
+      if (current && !current.played) {
+        playDjSong(current, musicClient);
+        broadcastDjState(conn);
+      } else {
+        // No current — advance to first unplayed
+        const next = advanceQueue();
+        if (next) {
+          playDjSong(next, musicClient);
+          broadcastDjState(conn);
+        } else {
+          sendToWs(conn.ws, { type: "dj_queue_empty" } as any);
+        }
+      }
+      break;
+    }
     case "dj_next": {
       const next = advanceQueue();
       if (next) {
-        // Play via Home Controller
         playDjSong(next, musicClient);
         broadcastDjState(conn);
       } else {
@@ -649,6 +667,7 @@ function getPlayerNameByWsId(wsId: string): string {
 
 let djPollInterval: ReturnType<typeof setInterval> | null = null;
 let djLastPlayingTrack = "";
+let djLastPlayStartTime = 0;
 let djIsAdvancing = false;
 
 function startDjAutoplayPolling(musicClient: AppleMusicClient): void {
@@ -671,12 +690,18 @@ function startDjAutoplayPolling(musicClient: AppleMusicClient): void {
 
       if (state === "playing") {
         djLastPlayingTrack = np.track || "";
+        djLastPlayStartTime = Date.now();
       } else if (djLastPlayingTrack && getCurrentSong()) {
         // State is stopped or paused — determine if song actually ended
-        // Song ended = stopped, OR paused with position near end (within 3 seconds)
-        const songEnded = state === "stopped" || (state === "paused" && duration > 0 && (duration - position) < 3);
-
-        if (songEnded) {
+        // Ignore stopped with pos=0 (song hasn't started yet — HC needs time to load)
+        // Also ignore if less than 5s since we started playing (loading delay)
+        const timeSincePlay = Date.now() - (djLastPlayStartTime || 0);
+        const songNeverStarted = position === 0 && duration === 0 && timeSincePlay < 15000;
+        if (songNeverStarted) {
+          // Still loading — don't advance
+        } else {
+          const songEnded = state === "stopped" || (state === "paused" && duration > 0 && (duration - position) < 3);
+          if (songEnded) {
           console.log(`🎧 Autoplay: song ended (state=${state}, pos=${position}/${duration}), advancing...`);
           djIsAdvancing = true;
           try {
@@ -693,6 +718,7 @@ function startDjAutoplayPolling(musicClient: AppleMusicClient): void {
           djLastPlayingTrack = "";
         }
         // If paused but NOT near end → user manually paused, don't advance
+        }
       }
     } catch {}
   }, 2000);
@@ -726,25 +752,34 @@ function broadcastDjStateToAll(): void {
   const state = { type: "dj_state", queue, current, picks, autoplay: isAutoplay() };
 
   for (const [, c] of connections) {
-    if (c.role === "host" || c.role === "player" || c.role === "admin") {
+    if (c.role === "host" || c.role === "player" || c.isAdmin) {
       sendToWs(c.ws, state as any);
     }
   }
 }
 
-async function playDjSong(song: { songId: string; name: string; artistName: string }, musicClient: AppleMusicClient): Promise<void> {
+async function playDjSong(song: { songId: string; name: string; artistName: string }, musicClient: AppleMusicClient): Promise<boolean> {
+  // MUTE_ALL: pretend playback succeeded (DJ queue still advances)
+  if (process.env.MUTE_ALL === "true") {
+    console.log(`🎧 DJ playing (muted): ${song.name}`);
+    return true;
+  }
   const djProvider = getProvider();
-  if (!djProvider.isAvailable()) return;
+  if (!djProvider.isAvailable()) {
+    console.error(`🎧 DJ play failed: provider not available`);
+    markCurrentFailed();
+    return false;
+  }
   try {
-    // Stop whatever is currently playing
-    await djProvider.pause().catch(() => {});
+    // Don't pause before play — MusicKit handles transition automatically
+    // Calling pause() then play() causes Chrome "play() interrupted by pause()" error
 
     // Primary: play by catalog ID (fastest, works with MusicKit JS directly)
     if (song.songId && djProvider.playById) {
       const result = await djProvider.playById(song.songId);
       if (result.playing) {
         console.log(`🎧 DJ playing (by ID): ${song.name}`);
-        return;
+        return true;
       }
     }
 
@@ -753,18 +788,22 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
     const result = await djProvider.playExact(song.name, artist, { retries: 2 });
     if (result.playing) {
       console.log(`🎧 DJ playing: ${result.track}`);
-      return;
+      return true;
     }
 
     // Last resort: searchAndPlay
     const search = await djProvider.searchAndPlay(`${song.name} ${artist}`);
     if (search.playing) {
       console.log(`🎧 DJ playing (search): ${search.track}`);
-      return;
+      return true;
     }
-    console.error(`🎧 DJ play failed: ${song.name} — ${song.artistName}`);
+    console.error(`🎧 DJ play FAILED all methods: ${song.name} — ${song.artistName}`);
+    markCurrentFailed();
+    return false;
   } catch (err) {
-    console.error("🎧 DJ play failed:", err);
+    console.error("🎧 DJ play FAILED:", err);
+    markCurrentFailed();
+    return false;
   }
 }
 
@@ -790,6 +829,7 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
           ws,
           id: connId,
           role: "unknown",
+          isAdmin: false,
           sessionId: null,
           partyId: null,
           playerName: null,
@@ -812,10 +852,12 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
             // Admin registration
             if (msg.type === "register_admin") {
               conn.role = "admin";
-              // Admin can also handle MusicKit playback commands (when host is not connected)
+              conn.isAdmin = true;
+              // Admin owns MusicKit — set up playback routing and authorize
               const mkProvider = getMusicKitWebProvider();
               mkProvider.setSendToHost((m: any) => sendToWs(conn.ws, m));
-              console.log(`🎮 Admin registered: ${conn.id} (MusicKit routing active)`);
+              mkProvider.setAuthorized(true);
+              console.log(`🎮 Admin registered: ${conn.id} (MusicKit routing + authorized)`);
               // Always send DJ state — DJ is always active
               const picks = getAllPlayerCredits().map(p => ({
                 ...p, queuedSongs: getQueue().filter(q => q.addedBy === p.name && !q.played).length,
@@ -854,10 +896,10 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
               return;
             }
 
-            // DJ commands from admin (same handlers as host)
-            if (conn.role === "admin" && (
+            // DJ commands from admin (same handlers as host — works even when admin is also host)
+            if (conn.isAdmin && (
                 msg.type === "activate_dj" || msg.type === "deactivate_dj" ||
-                msg.type === "dj_next" || msg.type === "dj_remove" ||
+                msg.type === "dj_next" || msg.type === "dj_play_current" || msg.type === "dj_remove" ||
                 msg.type === "dj_autoplay" || msg.type === "dj_status" ||
                 msg.type === "admin_dj_add" || msg.type === "end_party")) {
               if (msg.type === "admin_dj_add") {
@@ -881,7 +923,7 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
                 msg.type === "next_question" || msg.type === "skip_question" ||
                 msg.type === "end_quiz" || msg.type === "kick_player" ||
                 msg.type === "activate_dj" || msg.type === "deactivate_dj" ||
-                msg.type === "dj_next" || msg.type === "dj_remove" ||
+                msg.type === "dj_next" || msg.type === "dj_play_current" || msg.type === "dj_remove" ||
                 msg.type === "dj_autoplay" || msg.type === "dj_status" ||
                 msg.type === "end_party" || msg.type === "set_provider") {
               handleHostMessage(conn, msg, musicClient);
@@ -895,10 +937,30 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
 
         ws.on("close", () => {
           console.log(`🎮 WS disconnected: ${connId}`);
+
+          // If this was the admin with MusicKit routing, clear it so next admin takes over
+          if (conn.isAdmin) {
+            const mkProvider = getMusicKitWebProvider();
+            // Only clear if this connection's callback is still the active one
+            // (another admin may have already taken over)
+            mkProvider.setSendToHost(null as any);
+            mkProvider.setAuthorized(false);
+            console.log(`🎮 Admin disconnected — MusicKit routing cleared`);
+
+            // Check if another admin is still connected and re-route to them
+            for (const [, c] of connections) {
+              if (c.id !== connId && c.isAdmin && c.ws.readyState === WebSocket.OPEN) {
+                mkProvider.setSendToHost((m: any) => sendToWs(c.ws, m));
+                mkProvider.setAuthorized(true);
+                console.log(`🎮 MusicKit routing re-assigned to ${c.id}`);
+                break;
+              }
+            }
+          }
+
           const found = findSessionByWsId(connId);
           if (found) {
             if (found.isHost) {
-              // Host disconnected — don't destroy session immediately, allow reconnect
               console.log(`🎮 Host disconnected from ${found.session.joinCode}`);
             } else {
               const result = markPlayerDisconnected(connId);

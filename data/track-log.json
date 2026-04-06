@@ -1,0 +1,44 @@
+[
+  {
+    "ts": "2026-04-06T00:32:21.273Z",
+    "track": "Theme from New York, New York",
+    "artist": "Frank Sinatra",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/37/1a/3a371a7e-33fe-85db-0616-0c57ef26fb42/13UAEIM06265.rgb.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T00:39:01.299Z",
+    "track": "Theme from New York, New York",
+    "artist": "Frank Sinatra",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/37/1a/3a371a7e-33fe-85db-0616-0c57ef26fb42/13UAEIM06265.rgb.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T00:40:34.507Z",
+    "track": "Du Hast",
+    "artist": "Rammstein",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/78/af/45/78af45f6-e4e6-5681-c1f6-a20e3949ab8c/18UMGIM31237.rgb.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T00:40:51.778Z",
+    "track": "Why",
+    "artist": "Annie Lennox",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/0b/08/06/0b080634-f95c-cf2f-5442-2154c2cc8a7e/mzi.dwagpldu.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T00:41:03.896Z",
+    "track": "We Are the Champions",
+    "artist": "Queen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/9a/04/93/9a0493e7-54b0-664c-941a-dc5f0db585dd/14UMGIM39395.rgb.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T00:41:13.293Z",
+    "track": "Come Together",
+    "artist": "The Beatles",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/600x600bb.jpg",
+    "source": "hc-poll"
+  }
+]
