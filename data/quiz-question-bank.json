@@ -516,7 +516,7 @@
     "backgroundArtist": "Childish Gambino",
     "id": "8ee07425",
     "validated": true,
-    "timesUsed": 3,
+    "timesUsed": 4,
     "createdAt": "2026-04-03T12:34:15.926Z"
   },
   {
@@ -616,7 +616,7 @@
     "backgroundArtist": "The Jimi Hendrix Experience",
     "id": "1c995a18",
     "validated": true,
-    "timesUsed": 5,
+    "timesUsed": 6,
     "createdAt": "2026-04-03T12:46:37.869Z"
   },
   {
@@ -1856,7 +1856,7 @@
     "backgroundArtist": "AC/DC",
     "id": "5c5bf8cf",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T17:16:50.209Z"
   },
   {
@@ -3255,7 +3255,7 @@
     "backgroundSongName": "Chop Suey!",
     "backgroundArtist": "System of a Down",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0162"
   },
@@ -4495,7 +4495,7 @@
     "backgroundSongName": "American Idiot",
     "backgroundArtist": "Green Day",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0224"
   },
@@ -6775,7 +6775,7 @@
     "backgroundSongName": "Glory Box",
     "backgroundArtist": "Portishead",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0338"
   },
@@ -8135,7 +8135,7 @@
     "backgroundSongName": "Writing's on the Wall",
     "backgroundArtist": "Sam Smith",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0406"
   },
@@ -8455,7 +8455,7 @@
     "backgroundSongName": "Thriller",
     "backgroundArtist": "Michael Jackson",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0422"
   },
@@ -9175,7 +9175,7 @@
     "backgroundSongName": "15 Step",
     "backgroundArtist": "Radiohead",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0458"
   },
@@ -11018,5 +11018,305 @@
     "validated": true,
     "timesUsed": 0,
     "createdAt": "2026-04-05T22:14:38.781Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is P!nk from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "United Kingdom",
+      "Australia",
+      "Canada"
+    ],
+    "artistName": "P!nk",
+    "funFact": "P!nk's real name is Alecia Beth Moore, and she got her stage name from the movie 'Reservoir Dogs' — not from her hair color!",
+    "difficulty": "easy",
+    "backgroundSongName": "Just Give Me a Reason (feat. Nate Ruess)",
+    "backgroundArtist": "P!nk",
+    "id": "f173c7d9",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:43:06.144Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is King Diamond's real name?",
+    "correctAnswer": "Kim Bendix Petersen",
+    "options": [
+      "Kim Bendix Petersen",
+      "Kristian Davidsen",
+      "Kenneth Petersson",
+      "Klaus Dieter"
+    ],
+    "artistName": "King Diamond",
+    "funFact": "King Diamond has performed with contact lenses that make his eyes completely white — pure nightmare fuel on stage!",
+    "difficulty": "medium",
+    "backgroundSongName": "Welcome Home",
+    "backgroundArtist": "King Diamond",
+    "id": "e4f11991",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:43:06.144Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Cesária Evora from?",
+    "correctAnswer": "Cape Verde",
+    "options": [
+      "Cape Verde",
+      "Portugal",
+      "Brazil",
+      "Angola"
+    ],
+    "artistName": "Cesária Evora",
+    "funFact": "Cesária Evora was called 'the barefoot diva' because she performed barefoot on stage for most of her career!",
+    "difficulty": "medium",
+    "backgroundSongName": "Sabine Largam'",
+    "backgroundArtist": "Cesária Evora",
+    "id": "a3a7eb66",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:54:44.369Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is LL COOL J's real name?",
+    "correctAnswer": "James Todd Smith",
+    "options": [
+      "James Todd Smith",
+      "Lloyd Avery Jr.",
+      "Marcus Troy Smith",
+      "Lawrence Taylor"
+    ],
+    "artistName": "LL COOL J",
+    "funFact": "LL COOL J's stage name stands for 'Ladies Love Cool James' — and he's been using it since he was 9 years old!",
+    "difficulty": "medium",
+    "backgroundSongName": "I Need Love",
+    "backgroundArtist": "LL COOL J",
+    "id": "85871e49",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:54:44.369Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country does Skrillex come from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "Australia"
+    ],
+    "artistName": "Skrillex",
+    "funFact": "Skrillex's real name is Sonny John Moore, and he was originally the keyboardist for the post-hardcore band From First to Last before becoming the dubstep king!",
+    "difficulty": "medium",
+    "backgroundSongName": "Bangarang (feat. Sirah)",
+    "backgroundArtist": "Skrillex",
+    "id": "93597e24",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:57:06.206Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which legendary song became Gloria Gaynor's signature anthem and is still the ultimate breakup anthem today?",
+    "correctAnswer": "I Will Survive",
+    "options": [
+      "I Will Survive",
+      "Never Can Tell",
+      "Respect",
+      "Walking on Sunshine"
+    ],
+    "artistName": "Gloria Gaynor",
+    "funFact": "Gloria Gaynor's 'I Will Survive' was originally written as a B-side and nearly never saw the light of day — now it's a global anthem played at pride parades worldwide!",
+    "difficulty": "easy",
+    "backgroundSongName": "I Will Survive",
+    "backgroundArtist": "Gloria Gaynor",
+    "id": "e8ee57a8",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-05T23:57:06.206Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Pop Smoke from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "Jamaica"
+    ],
+    "artistName": "Pop Smoke",
+    "funFact": "Pop Smoke's deep, distinctive voice was so unique that it became instantly recognizable and helped define Brooklyn drill music in the late 2010s",
+    "difficulty": "easy",
+    "backgroundSongName": "Dior",
+    "backgroundArtist": "Pop Smoke",
+    "id": "37a53b46",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:07:39.155Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Salt-N-Pepa?",
+    "correctAnswer": "Queen Latifah",
+    "options": [
+      "Cheryl James",
+      "Sandra Denton",
+      "DJ Spinderella",
+      "Queen Latifah"
+    ],
+    "artistName": "Salt-N-Pepa",
+    "funFact": "Salt-N-Pepa's 'Push It' became so iconic that it's been sampled in hundreds of songs and remains one of the most recognizable hip-hop tracks ever made",
+    "difficulty": "medium",
+    "backgroundSongName": "Push It",
+    "backgroundArtist": "Salt-N-Pepa",
+    "id": "49f7fb3f",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:07:39.155Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Santana from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Mexico",
+      "Spain",
+      "Cuba"
+    ],
+    "artistName": "Santana",
+    "funFact": "Santana's 'Supernatural' album won a record-breaking 9 Grammy Awards in 2000 — tied for the most Grammys won by a single album!",
+    "difficulty": "medium",
+    "backgroundSongName": "Maria Maria (feat. The Product G&B) [Radio Mix]",
+    "backgroundArtist": "Santana",
+    "id": "a51cb360",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:33:40.819Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Fleetwood Mac?",
+    "correctAnswer": "Don Henley",
+    "options": [
+      "Stevie Nicks",
+      "Lindsey Buckingham",
+      "Don Henley",
+      "Mick Fleetwood"
+    ],
+    "artistName": "Fleetwood Mac",
+    "funFact": "Fleetwood Mac wrote and recorded 'Rumours' while the band was literally falling apart — two couples in the band broke up during the recording process!",
+    "difficulty": "hard",
+    "backgroundSongName": "Everywhere (2017 Remaster)",
+    "backgroundArtist": "Fleetwood Mac",
+    "id": "a0fc2320",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:33:40.819Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Mike Stern from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "Germany"
+    ],
+    "artistName": "Mike Stern",
+    "funFact": "Mike Stern was born in Boston and became one of fusion's most technically gifted guitarists",
+    "difficulty": "easy",
+    "backgroundSongName": "Mood Swings",
+    "backgroundArtist": "Mike Stern",
+    "id": "2cf6300e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:39:40.777Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country does Rammstein come from?",
+    "correctAnswer": "Germany",
+    "options": [
+      "Germany",
+      "Sweden",
+      "Austria",
+      "Denmark"
+    ],
+    "artistName": "Rammstein",
+    "funFact": "Rammstein's name means 'ramming stone' in German, inspired by a 1988 air show disaster — they're basically metal's most metal origin story",
+    "difficulty": "easy",
+    "backgroundSongName": "Sonne",
+    "backgroundArtist": "Rammstein",
+    "id": "1789cad0",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:40:00.378Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Annie Lennox was the lead singer of which iconic 80s synth-pop duo before going solo?",
+    "correctAnswer": "Eurythmics",
+    "options": [
+      "Eurythmics",
+      "The Human League",
+      "Depeche Mode",
+      "Soft Cell"
+    ],
+    "artistName": "Annie Lennox",
+    "funFact": "Annie Lennox's iconic bald look in the 80s was SO powerful that people still think she was always bald — she actually had gorgeous long red hair before!",
+    "difficulty": "medium",
+    "backgroundSongName": "Why",
+    "backgroundArtist": "Annie Lennox",
+    "id": "0672d593",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T00:40:00.378Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Nusrat Fateh Ali Khan from?",
+    "correctAnswer": "Pakistan",
+    "options": [
+      "Pakistan",
+      "India",
+      "Afghanistan",
+      "Turkey"
+    ],
+    "artistName": "Nusrat Fateh Ali Khan",
+    "funFact": "Nusrat Fateh Ali Khan could hit notes so high and sustain them so long that he basically invented a new style of qawwali that made grown men weep in stadiums!",
+    "difficulty": "medium",
+    "backgroundSongName": "Dil Pe Zakham Khate Hain",
+    "backgroundArtist": "Nusrat Fateh Ali Khan",
+    "id": "b1fd5e6a",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:48:32.852Z"
+  },
+  {
+    "questionType": "film-soundtrack",
+    "questionText": "Which blockbuster film features Aerosmith's 'I Don't Want to Miss a Thing'?",
+    "correctAnswer": "Armageddon",
+    "options": [
+      "Armageddon",
+      "Deep Impact",
+      "The Core",
+      "2012"
+    ],
+    "artistName": "Aerosmith",
+    "funFact": "This was Aerosmith's ONLY #1 hit on the Billboard Hot 100 — it took a meteor-sized movie to get Steven Tyler to the top!",
+    "difficulty": "easy",
+    "backgroundSongName": "I Don't Want to Miss a Thing",
+    "backgroundArtist": "Aerosmith",
+    "id": "cfa1da93",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:48:32.852Z"
   }
 ]

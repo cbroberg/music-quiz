@@ -33,6 +33,7 @@ import {
   calculateCreditsForRank, addToQueueDirect,
 } from "./dj-mode.js";
 import { getProvider, setActiveProvider, getMusicKitWebProvider } from "./playback/provider-manager.js";
+import { isMuted } from "./mute.js";
 import { MusicKitWebProvider } from "./playback/musickit-web.js";
 import type { AppleMusicClient } from "../apple-music.js";
 
@@ -307,7 +308,7 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
           joinUrl,
           partyId: party.id,
           roundNumber: party.currentRound,
-          muteAll: process.env.MUTE_ALL === "true",
+          muteAll: isMuted(),
         } as any);
 
         // Notify ALL players in this Party about new lobby
@@ -760,7 +761,7 @@ function broadcastDjStateToAll(): void {
 
 async function playDjSong(song: { songId: string; name: string; artistName: string }, musicClient: AppleMusicClient): Promise<boolean> {
   // MUTE_ALL: pretend playback succeeded (DJ queue still advances)
-  if (process.env.MUTE_ALL === "true") {
+  if (isMuted()) {
     console.log(`🎧 DJ playing (muted): ${song.name}`);
     return true;
   }

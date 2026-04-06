@@ -15,6 +15,8 @@ import { execSync } from 'node:child_process';
 const BASE = 'http://localhost:3000';
 const QUESTIONS = 3;
 const TIMER = 5;
+const HEADLESS = process.argv.includes('--headless');
+const MUTE = process.argv.includes('--mute');
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function getServerLog() { try { return readFileSync('/tmp/quiz-server.log', 'utf-8'); } catch { return ''; } }
@@ -35,6 +37,15 @@ async function main() {
   });
   console.log('Provider set to Home Controller');
 
+  // Set runtime mute (no server restart needed)
+  if (MUTE) {
+    await fetch(`${BASE}/quiz/api/mute`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ muted: true }),
+    });
+    console.log('🔇 Muted (runtime)');
+  }
+
   try { execSync(`osascript -e 'tell application "System Events" to set miniaturized of every window of every application process whose visible is true to true'`); } catch {}
   await sleep(500);
 
@@ -47,14 +58,14 @@ async function main() {
 
   try {
     logSection('1. Launch browsers');
-    const adminBrowser = await chromium.launch({ headless: false, args: [`--window-position=0,25`, `--window-size=${adminW},${H}`] });
+    const adminBrowser = await chromium.launch({ headless: HEADLESS, args: [`--window-position=0,25`, `--window-size=${adminW},${H}`] });
     const adminCtx = await adminBrowser.newContext({ viewport: { width: adminW - 16, height: H - 80 } });
     const adminPage = await adminCtx.newPage();
     browsers.push(adminBrowser);
 
     const playerPages = [];
     for (let i = 0; i < 3; i++) {
-      const b = await chromium.launch({ headless: false, args: [`--window-position=${adminW + i * playerW},25`, `--window-size=${playerW},${H}`] });
+      const b = await chromium.launch({ headless: HEADLESS, args: [`--window-position=${adminW + i * playerW},25`, `--window-size=${playerW},${H}`] });
       const ctx = await b.newContext({ viewport: { width: playerW - 16, height: H - 80 } });
       playerPages.push(await ctx.newPage());
       browsers.push(b);
@@ -255,11 +266,17 @@ async function main() {
 
   } finally {
     for (const b of browsers) { try { await b.close(); } catch {} }
-    // Restore MusicKit provider for user
+    // Restore MusicKit provider + unmute
     fetch(`${BASE}/quiz/api/set-provider`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ provider: 'musickit-web' }),
     }).catch(() => {});
+    if (MUTE) {
+      fetch(`${BASE}/quiz/api/mute`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ muted: false }),
+      }).catch(() => {});
+    }
   }
 }
 

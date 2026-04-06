@@ -14,6 +14,7 @@ import type {
 import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "../quiz.js";
 import type { AppleMusicClient } from "../apple-music.js";
 import { isHomeConnected } from "../home-ws.js";
+import { isMuted } from "./mute.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
 import { awardCredits, resetDjMode } from "./dj-mode.js";
 import { getProvider, getActiveProviderType } from "./playback/provider-manager.js";
@@ -403,7 +404,7 @@ export async function createSession(
   }
 
   // Step 2: Verify which songs are actually playable
-  const muteAll = process.env.MUTE_ALL === "true";
+  const muteAll = isMuted();
   const isMusicKit = getActiveProviderType() === "musickit-web";
   const verifiedSongs: typeof allRawSongs = [];
   if (isMusicKit || muteAll) {

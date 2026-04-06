@@ -11,6 +11,7 @@
 
 import type { PlaybackProvider, PlayResult, NowPlayingInfo } from "./types.js";
 import { WebSocket } from "ws";
+import { isMuted } from "../mute.js";
 
 type SendToHostFn = (msg: any) => void;
 
@@ -37,7 +38,7 @@ export class MusicKitWebProvider implements PlaybackProvider {
   }
 
   isAvailable(): boolean {
-    return this.sendToHost !== null && this.authorized && process.env.MUTE_ALL !== "true";
+    return this.sendToHost !== null && this.authorized && !isMuted();
   }
 
   /** Handle response from host browser */

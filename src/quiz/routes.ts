@@ -9,6 +9,7 @@ import { Router, json } from "express";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary, createParty, listParties, endParty, getParty, getPartyByCode } from "./engine.js";
+import { isMuted, setMuted } from "./mute.js";
 import { getAllEvents, getEvent, createEvent as createStoredEvent, updateEvent, deleteEvent } from "./event-store.js";
 import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { createDeveloperToken } from "../token.js";
@@ -625,6 +626,16 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   // Active playback provider info
   router.get("/quiz/api/playback-provider", (_req, res) => {
     res.json({ provider: getActiveProviderType() });
+  });
+
+  // Runtime mute toggle (for E2E tests — no server restart needed)
+  router.post("/quiz/api/mute", (req, res) => {
+    const muted = req.body?.muted === true;
+    setMuted(muted);
+    res.json({ ok: true, muted });
+  });
+  router.get("/quiz/api/mute", (_req, res) => {
+    res.json({ muted: isMuted() });
   });
 
   // Set active playback provider (from Admin page)

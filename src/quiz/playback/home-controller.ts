@@ -7,12 +7,13 @@
 
 import type { PlaybackProvider, PlayResult, NowPlayingInfo } from "./types.js";
 import { sendHomeCommand, isHomeConnected } from "../../home-ws.js";
+import { isMuted } from "../mute.js";
 
 export class HomeControllerProvider implements PlaybackProvider {
   readonly name = "home-controller";
 
   isAvailable(): boolean {
-    return isHomeConnected() && process.env.MUTE_ALL !== "true";
+    return isHomeConnected() && !isMuted();
   }
 
   async playExact(name: string, artist: string, options?: {
