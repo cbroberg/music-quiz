@@ -85,7 +85,12 @@
         <div id="dj-credits-overview" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px"></div>
 
         <!-- Queue -->
-        <h3 style="font-size:16px;font-weight:700;margin-bottom:10px;color:var(--muted)">Up Next</h3>
+        <div class="tab-header" style="margin-bottom:10px">
+          <div>
+            <h3 style="font-size:16px;font-weight:700;color:var(--muted);margin:0">Up Next</h3>
+            <p class="subtitle" style="margin:2px 0 0"><span id="dj-queue-count">0</span> tracks</p>
+          </div>
+        </div>
         <div id="dj-queue-list"></div>
         <div id="dj-queue-empty" style="display:none;text-align:center;padding:40px 20px;color:var(--dimmer)">
           <p>Queue is empty — players can add songs with their song credits</p>
@@ -244,11 +249,19 @@
         <div class="stats-grid" id="stats-grid">
           <div class="stat-card">
             <div class="stat-value" id="stat-trivia">—</div>
-            <div class="stat-label">Trivia Questions</div>
+            <div class="stat-label">Global Trivia</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="stat-gossip">—</div>
-            <div class="stat-label">Gossip Questions</div>
+            <div class="stat-label">Gossip</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-dansk">—</div>
+            <div class="stat-label">🇩🇰 Dansk Trivia</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-soundtrack">—</div>
+            <div class="stat-label">🎬 Soundtrack Trivia</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="stat-total-q">—</div>
@@ -745,7 +758,18 @@
           '</div>' +
           '<button class="pl-track-play" onclick="event.stopPropagation(); Player.play(\'' + esc(t.id) + '\', \'' + esc(t.name) + '\', \'' + esc(t.artistName) + '\')">▶</button>' +
           favBtnHtml(t) +
+          '<button class="song-row-more" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:#fff;border-radius:8px;width:28px;height:28px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:1px" title="More">···</button>' +
           '<button class="pl-track-remove" onclick="event.stopPropagation(); removeFromPlaylist(\'' + pl.id + '\', \'' + esc(t.id) + '\')">✕</button>';
+        // Add ··· menu handler
+        const moreBtn = row.querySelector('.song-row-more');
+        if (moreBtn) {
+          moreBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const track = { id: t.id, name: t.name, artistName: t.artistName, albumName: t.albumName || '', artworkUrl: t.artworkUrl || '', releaseYear: t.releaseYear || '' };
+            if (typeof showSongContextMenu === 'function') showSongContextMenu(e, track);
+            else if (typeof showSongContextMenuAt === 'function') showSongContextMenuAt(e.clientX, e.clientY, track);
+          });
+        }
         container.appendChild(row);
       }
     }
@@ -1389,6 +1413,8 @@
       const queueEl = document.getElementById('dj-queue-list');
       const emptyEl = document.getElementById('dj-queue-empty');
       const upcoming = (msg.queue || []).filter(q => !q.played && (!current || q.id !== current.id));
+      const countEl = document.getElementById('dj-queue-count');
+      if (countEl) countEl.textContent = upcoming.length;
       if (upcoming.length === 0) {
         queueEl.innerHTML = '';
         emptyEl.style.display = '';
@@ -1629,6 +1655,8 @@
         const stats = await statsRes.json();
         document.getElementById('stat-trivia').textContent = stats.triviaBank;
         document.getElementById('stat-gossip').textContent = stats.gossipBank;
+        document.getElementById('stat-dansk').textContent = stats.danskTrivia || 0;
+        document.getElementById('stat-soundtrack').textContent = stats.soundtrackTrivia || 0;
         document.getElementById('stat-total-q').textContent = stats.totalQuestions;
         document.getElementById('stat-events').textContent = stats.events.total;
         document.getElementById('stat-songs').textContent = stats.songsPlayed;

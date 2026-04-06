@@ -187,10 +187,29 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
     const gossipBank = await getGossipBankSize();
     const playlists = await getAllPlaylists();
     const sessions = listActiveSessions();
+
+    // Count specialized trivia banks
+    let danskTrivia = 0;
+    let soundtrackTrivia = 0;
+    try {
+      const { readFileSync } = await import("node:fs");
+      const { join } = await import("node:path");
+      try {
+        const dk = JSON.parse(readFileSync(join(process.cwd(), "data", "quiz-trivia-dk.json"), "utf-8"));
+        danskTrivia = Array.isArray(dk) ? dk.length : 0;
+      } catch {}
+      try {
+        const st = JSON.parse(readFileSync(join(process.cwd(), "data", "quiz-trivia-soundtrack.json"), "utf-8"));
+        soundtrackTrivia = Array.isArray(st) ? st.length : 0;
+      } catch {}
+    } catch {}
+
     res.json({
       triviaBank,
       gossipBank,
-      totalQuestions: triviaBank + gossipBank,
+      danskTrivia,
+      soundtrackTrivia,
+      totalQuestions: triviaBank + gossipBank + danskTrivia + soundtrackTrivia,
       events: {
         total: events.length,
         active: events.filter(e => e.status === "active").length,

@@ -13,10 +13,17 @@ import { readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 
 const BASE = 'http://localhost:3000';
-const QUESTIONS = 3;
-const TIMER = 5;
 const HEADLESS = process.argv.includes('--headless');
 const MUTE = process.argv.includes('--mute');
+const getArg = (name, def) => {
+  const arg = process.argv.find(a => a.startsWith(`--${name}=`));
+  return arg ? arg.split('=')[1] : def;
+};
+const QUESTIONS = parseInt(getArg('questions', '3'));
+const TIMER = parseInt(getArg('timer', '5'));
+const SOURCE = getArg('source', 'mixed');
+const GENRE = getArg('genre', '');
+const LABEL = getArg('label', SOURCE);
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function getServerLog() { try { return readFileSync('/tmp/quiz-server.log', 'utf-8'); } catch { return ''; } }
@@ -91,12 +98,18 @@ async function main() {
     check(overlayVisible, 'Quiz overlay visible');
 
     // Configure
-    await adminPage.evaluate(({ q, t }) => {
+    await adminPage.evaluate(({ q, t, s, g }) => {
       document.getElementById('qz-cfg-count').value = q;
       document.getElementById('qz-cfg-timer').value = t;
       const src = document.getElementById('qz-cfg-source');
-      if (src) src.value = 'mixed';
-    }, { q: String(QUESTIONS), t: String(TIMER) });
+      if (src) src.value = s;
+      if (g) {
+        const gen = document.getElementById('qz-cfg-genre');
+        if (gen) gen.value = g;
+        const gc = document.getElementById('qz-genre-container');
+        if (gc) gc.style.display = '';
+      }
+    }, { q: String(QUESTIONS), t: String(TIMER), s: SOURCE, g: GENRE });
     await sleep(300);
 
     await adminPage.click('#qz-btn-create');
@@ -155,7 +168,12 @@ async function main() {
       for (let i = 0; i < 3; i++) {
         try {
           const btns = await playerPages[i].$$('.mc-btn:not(:disabled)');
-          if (btns.length > 0) { await btns[Math.floor(Math.random() * btns.length)].click(); ans++; }
+          if (btns.length > 0) {
+            // Player 0 = Christian always picks first option (smart guess)
+            // Players 1-2 = random
+            const idx = i === 0 ? 0 : Math.floor(Math.random() * btns.length);
+            await btns[idx].click(); ans++;
+          }
           else { await playerPages[i].fill('#ft-input', `a${q}`); await playerPages[i].click('#ft-submit-btn'); ans++; }
         } catch {}
         await sleep(100);
@@ -261,8 +279,11 @@ async function main() {
     if (results.failed.length) { console.log(`\nFAILED: ${results.failed.length}`);
       for (const f of results.failed) console.log(`  ❌ ${f}`); }
 
-    console.log('\n🎵 Browsers staying open — Ctrl+C to close\n');
-    await new Promise(() => {});
+    // Keep open in visible mode, close immediately in headless
+    if (!HEADLESS) {
+      console.log('\n🎵 Browsers staying open — Ctrl+C to close\n');
+      await new Promise(() => {});
+    }
 
   } finally {
     for (const b of browsers) { try { await b.close(); } catch {} }

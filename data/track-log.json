@@ -47,5 +47,1379 @@
     "artist": "Queen",
     "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e8/f1/51/e8f151ae-0f87-a2fd-b981-807a01b24504/18UMGIM55031.rgb.jpg/600x600bb.jpg",
     "source": "hc-poll"
+  },
+  {
+    "ts": "2026-04-06T13:11:24.478Z",
+    "track": "Mork n Mindy (feat. Billy Nomates)",
+    "artist": "Sleaford Mods",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/5b/60/78/5b60788d-f0f7-1704-186d-38ed9f00d1aa/191402019759.png/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:11:39.274Z",
+    "track": "Drive",
+    "artist": "Incubus",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:11:53.772Z",
+    "track": "Lover, You Should've Come Over",
+    "artist": "Jeff Buckley",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/26/d6/e3/26d6e339-a7a9-d61e-1b5f-0852a5515a55/886445517880.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:12:08.286Z",
+    "track": "Hurt",
+    "artist": "Johnny Cash",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:12:22.787Z",
+    "track": "I Hate Everything About You",
+    "artist": "Three Days Grace",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2e/4d/39/2e4d3996-6093-8f3a-c4e5-274825bdae5e/888880420152.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:12:37.350Z",
+    "track": "It Wasn't Me (feat. Ricardo Ducent)",
+    "artist": "Shaggy",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:12:51.849Z",
+    "track": "Never Gonna Let You Go",
+    "artist": "Sergio Mendes",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/02/b7/07/02b70752-e490-aee6-0caa-6789529646f7/00602527035406.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:13:06.398Z",
+    "track": "Turiya and Ramakrishna",
+    "artist": "Alice Coltrane",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:13:20.892Z",
+    "track": "Lonely Boy",
+    "artist": "The Black Keys",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/55/39/ca/5539caf8-333e-5ad2-06ca-eaf5d84cd264/mzm.nmxwulyo.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:13:35.433Z",
+    "track": "Alive",
+    "artist": "Pearl Jam",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:13:49.928Z",
+    "track": "Say My Name",
+    "artist": "Destiny's Child",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/f0/31/d6/f031d618-abab-bd94-64c3-dafd1acc2f59/mzi.rmjsqgje.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:14:04.427Z",
+    "track": "goosebumps",
+    "artist": "Travis Scott",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:14:18.930Z",
+    "track": "Killing In the Name",
+    "artist": "Rage Against the Machine",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8e/08/bf/8e08bf66-8690-1ba7-affb-fe173c08623d/074645295923.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:14:33.459Z",
+    "track": "Boys Don't Cry",
+    "artist": "The Cure",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:14:47.958Z",
+    "track": "Shame",
+    "artist": "System Of A Down & Wu-Tang Clan",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/8e/78/39/mzi.tfdksjfg.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:15:02.491Z",
+    "track": "This Hell",
+    "artist": "Rina Sawayama",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/73/4f/d9/734fd9f3-9274-f54d-1044-59e2027b68c5/196922042713_Cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:15:17.017Z",
+    "track": "You're Still the One",
+    "artist": "Shania Twain",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/1e/2f/98/1e2f98c2-3fa6-9601-9825-6a6d19a99cf3/06UMGIM07033.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:15:31.580Z",
+    "track": "That's Amore",
+    "artist": "Dean Martin",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e3/be/4e/e3be4e3c-f351-f1ff-66a8-5f322b1660cd/cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:15:46.125Z",
+    "track": "Ingen Beviser (feat. Suus)",
+    "artist": "Barber",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/54/91/54/54915426-8f7b-62ec-1806-1c1850df4753/artwork.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:16:00.687Z",
+    "track": "Mediterranean Sundance",
+    "artist": "Al Di Meola",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/04/2b/fd/042bfd1b-fef6-5cf0-370b-e8df67af73e0/mzi.bvwzkmjh.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:17:26.386Z",
+    "track": "Natten",
+    "artist": "Bremer/McCoy",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/44/4f/1c/444f1c00-a06d-34c6-749d-feacb7b73fd4/886449502462.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:17:41.174Z",
+    "track": "Beautiful Sunrise",
+    "artist": "United Heads",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/45/3b/53/453b5399-2df8-cf44-4017-8ecf113f5f95/5063341089276_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:17:55.698Z",
+    "track": "Visa Från Utanmyra",
+    "artist": "Jan Johansson",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:18:10.169Z",
+    "track": "Corcovado (Quiet Nights of Quiet Stars)",
+    "artist": "Stan Getz, Astrud Gilberto, Antônio Carlos Jobim & João Gilberto",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/14/c5/97/14c597a3-22c8-d2a9-dc49-0f8b1496f776/14UMGIM16822.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:18:24.645Z",
+    "track": "Hit the Road Jack",
+    "artist": "Ray Charles",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/e3/be/4e/e3be4e3c-f351-f1ff-66a8-5f322b1660cd/cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:18:39.140Z",
+    "track": "La Mélancolie (feat. Yoni Zelnik & Donald Kontomanou) [Bonus Track]",
+    "artist": "Yonathan Avishai",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:18:53.646Z",
+    "track": "What a Wonderful World",
+    "artist": "Louis Armstrong",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/29/46/80/2946808f-dcfd-6ee1-9d77-b92907cdc26e/06UMGIM07953.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:19:08.157Z",
+    "track": "Hang On to Your Love",
+    "artist": "Sade",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5f/ad/2a/5fad2aca-d998-701d-7b27-c074339d5fd0/886972262628.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:19:22.727Z",
+    "track": "Take Five",
+    "artist": "Dave Brubeck",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:19:37.239Z",
+    "track": "Rubalcaba",
+    "artist": "Jasper Somsen, Carsten Lindholm & Jan Gunnar Hoff",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f6/5e/35/f65e358d-7d1f-693f-eda1-c1f0f077fc28/199806577790.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:19:51.820Z",
+    "track": "My Foolish Heart",
+    "artist": "Biréli Lagrène",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/f0/e3/5e/f0e35e33-4c7b-4015-daf6-4352fa48fb9d/cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:20:06.366Z",
+    "track": "Feeling Good",
+    "artist": "Nina Simone",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:20:20.857Z",
+    "track": "Henry",
+    "artist": "Mara A",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/68/ee/83/68ee83fc-cb60-e853-4351-92985116b19a/5063440759520_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:20:35.417Z",
+    "track": "With You",
+    "artist": "Yoep Knipping",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/68/7f/69/687f69f8-df65-7cfc-de57-583bd94d48b1/5063341718527_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:20:49.913Z",
+    "track": "They Can't Take That Away from Me",
+    "artist": "Ella Fitzgerald & Louis Armstrong",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:21:04.403Z",
+    "track": "Desafinado (feat. Antônio Carlos Jobim) [Mono]",
+    "artist": "Stan Getz & João Gilberto",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/14/c5/97/14c597a3-22c8-d2a9-dc49-0f8b1496f776/14UMGIM16822.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:21:18.909Z",
+    "track": "Theme from New York, New York",
+    "artist": "Frank Sinatra",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/37/1a/3a371a7e-33fe-85db-0616-0c57ef26fb42/13UAEIM06265.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:21:33.475Z",
+    "track": "From The Start",
+    "artist": "Laufey",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:21:47.964Z",
+    "track": "Jane",
+    "artist": "Danis X",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/a3/89/9d/a3899d69-fdcc-8e98-fabc-3c5daaf0195d/5063440183486_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:23:21.433Z",
+    "track": "Grease",
+    "artist": "Frankie Valli",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a0/b6/98/a0b6983b-3e5b-0a42-3d04-308425815922/s06.tapekocb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:23:36.247Z",
+    "track": "Can't Fight the Moonlight",
+    "artist": "LeAnn Rimes",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m06/d13/h10/s05.fvdzfulz.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:23:50.768Z",
+    "track": "CAN'T STOP THE FEELING!",
+    "artist": "Justin Timberlake",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/52/d0/02/52d002d7-1f7f-8d91-4791-ed04c460ec93/886445894653.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:24:05.282Z",
+    "track": "I See Fire",
+    "artist": "Ed Sheeran",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:24:19.783Z",
+    "track": "You're the One That I Want",
+    "artist": "John Travolta & Olivia Newton-John",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/25/d5/dc/25d5dc67-bf45-6e42-510e-bcf6bcee1cda/00602547377951.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:24:34.308Z",
+    "track": "The Climb",
+    "artist": "Miley Cyrus",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/b7/f9/f2b7f9c3-f0ea-0109-af22-91d1bf635fec/11DMGIM03002.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:24:48.846Z",
+    "track": "All The Stars",
+    "artist": "Kendrick Lamar, SZA",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/0f/7c/f9/0f7cf9a6-651f-53ae-e374-6be14630bfae/18UMGIM00001.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:25:03.410Z",
+    "track": "Always Remember Us This Way",
+    "artist": "Lady Gaga",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:25:17.914Z",
+    "track": "Maniac",
+    "artist": "Michael Sembello",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/40/97/5f/40975fe8-20e6-e617-7e1c-c8dc1dbc753a/06UMGIM29411.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:25:32.466Z",
+    "track": "(I've Had) The Time of My Life",
+    "artist": "Bill Medley & Jennifer Warnes",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8c/f2/1f/8cf21f62-eed1-64c0-e710-df52dc3556c3/078635640823.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:25:46.948Z",
+    "track": "Skal Vi Ikke Lave en Snemand?",
+    "artist": "Kristine Yde Eriksen, Natasha Jessen & Marie Dietz",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/87/f8/9a/87f89a07-c9b1-20cf-4ffc-6f1c35ed1e5b/13DMGIM04594.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:26:01.532Z",
+    "track": "Rosyln",
+    "artist": "Bon Iver & St. Vincent",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:26:16.038Z",
+    "track": "Zoo (From \"Zootropolis 2\")",
+    "artist": "Disney & Shakira",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/12/e1/49/12e14922-a30b-d293-49ee-8fb295546940/25UM1IM53469.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:26:30.597Z",
+    "track": "It Will Rain",
+    "artist": "Bruno Mars",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features/69/89/98/dj.ntfqqrnx.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:26:45.185Z",
+    "track": "Young and Beautiful",
+    "artist": "Lana Del Rey",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/da/0d/0d/da0d0d4f-f947-d34d-d069-61f6b4824e3f/13UMGIM46510.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:26:59.733Z",
+    "track": "I Don't Want to Miss a Thing",
+    "artist": "Aerosmith",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:27:14.232Z",
+    "track": "All I Want",
+    "artist": "Olivia Rodrigo",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/17/df/2f/17df2ffe-56ff-a168-9f9b-82a045bf12c3/19UMGIM96294.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:29:47.744Z",
+    "track": "Kogeplade",
+    "artist": "Katinka",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/35/d1/14/35d11424-19c3-7d7c-ec52-49d6b910c91c/5021732782557.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:30:02.540Z",
+    "track": "Hele Vejen (feat. Mumle)",
+    "artist": "Omar",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/1d/c7/931dc76e-14bc-fa15-a117-3edaf4a80aa9/5026854382036.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:30:17.109Z",
+    "track": "En drøm om et menneske",
+    "artist": "APHACA",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/83/4d/c8834dfd-1a8d-6f1d-113a-1256c4c90540/26UMGIM01573.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:30:31.653Z",
+    "track": "Stateside (with Zara Larsson)",
+    "artist": "PinkPantheress",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:30:46.136Z",
+    "track": "ALL THE LOVE",
+    "artist": "Kanye West & Andre Troutman",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4b/38/d1/4b38d146-381d-ace2-73df-24074576e62b/656465138828_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:31:00.599Z",
+    "track": "WHERE IS MY HUSBAND!",
+    "artist": "RAYE",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/10/8a/69108a18-55ec-d774-a653-90b2242733db/199538765458.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:31:15.189Z",
+    "track": "Under Din Sne",
+    "artist": "The Minds Of 99",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/1b/68/df/1b68dfb8-51ce-73b1-9035-90b7354754ce/886449674855.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:31:29.768Z",
+    "track": "Lush Life",
+    "artist": "Zara Larsson",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:31:44.267Z",
+    "track": "FATHER",
+    "artist": "Kanye West & Travis Scott",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/4b/38/d1/4b38d146-381d-ace2-73df-24074576e62b/656465138828_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:31:58.783Z",
+    "track": "STOR MAND (feat. andreas odbjerg)",
+    "artist": "Tobias Rahim",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/3c/80/f23c8089-3c43-6de6-8f47-405c198000ae/886449415274.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:32:13.332Z",
+    "track": "Babydoll",
+    "artist": "Dominic Fike",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2d/37/18/2d3718e9-8620-b603-d3cc-f34ce817070d/886447290170.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:32:27.898Z",
+    "track": "SWIM",
+    "artist": "BTS",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:32:42.392Z",
+    "track": "FEVER DREAM",
+    "artist": "Alex Warren",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/be/f7/65/bef765dc-cf56-c979-976e-2e133040793f/075679588937.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:32:56.956Z",
+    "track": "Du ligner din mor (feat. Lukas Graham)",
+    "artist": "Benjamin Hav",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e4/a2/0e/e4a20e73-51d9-aa26-beae-645c36cf34b7/196872697094.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:33:11.429Z",
+    "track": "So Easy (To Fall In Love)",
+    "artist": "Olivia Dean",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/08/e2/21/08e22164-7c0b-1522-818f-e0e74f62dc49/25UMGIM69703.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:33:25.969Z",
+    "track": "American Girls",
+    "artist": "Harry Styles",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:33:40.455Z",
+    "track": "Blodigt",
+    "artist": "Anton Westerlin & Annika",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1b/df/ca/1bdfca81-fe23-160e-d744-1333f57cbbaa/25UMGIM01277.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:36:16.490Z",
+    "track": "WILDFLOWER",
+    "artist": "Billie Eilish",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/92/9f/69/929f69f1-9977-3a44-d674-11f70c852d1b/24UMGIM36186.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:36:31.285Z",
+    "track": "As Long As You Love Me (Acoustic Version)",
+    "artist": "Justin Bieber",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/48/49/da/4849da49-ad73-cd10-50bf-c1b0684df128/12UMGIM66501.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:36:45.773Z",
+    "track": "Arcade",
+    "artist": "Duncan Laurence",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:37:00.283Z",
+    "track": "Hurtless",
+    "artist": "Dean Lewis",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8e/5c/81/8e5c8143-5488-ad17-d149-99cca7c14513/22UMGIM10887.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:37:14.856Z",
+    "track": "Elastic Heart (Piano Version)",
+    "artist": "Sia",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ea/43/4c/ea434c88-8479-304c-6f89-8cd93a5b9b61/886445231311.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:37:29.331Z",
+    "track": "I Love You, I'm Sorry",
+    "artist": "Gracie Abrams",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:37:43.847Z",
+    "track": "Eastside (Acoustic)",
+    "artist": "benny blanco, Halsey & Khalid",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/63/70/5a/63705a33-79bc-b8b3-d50f-341dee3dfa32/00602567961376.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:37:58.317Z",
+    "track": "Flowers (Demo)",
+    "artist": "Miley Cyrus",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c4/40/d8/c440d88a-2bcd-5d10-e814-e482271134f4/196871387361.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:38:12.872Z",
+    "track": "July",
+    "artist": "Noah Cyrus",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:38:27.362Z",
+    "track": "New Light",
+    "artist": "John Mayer",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/04/57/40/04574013-fc05-e888-3820-1b2637ef33f8/886447254516.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:38:41.937Z",
+    "track": "Heal",
+    "artist": "Tom Odell",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/4c/5a/c7/4c5ac7cf-28b6-1281-9477-906e7ba12304/886443847835.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:38:56.472Z",
+    "track": "SNAP (Acoustic)",
+    "artist": "Rosa Linn",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:39:10.975Z",
+    "track": "Christmas Lights",
+    "artist": "Coldplay",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/51/a3/c6/51a3c6b0-e243-7330-b27b-67bd625ff4ec/5099907194658.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:39:25.482Z",
+    "track": "Nobody Gets Me",
+    "artist": "SZA",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/3b/a9/bd3ba9fb-9609-144f-bcfe-ead67b5f6ab3/196589564931.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:39:40.014Z",
+    "track": "Dandelions",
+    "artist": "Ruth B.",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:39:54.519Z",
+    "track": "Ghost",
+    "artist": "Christopher",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/90/4e/4c/904e4cc7-9b07-35b3-98f4-223c71692a52/190295285760.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:40:09.085Z",
+    "track": "You Are the Reason",
+    "artist": "Calum Scott",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3e/9a/65/3e9a65de-7f92-7b5d-76af-23c5482e36b0/18UMGIM69083.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:40:23.614Z",
+    "track": "exile (feat. Bon Iver)",
+    "artist": "Taylor Swift",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T13:40:38.124Z",
+    "track": "Please Please Please",
+    "artist": "Sabrina Carpenter",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c9/a3/e9/c9a3e987-3952-a6ac-7975-680f2033e660/25UMGIM10586.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:21:29.143Z",
+    "track": "True",
+    "artist": "Spandau Ballet",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/25/3b/b1/253bb1a0-2ce8-a9ef-c5f9-771c45426d1f/825646416097.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:21:43.947Z",
+    "track": "New York",
+    "artist": "St. Vincent",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/c8/80/12/c88012a6-36f7-e668-8ee2-d2dc8b839125/00888072049833.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:21:58.477Z",
+    "track": "Never Fight a Man with a Perm",
+    "artist": "IDLES",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:22:12.949Z",
+    "track": "Truth",
+    "artist": "Kamasi Washington",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ae/dd/05/aedd058e-cc07-3c40-6d22-74f2fbec7073/889030017161.png/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:22:27.485Z",
+    "track": "Good Vibrations",
+    "artist": "The Beach Boys",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/62/6c/94626c44-4657-739e-e639-39ae55e6d2cc/13UABIM03827.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:22:42.133Z",
+    "track": "Cowboys from Hell",
+    "artist": "Pantera",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:22:56.712Z",
+    "track": "Marquee Moon",
+    "artist": "Television",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/1b/6a/c1/1b6ac100-8d0e-ec9d-4639-88b11ed2cdad/603497886029.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:23:11.495Z",
+    "track": "Crash Into Me",
+    "artist": "Dave Matthews Band",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/76/a4/19/76a41977-fa19-9291-f8aa-32dc2e3d6529/dj.hegjktkm.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:23:26.217Z",
+    "track": "I Hope That I Don't Fall In Love with You",
+    "artist": "Tom Waits",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:23:40.700Z",
+    "track": "Pretty Pimpin",
+    "artist": "Kurt Vile",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/53/78/fd/5378fd03-8b65-9d99-282d-1daeabb8afc2/744861103363.png/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:23:55.205Z",
+    "track": "The Payback",
+    "artist": "James Brown",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:24:09.674Z",
+    "track": "Sabine Largam'",
+    "artist": "Cesária Evora",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:24:24.159Z",
+    "track": "Walk It Talk It (feat. Drake)",
+    "artist": "Migos",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d2/a6/c6/d2a6c6b5-ff40-52ad-5dac-67dad5d9ddd0/17UM1IM64707.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:24:38.711Z",
+    "track": "I Had Some Help (feat. Morgan Wallen)",
+    "artist": "Post Malone",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/e1/b7/09/e1b7098f-d6e1-2b18-fd6f-8390110908eb/24UMGIM50612.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:24:53.257Z",
+    "track": "Today",
+    "artist": "The Smashing Pumpkins",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:25:07.790Z",
+    "track": "Blinded By the Lights",
+    "artist": "The Streets",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/67/3a/66/673a66cf-4aea-74b9-b98d-db3126315325/s06.yhibaurj.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:25:22.330Z",
+    "track": "Drive",
+    "artist": "Incubus",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/dd/a4/c1/dda4c166-da07-ba22-60e4-499b477c6e77/mzi.ffqrqnqb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:25:36.838Z",
+    "track": "Yeah! (feat. Lil Jon & Ludacris)",
+    "artist": "USHER",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:25:51.324Z",
+    "track": "See You Again (feat. Kali Uchis)",
+    "artist": "Tyler, The Creator",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/fd/fd/8c/fdfd8c26-b8f9-4768-41d3-b24773250c65/886446605814.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:27:23.526Z",
+    "track": "Så længe jeg er sexy.",
+    "artist": "Annika",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ee/74/f7/ee74f742-ec5a-9d38-ce74-8c9135c3d94f/24UMGIM66018.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:27:38.298Z",
+    "track": "WHERE IS MY HUSBAND!",
+    "artist": "RAYE",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/10/8a/69108a18-55ec-d774-a653-90b2242733db/199538765458.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:27:52.867Z",
+    "track": "Alle Skuffer Over Tid",
+    "artist": "The Minds Of 99",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:28:07.380Z",
+    "track": "En drøm om et menneske",
+    "artist": "APHACA",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/c8/83/4d/c8834dfd-1a8d-6f1d-113a-1256c4c90540/26UMGIM01573.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:28:21.914Z",
+    "track": "Skyklapper",
+    "artist": "Rosa",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/03/24/b4/0324b4c4-f7ee-9a1e-66cd-781057424847/cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:28:36.460Z",
+    "track": "STOR MAND (feat. andreas odbjerg)",
+    "artist": "Tobias Rahim",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:28:50.929Z",
+    "track": "So Easy (To Fall In Love)",
+    "artist": "Olivia Dean",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/08/e2/21/08e22164-7c0b-1522-818f-e0e74f62dc49/25UMGIM69703.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:29:05.492Z",
+    "track": "Blå Himmel (feat. Hans Philip)",
+    "artist": "Kesi",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/ed/7b/fe/ed7bfebb-4e97-e55b-40e4-0e7939710859/886448590347.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:29:20.030Z",
+    "track": "Du ik værd at græde for",
+    "artist": "Annika & Sira Jovina",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:29:34.528Z",
+    "track": "Golden",
+    "artist": "HUNTR/X, EJAE, AUDREY NUNA, REI AMI & KPop Demon Hunters Cast",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e1/15/42/e1154273-8ecd-5702-e6e6-597f28001681/25UMGIM82363.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:29:49.074Z",
+    "track": "Hele Vejen (feat. Mumle)",
+    "artist": "Omar",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/93/1d/c7/931dc76e-14bc-fa15-a117-3edaf4a80aa9/5026854382036.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:30:03.674Z",
+    "track": "Lush Life",
+    "artist": "Zara Larsson",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:30:18.159Z",
+    "track": "FEVER DREAM",
+    "artist": "Alex Warren",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/be/f7/65/bef765dc-cf56-c979-976e-2e133040793f/075679588937.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:30:32.729Z",
+    "track": "Opalite",
+    "artist": "Taylor Swift",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/58/8f/a9/588fa9a2-7cc5-f02c-9ce6-c986e0dc1c15/25UM1IM19577.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:30:47.261Z",
+    "track": "Stateside (with Zara Larsson)",
+    "artist": "PinkPantheress",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:31:01.764Z",
+    "track": "Bliv her lidt endnu",
+    "artist": "Annika & JOSVA",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/88/40/8c/88408c03-3dba-2a0c-18fd-9dba33c37129/25UMGIM60872.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:31:16.254Z",
+    "track": "Babydoll",
+    "artist": "Dominic Fike",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2d/37/18/2d3718e9-8620-b603-d3cc-f34ce817070d/886447290170.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:31:30.828Z",
+    "track": "Raindance",
+    "artist": "Dave & Tems",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/99/49/24/9949241c-e52c-3018-eae8-c686013a7474/25UM1IM68216.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:33:30.179Z",
+    "track": "Doralice (feat. Antônio Carlos Jobim) [Mono]",
+    "artist": "Stan Getz & João Gilberto",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/14/c5/97/14c597a3-22c8-d2a9-dc49-0f8b1496f776/14UMGIM16822.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:33:45.033Z",
+    "track": "Move On Up (Single Edit)",
+    "artist": "Curtis Mayfield",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/89/e0/c3/89e0c34e-0362-9f16-5e31-57ccea6716f5/603497880720.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:33:59.627Z",
+    "track": "Theme from New York, New York",
+    "artist": "Frank Sinatra",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/37/1a/3a371a7e-33fe-85db-0616-0c57ef26fb42/13UAEIM06265.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:34:14.184Z",
+    "track": "Feeling Good",
+    "artist": "Nina Simone",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/18/db/05/18db0507-f276-d93d-a4a7-e856a3f1590a/13UAAIM08283.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:34:28.732Z",
+    "track": "Sky Is Down For You",
+    "artist": "Yoep Knipping",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:34:43.287Z",
+    "track": "Postcard from June",
+    "artist": "Magnus Ludvigsson",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/2e/ca/42/2eca42b2-84be-3c94-f024-5aa6b02aab2d/7330178091610.png/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:34:57.867Z",
+    "track": "Dense Phantasy",
+    "artist": "Aaron Parks",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/a5/5c/f9a55c9a-e2a1-c00f-e02e-e80ea7bf3fd0/25UM1IM17854.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:35:12.466Z",
+    "track": "Corcovado (Quiet Nights of Quiet Stars)",
+    "artist": "Stan Getz, Astrud Gilberto, Antônio Carlos Jobim & João Gilberto",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/14/c5/97/14c597a3-22c8-d2a9-dc49-0f8b1496f776/14UMGIM16822.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:35:27.159Z",
+    "track": "They Can't Take That Away from Me",
+    "artist": "Ella Fitzgerald & Louis Armstrong",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/ac/4b/53/ac4b5314-43aa-666b-43b2-845117e9c402/06UMGIM08714.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:35:41.664Z",
+    "track": "Hit the Road Jack",
+    "artist": "Ray Charles",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:35:56.226Z",
+    "track": "Take Five",
+    "artist": "Dave Brubeck",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c3/32/c0/c332c05b-d589-c64f-7ba4-c3633fe75e3f/mzi.uusqmfyq.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:36:10.730Z",
+    "track": "Moon River (For Shai)",
+    "artist": "Oded Tzur",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a6/8b/44/a68b4468-0ccf-a255-8422-4e0aa36b88a6/199891258543_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:36:25.408Z",
+    "track": "Easy for You",
+    "artist": "John Scofield & Dave Holland",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/64/e0/21/64e021c1-05be-c976-6c47-ea303e389c53/25UMGIM77431.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:36:39.889Z",
+    "track": "Hang On to Your Love",
+    "artist": "Sade",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/5f/ad/2a/5fad2aca-d998-701d-7b27-c074339d5fd0/886972262628.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:36:54.441Z",
+    "track": "Big Boy",
+    "artist": "Jan Kalaman",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:37:08.952Z",
+    "track": "Shard II",
+    "artist": "Jason Moran, BlankFor.ms & Marcus Gilmore",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e3/47/14/e347140c-f971-e2e4-fd4c-252e90c83a0a/5391538080639_Cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:40:06.530Z",
+    "track": "Life Is a Highway",
+    "artist": "Rascal Flatts",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/66/2a/4b/662a4b5e-bc4f-94bf-bc9b-e10fbfedbabc/06PNDIM00970.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:40:21.346Z",
+    "track": "Popular (feat. Playboi Carti) [Music from the HBO Original Series The Idol]",
+    "artist": "The Weeknd & Madonna",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/b8/5f/1a/b85f1add-8ef0-9d13-42f4-3303710fa238/23UMGIM66788.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:40:35.909Z",
+    "track": "Can't Fight the Moonlight",
+    "artist": "LeAnn Rimes",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m06/d13/h10/s05.fvdzfulz.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:40:50.408Z",
+    "track": "Try Everything",
+    "artist": "Shakira",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:41:04.987Z",
+    "track": "Let It Go",
+    "artist": "Idina Menzel",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/2a/6d/17/2a6d1722-be03-dabe-d85c-d4557e787de5/19UMGIM74394.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:41:19.541Z",
+    "track": "Hopelessly Devoted to You",
+    "artist": "Olivia Newton-John",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f4/f3/40/f4f34059-0e23-feac-84dd-79e3bad09d80/743218648724.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:41:34.107Z",
+    "track": "Never Enough",
+    "artist": "Loren Allred",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/30/f5/10/30f510db-524a-650b-7e2c-939825b73894/artwork.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:41:48.675Z",
+    "track": "You're the One That I Want",
+    "artist": "John Travolta & Olivia Newton-John",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:42:03.199Z",
+    "track": "A Thousand Years",
+    "artist": "Christina Perri",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/f5/2e/83/f52e8357-9cf4-e644-c365-3c21839f85ac/mzi.staekbjw.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:42:17.757Z",
+    "track": "The Climb",
+    "artist": "Miley Cyrus",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f2/b7/f9/f2b7f9c3-f0ea-0109-af22-91d1bf635fec/11DMGIM03002.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:42:32.317Z",
+    "track": "Better When I'm Dancin'",
+    "artist": "Meghan Trainor",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/43/bd/65/43bd65f2-8e84-c7cf-d5bf-97f3b1e195c5/886445510218.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:42:46.921Z",
+    "track": "I See Fire",
+    "artist": "Ed Sheeran",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:43:01.428Z",
+    "track": "You'll Always Find Your Way Back Home",
+    "artist": "Hannah Montana",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1c/42/5e/1c425e0d-fe53-a076-681a-717decf59b27/26UMGIM40620.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:43:15.935Z",
+    "track": "Skal Vi Ikke Lave en Snemand?",
+    "artist": "Kristine Yde Eriksen, Natasha Jessen & Marie Dietz",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/87/f8/9a/87f89a07-c9b1-20cf-4ffc-6f1c35ed1e5b/13DMGIM04594.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:43:30.542Z",
+    "track": "Pesto (Ternet Ninja)",
+    "artist": "Anders Matthesen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/0a/6b/bf/0a6bbf88-b113-4744-ed65-e6cab91274cd/5054197133466.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:43:45.106Z",
+    "track": "Can’t Catch Me Now (from The Hunger Games: The Ballad of Songbirds & Snakes)",
+    "artist": "Olivia Rodrigo",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:43:59.593Z",
+    "track": "Young and Beautiful",
+    "artist": "Lana Del Rey",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/da/0d/0d/da0d0d4f-f947-d34d-d069-61f6b4824e3f/13UMGIM46510.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:46:32.991Z",
+    "track": "Blind Igen",
+    "artist": "Karl William",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/bf/99/7f/bf997fcf-a698-187d-aec9-0b16cd8c7184/886445941340.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:46:47.791Z",
+    "track": "Sort Tulipan",
+    "artist": "Folkeklubben",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/c9/0c/3c/c90c3cd9-0569-25b2-5664-bd0c69a8afa3/00602577007156.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:47:02.373Z",
+    "track": "Regndans",
+    "artist": "Danseorkestret",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/7c/46/ae/7c46aef6-5a96-54ff-5e4c-5998388c688a/00602547028532.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:47:16.929Z",
+    "track": "Danmark",
+    "artist": "Shu-bi-dua",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:47:31.406Z",
+    "track": "Faxe Kondi",
+    "artist": "Klumben & Raske Penge",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/3b/a6/9f/3ba69f8c-b0ac-f310-d9d5-011c5fadc429/886447831090.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:47:45.945Z",
+    "track": "Kærlighedens Farer",
+    "artist": "Anne Linnet",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/70/52/a9/mzi.hfbaqhwp.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:48:00.471Z",
+    "track": "Vi er ikke kønne nok",
+    "artist": "Katinka Band",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/21/df/d0/21dfd039-7555-d407-f43e-80742426dcf1/cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:48:15.012Z",
+    "track": "Vilde Kaniner",
+    "artist": "Gnags & Peter A.G.",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:48:29.516Z",
+    "track": "Jeg ved en Lærkerede",
+    "artist": "Søs Fenger",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/f7/db/c7/f7dbc726-9d73-1774-2631-319e184e6d52/22UM1IM09482.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:48:44.035Z",
+    "track": "Blodskudt",
+    "artist": "Jamaika",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/d8/30/9d/d8309dcd-6084-4945-718c-6d057297f667/886445677171.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:48:58.523Z",
+    "track": "Tik Tik",
+    "artist": "Kim Larsen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d0/59/2f/d0592f92-6099-7c22-ffea-0534ac15e750/724347737350.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:49:13.106Z",
+    "track": "Shackled Up",
+    "artist": "Alex Vargas",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:49:27.619Z",
+    "track": "Million",
+    "artist": "Joey Moe",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/fa/d7/47/fad747de-21ce-1bf6-5eaf-7dd57612143b/886444811422.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:49:42.192Z",
+    "track": "Prinsessen Af Ålborg",
+    "artist": "Poul Krebs",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/a3/61/8b/mzi.trjhmqvw.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:49:56.766Z",
+    "track": "Et Hav Af Udstrakte Hænder",
+    "artist": "Søren Huss",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/8f/a8/63/8fa8635f-07f9-972e-2fa0-31916d6eeff9/00602527509297.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:50:11.315Z",
+    "track": "Olivia",
+    "artist": "Rasmus Seebach",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:50:25.809Z",
+    "track": "Endelig Fri",
+    "artist": "Sanne Salomonsen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/ff/78/88/ff78882a-3dc6-0822-080b-46003a8bdd09/886449373192.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:52:55.491Z",
+    "track": "What Kind Of Man (Live At Madison Square Garden)",
+    "artist": "Florence + the Machine",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/69/b4/85/69b48521-b6be-b473-9ffc-5fa41b46c8b6/22UM1IM12646.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:53:10.244Z",
+    "track": "Too Good at Goodbyes (Live at the BRITs)",
+    "artist": "Sam Smith",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ae/07/09/ae0709cd-457b-76cf-957d-e9bab41a65fb/00602567458951.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:53:24.785Z",
+    "track": "Diamonds From Sierra Leone (Live At Abbey Road Studios)",
+    "artist": "Kanye West",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ab/1b/42/ab1b4285-0337-d63b-9664-00e48403f551/06UMGIM62482.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:53:39.293Z",
+    "track": "Here (LIVE)",
+    "artist": "America",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/77/9b/98/779b9864-a43e-55f8-bc1a-433c553fdbb2/886446584263.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:53:54.155Z",
+    "track": "Free Fallin' (Live at the Nokia Theatre, Los Angeles, CA - December 2007)",
+    "artist": "John Mayer",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/99/4f/5f/994f5f40-a842-4dc7-58d4-a0210ae09c8c/dj.rengmjbv.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:54:08.923Z",
+    "track": "Ben (Live at the Forum, 1972)",
+    "artist": "Jackson 5",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/16/3f/29/163f29af-5123-4859-e438-fe83bd3952e6/26UMGIM37211.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:54:23.529Z",
+    "track": "Stitches (Live)",
+    "artist": "Shawn Mendes",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/83/f8/76/83f87659-c86b-0cd1-5a6c-80474867fec0/16UMGIM85045.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:54:38.084Z",
+    "track": "Can't Feel My Face (Live)",
+    "artist": "The Weeknd",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/03/2d/c1/032dc13a-dce4-672a-b501-d16d3b31be07/23UMGIM20988.rgb.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:54:52.632Z",
+    "track": "Santa Claus Is Comin' to Town (Live at C.W. Post College, Greenvale, NY - December 1975)",
+    "artist": "Bruce Springsteen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/75/3e/0a/753e0a5e-888d-fca1-2e62-e4916c3cfc01/dj.jmpfisia.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:55:07.235Z",
+    "track": "Scheherazade, Op. 35: I. The Sea and Sinbad’s Ship (Live at the Royal Festival Hall, London, 3/21/1957)",
+    "artist": "Royal Philharmonic Orchestra & Thomas Beecham",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/52/91/58/52915808-0bba-15d1-ee15-9941775d9566/758871013420.png/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T14:55:21.814Z",
+    "track": "Lowkey",
+    "artist": "Dizzy Wright & Mike & Keys",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3c/42/3f/3c423fdd-14a1-9be6-1f9a-ba2d755c4f7d/8720923621428_cover.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:24:38.658Z",
+    "track": "Hip Hurra - Det' Min Fødselsdag",
+    "artist": "Tommy Seebach",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/ca/17/d5/ca17d53a-0949-9f7a-0dfd-2a4032b50863/5099950409556.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:24:53.438Z",
+    "track": "Blød Nødlanding",
+    "artist": "Steppeulvene",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/11/60/0e/11600e26-eb8f-3d41-0e3e-704b5788af97/825646197903.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:25:07.915Z",
+    "track": "From Paris to Berlin",
+    "artist": "Infernal",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:25:22.416Z",
+    "track": "Asja",
+    "artist": "Heilung",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3a/fc/35/3afc3561-163e-efd4-a861-cf7abad7b2e0/822603166606.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:25:36.826Z",
+    "track": "Ingen Anden Drøm",
+    "artist": "Anne Linnet & Thomas Helmig",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/7f/09/e4/7f09e437-9570-6591-f54c-a322525d8706/886447663509.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:25:51.365Z",
+    "track": "A Dangerous Meeting",
+    "artist": "Mercyful Fate",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:26:05.835Z",
+    "track": "Hodja Fra Pjort",
+    "artist": "Sebastian",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music4/v4/5e/80/80/5e80808f-e266-4b3e-d695-57b58caf020c/886444662352.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:26:20.296Z",
+    "track": "Ibiza (feat. B.O.C)",
+    "artist": "Benny Jamz, Gilli & Kesi",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bc/9e/99/bc9e9984-6a33-4cbc-703f-a1a0b846eddf/886449346233.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:26:34.778Z",
+    "track": "I Still Carry On",
+    "artist": "Michael Learns to Rock",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:26:49.228Z",
+    "track": "Taxa",
+    "artist": "Sanne Salomonsen",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/bf/25/e3/mzi.qwwpadls.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:27:03.723Z",
+    "track": "Tabt Mit Hjerte",
+    "artist": "Anne Linnet",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/70/52/a9/mzi.hfbaqhwp.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:27:18.126Z",
+    "track": "Witch Doctor",
+    "artist": "Cartoons",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:27:32.558Z",
+    "track": "Økonomisk Demokrati",
+    "artist": "Røde Mor",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/84/c8/23/84c823c1-bb1f-e293-5a7d-d62f99961460/5099990548550_1400x1400_200dpi.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
+  },
+  {
+    "ts": "2026-04-06T15:27:47.097Z",
+    "track": "Kom Over",
+    "artist": "Kesi",
+    "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/68/c1/b6/68c1b695-6029-6376-74dc-70b22e672c1b/886447066331.jpg/600x600bb.jpg",
+    "source": "quiz-muted"
   }
 ]

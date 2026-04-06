@@ -134,7 +134,7 @@ const QuizDisplay = (() => {
   function mapSource(source, genre) {
     if (source === 'charts-genre') return { source: 'charts', genre };
     if (source === 'charts-soundtrack') return { source: 'charts', genre: '16' };
-    if (source === 'dansk') return { source: 'charts', genre: undefined };
+    if (source === 'dansk') return { source: 'dansk', genre: undefined };
     if (source === 'random') {
       const randomGenre = GENRE_IDS[Math.floor(Math.random() * GENRE_IDS.length)];
       return { source: 'charts', genre: randomGenre };

@@ -15,6 +15,7 @@ import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "../quiz.j
 import type { AppleMusicClient } from "../apple-music.js";
 import { isHomeConnected } from "../home-ws.js";
 import { isMuted } from "./mute.js";
+import { logTrackChange } from "../browser-ws.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
 import { awardCredits, resetDjMode } from "./dj-mode.js";
 import { getProvider, getActiveProviderType } from "./playback/provider-manager.js";
@@ -1167,6 +1168,7 @@ async function playQuestionMusic(session: GameSession): Promise<void> {
       const result = await provider.playExact(q.songName, artist, { retries: 3, randomSeek: true });
       if (result.playing) {
         console.log(`🎮 Playing: ${result.track}`);
+        logTrackChange(q.songName, q.artistName, "quiz", q.artworkUrl);
         verifyPlaying(qNum, q.songName, q.artistName);
         return;
       }
@@ -1225,6 +1227,10 @@ async function playQuestionMusic(session: GameSession): Promise<void> {
     }
   } else {
     console.log(`🎮 No playback provider — preview fallback for: ${q.songName}`);
+    // Log to track change log so Recently Played still shows what would have played (muted mode)
+    if (q.songName && q.artistName) {
+      logTrackChange(q.songName, q.artistName, "quiz-muted", q.artworkUrl);
+    }
   }
 }
 

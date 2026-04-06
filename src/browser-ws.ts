@@ -56,7 +56,7 @@ let lastLoggedTrack = "";
 try {
   const stored = JSON.parse(readFileSync(TRACK_LOG_PATH, "utf-8"));
   if (Array.isArray(stored)) {
-    trackChangeLog.push(...stored.slice(-100));
+    trackChangeLog.push(...stored.slice(-500));
     console.log(`🎵 Restored ${trackChangeLog.length} recently played tracks`);
   }
 } catch {}
@@ -68,13 +68,13 @@ function saveTrackLog() {
   } catch {}
 }
 
-function logTrackChange(track: string, artist: string, source: string, artworkUrl?: string) {
+export function logTrackChange(track: string, artist: string, source: string, artworkUrl?: string) {
   const key = `${track}|${artist}`;
   if (key === lastLoggedTrack) return;
   lastLoggedTrack = key;
   const entry = { ts: new Date().toISOString(), track, artist, artworkUrl, source };
   trackChangeLog.push(entry);
-  if (trackChangeLog.length > 100) trackChangeLog.shift();
+  if (trackChangeLog.length > 500) trackChangeLog.shift();
   saveTrackLog();
   console.log(`🎵 NOW PLAYING: "${track}" — ${artist} [${source}]`);
 }

@@ -820,6 +820,15 @@ export function attachQuizWebSocket(server: Server, musicClient: AppleMusicClien
   // DJ autoplay polling starts immediately — guarded against quiz-in-progress
   startDjAutoplayPolling(musicClient);
 
+  // WebSocket keepalive — send ping every 30s to prevent idle disconnects during long operations
+  setInterval(() => {
+    for (const [, conn] of connections) {
+      if (conn.ws.readyState === WebSocket.OPEN) {
+        try { conn.ws.ping(); } catch {}
+      }
+    }
+  }, 30000);
+
   server.on("upgrade", (req: IncomingMessage, socket, head) => {
     const { pathname } = parse(req.url || "", true);
 

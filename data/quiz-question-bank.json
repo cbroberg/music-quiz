@@ -496,7 +496,7 @@
     "backgroundArtist": "Wizkid",
     "id": "ebec02bb",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T12:34:15.926Z"
   },
   {
@@ -736,7 +736,7 @@
     "backgroundArtist": "Talking Heads",
     "id": "f16250fa",
     "validated": true,
-    "timesUsed": 2,
+    "timesUsed": 3,
     "createdAt": "2026-04-03T13:16:43.185Z"
   },
   {
@@ -896,7 +896,7 @@
     "backgroundArtist": "Queen",
     "id": "c01a715d",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T13:18:08.087Z"
   },
   {
@@ -1156,7 +1156,7 @@
     "backgroundArtist": "Radiohead",
     "id": "aa34821d",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T14:02:06.260Z"
   },
   {
@@ -1356,7 +1356,7 @@
     "backgroundArtist": "BLACKPINK",
     "id": "20a77d5b",
     "validated": true,
-    "timesUsed": 2,
+    "timesUsed": 3,
     "createdAt": "2026-04-03T14:52:43.477Z"
   },
   {
@@ -1396,7 +1396,7 @@
     "backgroundArtist": "Édith Piaf",
     "id": "bb72cc98",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T14:52:43.477Z"
   },
   {
@@ -1456,7 +1456,7 @@
     "backgroundArtist": "Wizkid",
     "id": "8ba66331",
     "validated": true,
-    "timesUsed": 2,
+    "timesUsed": 3,
     "createdAt": "2026-04-03T15:10:27.209Z"
   },
   {
@@ -1856,7 +1856,7 @@
     "backgroundArtist": "AC/DC",
     "id": "5c5bf8cf",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T17:16:50.209Z"
   },
   {
@@ -1956,7 +1956,7 @@
     "backgroundArtist": "AC/DC",
     "id": "f2a3acfb",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T17:33:09.211Z"
   },
   {
@@ -2015,7 +2015,7 @@
     "backgroundSongName": "Yellow",
     "backgroundArtist": "Coldplay",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0100"
   },
@@ -2195,7 +2195,7 @@
     "backgroundSongName": "Hips Don't Lie",
     "backgroundArtist": "Shakira",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0109"
   },
@@ -2395,7 +2395,7 @@
     "backgroundSongName": "Highway to Hell",
     "backgroundArtist": "AC/DC",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0119"
   },
@@ -2635,7 +2635,7 @@
     "backgroundSongName": "Tank!",
     "backgroundArtist": "Seatbelts",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0131"
   },
@@ -3015,7 +3015,7 @@
     "backgroundSongName": "Light My Fire",
     "backgroundArtist": "The Doors",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0150"
   },
@@ -3075,7 +3075,7 @@
     "backgroundSongName": "Comfortably Numb",
     "backgroundArtist": "Pink Floyd",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0153"
   },
@@ -3155,7 +3155,7 @@
     "backgroundSongName": "Kvinde Min",
     "backgroundArtist": "Gasolin'",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0157"
   },
@@ -3415,7 +3415,7 @@
     "backgroundSongName": "Smooth",
     "backgroundArtist": "Carlos Santana",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0170"
   },
@@ -3435,7 +3435,7 @@
     "backgroundSongName": "Wonderwall",
     "backgroundArtist": "Oasis",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0171"
   },
@@ -3455,7 +3455,7 @@
     "backgroundSongName": "Juicy",
     "backgroundArtist": "Notorious B.I.G.",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0172"
   },
@@ -3635,7 +3635,7 @@
     "backgroundSongName": "Ziggy Stardust",
     "backgroundArtist": "David Bowie",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T18:00:00Z",
     "id": "manual-0181"
   },
@@ -3895,7 +3895,7 @@
     "backgroundSongName": "Red Right Hand",
     "backgroundArtist": "Nick Cave & The Bad Seeds",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0194"
   },
@@ -3975,7 +3975,7 @@
     "backgroundSongName": "I Don't Want to Wait",
     "backgroundArtist": "Paula Cole",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0198"
   },
@@ -3995,7 +3995,7 @@
     "backgroundSongName": "Westworld Theme",
     "backgroundArtist": "Ramin Djawadi",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0199"
   },
@@ -4175,7 +4175,7 @@
     "backgroundSongName": "Superman",
     "backgroundArtist": "Lazlo Bane",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0208"
   },
@@ -4195,7 +4195,7 @@
     "backgroundSongName": "Borgen Theme",
     "backgroundArtist": "Frans Bak",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0209"
   },
@@ -4235,7 +4235,7 @@
     "backgroundSongName": "Unbreakable Theme",
     "backgroundArtist": "Jeff Richmond",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0211"
   },
@@ -4355,7 +4355,7 @@
     "backgroundSongName": "Mustt Mustt",
     "backgroundArtist": "Nusrat Fateh Ali Khan",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0217"
   },
@@ -4555,7 +4555,7 @@
     "backgroundSongName": "Friday I'm in Love",
     "backgroundArtist": "The Cure",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0227"
   },
@@ -4575,7 +4575,7 @@
     "backgroundSongName": "Du Hast",
     "backgroundArtist": "Rammstein",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0228"
   },
@@ -4595,7 +4595,7 @@
     "backgroundSongName": "Kvinde Min",
     "backgroundArtist": "Gasolin'",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0229"
   },
@@ -4635,7 +4635,7 @@
     "backgroundSongName": "Psycho Killer",
     "backgroundArtist": "Talking Heads",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0231"
   },
@@ -4675,7 +4675,7 @@
     "backgroundSongName": "Respect",
     "backgroundArtist": "Aretha Franklin",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0233"
   },
@@ -4875,7 +4875,7 @@
     "backgroundSongName": "Everybody's Talkin'",
     "backgroundArtist": "Harry Nilsson",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0243"
   },
@@ -4935,7 +4935,7 @@
     "backgroundSongName": "Speechless",
     "backgroundArtist": "Naomi Scott",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0246"
   },
@@ -4995,7 +4995,7 @@
     "backgroundSongName": "Unchained Melody",
     "backgroundArtist": "The Righteous Brothers",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:00:00Z",
     "id": "manual-0249"
   },
@@ -5755,7 +5755,7 @@
     "backgroundSongName": "drivers license",
     "backgroundArtist": "Olivia Rodrigo",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0287"
   },
@@ -5935,7 +5935,7 @@
     "backgroundSongName": "A Drifting Life",
     "backgroundArtist": "Trentemøller",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0296"
   },
@@ -6335,7 +6335,7 @@
     "backgroundSongName": "Block Rockin' Beats",
     "backgroundArtist": "The Chemical Brothers",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0316"
   },
@@ -6435,7 +6435,7 @@
     "backgroundSongName": "Disco Science",
     "backgroundArtist": "Mirwais",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0321"
   },
@@ -6515,7 +6515,7 @@
     "backgroundSongName": "Chabiba",
     "backgroundArtist": "Tinariwen",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0325"
   },
@@ -6755,7 +6755,7 @@
     "backgroundSongName": "I See You",
     "backgroundArtist": "Leona Lewis",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T19:30:00Z",
     "id": "manual-0337"
   },
@@ -6875,7 +6875,7 @@
     "backgroundSongName": "Peter Gunn Theme",
     "backgroundArtist": "Henry Mancini",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0343"
   },
@@ -6935,7 +6935,7 @@
     "backgroundSongName": "Don't You (Forget About Me)",
     "backgroundArtist": "Simple Minds",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0346"
   },
@@ -6955,7 +6955,7 @@
     "backgroundSongName": "Suicide is Painless",
     "backgroundArtist": "Johnny Mandel",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0347"
   },
@@ -6975,7 +6975,7 @@
     "backgroundSongName": "Pata Pata",
     "backgroundArtist": "Miriam Makeba",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0348"
   },
@@ -7135,7 +7135,7 @@
     "backgroundSongName": "Moon River",
     "backgroundArtist": "Audrey Hepburn",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0356"
   },
@@ -7275,7 +7275,7 @@
     "backgroundSongName": "All Too Well",
     "backgroundArtist": "Taylor Swift",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:00:00Z",
     "id": "manual-0363"
   },
@@ -7715,7 +7715,7 @@
     "backgroundSongName": "Nocturne Op. 9 No. 2",
     "backgroundArtist": "Chopin",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0385"
   },
@@ -7815,7 +7815,7 @@
     "backgroundSongName": "Comforting Sounds",
     "backgroundArtist": "Mew",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0390"
   },
@@ -7915,7 +7915,7 @@
     "backgroundSongName": "Buddy Holly",
     "backgroundArtist": "Weezer",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0395"
   },
@@ -8235,7 +8235,7 @@
     "backgroundSongName": "Symphony No. 9",
     "backgroundArtist": "Beethoven",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T20:30:00Z",
     "id": "manual-0411"
   },
@@ -8575,7 +8575,7 @@
     "backgroundSongName": "Oblivion",
     "backgroundArtist": "Grimes",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0428"
   },
@@ -8635,7 +8635,7 @@
     "backgroundSongName": "Hannibal Theme",
     "backgroundArtist": "Brian Reitzell",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0431"
   },
@@ -8855,7 +8855,7 @@
     "backgroundSongName": "Druk Med De Danske",
     "backgroundArtist": "Suspekt",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0442"
   },
@@ -8955,7 +8955,7 @@
     "backgroundSongName": "Sleeping My Day Away",
     "backgroundArtist": "D-A-D",
     "validated": true,
-    "timesUsed": 1,
+    "timesUsed": 2,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0447"
   },
@@ -9075,7 +9075,7 @@
     "backgroundSongName": "My Little Anna",
     "backgroundArtist": "Niels-Henning Ørsted Pedersen",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0453"
   },
@@ -9155,7 +9155,7 @@
     "backgroundSongName": "Evil",
     "backgroundArtist": "Mercyful Fate",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:00:00Z",
     "id": "manual-0457"
   },
@@ -9435,7 +9435,7 @@
     "backgroundSongName": "Tom Traubert's Blues",
     "backgroundArtist": "Tom Waits",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:30:00Z",
     "id": "manual-0471"
   },
@@ -9495,7 +9495,7 @@
     "backgroundSongName": "Now We Are Free",
     "backgroundArtist": "Lisa Gerrard & Hans Zimmer",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:30:00Z",
     "id": "manual-0474"
   },
@@ -9775,7 +9775,7 @@
     "backgroundSongName": "Where Is My Mind?",
     "backgroundArtist": "Pixies",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T21:30:00Z",
     "id": "manual-0488"
   },
@@ -10196,7 +10196,7 @@
     "backgroundArtist": "Wardruna",
     "id": "8ce092c7",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-03T22:03:55.635Z"
   },
   {
@@ -10956,7 +10956,7 @@
     "backgroundArtist": "R.E.M.",
     "id": "18c9b1ce",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-05T18:24:22.234Z"
   },
   {
@@ -11056,7 +11056,7 @@
     "backgroundArtist": "King Diamond",
     "id": "e4f11991",
     "validated": true,
-    "timesUsed": 0,
+    "timesUsed": 1,
     "createdAt": "2026-04-05T23:43:06.144Z"
   },
   {
@@ -11318,5 +11318,2005 @@
     "validated": true,
     "timesUsed": 0,
     "createdAt": "2026-04-06T12:48:32.852Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Sting from?",
+    "correctAnswer": "United Kingdom",
+    "options": [
+      "United Kingdom",
+      "United States",
+      "Australia",
+      "Ireland"
+    ],
+    "artistName": "Sting",
+    "funFact": "Sting's real name is Gordon Sumner — he got 'Sting' from a yellow-and-black striped sweater he wore as a jazz musician!",
+    "difficulty": "easy",
+    "backgroundSongName": "Shape of My Heart",
+    "backgroundArtist": "Sting",
+    "id": "682f85c3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Billie Holiday's real name?",
+    "correctAnswer": "Eleanora Fagan",
+    "options": [
+      "Eleanora Fagan",
+      "Eleanor Franklin",
+      "Elinor Fitzgerald",
+      "Ella Mae Johnson"
+    ],
+    "artistName": "Billie Holiday",
+    "funFact": "Billie Holiday named herself after actress Billie Dove and jazz musician Clarence Holiday — creating one of music's most iconic stage names!",
+    "difficulty": "medium",
+    "backgroundSongName": "Lady Sings the Blues",
+    "backgroundArtist": "Billie Holiday",
+    "id": "e1130bb3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Queen?",
+    "correctAnswer": "John Bonham",
+    "options": [
+      "Brian May",
+      "John Bonham",
+      "Roger Taylor",
+      "Freddie Mercury"
+    ],
+    "artistName": "Queen",
+    "funFact": "John Bonham was Led Zeppelin's legendary drummer, not a Queen member - he's often confused with Queen due to both bands' rock legacy!",
+    "difficulty": "hard",
+    "backgroundSongName": "Bohemian Rhapsody",
+    "backgroundArtist": "Queen",
+    "id": "9faec741",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Where is the K-pop group aespa from?",
+    "correctAnswer": "South Korea",
+    "options": [
+      "South Korea",
+      "Japan",
+      "Thailand",
+      "China"
+    ],
+    "artistName": "aespa",
+    "funFact": "aespa's concept includes AI versions of themselves called 'æ' — they literally perform with their digital doppelgängers!",
+    "difficulty": "easy",
+    "backgroundSongName": "Whiplash",
+    "backgroundArtist": "aespa",
+    "id": "4a44f7d6",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which member of Linkin Park passed away in 2017?",
+    "correctAnswer": "Chester Bennington",
+    "options": [
+      "Mike Shinoda",
+      "Chester Bennington",
+      "Brad Delson",
+      "Phoenix"
+    ],
+    "artistName": "LINKIN PARK",
+    "funFact": "Chester Bennington's distinctive screams on 'In the End' became iconic — nu-metal wouldn't exist without that raw emotion!",
+    "difficulty": "medium",
+    "backgroundSongName": "In the End",
+    "backgroundArtist": "LINKIN PARK",
+    "id": "356a0a66",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Peter Tosh from?",
+    "correctAnswer": "Jamaica",
+    "options": [
+      "Jamaica",
+      "Trinidad and Tobago",
+      "Barbados",
+      "Haiti"
+    ],
+    "artistName": "Peter Tosh",
+    "funFact": "Peter Tosh was part of the ORIGINAL Wailers with Bob Marley — but he was actually the first to go solo and became equally legendary!",
+    "difficulty": "easy",
+    "backgroundSongName": "Legalize It",
+    "backgroundArtist": "Peter Tosh",
+    "id": "94a84350",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T12:59:46.476Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Erykah Badu from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Jamaica",
+      "Nigeria",
+      "Brazil"
+    ],
+    "artistName": "Erykah Badu",
+    "funFact": "Erykah Badu trademarked her iconic head wraps as part of her signature look!",
+    "difficulty": "easy",
+    "backgroundSongName": "On & On",
+    "backgroundArtist": "Erykah Badu",
+    "id": "9a3d0b93",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:02:45.466Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of U2?",
+    "correctAnswer": "Noel Gallagher",
+    "options": [
+      "The Edge",
+      "Adam Clayton",
+      "Larry Mullen Jr.",
+      "Noel Gallagher"
+    ],
+    "artistName": "U2",
+    "funFact": "U2's The Edge got his nickname because of the sharp, angular shape of his head — seriously!",
+    "difficulty": "easy",
+    "backgroundSongName": "With or Without You",
+    "backgroundArtist": "U2",
+    "id": "59c91194",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:02:45.466Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country does Janelle Monáe represent in the music world?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "United Kingdom",
+      "South Africa"
+    ],
+    "artistName": "Janelle Monáe",
+    "funFact": "Janelle Monáe only wears black and white as part of her artistic persona inspired by butler uniforms and androgynous fashion!",
+    "difficulty": "easy",
+    "backgroundSongName": "Make Me Feel",
+    "backgroundArtist": "Janelle Monáe",
+    "id": "92a1a6d2",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:02:45.466Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Red Hot Chili Peppers originally from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Australia",
+      "Canada",
+      "New Zealand"
+    ],
+    "artistName": "Red Hot Chili Peppers",
+    "funFact": "Red Hot Chili Peppers' bassist Flea is a classically trained musician who can play 10+ instruments!",
+    "difficulty": "easy",
+    "backgroundSongName": "Californication",
+    "backgroundArtist": "Red Hot Chili Peppers",
+    "id": "c038fb64",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:02:45.466Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "How many Grammy Awards does Solange have?",
+    "correctAnswer": "1",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "artistName": "Solange",
+    "funFact": "Solange won her Grammy for Best R&B Performance for 'Cranes in the Sky' from her critically acclaimed album 'A Seat at the Table'!",
+    "difficulty": "hard",
+    "backgroundSongName": "Losing You",
+    "backgroundArtist": "Solange",
+    "id": "839e12f1",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:02:45.466Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Zara Larsson from?",
+    "correctAnswer": "Sweden",
+    "options": [
+      "Sweden",
+      "Norway",
+      "Denmark",
+      "Finland"
+    ],
+    "artistName": "Zara Larsson",
+    "funFact": "Zara Larsson won a Swedish talent show at age 10 and became the youngest member of a children's group!",
+    "difficulty": "medium",
+    "backgroundSongName": "Lush Life",
+    "backgroundArtist": "Zara Larsson",
+    "id": "e5555b89",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:08:20.868Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Bad Bunny from?",
+    "correctAnswer": "Puerto Rico",
+    "options": [
+      "Puerto Rico",
+      "Colombia",
+      "Mexico",
+      "Dominican Republic"
+    ],
+    "artistName": "Bad Bunny",
+    "funFact": "Bad Bunny became the most-streamed artist on Spotify in 2022, beating even The Weeknd!",
+    "difficulty": "easy",
+    "backgroundSongName": "DtMF",
+    "backgroundArtist": "Bad Bunny",
+    "id": "25d76abd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:08:20.868Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Harry Styles originally from?",
+    "correctAnswer": "United Kingdom",
+    "options": [
+      "United Kingdom",
+      "Ireland",
+      "Australia",
+      "Canada"
+    ],
+    "artistName": "Harry Styles",
+    "funFact": "Harry Styles was discovered on a UK talent show and went on to become one of the biggest solo artists globally!",
+    "difficulty": "easy",
+    "backgroundSongName": "American Girls",
+    "backgroundArtist": "Harry Styles",
+    "id": "e57e16b7",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:08:20.868Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "BTS debuted under which K-pop entertainment company?",
+    "correctAnswer": "Big Hit Entertainment",
+    "options": [
+      "Big Hit Entertainment",
+      "SM Entertainment",
+      "YG Entertainment",
+      "JYP Entertainment"
+    ],
+    "artistName": "BTS",
+    "funFact": "BTS became the first all-Korean group to top the Billboard Hot 100, breaking massive records!",
+    "difficulty": "medium",
+    "backgroundSongName": "SWIM",
+    "backgroundArtist": "BTS",
+    "id": "8fdd5ebb",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:08:20.868Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Dominic Fike from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "United Kingdom",
+      "Canada",
+      "Australia"
+    ],
+    "artistName": "Dominic Fike",
+    "funFact": "Dominic Fike got discovered through SoundCloud and now has millions of streams worldwide!",
+    "difficulty": "medium",
+    "backgroundSongName": "Babydoll",
+    "backgroundArtist": "Dominic Fike",
+    "id": "ba465ac1",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:08:20.868Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Incubus from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "Australia",
+      "United Kingdom"
+    ],
+    "artistName": "Incubus",
+    "funFact": "Incubus formed in 1991 when the band members were still in high school in Southern California",
+    "difficulty": "easy",
+    "backgroundSongName": "Drive",
+    "backgroundArtist": "Incubus",
+    "id": "4a1c70ec",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Johnny Cash's real first name?",
+    "correctAnswer": "John",
+    "options": [
+      "John",
+      "James",
+      "Jack",
+      "Jerome"
+    ],
+    "artistName": "Johnny Cash",
+    "funFact": "Johnny Cash was called 'The Man in Black' and wore black to highlight the struggles of prisoners and the poor",
+    "difficulty": "medium",
+    "backgroundSongName": "Hurt",
+    "backgroundArtist": "Johnny Cash",
+    "id": "21b7aa46",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Shaggy from?",
+    "correctAnswer": "Jamaica",
+    "options": [
+      "Jamaica",
+      "Trinidad and Tobago",
+      "Barbados",
+      "Dominica"
+    ],
+    "artistName": "Shaggy",
+    "funFact": "Shaggy's real name is Orville Richard Burrell, and he served in the U.S. Marine Corps before becoming a reggae superstar",
+    "difficulty": "easy",
+    "backgroundSongName": "It Wasn't Me (feat. Ricardo Ducent)",
+    "backgroundArtist": "Shaggy",
+    "id": "ba8373fd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which music legend is Alice Coltrane the widow of?",
+    "correctAnswer": "John Coltrane",
+    "options": [
+      "John Coltrane",
+      "Miles Davis",
+      "Ornette Coleman",
+      "Thelonious Monk"
+    ],
+    "artistName": "Alice Coltrane",
+    "funFact": "Alice Coltrane became a spiritual leader and founded a temple, blending jazz with spiritual teachings",
+    "difficulty": "medium",
+    "backgroundSongName": "Turiya and Ramakrishna",
+    "backgroundArtist": "Alice Coltrane",
+    "id": "92ba0c52",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of Pearl Jam?",
+    "correctAnswer": "Mark Lanegan",
+    "options": [
+      "Eddie Vedder",
+      "Jeff Ament",
+      "Stone Gossard",
+      "Mark Lanegan"
+    ],
+    "artistName": "Pearl Jam",
+    "funFact": "Pearl Jam famously battled Ticketmaster in the 1990s over ticket service fees, trying to lower prices for fans",
+    "difficulty": "medium",
+    "backgroundSongName": "Alive",
+    "backgroundArtist": "Pearl Jam",
+    "id": "a6055a4e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was Travis Scott's breakthrough album that included 'Goosebumps'?",
+    "correctAnswer": "Birds in the Trap Sing McKnight",
+    "options": [
+      "Birds in the Trap Sing McKnight",
+      "Astroworld",
+      "La Flame",
+      "Days Before Rodeo"
+    ],
+    "artistName": "Travis Scott",
+    "funFact": "Travis Scott created his own music festival called Astroworld, named after the defunct Houston theme park of his childhood",
+    "difficulty": "medium",
+    "backgroundSongName": "goosebumps",
+    "backgroundArtist": "Travis Scott",
+    "id": "7dbc6dcb",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead guitarist of The Cure?",
+    "correctAnswer": "Robert Smith",
+    "options": [
+      "Robert Smith",
+      "Boris Williams",
+      "Simon Gallup",
+      "Jason Cooper"
+    ],
+    "artistName": "The Cure",
+    "funFact": "The Cure's Robert Smith is known for his distinctive guitar style and wrote most of the band's songs including 'Friday I'm in Love'",
+    "difficulty": "hard",
+    "backgroundSongName": "Boys Don't Cry",
+    "backgroundArtist": "The Cure",
+    "id": "6ebf3179",
+    "validated": true,
+    "timesUsed": 1,
+    "createdAt": "2026-04-06T13:11:14.722Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Jan Johansson from?",
+    "correctAnswer": "Sweden",
+    "options": [
+      "Sweden",
+      "Norway",
+      "Denmark",
+      "Finland"
+    ],
+    "artistName": "Jan Johansson",
+    "funFact": "Jan Johansson's 'Jazz På Svenska' album brilliantly fused Swedish folk melodies with jazz — proving you can absolutely swing to a Swedish hymn!",
+    "difficulty": "medium",
+    "backgroundSongName": "Visa Från Utanmyra",
+    "backgroundArtist": "Jan Johansson",
+    "id": "f62212d2",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Yonathan Avishai from?",
+    "correctAnswer": "Israel",
+    "options": [
+      "Israel",
+      "Lebanon",
+      "Palestine",
+      "Jordan"
+    ],
+    "artistName": "Yonathan Avishai",
+    "funFact": "Yonathan Avishai creates music that blends Middle Eastern sounds with modern jazz — it's like a sonic bridge between cultures!",
+    "difficulty": "medium",
+    "backgroundSongName": "La Mélancolie (feat. Yoni Zelnik & Donald Kontomanou) [Bonus Track]",
+    "backgroundArtist": "Yonathan Avishai",
+    "id": "0c5991f5",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "tv-theme",
+    "questionText": "Which classic TV show used 'Take Five' as its theme song?",
+    "correctAnswer": "Desmond's",
+    "options": [
+      "Desmond's",
+      "Taxi",
+      "Barney Miller",
+      "The Odd Couple"
+    ],
+    "artistName": "Dave Brubeck",
+    "funFact": "'Take Five' is the only jazz instrumental to ever go platinum — Dave Brubeck's odd time signature became the world's coolest party fact!",
+    "difficulty": "hard",
+    "backgroundSongName": "Take Five",
+    "backgroundArtist": "Dave Brubeck",
+    "id": "25eec7b0",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Nina Simone was trained in which classical instrument before becoming a jazz icon?",
+    "correctAnswer": "Piano",
+    "options": [
+      "Piano",
+      "Violin",
+      "Cello",
+      "Harp"
+    ],
+    "artistName": "Nina Simone",
+    "funFact": "Nina Simone's mother wanted her to be a classical pianist — instead, she became the High Priestess of Soul and changed music forever!",
+    "difficulty": "easy",
+    "backgroundSongName": "Feeling Good",
+    "backgroundArtist": "Nina Simone",
+    "id": "b1314ffd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "How many Grammy Awards did Ella Fitzgerald win during her career?",
+    "correctAnswer": "13",
+    "options": [
+      "8",
+      "13",
+      "19",
+      "22"
+    ],
+    "artistName": "Ella Fitzgerald & Louis Armstrong",
+    "funFact": "Ella Fitzgerald's scat singing was so innovative that she literally invented new vocal techniques on the spot — jazz improvisation taken to its ultimate level!",
+    "difficulty": "hard",
+    "backgroundSongName": "They Can't Take That Away from Me",
+    "backgroundArtist": "Ella Fitzgerald & Louis Armstrong",
+    "id": "6d01e1f5",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Laufey from?",
+    "correctAnswer": "Iceland",
+    "options": [
+      "Iceland",
+      "Denmark",
+      "Greenland",
+      "Faroe Islands"
+    ],
+    "artistName": "Laufey",
+    "funFact": "Laufey is Iceland's modern jazz darling — she's proving that Nordic cool extends way beyond minimalist furniture into smooth jazz vibes!",
+    "difficulty": "medium",
+    "backgroundSongName": "From The Start",
+    "backgroundArtist": "Laufey",
+    "id": "9fee4208",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:17:23.283Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Ed Sheeran from?",
+    "correctAnswer": "United Kingdom",
+    "options": [
+      "United Kingdom",
+      "Ireland",
+      "Australia",
+      "Canada"
+    ],
+    "artistName": "Ed Sheeran",
+    "funFact": "Ed Sheeran's 'I See Fire' was written for The Hobbit without him ever reading the books!",
+    "difficulty": "easy",
+    "backgroundSongName": "I See Fire",
+    "backgroundArtist": "Ed Sheeran",
+    "id": "d3bb25aa",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:23:18.250Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Lady Gaga's real name?",
+    "correctAnswer": "Stefani Germanotta",
+    "options": [
+      "Stefani Germanotta",
+      "Cecilia Germanotta",
+      "Stefania Germanella",
+      "Gabriella Germanatta"
+    ],
+    "artistName": "Lady Gaga",
+    "funFact": "Lady Gaga chose her stage name after the Queen song 'Radio Ga Ga' — basically the most fabulous name origin story ever!",
+    "difficulty": "medium",
+    "backgroundSongName": "Always Remember Us This Way",
+    "backgroundArtist": "Lady Gaga",
+    "id": "a3aa21d8",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:23:18.250Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Bon Iver's Justin Vernon from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Bon Iver & St. Vincent",
+    "funFact": "Justin Vernon recorded Bon Iver's debut album completely alone in a remote cabin — talk about finding your inner indie artist!",
+    "difficulty": "medium",
+    "backgroundSongName": "Rosyln",
+    "backgroundArtist": "Bon Iver & St. Vincent",
+    "id": "fdfed504",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:23:18.250Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which of these is NOT a member of Aerosmith?",
+    "correctAnswer": "Eddie Vedder",
+    "options": [
+      "Joe Perry",
+      "Tom Hamilton",
+      "Eddie Vedder",
+      "Brad Whitford"
+    ],
+    "artistName": "Aerosmith",
+    "funFact": "Eddie Vedder is the lead singer of Pearl Jam, not Aerosmith - don't get your rock legends mixed up!",
+    "difficulty": "hard",
+    "backgroundSongName": "I Don't Want to Miss a Thing",
+    "backgroundArtist": "Aerosmith",
+    "id": "a67894aa",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:23:18.250Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is PinkPantheress from?",
+    "correctAnswer": "United Kingdom",
+    "options": [
+      "United Kingdom",
+      "United States",
+      "Australia",
+      "Canada"
+    ],
+    "artistName": "PinkPantheress",
+    "funFact": "PinkPantheress went viral on TikTok before releasing any official music — talk about the ultimate come-up!",
+    "difficulty": "medium",
+    "backgroundSongName": "Stateside (with Zara Larsson)",
+    "backgroundArtist": "PinkPantheress",
+    "id": "f59f8570",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:29:44.569Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Zara Larsson's real first name?",
+    "correctAnswer": "Zara",
+    "options": [
+      "Zara",
+      "Sarah",
+      "Zahra",
+      "Zoya"
+    ],
+    "artistName": "Zara Larsson",
+    "funFact": "Zara Larsson won 'Idol' in Sweden at just 10 years old — she's been a star since elementary school!",
+    "difficulty": "hard",
+    "backgroundSongName": "Lush Life",
+    "backgroundArtist": "Zara Larsson",
+    "id": "4b62835e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:29:44.569Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of BTS?",
+    "correctAnswer": "Jackson Wang",
+    "options": [
+      "V",
+      "Jackson Wang",
+      "Jungkook",
+      "RM"
+    ],
+    "artistName": "BTS",
+    "funFact": "BTS became the first all-South Korean group to top the Billboard Hot 100 — no English version needed!",
+    "difficulty": "medium",
+    "backgroundSongName": "SWIM",
+    "backgroundArtist": "BTS",
+    "id": "f30a7c42",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:29:44.569Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Harry Styles was a member of which mega-famous boy band before going solo?",
+    "correctAnswer": "One Direction",
+    "options": [
+      "One Direction",
+      "The Wanted",
+      "5 Seconds of Summer",
+      "Backstreet Boys"
+    ],
+    "artistName": "Harry Styles",
+    "funFact": "Harry Styles was only 16 when he auditioned for The X Factor — he didn't make it as a solo artist but ended up in the biggest boy band of the 2010s!",
+    "difficulty": "easy",
+    "backgroundSongName": "American Girls",
+    "backgroundArtist": "Harry Styles",
+    "id": "d146b87d",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:29:44.569Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Duncan Laurence from?",
+    "correctAnswer": "Netherlands",
+    "options": [
+      "Netherlands",
+      "Belgium",
+      "Germany",
+      "Denmark"
+    ],
+    "artistName": "Duncan Laurence",
+    "funFact": "Duncan Laurence won the Eurovision Song Contest in 2019 with 'Arcade' — becoming a household name overnight!",
+    "difficulty": "medium",
+    "backgroundSongName": "Arcade",
+    "backgroundArtist": "Duncan Laurence",
+    "id": "0e49b4c3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Gracie Abrams' debut album called?",
+    "correctAnswer": "Good Riddance",
+    "options": [
+      "Good Riddance",
+      "The Secret of Us",
+      "Close to You",
+      "minor"
+    ],
+    "artistName": "Gracie Abrams",
+    "funFact": "Gracie Abrams' debut studio album 'Good Riddance' was released in 2023 and features deeply personal songwriting",
+    "difficulty": "hard",
+    "backgroundSongName": "I Love You, I'm Sorry",
+    "backgroundArtist": "Gracie Abrams",
+    "id": "ea31c2f9",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Noah Cyrus from?",
+    "correctAnswer": "United States",
+    "options": [
+      "United States",
+      "Canada",
+      "Australia",
+      "New Zealand"
+    ],
+    "artistName": "Noah Cyrus",
+    "funFact": "Noah Cyrus has a famous sister you might've heard of — she's kind of a big deal in entertainment!",
+    "difficulty": "easy",
+    "backgroundSongName": "July",
+    "backgroundArtist": "Noah Cyrus",
+    "id": "1f76e621",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Rosa Linn's 'SNAP' went viral on which social media platform first?",
+    "correctAnswer": "TikTok",
+    "options": [
+      "TikTok",
+      "Instagram Reels",
+      "YouTube Shorts",
+      "Snapchat"
+    ],
+    "artistName": "Rosa Linn",
+    "funFact": "Rosa Linn's 'SNAP' became a global hit after going viral on TikTok — a true Gen-Z success story!",
+    "difficulty": "medium",
+    "backgroundSongName": "SNAP (Acoustic)",
+    "backgroundArtist": "Rosa Linn",
+    "id": "cda36f1f",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Ruth B. from?",
+    "correctAnswer": "Canada",
+    "options": [
+      "Canada",
+      "United States",
+      "United Kingdom",
+      "Ireland"
+    ],
+    "artistName": "Ruth B.",
+    "funFact": "Ruth B. (Ruth Berhe) was discovered by Jason Derulo after posting videos on YouTube — dreams DO come true!",
+    "difficulty": "medium",
+    "backgroundSongName": "Dandelions",
+    "backgroundArtist": "Ruth B.",
+    "id": "91dcfc97",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "How many Grammy Awards has Taylor Swift won in total (as of 2024)?",
+    "correctAnswer": "12",
+    "options": [
+      "8",
+      "10",
+      "12",
+      "15"
+    ],
+    "artistName": "Taylor Swift",
+    "funFact": "Taylor Swift has won 12 Grammy Awards, making her the most awarded artist in Grammy history",
+    "difficulty": "hard",
+    "backgroundSongName": "exile (feat. Bon Iver)",
+    "backgroundArtist": "Taylor Swift",
+    "id": "14c28b01",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T13:36:13.264Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which mega pop star won Album of the Year at the 2024 Grammys for the FOURTH time, making history?",
+    "correctAnswer": "Taylor Swift",
+    "options": [
+      "Taylor Swift",
+      "Beyonce",
+      "Adele",
+      "Billie Eilish"
+    ],
+    "artistName": "IDLES",
+    "funFact": "🗞️ CAREER — Taylor Swift's 'Midnights' won Album of the Year, making her the first artist ever to win the award four times — she used her speech to announce a brand new album, 'The Tortured Poets Department'",
+    "difficulty": "easy",
+    "backgroundSongName": "Never Fight a Man with a Perm",
+    "backgroundArtist": "IDLES",
+    "id": "c3eebc8d",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer-songwriter broke up with Andrew Garfield and channeled the heartbreak into her 'Happier Than Ever' era?",
+    "correctAnswer": "Olivia Rodrigo",
+    "options": [
+      "Olivia Rodrigo",
+      "Billie Eilish",
+      "Phoebe Bridgers",
+      "Lorde"
+    ],
+    "artistName": "Pantera",
+    "funFact": "🗞️ DATING — Olivia Rodrigo's 'SOUR' album was widely believed to be about her breakup with Joshua Bassett, though she never confirmed the relationship publicly - the album became a massive hit in 2021",
+    "difficulty": "medium",
+    "backgroundSongName": "Cowboys from Hell",
+    "backgroundArtist": "Pantera",
+    "id": "46d6e943",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer was spotted kissing Timothee Chalamet at a Beyonce concert, confirming their relationship?",
+    "correctAnswer": "Kylie Jenner",
+    "options": [
+      "Kylie Jenner",
+      "Zendaya",
+      "Florence Pugh",
+      "Selena Gomez"
+    ],
+    "artistName": "Tom Waits",
+    "funFact": "🗞️ DATING — Kylie and Timothee's kiss cam moment at Beyonce's Renaissance tour in LA went viral — after Travis Scott, fans were thrilled to see Kylie with someone from a completely different world",
+    "difficulty": "easy",
+    "backgroundSongName": "I Hope That I Don't Fall In Love with You",
+    "backgroundArtist": "Tom Waits",
+    "id": "6afd8c88",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Cesária Evora from?",
+    "correctAnswer": "Cape Verde",
+    "options": [
+      "Cape Verde",
+      "Portugal",
+      "Brazil",
+      "Mozambique"
+    ],
+    "artistName": "Cesária Evora",
+    "funFact": "Cesária Evora famously performed barefoot throughout her career as a tribute to the poor women of her homeland",
+    "difficulty": "medium",
+    "backgroundSongName": "Sabine Largam'",
+    "backgroundArtist": "Cesária Evora",
+    "id": "8e589abd",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a member of The Smashing Pumpkins?",
+    "correctAnswer": "Robert Smith",
+    "options": [
+      "Billy Corgan",
+      "Jeff Schroeder",
+      "Robert Smith",
+      "James Iha"
+    ],
+    "artistName": "The Smashing Pumpkins",
+    "funFact": "Billy Corgan wrote and recorded most of The Smashing Pumpkins' debut album entirely by himself, then hired musicians to perform it live",
+    "difficulty": "medium",
+    "backgroundSongName": "Today",
+    "backgroundArtist": "The Smashing Pumpkins",
+    "id": "8cbeadd3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "How many Grammy Awards has Usher won throughout his career?",
+    "correctAnswer": "8 Grammy Awards",
+    "options": [
+      "5 Grammy Awards",
+      "8 Grammy Awards",
+      "12 Grammy Awards",
+      "3 Grammy Awards"
+    ],
+    "artistName": "USHER",
+    "funFact": "Usher's 'Yeah!' spent 19 weeks at #1 — longer than any other song in the 2000s, making him basically the king of that decade",
+    "difficulty": "hard",
+    "backgroundSongName": "Yeah! (feat. Lil Jon & Ludacris)",
+    "backgroundArtist": "USHER",
+    "id": "a8dc5307",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:21:19.337Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which British singer admitted to cheating on his partner and apologized publicly in 2022?",
+    "correctAnswer": "Ed Sheeran",
+    "options": [
+      "Ed Sheeran",
+      "Sam Smith",
+      "Harry Styles",
+      "Adam Levine"
+    ],
+    "artistName": "The Minds Of 99",
+    "funFact": "🗞️ SCANDAL — Ed Sheeran faced cheating allegations in 2022 when rumors surfaced about his marriage, though he never publicly admitted to infidelity like the question implies",
+    "difficulty": "medium",
+    "backgroundSongName": "Alle Skuffer Over Tid",
+    "backgroundArtist": "The Minds Of 99",
+    "id": "b7b1b002",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:27:20.049Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's mother died during a cosmetic surgery procedure, leading to wrongful death lawsuits?",
+    "correctAnswer": "Kanye West",
+    "options": [
+      "Kanye West",
+      "Drake",
+      "J. Cole",
+      "Lil Wayne"
+    ],
+    "artistName": "Tobias Rahim",
+    "funFact": "🗞️ CAREER — Donda West passed away in 2007 after complications from cosmetic surgery — Kanye named his 2021 album 'Donda' in her honor, and hosted surreal listening parties in a stadium while wearing a full-face mask",
+    "difficulty": "medium",
+    "backgroundSongName": "STOR MAND (feat. andreas odbjerg)",
+    "backgroundArtist": "Tobias Rahim",
+    "id": "5350ec0f",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:27:20.049Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which artist was caught lip-syncing at their own concert and got booed off stage in 2023?",
+    "correctAnswer": "No major incident like this occurred",
+    "options": [
+      "Dua Lipa",
+      "Selena Gomez",
+      "Britney Spears",
+      "Ashlee Simpson"
+    ],
+    "artistName": "Annika & Sira Jovina",
+    "funFact": "🗞️ CONTROVERSY — Various artists have faced lip-syncing controversies over the years, with Ashlee Simpson's SNL incident being one of the most famous examples",
+    "difficulty": "hard",
+    "backgroundSongName": "Du ik værd at græde for",
+    "backgroundArtist": "Annika & Sira Jovina",
+    "id": "85f5ef69",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:27:20.049Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Zara Larsson from?",
+    "correctAnswer": "Sweden",
+    "options": [
+      "Sweden",
+      "Denmark",
+      "Norway",
+      "Finland"
+    ],
+    "artistName": "Zara Larsson",
+    "funFact": "Zara Larsson was only 10 years old when she won a Swedish talent competition, launching her to stardom before her teens!",
+    "difficulty": "medium",
+    "backgroundSongName": "Lush Life",
+    "backgroundArtist": "Zara Larsson",
+    "id": "fb35bb97",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:27:20.049Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "PinkPantheress gained viral fame through which social media platform?",
+    "correctAnswer": "TikTok",
+    "options": [
+      "Instagram",
+      "TikTok",
+      "YouTube",
+      "SoundCloud"
+    ],
+    "artistName": "PinkPantheress",
+    "funFact": "PinkPantheress started posting music on TikTok from her bedroom and went from bedroom producer to major label artist in record time!",
+    "difficulty": "medium",
+    "backgroundSongName": "Stateside (with Zara Larsson)",
+    "backgroundArtist": "PinkPantheress",
+    "id": "b425fec8",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:27:20.049Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper's concert in Houston resulted in a crowd crush that killed 10 people in 2021?",
+    "correctAnswer": "Travis Scott",
+    "options": [
+      "Travis Scott",
+      "Playboi Carti",
+      "Lil Uzi Vert",
+      "Future"
+    ],
+    "artistName": "Yoep Knipping",
+    "funFact": "🗞️ SCANDAL — The Astroworld Festival tragedy on November 5, 2021, led to hundreds of lawsuits and a massive industry reckoning about concert safety — Travis Scott's public image took years to recover",
+    "difficulty": "easy",
+    "backgroundSongName": "Sky Is Down For You",
+    "backgroundArtist": "Yoep Knipping",
+    "id": "db1f1531",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:33:26.808Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star was labeled 'nepo baby' after fans discovered both her parents work in entertainment?",
+    "correctAnswer": "Miley Cyrus",
+    "options": [
+      "Miley Cyrus",
+      "Lily Allen",
+      "Zoe Kravitz",
+      "Maya Hawke"
+    ],
+    "artistName": "Ray Charles",
+    "funFact": "🗞️ CONTROVERSY — The 'nepo baby' discourse exploded in 2022-2023 — Miley Cyrus (daughter of Billy Ray), Lily-Rose Depp, and many others were called out, but Miley's 'Flowers' proved talent speaks for itself",
+    "difficulty": "easy",
+    "backgroundSongName": "Hit the Road Jack",
+    "backgroundArtist": "Ray Charles",
+    "id": "e616d816",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:33:26.808Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which singer married a member of the Italian royal family in a lavish ceremony in 2024?",
+    "correctAnswer": "No singer married Italian royalty in 2024",
+    "options": [
+      "Lady Gaga",
+      "Gwen Stefani",
+      "Jessica Simpson",
+      "No one did this"
+    ],
+    "artistName": "Jan Kalaman",
+    "funFact": "🗞️ DATING — Kourtney Kardashian married Travis Barker in a lavish Italian ceremony in 2022, but he's a musician not royalty",
+    "difficulty": "medium",
+    "backgroundSongName": "Big Boy",
+    "backgroundArtist": "Jan Kalaman",
+    "id": "12a02368",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:33:26.808Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which couple's split in 2023 was revealed through a cryptic Instagram story with just the word 'I'm single'?",
+    "correctAnswer": "Camila Cabello & Shawn Mendes",
+    "options": [
+      "Camila Cabello & Shawn Mendes",
+      "Shakira & Gerard Pique",
+      "Miley Cyrus & Liam Hemsworth",
+      "Gigi Hadid & Zayn Malik"
+    ],
+    "artistName": "Shakira",
+    "funFact": "🗞️ BREAKUP — Camila Cabello and Shawn Mendes announced their split in 2021 with a joint Instagram statement, though neither used just 'I'm single' - but their breakup was very public and handled through social media",
+    "difficulty": "easy",
+    "backgroundSongName": "Try Everything",
+    "backgroundArtist": "Shakira",
+    "id": "c64a9680",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:40:03.144Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which EDM DJ publicly proposed to his girlfriend at Tomorrowland and went viral?",
+    "correctAnswer": "Martin Garrix",
+    "options": [
+      "Martin Garrix",
+      "David Guetta",
+      "Calvin Harris",
+      "Tiesto"
+    ],
+    "artistName": "John Travolta & Olivia Newton-John",
+    "funFact": "🗞️ DATING — Martin Garrix went viral for his romantic gesture at a major festival - EDM DJs showing their softer side always gets the crowd going",
+    "difficulty": "hard",
+    "backgroundSongName": "You're the One That I Want",
+    "backgroundArtist": "John Travolta & Olivia Newton-John",
+    "id": "01a3153d",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:40:03.144Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Barbadian singer finally returned to music in 2024 after a 6-year hiatus?",
+    "correctAnswer": "No major return in 2024",
+    "options": [
+      "Adele",
+      "Lauryn Hill",
+      "SZA",
+      "FKA twigs"
+    ],
+    "artistName": "Ed Sheeran",
+    "funFact": "🗞️ CAREER — Rihanna released 'Lift Me Up' for Black Panther: Wakanda Forever in 2022, ending her 6-year music hiatus since 'Anti' in 2016",
+    "difficulty": "easy",
+    "backgroundSongName": "I See Fire",
+    "backgroundArtist": "Ed Sheeran",
+    "id": "d1d436bc",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:40:03.144Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is Olivia Rodrigo's debut album called?",
+    "correctAnswer": "SOUR",
+    "options": [
+      "SOUR",
+      "BITTER",
+      "SWEET",
+      "SALTY"
+    ],
+    "artistName": "Olivia Rodrigo",
+    "funFact": "Olivia Rodrigo broke the all-time Spotify record for most streams in a single week when 'SOUR' dropped — she was only 18!",
+    "difficulty": "medium",
+    "backgroundSongName": "Can’t Catch Me Now (from The Hunger Games: The Ballad of Songbirds & Snakes)",
+    "backgroundArtist": "Olivia Rodrigo",
+    "id": "59929553",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:40:03.144Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which Nigerian superstar collaborated with Beyonce on 'ALREADY' and became Africa's biggest streaming artist?",
+    "correctAnswer": "Burna Boy (but not on 'Already')",
+    "options": [
+      "Burna Boy",
+      "Wizkid",
+      "Davido",
+      "Tems"
+    ],
+    "artistName": "Shu-bi-dua",
+    "funFact": "🗞️ CAREER — Burna Boy won the Grammy for Best Global Music Album in 2021 — he famously said he was going to 'open doors for every African artiste' and he delivered on that promise",
+    "difficulty": "medium",
+    "backgroundSongName": "Danmark",
+    "backgroundArtist": "Shu-bi-dua",
+    "id": "dbcde867",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:46:29.937Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which rapper had a public feud with Cardi B that included shoe-throwing at a fashion event?",
+    "correctAnswer": "Nicki Minaj",
+    "options": [
+      "Nicki Minaj",
+      "Megan Thee Stallion",
+      "Doja Cat",
+      "Azealia Banks"
+    ],
+    "artistName": "Gnags & Peter A.G.",
+    "funFact": "🗞️ BEEF — The Cardi B vs Nicki Minaj feud peaked at a 2018 Harper's Bazaar party where Cardi threw a shoe - the beef continued with subliminal disses and intense fan wars on social media",
+    "difficulty": "easy",
+    "backgroundSongName": "Vilde Kaniner",
+    "backgroundArtist": "Gnags & Peter A.G.",
+    "id": "b864ff6e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:46:29.937Z"
+  },
+  {
+    "questionType": "gossip",
+    "questionText": "Which pop star was labeled 'nepo baby' after fans discovered both her parents work in entertainment?",
+    "correctAnswer": "Miley Cyrus",
+    "options": [
+      "Miley Cyrus",
+      "Lily Allen",
+      "Zoe Kravitz",
+      "Maya Hawke"
+    ],
+    "artistName": "Alex Vargas",
+    "funFact": "🗞️ CONTROVERSY — The 'nepo baby' discourse exploded in 2022-2023 — Miley Cyrus (daughter of Billy Ray), Lily-Rose Depp, and many others were called out, but Miley's 'Flowers' proved talent speaks for itself",
+    "difficulty": "easy",
+    "backgroundSongName": "Shackled Up",
+    "backgroundArtist": "Alex Vargas",
+    "id": "4639fb4a",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:46:29.937Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Rasmus Seebach from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Netherlands"
+    ],
+    "artistName": "Rasmus Seebach",
+    "funFact": "Rasmus Seebach won the Danish version of 'Popstars' in 2000 and became a household name before he turned 20!",
+    "difficulty": "easy",
+    "backgroundSongName": "Olivia",
+    "backgroundArtist": "Rasmus Seebach",
+    "id": "70eee3ec",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T14:46:29.937Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Aqua from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Norway",
+      "Sweden",
+      "Iceland"
+    ],
+    "artistName": "Aqua",
+    "funFact": "Aqua's 'Barbie Girl' was so catchy that Mattel's lawyers nearly sued them — but the company realized it was the best free marketing ever!",
+    "difficulty": "easy",
+    "backgroundSongName": "Back To the 80's",
+    "backgroundArtist": "Aqua",
+    "id": "c3decec3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:07:48.699Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Mew from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Netherlands",
+      "Belgium"
+    ],
+    "artistName": "Mew",
+    "funFact": "Mew's album 'Frengers' was created in a bunker in Copenhagen — and it became a cult indie classic!",
+    "difficulty": "medium",
+    "backgroundSongName": "Apocalypso",
+    "backgroundArtist": "Mew",
+    "id": "f262865f",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:07:48.699Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Whigfield had a massive one-hit wonder in the 90s. What was the song that made her an international star?",
+    "correctAnswer": "Saturday Night",
+    "options": [
+      "Saturday Night",
+      "Friday Night",
+      "Sunday Morning",
+      "Disco Night"
+    ],
+    "artistName": "Whigfield",
+    "funFact": "'Saturday Night' became the fastest-selling debut single ever at the time — and it spent an insane amount of time at #1!",
+    "difficulty": "easy",
+    "backgroundSongName": "Sexy Eyes",
+    "backgroundArtist": "Whigfield",
+    "id": "78dac6ee",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:07:48.699Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Junior Senior from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Germany"
+    ],
+    "artistName": "Junior Senior",
+    "funFact": "Junior Senior's 'Move Your Feet' became a viral sensation years before TikTok — proof that Danish dance-punk was ahead of its time!",
+    "difficulty": "medium",
+    "backgroundSongName": "Move Your Feet",
+    "backgroundArtist": "Junior Senior",
+    "id": "f2283f89",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:07:48.699Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Lukas Graham from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Lukas Graham",
+    "funFact": "Lukas Graham's '7 Years' became a massive global hit despite being deeply personal about his life in Copenhagen",
+    "difficulty": "easy",
+    "backgroundSongName": "Not a Damn Thing Changed",
+    "backgroundArtist": "Lukas Graham",
+    "id": "0fbd37c8",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Iceage from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Finland",
+      "Poland",
+      "Germany"
+    ],
+    "artistName": "Iceage",
+    "funFact": "Iceage started as a teenage punk band in Copenhagen and became one of the most critically acclaimed post-punk revival acts of their generation",
+    "difficulty": "medium",
+    "backgroundSongName": "Catch It",
+    "backgroundArtist": "Iceage",
+    "id": "abd8c717",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead guitarist of Pretty Maids?",
+    "correctAnswer": "Ken Hammer",
+    "options": [
+      "Ken Hammer",
+      "Ronnie Atkins",
+      "Morten Lützhøft",
+      "Nils Lyhne Andersen"
+    ],
+    "artistName": "Pretty Maids",
+    "funFact": "Pretty Maids has been one of Denmark's longest-running heavy metal bands, consistently touring since the 1980s",
+    "difficulty": "hard",
+    "backgroundSongName": "Back to Back",
+    "backgroundArtist": "Pretty Maids",
+    "id": "ea1f76c7",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is King Diamond from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "USA",
+      "UK"
+    ],
+    "artistName": "King Diamond",
+    "funFact": "King Diamond's theatrical black metal performances and falsetto screams made him one of the most recognizable voices in extreme metal",
+    "difficulty": "medium",
+    "backgroundSongName": "Welcome Home",
+    "backgroundArtist": "King Diamond",
+    "id": "5c221ba2",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Toy-Box from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Netherlands",
+      "Belgium",
+      "Austria"
+    ],
+    "artistName": "Toy-Box",
+    "funFact": "Toy-Box's 'Tarzan & Jane' became a massive Eurodance hit in the late 90s despite the group's young average age at the time",
+    "difficulty": "medium",
+    "backgroundSongName": "The Sailor Song",
+    "backgroundArtist": "Toy-Box",
+    "id": "5edbaa33",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is The Raveonettes from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Germany",
+      "Belgium"
+    ],
+    "artistName": "The Raveonettes",
+    "funFact": "The Raveonettes' lo-fi indie rock sound with female vocals became influential in the 2000s psych-pop revival",
+    "difficulty": "medium",
+    "backgroundSongName": "Somewhere In Texas",
+    "backgroundArtist": "The Raveonettes",
+    "id": "24384f8d",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the main vocalist of Efterklang?",
+    "correctAnswer": "Casper Clausen",
+    "options": [
+      "Casper Clausen",
+      "Mads Brauer",
+      "Jens Bodilsen",
+      "Peter Kjær"
+    ],
+    "artistName": "Efterklang",
+    "funFact": "Efterklang's intricate post-rock soundscapes have made them one of Denmark's most critically acclaimed experimental bands",
+    "difficulty": "hard",
+    "backgroundSongName": "Modern Drift",
+    "backgroundArtist": "Efterklang",
+    "id": "557fd096",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:11:12.368Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Lukas Graham from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Lukas Graham",
+    "funFact": "Lukas Graham's dad was a jazz musician who named him after a blues legend — talk about musical destiny!",
+    "difficulty": "easy",
+    "backgroundSongName": "Ordinary Things",
+    "backgroundArtist": "Lukas Graham",
+    "id": "5e5613ba",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Alphabeat is a Danish pop band. Which of these is NOT a member of Alphabeat?",
+    "correctAnswer": "Søren Rasted",
+    "options": [
+      "Anders SG",
+      "Stina Wollter",
+      "Søren Rasted",
+      "Rasmus Hedegaard"
+    ],
+    "artistName": "Alphabeat",
+    "funFact": "Alphabeat won the Danish TV talent show 'Popstars' in 2004 — they were literally made for stardom!",
+    "difficulty": "medium",
+    "backgroundSongName": "The Spell",
+    "backgroundArtist": "Alphabeat",
+    "id": "5e6f43d4",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Where is the electronic duo WhoMadeWho originally from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Netherlands",
+      "Belgium"
+    ],
+    "artistName": "WhoMadeWho",
+    "funFact": "WhoMadeWho's name comes from a party in Copenhagen where no one could remember who made the sick beats — legend born!",
+    "difficulty": "medium",
+    "backgroundSongName": "Ember",
+    "backgroundArtist": "WhoMadeWho",
+    "id": "7731563b",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which Scandinavian country does the psychedelic rock band Iceage hail from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Finland",
+      "Norway"
+    ],
+    "artistName": "Iceage",
+    "funFact": "Iceage started when the members were teenagers in Copenhagen and their raw, chaotic sound inspired a whole generation of DIY punk kids!",
+    "difficulty": "medium",
+    "backgroundSongName": "The Day the Music Dies",
+    "backgroundArtist": "Iceage",
+    "id": "f678ede4",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Oh Land is a Danish electronic pop artist. What is her real first name?",
+    "correctAnswer": "Nanna",
+    "options": [
+      "Nanna",
+      "Sofie",
+      "Helena",
+      "Maria"
+    ],
+    "artistName": "Oh Land",
+    "funFact": "Oh Land once performed at the opening ceremony of the Copenhagen Fashion Week while literally floating on water!",
+    "difficulty": "medium",
+    "backgroundSongName": "Julefeber",
+    "backgroundArtist": "Oh Land",
+    "id": "4412a51b",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is the hip-hop legend L.O.C. from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "L.O.C.",
+    "funFact": "L.O.C. (Troels Lohner Christophersen) is basically the godfather of Danish hip-hop and still spits fire today!",
+    "difficulty": "easy",
+    "backgroundSongName": "XxxCouture (XxxCouture)",
+    "backgroundArtist": "L.O.C.",
+    "id": "c3c95dfe",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which legendary jazz bassist is Niels-Henning Ørsted Pedersen famous for collaborating with?",
+    "correctAnswer": "Oscar Peterson",
+    "options": [
+      "Oscar Peterson",
+      "Thelonious Monk",
+      "Bill Evans",
+      "Keith Jarrett"
+    ],
+    "artistName": "Niels-Henning Ørsted Pedersen",
+    "funFact": "Niels-Henning Ørsted Pedersen was only 14 when he recorded his first album — child prodigy alert!",
+    "difficulty": "hard",
+    "backgroundSongName": "Pippi Langstrømpe",
+    "backgroundArtist": "Niels-Henning Ørsted Pedersen",
+    "id": "db68207f",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "What country are the progressive rock legends Kashmir from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Australia",
+      "Canada",
+      "South Africa"
+    ],
+    "artistName": "Kashmir",
+    "funFact": "Kashmir's sound is so massive and atmospheric, it's like Pink Floyd had a baby with Rush in Copenhagen!",
+    "difficulty": "medium",
+    "backgroundSongName": "Rocket Brothers",
+    "backgroundArtist": "Kashmir",
+    "id": "405b47f4",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "VETO is a Danish experimental rock band. How many core members does the band have?",
+    "correctAnswer": "3",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "artistName": "VETO",
+    "funFact": "VETO's sound is so weird and wonderful, it's like if prog-rock had a psychedelic breakdown in a Copenhagen basement!",
+    "difficulty": "hard",
+    "backgroundSongName": "You Are a Knife",
+    "backgroundArtist": "VETO",
+    "id": "4da7714b",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:14:59.962Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Volbeat from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Volbeat",
+    "funFact": "Volbeat's frontman Michael Poulsen is a huge Johnny Cash fan and has covered his songs multiple times",
+    "difficulty": "easy",
+    "backgroundSongName": "Lonesome Rider (feat. Sarah Blackwood)",
+    "backgroundArtist": "Volbeat",
+    "id": "9d8ef7bc",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is the real name of the artist known as MØ?",
+    "correctAnswer": "Karen Marie Ørsted Andersen",
+    "options": [
+      "Karen Marie Ørsted Andersen",
+      "Mette Obel Andersen",
+      "Maria Søgaard Nielsen",
+      "Kristine Asmussen"
+    ],
+    "artistName": "MØ",
+    "funFact": "MØ's biggest international hit 'Lean On' with Major Lazer became the most-streamed song on Spotify in 2016",
+    "difficulty": "medium",
+    "backgroundSongName": "Nights with You",
+    "backgroundArtist": "MØ",
+    "id": "e37887cc",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is NOT a founding member of The Raveonettes?",
+    "correctAnswer": "Rasmus Ahlfeldt",
+    "options": [
+      "Sharin Foo",
+      "Sune Rose Wagner",
+      "Rasmus Ahlfeldt",
+      "Malay Live Members"
+    ],
+    "artistName": "The Raveonettes",
+    "funFact": "The Raveonettes were founded by Sune Rose Wagner and Sharin Foo in 2001",
+    "difficulty": "hard",
+    "backgroundSongName": "She Owns the Streets",
+    "backgroundArtist": "The Raveonettes",
+    "id": "99062a7e",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Aqua, the iconic eurodance group, hails from which country?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Netherlands",
+      "Germany",
+      "Sweden"
+    ],
+    "artistName": "Aqua",
+    "funFact": "'Barbie Girl' was so catchy it was actually banned from some radio stations for being too repetitive",
+    "difficulty": "easy",
+    "backgroundSongName": "Barbie Girl",
+    "backgroundArtist": "Aqua",
+    "id": "46054af3",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "King Diamond, the heavy metal legend, is from which Nordic country?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Finland",
+      "Norway",
+      "Sweden"
+    ],
+    "artistName": "King Diamond",
+    "funFact": "King Diamond's elaborate stage makeup took over 2 hours to apply and was inspired by black metal traditions",
+    "difficulty": "medium",
+    "backgroundSongName": "Eye of the Witch",
+    "backgroundArtist": "King Diamond",
+    "id": "5e9c4f37",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Who is the lead vocalist of Suspekt?",
+    "correctAnswer": "Orgi",
+    "options": [
+      "Orgi",
+      "Kesi Koleyn",
+      "Slin Linee",
+      "Robinhood"
+    ],
+    "artistName": "Suspekt",
+    "funFact": "Suspekt revolutionized Danish hip-hop by rapping in Danish rather than English",
+    "difficulty": "hard",
+    "backgroundSongName": "Sut den op fra slap",
+    "backgroundArtist": "Suspekt",
+    "id": "f45fb7d0",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What was The Asteroids Galaxy Tour's breakthrough international hit?",
+    "correctAnswer": "Around the Bend",
+    "options": [
+      "Around the Bend",
+      "Major Lazer",
+      "Heart Attack",
+      "Kaleidoscope"
+    ],
+    "artistName": "The Asteroids Galaxy Tour",
+    "funFact": "The Asteroids Galaxy Tour's psychedelic style influenced a whole generation of indie pop artists",
+    "difficulty": "medium",
+    "backgroundSongName": "The Golden Age (EP Version)",
+    "backgroundArtist": "The Asteroids Galaxy Tour",
+    "id": "baf35708",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "band-members",
+    "questionText": "Which of these is a member of Infernal?",
+    "correctAnswer": "Lina Rafn",
+    "options": [
+      "Lina Rafn",
+      "Karen Marie",
+      "Sharin Foo",
+      "Sanne Salomonsen"
+    ],
+    "artistName": "Infernal",
+    "funFact": "Infernal's 'From Paris to Berlin' became a massive international hit after being featured in various TV shows",
+    "difficulty": "hard",
+    "backgroundSongName": "Kalinka (Na Storovye Mix)",
+    "backgroundArtist": "Infernal",
+    "id": "d10ff605",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "D-A-D, the hard rock band, comes from which country?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "D-A-D",
+    "funFact": "D-A-D's name stands for 'Disneyland After Dark' and was inspired by their rebellious attitude",
+    "difficulty": "medium",
+    "backgroundSongName": "Nineteenhundredandyesterday (Remastered 2009)",
+    "backgroundArtist": "D-A-D",
+    "id": "1b516894",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:17:53.402Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Volbeat from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Finland"
+    ],
+    "artistName": "Volbeat",
+    "funFact": "Volbeat's logo is inspired by a real volbeat insect, and they're basically Denmark's answer to heavy metal cool",
+    "difficulty": "easy",
+    "backgroundSongName": "A Warrior's Call",
+    "backgroundArtist": "Volbeat",
+    "id": "20c30332",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:21:52.454Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "What is King Diamond's real name?",
+    "correctAnswer": "Kim Bendix Petersen",
+    "options": [
+      "Kim Bendix Petersen",
+      "Anders Kampmann",
+      "Lars Ulrich",
+      "Michael Denner"
+    ],
+    "artistName": "King Diamond",
+    "funFact": "King Diamond is famous for his insanely high-pitched vocals that can shatter glass — and his elaborate stage makeup that took 2 hours to apply",
+    "difficulty": "hard",
+    "backgroundSongName": "Arrival",
+    "backgroundArtist": "King Diamond",
+    "id": "987c9dbb",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:21:52.454Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Infernal from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Sweden",
+      "Norway",
+      "Iceland"
+    ],
+    "artistName": "Infernal",
+    "funFact": "Infernal's 'From Paris to Berlin' became a massive European hit and is still a festival favorite across the continent!",
+    "difficulty": "easy",
+    "backgroundSongName": "From Paris to Berlin",
+    "backgroundArtist": "Infernal",
+    "id": "a170e8f0",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:24:28.922Z"
+  },
+  {
+    "questionType": "artist-trivia",
+    "questionText": "Which of these is NOT a member of Mercyful Fate?",
+    "correctAnswer": "Pelle Sørensen",
+    "options": [
+      "King Diamond",
+      "Hank Shermann",
+      "Pelle Sørensen",
+      "Michael Denner"
+    ],
+    "artistName": "Mercyful Fate",
+    "funFact": "Mercyful Fate's King Diamond is known for his insane live performances with theatrical makeup and horror themes — basically the godfather of metal theatrics!",
+    "difficulty": "medium",
+    "backgroundSongName": "A Dangerous Meeting",
+    "backgroundArtist": "Mercyful Fate",
+    "id": "0e5df211",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:24:28.922Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country is Michael Learns to Rock from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Germany",
+      "Netherlands",
+      "Belgium"
+    ],
+    "artistName": "Michael Learns to Rock",
+    "funFact": "Michael Learns to Rock became MASSIVE in Asia, especially India — their albums outsold their European releases by millions!",
+    "difficulty": "medium",
+    "backgroundSongName": "I Still Carry On",
+    "backgroundArtist": "Michael Learns to Rock",
+    "id": "3d2646b4",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:24:28.922Z"
+  },
+  {
+    "questionType": "country-of-origin",
+    "questionText": "Which country are Cartoons from?",
+    "correctAnswer": "Denmark",
+    "options": [
+      "Denmark",
+      "Poland",
+      "Austria",
+      "Czech Republic"
+    ],
+    "artistName": "Cartoons",
+    "funFact": "Cartoons' 'Witch Doctor' was an absolute earworm that invaded playgrounds worldwide in the late 90s — kids couldn't stop doing the dance moves!",
+    "difficulty": "hard",
+    "backgroundSongName": "Witch Doctor",
+    "backgroundArtist": "Cartoons",
+    "id": "eff824e8",
+    "validated": true,
+    "timesUsed": 0,
+    "createdAt": "2026-04-06T15:24:28.922Z"
   }
 ]

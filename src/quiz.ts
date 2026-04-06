@@ -23,7 +23,8 @@ export type QuizSource =
   | "charts"
   | "catalog-artist"
   | "mixed"
-  | "live";
+  | "live"
+  | "dansk";
 
 export interface QuizQuestion {
   questionNumber: number;
@@ -33,6 +34,7 @@ export interface QuizQuestion {
   artistName: string;
   albumName: string;
   releaseYear: string;
+  artworkUrl?: string;
   question: string;
   answer: string;
   hints: string[];
@@ -71,6 +73,7 @@ interface SongData {
   artistName: string;
   albumName: string;
   releaseDate: string;
+  artworkUrl: string;
 }
 
 function extractSongs(data: unknown): SongData[] {
@@ -87,12 +90,19 @@ function extractSongs(data: unknown): SongData[] {
     if (o.attributes && typeof o.attributes === "object") {
       const attrs = o.attributes as Record<string, unknown>;
       if (attrs.name && attrs.artistName) {
+        // Extract artwork URL and substitute {w}x{h} with actual size
+        let artworkUrl = "";
+        const artwork = attrs.artwork as { url?: string } | undefined;
+        if (artwork?.url) {
+          artworkUrl = artwork.url.replace("{w}", "300").replace("{h}", "300");
+        }
         songs.push({
           id: String(o.id || ""),
           name: String(attrs.name || ""),
           artistName: String(attrs.artistName || ""),
           albumName: String(attrs.albumName || ""),
           releaseDate: String(attrs.releaseDate || ""),
+          artworkUrl,
         });
       }
     }
@@ -128,6 +138,7 @@ function makeGuessArtist(song: SongData, idx: number): QuizQuestion {
     artistName: song.artistName,
     albumName: song.albumName,
     releaseYear: song.releaseDate?.substring(0, 4) || "unknown",
+    artworkUrl: song.artworkUrl,
     question: `Which artist performs this song?`,
     answer: song.artistName,
     hints: [
@@ -148,6 +159,7 @@ function makeGuessSong(song: SongData, idx: number): QuizQuestion {
     artistName: song.artistName,
     albumName: song.albumName,
     releaseYear: song.releaseDate?.substring(0, 4) || "unknown",
+    artworkUrl: song.artworkUrl,
     question: `What is the name of this song?`,
     answer: song.name,
     hints: [
@@ -168,6 +180,7 @@ function makeGuessAlbum(song: SongData, idx: number): QuizQuestion {
     artistName: song.artistName,
     albumName: song.albumName,
     releaseYear: song.releaseDate?.substring(0, 4) || "unknown",
+    artworkUrl: song.artworkUrl,
     question: `Which album is this song from?`,
     answer: song.albumName,
     hints: [
@@ -188,6 +201,7 @@ function makeGuessYear(song: SongData, idx: number): QuizQuestion {
     artistName: song.artistName,
     albumName: song.albumName,
     releaseYear: year,
+    artworkUrl: song.artworkUrl,
     question: `In which year was this song released? (within 2 years counts as correct)`,
     answer: year,
     hints: [
@@ -207,6 +221,7 @@ function makeIntroQuiz(song: SongData, idx: number): QuizQuestion {
     artistName: song.artistName,
     albumName: song.albumName,
     releaseYear: song.releaseDate?.substring(0, 4) || "unknown",
+    artworkUrl: song.artworkUrl,
     question: `Listen to the intro — name the song AND the artist!`,
     answer: `${song.name} by ${song.artistName}`,
     hints: [
@@ -369,6 +384,85 @@ export async function generateQuiz(
       rawData = await client.searchCatalog(searchTerm, ["songs"], 25);
       title = "Live Music Quiz";
       description = "Live performances and concerts";
+      break;
+    }
+    case "dansk": {
+      // ─── CACHED DANISH ARTIST SONGS ────────────────────────
+      // Load pre-cached songs from data/artist-songs-dk.json (fast — no API calls)
+      // Fallback to live search if cache doesn't exist
+      const allTracks: unknown[] = [];
+      const seenArtists = new Set<string>();
+      try {
+        const { readFileSync } = await import("node:fs");
+        const { join } = await import("node:path");
+        const cachePath = join(process.cwd(), "data", "artist-songs-dk.json");
+        const cache = JSON.parse(readFileSync(cachePath, "utf-8")) as {
+          artists: Record<string, Array<{ id: string; name: string; artistName: string; albumName: string; releaseYear: string; artworkUrl: string }>>;
+          totalSongs: number;
+          matchedArtists: number;
+        };
+        console.log(`🎵 Dansk: Loaded cache (${cache.totalSongs} songs from ${cache.matchedArtists} artists)`);
+
+        // Convert cache to Apple Music format and shuffle artists
+        const artistNames = shuffle(Object.keys(cache.artists));
+        for (const artistName of artistNames) {
+          const songs = cache.artists[artistName];
+          for (const s of songs) {
+            allTracks.push({
+              id: s.id,
+              type: "songs",
+              attributes: {
+                name: s.name,
+                artistName: s.artistName,
+                albumName: s.albumName,
+                releaseDate: s.releaseYear ? `${s.releaseYear}-01-01` : "",
+                artwork: s.artworkUrl ? { url: s.artworkUrl.replace("300", "{w}").replace("300", "{h}") } : undefined,
+              },
+            });
+          }
+          seenArtists.add(artistName);
+          if (allTracks.length >= count * 5) break;
+        }
+        console.log(`🎵 Dansk: ${allTracks.length} songs from ${seenArtists.size} artists (from cache)`);
+      } catch (err) {
+        console.warn("🎵 Dansk cache miss, falling back to live search:", err);
+        // Fallback: live search (supports both flat array and wrapped structures)
+        type DkArtist = { name: string; country?: string; genres?: string[]; decade?: string; important?: boolean };
+        const { readFileSync } = await import("node:fs");
+        const { join } = await import("node:path");
+        const path = join(process.cwd(), "src", "quiz", "data", "artists-dk.json");
+        const parsed = JSON.parse(readFileSync(path, "utf-8"));
+        const dkArtists: DkArtist[] = Array.isArray(parsed) ? parsed : (parsed.artists || []);
+        const shuffled = shuffle(dkArtists);
+        const BATCH_SIZE = 10;
+        for (let i = 0; i < shuffled.length && allTracks.length < count * 5; i += BATCH_SIZE) {
+          const batch = shuffled.slice(i, i + BATCH_SIZE);
+          const results = await Promise.allSettled(
+            batch.map(async (artist) => {
+              const limit = 5;
+              const searchRes = await client.searchCatalog(artist.name, ["songs"], limit) as any;
+              return { artist, songs: searchRes.results?.songs?.data || [] };
+            })
+          );
+          for (const result of results) {
+            if (result.status !== "fulfilled") continue;
+            const { artist, songs } = result.value;
+            const artistLower = artist.name.toLowerCase().replace(/['\u2019]/g, "");
+            const matching = songs.filter((s: any) => {
+              const sArtist = (s.attributes?.artistName || "").toLowerCase().replace(/['\u2019]/g, "");
+              return sArtist.includes(artistLower) || artistLower.includes(sArtist);
+            });
+            for (const song of matching) {
+              allTracks.push(song);
+              seenArtists.add(artist.name);
+            }
+          }
+        }
+      }
+
+      rawData = { data: allTracks };
+      title = "Dansk Musik Quiz";
+      description = `Fra ${seenArtists.size} danske kunstnere`;
       break;
     }
     default:

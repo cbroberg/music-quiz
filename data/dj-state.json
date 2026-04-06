@@ -1,18 +1,18 @@
 {
   "credits": {
     "Christian": {
-      "total": 40,
-      "used": 16,
+      "total": 106,
+      "used": 18,
       "avatar": "🎸"
     },
     "Nina": {
-      "total": 26,
-      "used": 14,
+      "total": 74,
+      "used": 15,
       "avatar": "🎤"
     },
     "Viola": {
-      "total": 15,
-      "used": 13,
+      "total": 51,
+      "used": 15,
       "avatar": "🎹"
     }
   },
@@ -40,6 +40,39 @@
       "played": false
     },
     {
+      "id": "44",
+      "songId": "1474815799",
+      "name": "Come Together (2019 Mix)",
+      "artistName": "The Beatles",
+      "albumName": "Abbey Road (2019 Mix)",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": false
+    },
+    {
+      "id": "45",
+      "songId": "1440821738",
+      "name": "Bohemian Rhapsody",
+      "artistName": "Queen",
+      "albumName": "The Platinum Collection",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/8b/f1/50/8bf1503a-a4db-4fa6-a3a5-f919509acacd/14UMGIM43392.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Nina",
+      "addedByAvatar": "🎤",
+      "played": false
+    },
+    {
+      "id": "43",
+      "songId": "1453925093",
+      "name": "Hotel California (Live On MTV, 1994)",
+      "artistName": "Eagles",
+      "albumName": "Hell Freezes Over (Remastered) [Live]",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/88/13/c7/8813c795-1794-e1a0-bea6-79e01866d98b/00602577302473.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Viola",
+      "addedByAvatar": "🎹",
+      "played": false
+    },
+    {
       "id": "29",
       "songId": "1441164430",
       "name": "Come Together",
@@ -49,6 +82,28 @@
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
       "played": true
+    },
+    {
+      "id": "47",
+      "songId": "1293903289",
+      "name": "Hotel California (Remastered)",
+      "artistName": "Eagles",
+      "albumName": "Hotel California (40th Anniversary Expanded Edition)",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/8f/f0/88/8ff088ee-bd18-8a27-1bb6-c0e44ad91cb6/603497862542.jpg/200x200bb.jpg",
+      "addedBy": "Viola",
+      "addedByAvatar": "🎹",
+      "played": false
+    },
+    {
+      "id": "46",
+      "songId": "1441164738",
+      "name": "Let It Be",
+      "artistName": "The Beatles",
+      "albumName": "Let It Be",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ae/98/4c/ae984c7a-cd06-a7cd-e8bf-32cb15ba698d/00602567705475.rgb.jpg/200x200bb.jpg",
+      "addedBy": "Christian",
+      "addedByAvatar": "🎸",
+      "played": false
     },
     {
       "id": "30",
@@ -478,7 +533,18 @@
       "addedBy": "DJ",
       "addedByAvatar": "🎧",
       "played": true
+    },
+    {
+      "id": "48",
+      "songId": "171216512",
+      "name": "Goodbye Pork Pie Hat",
+      "artistName": "Jeff Beck",
+      "albumName": "Wired",
+      "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/d9/66/ab/d966abcb-6f21-f9e7-6efa-40acdff089c9/696998543928.jpg/200x200bb.jpg",
+      "addedBy": "DJ",
+      "addedByAvatar": "🎧",
+      "played": false
     }
   ],
-  "currentIndex": 0
+  "currentIndex": -1
 }
