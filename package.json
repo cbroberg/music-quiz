@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cbroberg/apple-music-mcp.git"
+    "url": "https://github.com/cbroberg/music-quiz.git"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",

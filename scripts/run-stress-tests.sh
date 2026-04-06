@@ -3,7 +3,7 @@
 # Run while Christian is away
 
 set -e
-cd /Users/cb/Apps/cbroberg/apple-music-mcp
+cd /Users/cb/Apps/cbroberg/music-quiz
 
 echo "=== Waiting for current test to finish ==="
 while pgrep -f "e2e-screenshot-test-3players-headless" > /dev/null 2>&1; do

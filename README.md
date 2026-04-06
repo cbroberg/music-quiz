@@ -1,4 +1,4 @@
-# 🎵 Apple Music MCP Server
+# 🎵 Music Quiz
 
 A Model Context Protocol (MCP) server for Apple Music with remote playback control, a live now-playing visualizer, and an interactive music quiz game. Search the catalog, create playlists, manage your library, control Music.app on your Mac via AirPlay, and host quiz nights — all from Claude on your iPhone or the web UI.
 
@@ -122,8 +122,8 @@ You need an [Apple Developer account](https://developer.apple.com/account) ($99/
 ### 2. Local Development
 
 ```bash
-git clone https://github.com/cbroberg/apple-music-mcp.git
-cd apple-music-mcp
+git clone https://github.com/cbroberg/music-quiz.git
+cd music-quiz
 npm install
 cp env.example .env
 ```
@@ -146,7 +146,7 @@ Visit `http://localhost:3000/auth` to authorize your Apple Music account.
 ### 3. Deploy to Fly.io
 
 ```bash
-fly apps create apple-music-mcp
+fly apps create music-quiz
 fly volumes create data --size 1 --region arn
 fly certs add your-domain.example.com
 
@@ -193,7 +193,7 @@ The home controller runs on a Mac and lets Claude control Music.app remotely. It
 #### Quick test
 
 ```bash
-cd apple-music-mcp
+cd music-quiz
 HOME_API_KEY=<same key as Fly secret> ./home/start.sh
 ```
 
@@ -217,7 +217,7 @@ Create `~/Library/LaunchAgents/dk.broberg.apple-music-home.plist`:
     <key>ProgramArguments</key>
     <array>
         <string>/path/to/node</string>
-        <string>/path/to/apple-music-mcp/home/dist/server.js</string>
+        <string>/path/to/music-quiz/home/dist/server.js</string>
     </array>
     <key>EnvironmentVariables</key>
     <dict>
