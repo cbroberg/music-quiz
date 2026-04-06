@@ -26,7 +26,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/df/db/61/dfdb615d-47f8-06e9-9533-b96daccc029f/18UMGIM31076.rgb.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "65",
@@ -37,7 +37,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/69/ce/d2/69ced240-07a7-2a04-bbab-2afbacf30809/074643772822.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "76",
@@ -48,7 +48,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/38/fa/ab38fa57-852e-b6a3-d614-40ef19edbe89/199350761416.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true
     },
     {
       "id": "50",
@@ -59,7 +59,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a1/a9/ea/a1a9eaef-2d81-c2c6-9a03-82c3cbc9e598/074643531726.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "73",
@@ -70,7 +70,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/38/fa/ab38fa57-852e-b6a3-d614-40ef19edbe89/199350761416.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true
     },
     {
       "id": "83",
@@ -81,7 +81,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4e/a7/ac/4ea7ac6b-5c69-a500-6119-b15b2556920d/602547851253.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true
     },
     {
       "id": "75",
@@ -92,7 +92,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/38/fa/ab38fa57-852e-b6a3-d614-40ef19edbe89/199350761416.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true
     },
     {
       "id": "63",
@@ -103,7 +103,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/69/ce/d2/69ced240-07a7-2a04-bbab-2afbacf30809/074643772822.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "74",
@@ -114,7 +114,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/38/fa/ab38fa57-852e-b6a3-d614-40ef19edbe89/199350761416.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true
     },
     {
       "id": "42",
@@ -125,7 +125,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e8/f1/51/e8f151ae-0f87-a2fd-b981-807a01b24504/18UMGIM55031.rgb.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🎤",
-      "played": false
+      "played": true
     },
     {
       "id": "70",
@@ -136,7 +136,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/69/ce/d2/69ced240-07a7-2a04-bbab-2afbacf30809/074643772822.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "67",
@@ -147,7 +147,7 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/69/ce/d2/69ced240-07a7-2a04-bbab-2afbacf30809/074643772822.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true
     },
     {
       "id": "44",
@@ -158,7 +158,9 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/48/53/43/485343e3-dd6a-0034-faec-f4b6403f8108/13UMGIM63890.rgb.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": true,
+      "failed": false,
+      "retries": 0
     },
     {
       "id": "82",
@@ -169,7 +171,9 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/4e/a7/ac/4ea7ac6b-5c69-a500-6119-b15b2556920d/602547851253.jpg/200x200bb.jpg",
       "addedBy": "Nina",
       "addedByAvatar": "🥁",
-      "played": false
+      "played": true,
+      "retries": 0,
+      "failed": false
     },
     {
       "id": "51",
@@ -180,7 +184,9 @@
       "artworkUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/a1/a9/ea/a1a9eaef-2d81-c2c6-9a03-82c3cbc9e598/074643531726.jpg/200x200bb.jpg",
       "addedBy": "Christian",
       "addedByAvatar": "🎸",
-      "played": false
+      "played": false,
+      "retries": 0,
+      "failed": false
     },
     {
       "id": "61",
@@ -1008,5 +1014,5 @@
       "played": false
     }
   ],
-  "currentIndex": 0
+  "currentIndex": 14
 }

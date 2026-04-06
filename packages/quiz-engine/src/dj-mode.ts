@@ -87,7 +87,11 @@ export interface QueuedSong {
   addedBy: string;       // player name
   addedByAvatar: string;
   played: boolean;
+  failed?: boolean;      // last playback attempt errored — eligible for retry on dj_next
+  retries?: number;      // retry counter — caps at MAX_DJ_RETRIES then forced-skipped
 }
+
+export const MAX_DJ_RETRIES = 2;
 
 export interface DjSession {
   active: boolean;
@@ -295,14 +299,21 @@ export function getUpcoming(): QueuedSong[] {
   return djSession.queue.filter(q => !q.played);
 }
 
+export function isCurrentlyPlaying(): boolean {
+  return djSession.isPlaying;
+}
+
 export function getCurrentSong(): QueuedSong | undefined {
   if (djSession.currentIndex < 0) return undefined;
   return djSession.queue[djSession.currentIndex];
 }
 
 export function advanceQueue(): QueuedSong | undefined {
-  // Mark current as played
-  if (djSession.currentIndex >= 0 && djSession.queue[djSession.currentIndex]) {
+  // Only mark current as played if it actually started playing.
+  // If isPlaying is false (e.g. previous play attempt failed), the current
+  // song never had its turn — leave it unplayed so the user can retry it
+  // instead of silently dropping a player's pick.
+  if (djSession.currentIndex >= 0 && djSession.queue[djSession.currentIndex] && djSession.isPlaying) {
     djSession.queue[djSession.currentIndex].played = true;
   }
 
@@ -316,16 +327,32 @@ export function advanceQueue(): QueuedSong | undefined {
 
   djSession.currentIndex = nextIdx;
   djSession.isPlaying = true;
+  // Fresh song — reset retry/failed state so it gets a clean run
+  djSession.queue[nextIdx].retries = 0;
+  djSession.queue[nextIdx].failed = false;
   saveDjState();
   return djSession.queue[nextIdx];
 }
 
-/** Mark current song as failed — revert played state so it can be retried */
+/** Mark current song as failed — eligible for retry on dj_next */
 export function markCurrentFailed(): void {
-  if (djSession.currentIndex >= 0 && djSession.queue[djSession.currentIndex]) {
-    console.log(`🎧 Playback failed: "${djSession.queue[djSession.currentIndex].name}" — will retry`);
-    // Don't mark as played — leave it for retry
+  const cur = djSession.queue[djSession.currentIndex];
+  if (cur) {
+    console.log(`🎧 Playback failed: "${cur.name}" — will retry on dj_next`);
+    cur.failed = true;
     djSession.isPlaying = false;
+    saveDjState();
+  }
+}
+
+/** Mark current song as successfully started — clear any failed state */
+export function markCurrentPlaying(): void {
+  const cur = djSession.queue[djSession.currentIndex];
+  if (cur) {
+    cur.failed = false;
+    cur.retries = 0;
+    djSession.isPlaying = true;
+    saveDjState();
   }
 }
 

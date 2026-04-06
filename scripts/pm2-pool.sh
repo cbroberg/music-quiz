@@ -88,6 +88,9 @@ cmd_up() {
 }
 
 cmd_down() {
+  # SAFETY: only delete entries from our ecosystem file. NEVER `pm2 kill`
+  # — the PM2 daemon also hosts apps from other repos (cms-docs, sproutlake,
+  # webhouse-site, etc.) and a global kill takes them down too.
   $PM2 delete ecosystem.config.cjs || true
 }
 

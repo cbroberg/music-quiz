@@ -254,6 +254,14 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   // Playback control (passes body as params to HC)
   router.post("/quiz/api/admin/playback/:action", async (req, res) => {
     const action = String(req.params.action);
+    // Respect the active provider — when MusicKit JS is the active source,
+    // playback is owned by the browser (Safari) and Music.app must NOT be
+    // touched. Otherwise we'd drive both Apple Music web AND Music.app
+    // simultaneously.
+    if (getActiveProviderType() === "musickit-web") {
+      res.json({ action: "play-client" });
+      return;
+    }
     if (!isHomeConnected()) { res.status(503).json({ error: "Home Controller not connected" }); return; }
     try {
       const result = await sendHomeCommand(action, req.body || {});
@@ -659,10 +667,22 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   });
 
   // Set active playback provider (from Admin page)
-  router.post("/quiz/api/set-provider", (req, res) => {
+  router.post("/quiz/api/set-provider", async (req, res) => {
     const { provider } = req.body;
     if (provider === "musickit-web" || provider === "home-controller") {
+      const previous = getActiveProviderType();
       setActiveProvider(provider as ProviderType);
+      // When switching AWAY from Home Controller, explicitly stop Music.app so
+      // it doesn't continue album-autoplay in the background while the user
+      // expects MusicKit JS to be the only source.
+      if (previous === "home-controller" && provider === "musickit-web" && isHomeConnected()) {
+        try {
+          await sendHomeCommand("pause", {}, 3000);
+          console.log("🎵 Stopped Music.app on provider switch → musickit-web");
+        } catch (err) {
+          console.warn("🎵 Failed to stop Music.app on provider switch:", err);
+        }
+      }
       res.json({ ok: true, provider });
     } else {
       res.status(400).json({ error: "Unknown provider" });

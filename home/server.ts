@@ -127,6 +127,7 @@ async function handleCommand(cmd: Command): Promise<unknown> {
       const randomSeek = cmd.randomSeek === true;
       const found = await osa(`
         tell application "Music"
+          activate
           set results to search playlist "Library" for "${query}"
           if (count of results) > 0 then
             ${wantArtist ? `
@@ -220,6 +221,7 @@ async function handleCommand(cmd: Command): Promise<unknown> {
         try {
           const found = await osa(`
             tell application "Music"
+              activate
               set results to (every track of playlist "Library" whose name is "${songName}" and artist contains "${songArtist}")
               if (count of results) > 0 then
                 play item 1 of results

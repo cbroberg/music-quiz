@@ -267,3 +267,4 @@ PlaybackProvider: playExact, pause, resume, setVolume, nowPlaying,
 8. **Now Playing er read-only** — viser kun hvad host'en spiller, afspiller aldrig selv
 9. **Én connect-knap** — Apple Music connects via Admin, alle andre sider auto-detecter
 10. **ALDRIG native confirm/alert/prompt** — brug altid custom dark-theme modal dialogs
+11. **ALDRIG `pm2 kill` eller global PM2-shutdown.** PM2-daemon hoster også andre apps fra andre repos (`cms-docs`, `sproutlake`, `webhouse-site`, m.fl.) som IKKE er en del af dette projekt. Brug KUN `pm2 delete <name>` eller `pm2 restart <name>` for vores egne entries (`music-quiz`, `home-controller`). Hvis TCC/permission-issues kræver respawn af daemon, så **spørg brugeren først** — han vil koordinere med en anden session der ejer de andre sites.

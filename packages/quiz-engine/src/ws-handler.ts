@@ -28,8 +28,8 @@ import {
 import {
   activateDjMode, deactivateDjMode, isDjModeActive,
   getAllPlayerCredits, getPlayerCredits, addToQueue, getQueue,
-  advanceQueue, getCurrentSong, removeFromQueue, markCurrentFailed,
-  setAutoplay, isAutoplay, getPlayerQueueCount,
+  advanceQueue, getCurrentSong, removeFromQueue, markCurrentFailed, markCurrentPlaying,
+  setAutoplay, isAutoplay, isCurrentlyPlaying, getPlayerQueueCount, MAX_DJ_RETRIES,
   calculateCreditsForRank, addToQueueDirect,
 } from "./dj-mode.js";
 import { getProvider, setActiveProvider, getMusicKitWebProvider } from "./playback/provider-manager.js";
@@ -443,6 +443,28 @@ async function handleHostMessage(conn: WsConnection, msg: HostMessage, musicClie
       break;
     }
     case "dj_next": {
+      // Three semantics for clicking Next:
+      //   (a) Current playing normally → advance, marking it as played (skip)
+      //   (b) Current FAILED last attempt → retry, capped by MAX_DJ_RETRIES
+      //   (c) Current was paused/stopped by user → advance normally
+      //
+      // The `failed` flag on the song tells us (b) vs (c). It's set by
+      // markCurrentFailed() when a play attempt errors and cleared by
+      // markCurrentPlaying() on success.
+      const currentBefore = getCurrentSong();
+      if (currentBefore && !currentBefore.played && currentBefore.failed) {
+        currentBefore.retries = (currentBefore.retries ?? 0) + 1;
+        if (currentBefore.retries <= MAX_DJ_RETRIES) {
+          console.log(`🎧 dj_next: retry ${currentBefore.retries}/${MAX_DJ_RETRIES} for "${currentBefore.name}"`);
+          playDjSong(currentBefore, musicClient);
+          broadcastDjState(conn);
+          break;
+        }
+        console.log(`🎧 dj_next: "${currentBefore.name}" failed ${MAX_DJ_RETRIES}× — forced skip`);
+        // Force-skip: mark played so advanceQueue moves past it. The pick
+        // is consumed but the player can re-add the song manually if they want.
+        currentBefore.played = true;
+      }
       const next = advanceQueue();
       if (next) {
         playDjSong(next, musicClient);
@@ -802,6 +824,7 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
       const result = await djProvider.playById(song.songId);
       if (result.playing) {
         console.log(`🎧 DJ playing (by ID): ${song.name}`);
+        markCurrentPlaying();
         return true;
       }
     }
@@ -811,6 +834,7 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
     const result = await djProvider.playExact(song.name, artist, { retries: 2 });
     if (result.playing) {
       console.log(`🎧 DJ playing: ${result.track}`);
+      markCurrentPlaying();
       return true;
     }
 
@@ -818,6 +842,7 @@ async function playDjSong(song: { songId: string; name: string; artistName: stri
     const search = await djProvider.searchAndPlay(`${song.name} ${artist}`);
     if (search.playing) {
       console.log(`🎧 DJ playing (search): ${search.track}`);
+      markCurrentPlaying();
       return true;
     }
     console.error(`🎧 DJ play FAILED all methods: ${song.name} — ${song.artistName}`);
