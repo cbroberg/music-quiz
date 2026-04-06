@@ -15,7 +15,7 @@ async function main() {
   console.log('\n🇩🇰 Pre-caching Danish artist songs\n');
 
   // Load curated list — flat array
-  const artists = JSON.parse(readFileSync('src/quiz/data/artists-dk.json', 'utf-8'));
+  const artists = JSON.parse(readFileSync('packages/quiz-engine/src/data/artists-dk.json', 'utf-8'));
   console.log(`Artists to fetch: ${artists.length}`);
 
   // Check server

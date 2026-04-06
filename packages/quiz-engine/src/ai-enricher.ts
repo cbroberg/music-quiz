@@ -8,7 +8,7 @@
 
 import Anthropic from "@anthropic-ai/sdk";
 import { saveQuestions } from "./question-bank.js";
-import type { QuizType } from "./types.js";
+import type { QuizType } from "@music-quiz/shared";
 
 let client: Anthropic | null = null;
 

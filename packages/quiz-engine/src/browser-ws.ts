@@ -7,7 +7,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import { Server, IncomingMessage } from "node:http";
 import { parse } from "node:url";
 import { sendHomeCommand, isHomeConnected } from "./home-ws.js";
-import { getProvider, getActiveProviderType } from "./quiz/playback/provider-manager.js";
+import { getProvider, getActiveProviderType } from "./playback/provider-manager.js";
 import { AppleMusicClient } from "./apple-music.js";
 
 let artworkCache: { key: string; url: string } | null = null;

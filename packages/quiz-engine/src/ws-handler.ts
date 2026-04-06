@@ -13,7 +13,7 @@ import type {
   HostMessage, PlayerMessage,
   ServerToHostMessage, ServerToPlayerMessage,
   GameState, QuestionResult, FinalRanking,
-} from "./types.js";
+} from "@music-quiz/shared";
 import {
   createSession, getSession, getSessionByCode, listActiveSessions,
   addPlayer, removePlayer, markPlayerDisconnected, findSessionByWsId,
@@ -35,7 +35,7 @@ import {
 import { getProvider, setActiveProvider, getMusicKitWebProvider } from "./playback/provider-manager.js";
 import { isMuted } from "./mute.js";
 import { MusicKitWebProvider } from "./playback/musickit-web.js";
-import type { AppleMusicClient } from "../apple-music.js";
+import type { AppleMusicClient } from "./apple-music.js";
 
 // ─── Connection Registry ──────────────────────────────────
 

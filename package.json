@@ -1,57 +1,28 @@
 {
   "name": "music-quiz",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Music Quiz — party game with DJ Mode, powered by Apple Music",
+  "private": true,
   "type": "module",
-  "main": "dist/index.js",
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
-    "build": "tsc && next build web",
-    "build:backend": "tsc",
-    "build:web": "next build web",
-    "start": "node server.js",
-    "start:backend": "node dist/index.js",
-    "dev": "tsc && NODE_ENV=development node server.js"
+    "build": "turbo build",
+    "dev": "turbo run build && NODE_ENV=development node packages/mcp-server/server.js",
+    "lint": "turbo lint",
+    "clean": "turbo clean",
+    "start": "node packages/mcp-server/server.js"
   },
-  "keywords": [
-    "mcp",
-    "apple-music",
-    "musickit"
-  ],
   "author": "Christian Broberg <cb@webhouse.dk>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cbroberg/apple-music-mcp.git"
-  },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.82.0",
-    "@modelcontextprotocol/sdk": "^1.28.0",
-    "@types/qrcode": "^1.5.6",
-    "cookie-parser": "^1.4.7",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "howler": "^2.2.4",
-    "iron-session": "^8.0.4",
-    "jsonwebtoken": "^9.0.3",
-    "next": "^16.2.1",
-    "qrcode": "^1.5.4",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "ws": "^8.20.0"
+    "url": "https://github.com/cbroberg/music-quiz.git"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
-    "@types/cookie-parser": "^1.4.10",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.5.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@types/ws": "^8.18.1",
     "playwright": "^1.58.2",
-    "postcss": "^8.5.8",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.2",
+    "turbo": "^2.5.4",
     "typescript": "^6.0.2"
   }
 }

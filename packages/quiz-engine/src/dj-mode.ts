@@ -6,7 +6,7 @@
  * Queue plays through Home Controller.
  */
 
-import type { FinalRanking } from "./types.js";
+import type { FinalRanking } from "@music-quiz/shared";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 

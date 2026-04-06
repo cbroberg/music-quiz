@@ -140,7 +140,7 @@ async function main() {
   logSection(`🇩🇰 Generating ${TARGET} Danish trivia questions`);
 
   // Load Danish artists
-  const artists = JSON.parse(readFileSync('src/quiz/data/artists-dk.json', 'utf-8'));
+  const artists = JSON.parse(readFileSync('packages/quiz-engine/src/data/artists-dk.json', 'utf-8'));
   console.log(`Artists in pool: ${artists.length}`);
 
   // Load existing if any

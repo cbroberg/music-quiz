@@ -1,0 +1,76 @@
+{
+  "name": "@music-quiz/quiz-engine",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./engine": {
+      "types": "./dist/engine.d.ts",
+      "default": "./dist/engine.js"
+    },
+    "./routes": {
+      "types": "./dist/routes.d.ts",
+      "default": "./dist/routes.js"
+    },
+    "./ws-handler": {
+      "types": "./dist/ws-handler.d.ts",
+      "default": "./dist/ws-handler.js"
+    },
+    "./browser-ws": {
+      "types": "./dist/browser-ws.d.ts",
+      "default": "./dist/browser-ws.js"
+    },
+    "./home-ws": {
+      "types": "./dist/home-ws.d.ts",
+      "default": "./dist/home-ws.js"
+    },
+    "./apple-music": {
+      "types": "./dist/apple-music.d.ts",
+      "default": "./dist/apple-music.js"
+    },
+    "./oauth": {
+      "types": "./dist/oauth.d.ts",
+      "default": "./dist/oauth.js"
+    },
+    "./token": {
+      "types": "./dist/token.d.ts",
+      "default": "./dist/token.js"
+    },
+    "./token-store": {
+      "types": "./dist/token-store.d.ts",
+      "default": "./dist/token-store.js"
+    },
+    "./quiz": {
+      "types": "./dist/quiz.d.ts",
+      "default": "./dist/quiz.js"
+    },
+    "./quiz-manager": {
+      "types": "./dist/quiz-manager.d.ts",
+      "default": "./dist/quiz-manager.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.82.0",
+    "@music-quiz/shared": "workspace:*",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^6.0.2"
+  }
+}

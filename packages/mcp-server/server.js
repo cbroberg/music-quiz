@@ -5,14 +5,22 @@
  */
 
 import { createServer } from "node:http";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
 import next from "next";
-import { app, client, attachHomeWebSocket, PORT, logStartup } from "./dist/index.js";
-import { attachBrowserWebSocket } from "./dist/browser-ws.js";
-import { attachQuizWebSocket } from "./dist/quiz/ws-handler.js";
-import { createQuizRouter } from "./dist/quiz/routes.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const WEB_DIR = resolve(__dirname, "..", "web");
+import { app, client, PORT, logStartup } from "./dist/index.js";
+import {
+  attachHomeWebSocket,
+  attachBrowserWebSocket,
+  attachQuizWebSocket,
+  createQuizRouter,
+} from "@music-quiz/quiz-engine";
 
 const dev = process.env.NODE_ENV !== "production";
-const nextApp = next({ dev, dir: "./web" });
+const nextApp = next({ dev, dir: WEB_DIR });
 const handle = nextApp.getRequestHandler();
 
 await nextApp.prepare();

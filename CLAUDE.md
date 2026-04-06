@@ -2,8 +2,50 @@
 
 ## Current Status (April 2026)
 
-Music Quiz v3.0.0 — multiplayer music quiz party game powered by Apple Music.
+Music Quiz v4.0.0 — multiplayer music quiz party game powered by Apple Music.
 Core quiz + DJ Mode + Party Sessions + MusicKit JS + AI Trivia working end-to-end.
+
+## Monorepo Layout (v4)
+
+pnpm + Turborepo workspace. Run `pnpm install` then `pnpm build` from the root.
+
+```
+packages/
+  shared/        @music-quiz/shared      — pure types (was src/quiz/types.ts)
+  quiz-engine/   @music-quiz/quiz-engine — game engine, Express routes, WS handlers,
+                                            Apple Music client, OAuth, MCP token,
+                                            home-ws, browser-ws, playback providers,
+                                            and the vanilla quiz UI under src/public/
+  mcp-server/    @music-quiz/mcp-server  — MCP entry point + Express/Next bootstrap.
+                                            Contains src/index.ts and server.js.
+  web/           @music-quiz/web         — Next.js 16 frontend (App Router)
+home/            standalone Mac agent, NOT in the workspace (own package.json)
+apps/tvos/       reserved for native tvOS WKWebView shell, NOT in the workspace
+```
+
+**Dependency graph (one-way, no cycles):**
+- `shared` → no deps
+- `quiz-engine` → `shared`
+- `mcp-server` → `quiz-engine` + `shared`
+- `web` → `shared`
+
+**Deviation from the original migration doc:** the doc placed `apple-music.ts`,
+`oauth.ts`, `token.ts`, `token-store.ts`, `browser-ws.ts`, `home-ws.ts`,
+`quiz.ts` and `quiz-manager.ts` inside `mcp-server`. Doing so would have
+created a circular dependency (quiz-engine needs all of those, and mcp-server
+imports from quiz-engine). They now all live in `quiz-engine` and are
+re-exported via `packages/quiz-engine/src/index.ts` so `mcp-server` consumes
+everything through the single workspace name `@music-quiz/quiz-engine`.
+
+**Key build commands:**
+- `pnpm install`                       — install all workspace deps
+- `pnpm build`                         — turbo build (shared → quiz-engine → mcp-server + web)
+- `pnpm --filter @music-quiz/mcp-server dev`  — start backend (tsc + node server.js)
+- `pnpm --filter @music-quiz/web dev`         — Next.js dev server
+- `pnpm start`                         — production node packages/mcp-server/server.js
+
+`home/` is built independently with its own `tsconfig.json` + `package.json`
+(plain `npm install && npx tsc` inside `home/`).
 
 ### What Works
 - **Multiplayer Quiz:** WebSocket game engine, QR join, Kahoot-style scoring, AI answer evaluation

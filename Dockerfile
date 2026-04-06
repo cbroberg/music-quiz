@@ -1,32 +1,30 @@
-FROM node:22-alpine AS deps
+FROM node:22-slim AS base
+RUN corepack enable && corepack prepare pnpm@10.12.1 --activate
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
 
-# Build Express backend
-FROM deps AS backend
-COPY tsconfig.json ./
-COPY src/ src/
-RUN npm run build:backend
+# Install workspace deps with cache-friendly layer
+FROM base AS deps
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json turbo.json tsconfig.base.json ./
+COPY packages/shared/package.json packages/shared/
+COPY packages/quiz-engine/package.json packages/quiz-engine/
+COPY packages/mcp-server/package.json packages/mcp-server/
+COPY packages/web/package.json packages/web/
+RUN pnpm install --frozen-lockfile
 
-# Build Next.js frontend
-FROM deps AS frontend
-COPY --from=backend /app/dist/ dist/
-COPY web/ web/
-RUN npm run build:web
+# Build all packages via Turbo
+FROM deps AS build
+COPY packages/ packages/
+RUN pnpm build
 
 # Production image
-FROM node:22-alpine
-WORKDIR /app
+FROM base AS runtime
 ENV NODE_ENV=production
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY --from=backend /app/dist/ dist/
-COPY --from=frontend /app/web/.next/standalone/web/.next web/.next
-COPY --from=frontend /app/web/.next/static web/.next/static
-COPY --from=frontend /app/web/public web/public
-COPY server.js ./
+WORKDIR /app
+COPY --from=build /app/pnpm-workspace.yaml /app/pnpm-lock.yaml /app/package.json /app/turbo.json /app/tsconfig.base.json ./
+COPY --from=build /app/packages/ packages/
+RUN pnpm install --frozen-lockfile --prod
+COPY home/ home/
+COPY data/ data/
 COPY public/ public/
-COPY src/quiz/public/ src/quiz/public/
 EXPOSE 3000
-CMD ["node", "server.js"]
+CMD ["node", "packages/mcp-server/server.js"]

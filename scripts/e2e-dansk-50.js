@@ -165,7 +165,7 @@ async function main() {
     console.log(`  RP grew: ${initialRP} → ${finalRP.length} (+${finalRP.length - initialRP})`);
 
     // Load artists-dk.json
-    const dkArtists = JSON.parse(readFileSync('./src/quiz/data/artists-dk.json', 'utf-8'));
+    const dkArtists = JSON.parse(readFileSync('./packages/quiz-engine/src/data/artists-dk.json', 'utf-8'));
     const dkArtistNames = new Set(dkArtists.map(a => a.name.toLowerCase().replace(/['\u2019]/g, '')));
 
     // Check how many of new tracks are from curated Danish artists

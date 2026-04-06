@@ -10,12 +10,12 @@ import type {
   GameSession, GameState, Player, PlayerAnswer, QuizConfig,
   QuizQuestion, PendingAnswer, QuestionResult, FinalRanking,
   HostQuestionData, AnswerMode, Party, PartyState, CompletedRound,
-} from "./types.js";
-import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "../quiz.js";
-import type { AppleMusicClient } from "../apple-music.js";
-import { isHomeConnected } from "../home-ws.js";
+} from "@music-quiz/shared";
+import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "./quiz.js";
+import type { AppleMusicClient } from "./apple-music.js";
+import { isHomeConnected } from "./home-ws.js";
 import { isMuted } from "./mute.js";
-import { logTrackChange } from "../browser-ws.js";
+import { logTrackChange } from "./browser-ws.js";
 import { evaluateAnswers } from "./ai-evaluator.js";
 import { awardCredits, resetDjMode } from "./dj-mode.js";
 import { getProvider, getActiveProviderType } from "./playback/provider-manager.js";
@@ -889,14 +889,14 @@ export function getSessionByCode(joinCode: string): GameSession | undefined {
   return undefined;
 }
 
-export function getWaitingPlayers(sessionId: string): import("./types.js").WaitingPlayer[] {
+export function getWaitingPlayers(sessionId: string): import("@music-quiz/shared").WaitingPlayer[] {
   // Check Party first, then session
   const party = getPartyBySessionId(sessionId);
   if (party) return party.waitingPlayers;
   return sessions.get(sessionId)?.waitingPlayers || [];
 }
 
-export function promoteWaitingPlayers(sessionId: string): import("./types.js").WaitingPlayer[] {
+export function promoteWaitingPlayers(sessionId: string): import("@music-quiz/shared").WaitingPlayer[] {
   // Promote from Party if available, otherwise from session
   const party = getPartyBySessionId(sessionId);
   if (party) {

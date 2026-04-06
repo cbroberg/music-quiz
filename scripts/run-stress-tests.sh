@@ -13,14 +13,14 @@ echo "=== Previous test done ==="
 
 echo ""
 echo "=== Rebuilding with scaled pool ==="
-npx tsc
+pnpm build
 
 echo ""
 echo "=== Restarting server (MUTE_ALL=true) ==="
 lsof -ti:3000 2>/dev/null | xargs kill -9 2>/dev/null || true
 pkill -f "home/dist/server.js" 2>/dev/null || true
 sleep 2
-NODE_ENV=development node server.js > /tmp/quiz-server-50q.log 2>&1 &
+NODE_ENV=development node packages/mcp-server/server.js > /tmp/quiz-server-50q.log 2>&1 &
 sleep 5
 source .env && MCP_WS_URL=ws://localhost:3000/home-ws HOME_API_KEY=$HOME_API_KEY node home/dist/server.js > /tmp/quiz-hc-50q.log 2>&1 &
 sleep 3
@@ -37,7 +37,7 @@ echo "=== Restarting server for 100Q ==="
 lsof -ti:3000 2>/dev/null | xargs kill -9 2>/dev/null || true
 pkill -f "home/dist/server.js" 2>/dev/null || true
 sleep 2
-NODE_ENV=development node server.js > /tmp/quiz-server-100q.log 2>&1 &
+NODE_ENV=development node packages/mcp-server/server.js > /tmp/quiz-server-100q.log 2>&1 &
 sleep 5
 source .env && MCP_WS_URL=ws://localhost:3000/home-ws HOME_API_KEY=$HOME_API_KEY node home/dist/server.js > /tmp/quiz-hc-100q.log 2>&1 &
 sleep 3

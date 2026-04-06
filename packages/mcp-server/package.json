@@ -1,0 +1,37 @@
+{
+  "name": "@music-quiz/mcp-server",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && NODE_ENV=development node server.js",
+    "start": "node server.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.82.0",
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@music-quiz/quiz-engine": "workspace:*",
+    "@music-quiz/shared": "workspace:*",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "iron-session": "^8.0.4",
+    "jsonwebtoken": "^9.0.3",
+    "next": "^16.2.1",
+    "qrcode": "^1.5.4",
+    "ws": "^8.20.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.5.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/ws": "^8.18.1",
+    "typescript": "^6.0.2"
+  }
+}

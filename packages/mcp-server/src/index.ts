@@ -9,16 +9,16 @@ import { requireBearerAuth } from "@modelcontextprotocol/sdk/server/auth/middlew
 import { randomUUID, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
-import { createDeveloperToken } from "./token.js";
-import { AppleMusicClient } from "./apple-music.js";
-import { AppleMusicOAuthProvider } from "./oauth.js";
-import { generateQuiz } from "./quiz.js";
 import {
+  createDeveloperToken,
+  AppleMusicClient,
+  AppleMusicOAuthProvider,
+  generateQuiz,
   createQuizSession, getPublicState, addParticipant, removeParticipant,
   getQuizSession, nextQuestion, revealAnswer, awardPoint, showScores, stopQuiz, listActiveSessions,
-} from "./quiz-manager.js";
-import { attachHomeWebSocket, sendHomeCommand, isHomeConnected } from "./home-ws.js";
-import { loadMusicUserToken, saveMusicUserToken } from "./token-store.js";
+  attachHomeWebSocket, sendHomeCommand, isHomeConnected,
+  loadMusicUserToken, saveMusicUserToken,
+} from "@music-quiz/quiz-engine";
 import { fileURLToPath } from "url";
 import path from "path";
 import dotenv from "dotenv";
@@ -26,6 +26,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Workspace root: packages/mcp-server/dist/ → ../../../
+const WORKSPACE_ROOT = path.resolve(__dirname, "..", "..", "..");
 const PORT = parseInt(process.env.PORT || "3000");
 const STOREFRONT = process.env.APPLE_STOREFRONT || "dk";
 const SERVER_URL = process.env.SERVER_URL || `http://localhost:${PORT}`;
@@ -60,11 +62,12 @@ app.use(
   }),
 );
 
-app.use(express.static(path.join(__dirname, "..", "public")));
+// Allow dotfiles in absolute paths — needed for git worktrees under .claude/worktrees/
+app.use(express.static(path.join(WORKSPACE_ROOT, "public"), { dotfiles: "allow" }));
 
 // Serve /auth → auth.html (Apple Music user token flow)
 app.get("/auth", (_req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "auth.html"));
+  res.sendFile(path.join(WORKSPACE_ROOT, "public", "auth.html"), { dotfiles: "allow" });
 });
 
 // Health check

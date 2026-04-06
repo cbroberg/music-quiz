@@ -7,7 +7,7 @@
  */
 
 import Anthropic from "@anthropic-ai/sdk";
-import type { AnswerEvaluation } from "./types.js";
+import type { AnswerEvaluation } from "@music-quiz/shared";
 
 let anthropicClient: Anthropic | null = null;
 

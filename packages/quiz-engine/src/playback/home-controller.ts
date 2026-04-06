@@ -6,7 +6,7 @@
  */
 
 import type { PlaybackProvider, PlayResult, NowPlayingInfo } from "./types.js";
-import { sendHomeCommand, isHomeConnected } from "../../home-ws.js";
+import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
 import { isMuted } from "../mute.js";
 
 export class HomeControllerProvider implements PlaybackProvider {

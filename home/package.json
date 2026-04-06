@@ -1,0 +1,19 @@
+{
+  "name": "music-quiz-home-controller",
+  "version": "4.0.0",
+  "private": true,
+  "description": "Home Controller — Mac agent for AirPlay + osascript playback. Runs outside the pnpm workspace.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^6.0.2"
+  }
+}

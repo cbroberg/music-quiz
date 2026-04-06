@@ -4,6 +4,10 @@ dist/
 *.p8
 .DS_Store
 web/.next/
+**/.next/
+**/.turbo/
+**/*.tsbuildinfo
+packages/*/dist/
 home/dist/
 recordings/
 .build/

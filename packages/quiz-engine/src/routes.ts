@@ -7,26 +7,27 @@
 
 import { Router, json } from "express";
 import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { getSessionByCode, listActiveSessions, clearUsedSongs, getAddedToLibrary, clearAddedToLibrary, createParty, listParties, endParty, getParty, getPartyByCode } from "./engine.js";
 import { isMuted, setMuted } from "./mute.js";
 import { getAllEvents, getEvent, createEvent as createStoredEvent, updateEvent, deleteEvent } from "./event-store.js";
-import { sendHomeCommand, isHomeConnected } from "../home-ws.js";
-import { createDeveloperToken } from "../token.js";
+import { sendHomeCommand, isHomeConnected } from "./home-ws.js";
+import { createDeveloperToken } from "./token.js";
 import { getActiveProviderType, getProvider, setActiveProvider } from "./playback/provider-manager.js";
 import type { ProviderType } from "./playback/provider-manager.js";
-import { pushNowPlaying as pushNowPlayingData, trackChangeLog } from "../browser-ws.js";
+import { pushNowPlaying as pushNowPlayingData, trackChangeLog } from "./browser-ws.js";
 import { getAllPlaylists, getPlaylist, savePlaylist, updatePlaylist, deletePlaylist } from "./playlist-store.js";
 import { getBankSize } from "./question-bank.js";
 import { getGossipBankSize } from "./gossip-bank.js";
-import type { AppleMusicClient } from "../apple-music.js";
+import type { AppleMusicClient } from "./apple-music.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// In dist: dist/quiz/routes.js → need to reach src/quiz/public/
-// Resolve relative to project root (two levels up from dist/quiz/)
-const projectRoot = join(__dirname, "..", "..");
-const publicDir = join(projectRoot, "src", "quiz", "public");
+// In dist: packages/quiz-engine/dist/routes.js → need packages/quiz-engine/src/public/
+const packageRoot = resolve(__dirname, "..");
+const publicDir = resolve(packageRoot, "src", "public");
+// Allow dotfiles in absolute paths — needed for git worktrees under .claude/worktrees/
+const SEND_OPTS = { dotfiles: "allow" as const };
 
 export function createQuizRouter(musicClient?: AppleMusicClient): Router {
   const router = Router();
@@ -42,30 +43,30 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
 
   // Player PWA
   router.get("/quiz/play", (_req, res) => {
-    res.sendFile(join(publicDir, "play.html"));
+    res.sendFile(join(publicDir, "play.html"), SEND_OPTS);
   });
 
   // PWA manifest
   router.get("/quiz/manifest.json", (_req, res) => {
-    res.sendFile(join(publicDir, "manifest.json"));
+    res.sendFile(join(publicDir, "manifest.json"), SEND_OPTS);
   });
 
   // Service worker
   router.get("/quiz/sw.js", (_req, res) => {
     res.setHeader("Content-Type", "application/javascript");
-    res.sendFile(join(publicDir, "sw.js"));
+    res.sendFile(join(publicDir, "sw.js"), SEND_OPTS);
   });
 
   // Static assets (CSS, JS)
   router.get("/quiz/static/:file", (req, res) => {
     const file = String(req.params.file).replace(/\.\./g, "");
-    res.sendFile(join(publicDir, file));
+    res.sendFile(join(publicDir, file), SEND_OPTS);
   });
 
   // Sound effects
   router.get("/quiz/sounds/:file", (req, res) => {
     const file = String(req.params.file).replace(/\.\./g, "");
-    res.sendFile(join(publicDir, "sounds", file));
+    res.sendFile(join(publicDir, "sounds", file), SEND_OPTS);
   });
 
   // Session info API (for player join validation)
@@ -97,12 +98,12 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
 
   // Admin page
   router.get("/quiz/admin", (_req, res) => {
-    res.sendFile(join(publicDir, "admin.html"));
+    res.sendFile(join(publicDir, "admin.html"), SEND_OPTS);
   });
 
   // Now Playing page (vanilla, same design as Next.js frontpage)
   router.get("/quiz/now-playing", (_req, res) => {
-    res.sendFile(join(publicDir, "now-playing.html"));
+    res.sendFile(join(publicDir, "now-playing.html"), SEND_OPTS);
   });
 
   // Admin API: recently played tracks (from track change log — persisted to disk)
@@ -424,7 +425,7 @@ export function createQuizRouter(musicClient?: AppleMusicClient): Router {
 
   // Builder page
   router.get("/quiz/builder", (_req, res) => {
-    res.sendFile(join(publicDir, "builder.html"));
+    res.sendFile(join(publicDir, "builder.html"), SEND_OPTS);
   });
 
   // Search Apple Music catalog (songs + albums)
