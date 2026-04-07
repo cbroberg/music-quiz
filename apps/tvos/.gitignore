@@ -1,0 +1,36 @@
+# Xcode — generated project (re-create with `pnpm tvos:gen`)
+MusicQuiz.xcodeproj/
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Build artifacts — never commit binaries or dSYMs
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Code signing — NEVER commit certificates, profiles or private keys
+*.cer
+*.certSigningRequest
+*.csr
+*.p12
+*.mobileprovision
+
+# Fastlane secrets — NEVER commit
+fastlane/.env
+fastlane/.env.local
+fastlane/AuthKey*.p8
+fastlane/api_key.json
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/README.md
+
+# CocoaPods (not used today, future-proof)
+Pods/
+
+# macOS
+.DS_Store

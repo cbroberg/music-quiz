@@ -1,0 +1,290 @@
+# ═══════════════════════════════════════════════════════════
+# Music Quiz tvOS — Fastlane
+# ═══════════════════════════════════════════════════════════
+#
+# Usage (run from apps/tvos/):
+#   fastlane beta          → Build + upload to TestFlight
+#   fastlane release_beta  → Build + upload + distribute to internal testers
+#   fastlane build         → Build only (no upload, useful for CI smoke test)
+#
+# Or from monorepo root:
+#   pnpm tvos:beta
+#
+# ─── AUTHENTICATION ────────────────────────────────────────
+# Preferred: App Store Connect API Key (.p8)
+#   1. Account Holder creates key in App Store Connect →
+#      Users & Access → Integrations → App Store Connect API
+#   2. Download .p8 file → place at apps/tvos/fastlane/AuthKey.p8
+#   3. Copy fastlane/.env.example → fastlane/.env and fill in:
+#      FASTLANE_API_KEY_PATH=fastlane/AuthKey.p8
+#      FASTLANE_API_KEY_ID=<Key ID>
+#      FASTLANE_API_KEY_ISSUER_ID=<Issuer ID>
+#      FASTLANE_TEAM_ID=<Apple Developer Team ID>
+#
+# Fallback: Apple ID + app-specific password
+#   FASTLANE_APPLE_ID=you@example.com
+#   FASTLANE_PASSWORD=app-specific-password
+# ═══════════════════════════════════════════════════════════
+
+default_platform(:ios)  # tvOS uses the iOS platform driver in fastlane
+
+XCODEPROJ = "MusicQuiz.xcodeproj"
+SCHEME    = "MusicQuiz"
+
+platform :ios do
+
+  # ─── Helpers ─────────────────────────────────────────────
+  def api_key_if_available
+    if ENV["FASTLANE_API_KEY_PATH"] && ENV["FASTLANE_API_KEY_ID"] && ENV["FASTLANE_API_KEY_ISSUER_ID"]
+      app_store_connect_api_key(
+        key_id: ENV["FASTLANE_API_KEY_ID"],
+        issuer_id: ENV["FASTLANE_API_KEY_ISSUER_ID"],
+        key_filepath: ENV["FASTLANE_API_KEY_PATH"]
+      )
+    else
+      UI.important("No App Store Connect API key configured — falling back to Apple ID auth")
+      nil
+    end
+  end
+
+  def discord_notify(title:, description:, color:, footer:)
+    webhook_url = ENV["DISCORD_WEBHOOK_URL"]
+    return unless webhook_url && !webhook_url.empty?
+
+    payload = {
+      embeds: [{
+        title: title,
+        description: description,
+        color: color,
+        footer: { text: footer },
+        timestamp: Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+      }]
+    }.to_json
+
+    sh("curl -s -H 'Content-Type: application/json' -d '#{payload}' '#{webhook_url}'", log: false)
+  rescue => e
+    UI.important("Discord notification failed: #{e.message}")
+  end
+
+  def shared_build_args
+    {
+      project: XCODEPROJ,
+      scheme: SCHEME,
+      configuration: "Release",
+      export_method: "app-store",
+      derived_data_path: "./DerivedData",
+      clean: true,
+      destination: "generic/platform=tvOS",
+      xcargs: "-allowProvisioningUpdates"
+    }
+  end
+
+  # ─── Lanes ───────────────────────────────────────────────
+
+  desc "Unsigned simulator smoke build — no signing required. Useful for CI."
+  lane :build do
+    # Direct xcodebuild call: skip gym/archive plumbing so we don't need a
+    # provisioning profile or App Store Connect API key. This validates that
+    # the project compiles cleanly for tvOS Simulator.
+    sh("set -o pipefail && xcodebuild " \
+       "-project ../#{XCODEPROJ} " \
+       "-scheme #{SCHEME} " \
+       "-configuration Release " \
+       "-destination 'generic/platform=tvOS Simulator' " \
+       "-derivedDataPath ./DerivedData " \
+       "CODE_SIGNING_ALLOWED=NO " \
+       "build | xcpretty")
+    UI.success("✅ Unsigned simulator build OK — pipeline is healthy.")
+  end
+
+  desc "Build + upload to TestFlight"
+  lane :beta do
+    api_key = api_key_if_available
+
+    increment_build_number(xcodeproj: XCODEPROJ)
+
+    # Pre-create Apple Distribution certificate + App Store provisioning profile
+    # for tvOS so build_app doesn't try to provision on the fly (which would
+    # require a registered device on the Apple Developer team).
+    cert(
+      api_key: api_key,
+      development: false,
+      platform: "tvos",
+    )
+    sigh(
+      api_key: api_key,
+      app_identifier: "dk.webhouse.music-quiz.tvos",
+      platform: "tvos",
+      force: true,  # always regenerate so MusicKit/capability changes propagate
+    )
+
+    build_app(**shared_build_args.merge(
+      export_options: {
+        method: "app-store",
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "dk.webhouse.music-quiz.tvos" => ENV["sigh_dk.webhouse.music-quiz.tvos_appstore_profile-name"] || "",
+        },
+      },
+    ))
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
+
+    build_num = get_build_number(xcodeproj: XCODEPROJ)
+    version = get_version_number(xcodeproj: XCODEPROJ, target: SCHEME)
+    UI.success("✅ tvOS build #{version} (#{build_num}) uploaded to TestFlight")
+
+    discord_notify(
+      title: "📺 Music Quiz tvOS — TestFlight build klar",
+      description: "**v#{version} (#{build_num})** uploadet til TestFlight\n\nTilgængelig om 15-30 min.",
+      color: 3066993,
+      footer: "TestFlight · Music Quiz tvOS"
+    )
+  end
+
+  desc "Build + upload + distribute to internal testers"
+  lane :release_beta do
+    api_key = api_key_if_available
+
+    increment_build_number(xcodeproj: XCODEPROJ)
+    build_app(**shared_build_args)
+
+    build_num = get_build_number(xcodeproj: XCODEPROJ)
+    version = get_version_number(xcodeproj: XCODEPROJ, target: SCHEME)
+
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: false,
+      distribute_external: false,
+      groups: (ENV["TESTFLIGHT_GROUPS"] || "").split(",").map(&:strip).reject(&:empty?)
+    )
+
+    UI.success("✅ tvOS build #{version} (#{build_num}) distributed to testers")
+
+    discord_notify(
+      title: "📺 Music Quiz tvOS — Beta uploadet",
+      description: "**v#{version} (#{build_num})** uploaded og distribueret til internal testers",
+      color: 3066993,
+      footer: "TestFlight · Music Quiz tvOS"
+    )
+  end
+
+  desc "Add a TestFlight tester. Usage: fastlane add_tester email:foo@bar.com [first:Foo last:Bar]"
+  lane :add_tester do |options|
+    api_key = api_key_if_available
+    UI.user_error!("email parameter is required") unless options[:email]
+
+    pilot(
+      api_key: api_key,
+      app_identifier: "dk.webhouse.music-quiz.tvos",
+      email: options[:email],
+      first_name: options[:first] || options[:email].split("@").first.capitalize,
+      last_name:  options[:last]  || "Tester",
+      groups: ["Internal"],
+    )
+  end
+
+  desc "Distribute the latest processed build to internal testers (no upload)."
+  lane :distribute_latest do
+    api_key = api_key_if_available
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: "dk.webhouse.music-quiz.tvos",
+      distribute_only: true,
+      groups: ["Internal"],
+      skip_waiting_for_build_processing: false,
+      skip_submission: true,
+      changelog: "First TestFlight build of Quiz Mash Music for tvOS — UI walkthrough only, MusicKit playback not yet enabled.",
+    )
+  end
+
+  desc "Create internal beta group + add tester + assign latest build"
+  lane :setup_internal_testing do
+    require 'spaceship'
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: ENV["FASTLANE_API_KEY_ID"],
+      issuer_id: ENV["FASTLANE_API_KEY_ISSUER_ID"],
+      filepath: File.expand_path("AuthKey_VMM43993MK.p8", File.dirname(__FILE__)),
+    )
+
+    app = Spaceship::ConnectAPI::App.find("dk.webhouse.music-quiz.tvos")
+    UI.message("App: #{app.name}")
+
+    # Find or create the internal group
+    groups = app.get_beta_groups
+    group = groups.find { |g| g.name == "Internal" }
+    if group.nil?
+      UI.message("Creating internal beta group 'Internal'…")
+      group = Spaceship::ConnectAPI.post_beta_groups(
+        app_id: app.id,
+        group_name: "Internal",
+        is_internal_group: true,
+        public_link_enabled: false,
+        public_link_limit_enabled: false,
+      ).to_models.first
+      UI.success("Created group #{group.name} (id=#{group.id})")
+    else
+      UI.message("Group already exists: #{group.name} (id=#{group.id})")
+    end
+
+    # Add the tester to the group
+    email = "cb@webhouse.dk"
+    UI.message("Adding tester #{email} to group #{group.name}…")
+    begin
+      Spaceship::ConnectAPI::BetaTester.create_beta_tester(
+        beta_group_id: group.id,
+        email: email,
+        first_name: "Christian",
+        last_name: "Broberg",
+      )
+      UI.success("Tester added")
+    rescue => e
+      UI.important("Tester add failed (might already exist): #{e.message}")
+    end
+
+    # Assign the latest processed build to the group
+    build = app.get_builds(filter: { processingState: "VALID" }, sort: "-uploadedDate", limit: 1).first
+    if build
+      UI.message("Assigning build #{build.version} (#{build.app_version}) to group…")
+      build.add_beta_groups(beta_groups: [group])
+      UI.success("Build assigned")
+    else
+      UI.important("No processed builds found")
+    end
+  end
+
+  desc "Probe TestFlight state for the app"
+  lane :probe do
+    require 'spaceship'
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: ENV["FASTLANE_API_KEY_ID"],
+      issuer_id: ENV["FASTLANE_API_KEY_ISSUER_ID"],
+      filepath: File.expand_path("AuthKey_VMM43993MK.p8", File.dirname(__FILE__)),
+    )
+    app = Spaceship::ConnectAPI::App.find("dk.webhouse.music-quiz.tvos")
+    UI.message("App: #{app.name} (#{app.id})")
+
+    UI.message("=== Beta Groups ===")
+    app.get_beta_groups.each do |g|
+      UI.message("  - #{g.name} (id=#{g.id}) is_internal=#{g.is_internal_group}")
+    end
+
+    UI.message("=== Beta Testers ===")
+    app.get_beta_testers.each do |t|
+      UI.message("  - #{t.email} state=#{t.state}")
+    end
+  end
+
+  # ─── Hooks ───────────────────────────────────────────────
+  error do |lane, exception|
+    discord_notify(
+      title: "❌ tvOS lane '#{lane}' fejlede",
+      description: "```\n#{exception.message[0..400]}\n```",
+      color: 15158332,
+      footer: "Fastlane · Music Quiz tvOS"
+    )
+  end
+end

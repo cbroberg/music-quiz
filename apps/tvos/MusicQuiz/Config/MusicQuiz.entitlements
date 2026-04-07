@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- TEMPORARILY DISABLED for first TestFlight upload — re-enable after
+         confirming the App ID at developer.apple.com has MusicKit capability
+         actually saved (the provisioning profile must include
+         com.apple.developer.musickit before this can be uncommented).
+
+    <key>com.apple.developer.musickit</key>
+    <true/>
+    -->
+</dict>
+</plist>

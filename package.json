@@ -17,6 +17,7 @@
     "sites:logs": "./scripts/pm2-pool.sh logs",
     "sites:restart": "./scripts/pm2-pool.sh restart",
     "tvos:gen": "cd apps/tvos && ruby scripts/generate_xcodeproj.rb",
+    "tvos:icon": "node apps/tvos/scripts/build-icon.mjs",
     "tvos:build": "./scripts/ship-tvos.sh build",
     "tvos:beta": "./scripts/ship-tvos.sh beta",
     "tvos:release": "./scripts/ship-tvos.sh release_beta"
