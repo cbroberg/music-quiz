@@ -2,7 +2,7 @@
 
 A Model Context Protocol (MCP) server for Apple Music with remote playback control, a live now-playing visualizer, and an interactive music quiz game. Search the catalog, create playlists, manage your library, control Music.app on your Mac via AirPlay, and host quiz nights — all from Claude on your iPhone or the web UI.
 
-**Live at:** `https://music.broberg.dk`
+**Live at:** `https://music.quiz-mash.com`
 
 ![Demo: Playing Jeff Beck from iPhone via Claude](docs/demo-playback.png)
 

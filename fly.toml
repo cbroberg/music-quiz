@@ -6,7 +6,7 @@ primary_region = 'arn'
 [env]
   PORT = '3000'
   APPLE_STOREFRONT = 'dk'
-  SERVER_URL = 'https://music.broberg.dk'
+  SERVER_URL = 'https://music.quiz-mash.com'
 
 [http_service]
   internal_port = 3000

@@ -467,7 +467,7 @@ Vis TMDB-logo i footer på host-skærmen og i "Om"-sektion. Logo-assets: https:/
 - [ ] Setup screen lader quizmaster vælge mellem musik og film
 - [ ] Curated quote-database med 50+ citater
 - [ ] TMDB attribution vises korrekt
-- [ ] Deployed og tilgængeligt som del af music.broberg.dk/quiz
+- [ ] Deployed og tilgængeligt som del af music.quiz-mash.com/quiz
 
 ---
 

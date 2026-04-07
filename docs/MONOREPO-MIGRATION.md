@@ -434,7 +434,7 @@ After migration, verify:
 - [ ] Quiz flow works end-to-end (create → join → play → scores)
 - [ ] Home Controller (`home/server.ts`) compiles and connects
 - [ ] `fly deploy` succeeds with new Dockerfile
-- [ ] OAuth flow works at `https://music.broberg.dk/auth`
+- [ ] OAuth flow works at `https://music.quiz-mash.com/auth`
 - [ ] Old `apple-music-mcp` repo archived on GitHub
 
 ---
@@ -443,6 +443,6 @@ After migration, verify:
 
 - Archive `cbroberg/apple-music-mcp` on GitHub (Settings → Archive)
 - Update MCP config in Claude Desktop / claude.ai to point to new SSE URL if app name changes
-- Update `music.broberg.dk` DNS/CNAME if fly app name changes
+- Update `music.quiz-mash.com` DNS/CNAME if fly app name changes
 - Update any references in other repos (e.g. `webhousecode/cms` docs)
 - Update memory/context references from `apple-music-mcp` → `music-quiz`

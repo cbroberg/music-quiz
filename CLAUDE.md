@@ -103,7 +103,7 @@ real Apple TV hardware. Display name in App Store Connect: **Quiz Mash Music**.
    The existing manual signing flow (sigh + cert + build_app) works fine
    without MusicKit in entitlements. Build 3 (april 2026) shipped with
    the entitlement removed and the ASC API silent strip is now a non-issue.
-2. **Release build hardcodes `https://music.broberg.dk`** as server URL.
+2. **Release build hardcodes `https://music.quiz-mash.com`** as server URL.
    For LAN dev testing against real Apple TV hardware, either deploy
    main to production (so the TestFlight build sees the new code) or
    build a separate "dev" Release variant pointing at LAN.

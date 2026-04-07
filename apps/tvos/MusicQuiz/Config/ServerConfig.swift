@@ -25,7 +25,7 @@ enum ServerConfig {
         }
         return "http://192.168.39.140:3000"
         #else
-        return "https://music.broberg.dk"
+        return "https://music.quiz-mash.com"
         #endif
     }()
 

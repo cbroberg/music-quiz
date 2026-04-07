@@ -287,7 +287,7 @@ export class SpotifyWebProvider implements PlaybackProvider {
 
 Kræver:
 1. Registrer app på `developer.spotify.com/dashboard`
-2. Sæt redirect URI: `https://music.broberg.dk/quiz/spotify-callback`
+2. Sæt redirect URI: `https://music.quiz-mash.com/quiz/spotify-callback`
 3. Gem `SPOTIFY_CLIENT_ID` i `.env` og Fly.io secrets
 4. Ingen client secret nødvendig (PKCE flow er client-side only)
 
@@ -415,7 +415,7 @@ Home Controller er IKKE nødvendig for quiz-funktionaliteten.
 - **PartyQ** — party quiz
 - **TuneTrivia** — genre-klassiker
 
-Domæne og branding vælges senere. Midlertidigt: `music.broberg.dk/quiz`.
+Domæne og branding vælges senere. Midlertidigt: `music.quiz-mash.com/quiz`.
 
 ### Markedspositionering
 
@@ -599,7 +599,7 @@ Spotify Developer Terms tillader lignende. Krav:
 ### Go-to-market
 
 **Fase 1: Soft launch (uge 1-4)**
-- Deploy på music.broberg.dk/quiz
+- Deploy på music.quiz-mash.com/quiz
 - Gratis tier only
 - Test med familie og venner
 - Iterer på UX baseret på feedback
@@ -715,13 +715,13 @@ Tilføj til `.env` og Fly.io secrets:
 APPLE_TEAM_ID=7NAG4UJCT9
 APPLE_KEY_ID=9956HH4GCY
 APPLE_PRIVATE_KEY="..."
-SERVER_URL=https://music.broberg.dk
+SERVER_URL=https://music.quiz-mash.com
 JWT_SECRET=...
 HOME_API_KEY=...
 
 # Nye — Spotify
 SPOTIFY_CLIENT_ID=...              # Fra developer.spotify.com
-SPOTIFY_REDIRECT_URI=https://music.broberg.dk/quiz/spotify-callback
+SPOTIFY_REDIRECT_URI=https://music.quiz-mash.com/quiz/spotify-callback
 
 # Nye — TMDB
 TMDB_API_KEY=...                   # Fra themoviedb.org
@@ -732,7 +732,7 @@ STRIPE_PUBLISHABLE_KEY=...
 STRIPE_WEBHOOK_SECRET=...
 
 # Nye — Auth
-AUTH_EMAIL_FROM=quiz@music.broberg.dk  # Eller via Resend
+AUTH_EMAIL_FROM=quiz@music.quiz-mash.com  # Eller via Resend
 ```
 
 ---

@@ -95,7 +95,7 @@ interface PlayerResult {
 "Del dine resultater" — generér et billede (canvas → PNG) eller en shareable URL:
 
 ```
-music.broberg.dk/quiz/results/abc123
+music.quiz-mash.com/quiz/results/abc123
 ```
 
 Viser:

@@ -58,7 +58,7 @@ The solution is a thin native Swift/SwiftUI shell that:
          │ WebSocket
          ▼
 ┌──────────────────────┐
-│  music.broberg.dk    │
+│  music.quiz-mash.com    │
 │  Express + MCP       │
 │  /quiz-ws endpoint   │
 └──────────────────────┘
@@ -161,14 +161,14 @@ Tasks:
      <true/>
    </dict>
    ```
-   Production: restrict to `music.broberg.dk` only.
+   Production: restrict to `music.quiz-mash.com` only.
 4. Create `ServerConfig.swift`:
    ```swift
    enum ServerConfig {
        #if DEBUG
        static let baseURL = "http://192.168.1.X:3000"  // LAN IP for dev
        #else
-       static let baseURL = "https://music.broberg.dk"
+       static let baseURL = "https://music.quiz-mash.com"
        #endif
        
        static var hostURL: URL { URL(string: "\(baseURL)/quiz/host")! }
@@ -651,7 +651,7 @@ Before starting the cc session:
 2. **Xcode 16+** installed on Mac
 3. **Apple Developer account** active with MusicKit entitlement capability
 4. **Apple TV 4K** (4th gen or later) on same WiFi as dev Mac, paired in Xcode
-5. **Server running** — `music.broberg.dk` accessible, or local dev server on LAN
+5. **Server running** — `music.quiz-mash.com` accessible, or local dev server on LAN
 6. **MusicKit App ID** created at developer.apple.com:
    - Bundle ID: `dk.webhouse.music-quiz.tvos`
    - Capabilities: MusicKit enabled

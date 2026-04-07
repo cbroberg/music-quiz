@@ -14,7 +14,7 @@ native `MusicKit.framework` on Apple TV.
 
 ```
 ws://<host>:3000/quiz-ws            # local dev
-wss://music.broberg.dk/quiz-ws      # production
+wss://music.quiz-mash.com/quiz-ws      # production
 ```
 
 Same WS endpoint as host/admin/player. Role is determined by the first
@@ -169,7 +169,7 @@ user-token is in hand.
 ## 6. Worked example (Swift pseudocode)
 
 ```swift
-let ws = WebSocket(url: URL(string: "wss://music.broberg.dk/quiz-ws")!)
+let ws = WebSocket(url: URL(string: "wss://music.quiz-mash.com/quiz-ws")!)
 ws.onOpen = {
   ws.send([
     "type": "register_display",

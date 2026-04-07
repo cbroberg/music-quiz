@@ -56,7 +56,7 @@ const connections = new Map<string, WsConnection>();
 import { networkInterfaces } from "node:os";
 
 function getServerUrl(): string {
-  const url = process.env.SERVER_URL || "https://music.broberg.dk";
+  const url = process.env.SERVER_URL || "https://music.quiz-mash.com";
   // In dev, replace localhost with LAN IP so phones can connect
   if (url.includes("localhost") || url.includes("127.0.0.1")) {
     const nets = networkInterfaces();

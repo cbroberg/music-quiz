@@ -4,7 +4,7 @@
 #
 # Usage:
 #   HOME_API_KEY=xxx ./start.sh
-#   HOME_API_KEY=xxx MCP_WS_URL=wss://music.broberg.dk/home-ws ./start.sh
+#   HOME_API_KEY=xxx MCP_WS_URL=wss://music.quiz-mash.com/home-ws ./start.sh
 
 set -e
 cd "$(dirname "$0")"
@@ -14,7 +14,7 @@ if [ -z "$HOME_API_KEY" ]; then
   exit 1
 fi
 
-MCP_WS_URL="${MCP_WS_URL:-wss://music.broberg.dk/home-ws}"
+MCP_WS_URL="${MCP_WS_URL:-wss://music.quiz-mash.com/home-ws}"
 export MCP_WS_URL HOME_API_KEY
 
 # Build

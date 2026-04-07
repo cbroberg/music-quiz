@@ -13,7 +13,7 @@ Current Home Controller is a Node.js script started manually from terminal. Not 
 - Auto-starts on login (launchd)
 - Lives in menu bar (not Dock) — unobtrusive
 - Shows connection status + Now Playing at a glance
-- Downloadable from music.broberg.dk/download
+- Downloadable from music.quiz-mash.com/download
 - Branded — Music Quiz icon in menu tray
 
 ## Features
@@ -43,7 +43,7 @@ Current Home Controller is a Node.js script started manually from terminal. Not 
 - Starts on login via LaunchAgent
 
 ### Download & Install
-- DMG download from music.broberg.dk/download
+- DMG download from music.quiz-mash.com/download
 - Drag to Applications
 - First launch: enter server URL + API key
 - Or: scan QR code from Admin page to auto-configure

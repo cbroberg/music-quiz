@@ -58,7 +58,7 @@ Begge modes deler samme backend, same deltager-PWA, og same game engine. Forskel
 
 - Apple Music abonnement (til afspilning)
 - Apple Developer konto ($99/år — allerede aktiv)
-- MCP server kørende på `music.broberg.dk` (Fly.io)
+- MCP server kørende på `music.quiz-mash.com` (Fly.io)
 - Home controller på Mac (til Web Mode afspilning)
 
 ---
@@ -70,7 +70,7 @@ Begge modes deler samme backend, same deltager-PWA, og same game engine. Forskel
 ```
 ┌─────────────────────────────────────────────────┐
 │  Mac Browser (fullscreen)                       │
-│  music.broberg.dk/quiz/host                     │
+│  music.quiz-mash.com/quiz/host                     │
 │  ┌───────────────────────────────────────────┐  │
 │  │  Quiz Host UI                             │  │
 │  │  - Viser spørgsmål, artwork, scoreboard   │  │
@@ -80,7 +80,7 @@ Begge modes deler samme backend, same deltager-PWA, og same game engine. Forskel
 └─────────────────────────────────────────────────┘
         ▲ WebSocket ▼
 ┌─────────────────────────────────────────────────┐
-│  music.broberg.dk  (MCP server / Fly.io)        │
+│  music.quiz-mash.com  (MCP server / Fly.io)        │
 │  ┌────────────┐ ┌────────────┐ ┌─────────────┐ │
 │  │ Quiz Game  │ │ Apple Music│ │   Home WS   │ │
 │  │ Engine     │ │ API        │ │   Bridge    │ │
@@ -239,7 +239,7 @@ Single-page app optimeret til fullscreen visning på stor skærm. Ingen scroll, 
 
 1. **Setup Screen**
    - Konfigurer quiz (type, antal, kilde, tidsgrænse, svar-mode)
-   - Stor QR-kode med join-URL: `music.broberg.dk/quiz/play?code=ROCK42`
+   - Stor QR-kode med join-URL: `music.quiz-mash.com/quiz/play?code=ROCK42`
    - Join-kode vises stort: `ROCK42`
    - Liste over tilsluttede spillere (live-opdateret)
    - "Start Quiz" knap (eller tryk Space)
@@ -353,7 +353,7 @@ Progressive Web App der installeres via "Tilføj til hjemmeskærm" efter QR-scan
 
 ### F1.5: WebSocket Protocol
 
-**Endpoint:** `wss://music.broberg.dk/quiz-ws`
+**Endpoint:** `wss://music.quiz-mash.com/quiz-ws`
 
 Alle beskeder er JSON med `type` felt.
 
@@ -482,7 +482,7 @@ tvOS-appen erstatter Mac-browseren som storskærm. Deltagerne bruger præcis sam
 │  │  SwiftUI Shell                            │  │
 │  │  ┌─────────────────────────────────────┐  │  │
 │  │  │  WKWebView                          │  │  │
-│  │  │  music.broberg.dk/quiz/tv           │  │  │
+│  │  │  music.quiz-mash.com/quiz/tv           │  │  │
 │  │  └─────────────────────────────────────┘  │  │
 │  │  ┌─────────────┐  ┌────────────────────┐  │  │
 │  │  │  MusicKit   │  │  Siri Remote       │  │  │
@@ -569,7 +569,7 @@ https://is1-ssl.mzstatic.com/image/thumb/{path}/{w}x{h}.jpg
 - [ ] Kahoot-stil scoring (hurtigere = flere point + streak bonus)
 - [ ] Scoreboard vises mellem spørgsmål
 - [ ] Final podium med statistik
-- [ ] Deployed og tilgængeligt på music.broberg.dk/quiz
+- [ ] Deployed og tilgængeligt på music.quiz-mash.com/quiz
 
 **Fase 2:**
 - [ ] tvOS app loader quiz UI i WKWebView
