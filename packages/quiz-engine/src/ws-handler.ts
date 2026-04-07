@@ -12,7 +12,7 @@ import { randomUUID } from "node:crypto";
 import type {
   HostMessage, PlayerMessage,
   ServerToHostMessage, ServerToPlayerMessage,
-  GameState, QuestionResult, FinalRanking,
+  GameState, QuestionResult, FinalRanking, AnswerMode,
 } from "@music-quiz/shared";
 import {
   createSession, getSession, getSessionByCode, listActiveSessions,
@@ -128,26 +128,35 @@ function setupGameEvents(sessionId: string): void {
 
     switch (event.type) {
       case "state_change": {
-        // Send state to host
+        // Send state to host + displays
         const hostQuestion = getHostQuestionData(session, session.state === "reveal" || session.state === "scoreboard");
+        const hostBlindMode = !!session.config.blindMode;
+        const hostInSteal = session.state === "steal";
         sendToHostAndDisplays(sessionId, {
           type: "game_state",
           state: session.state,
           question: hostQuestion,
-          timeLimit: session.config.timeLimit,
+          timeLimit: hostInSteal ? 5 : session.config.timeLimit,
           questionNumber: session.currentQuestion + 1,
           totalQuestions: session.questions.length,
+          blindMode: hostBlindMode,
+          stealActive: hostInSteal,
           roundNumber,
         } as any);
 
         // Send state to players
         const q = session.questions[session.currentQuestion];
-        const answerMode = getAnswerModeForCurrentQuestion(session);
+        // Blind mode forces free-text answers and hides options.
+        // Steal state also forces free-text input on players (5s window).
+        const blindMode = !!session.config.blindMode;
+        const inSteal = session.state === "steal";
+        const baseAnswerMode = getAnswerModeForCurrentQuestion(session);
+        const answerMode: AnswerMode = (blindMode || inSteal) ? "free-text" : baseAnswerMode;
         sendToAllPlayers(sessionId, {
           type: "game_state",
           state: session.state,
           options: answerMode === "multiple-choice" && q ? q.options : undefined,
-          timeLimit: session.config.timeLimit,
+          timeLimit: inSteal ? 5 : session.config.timeLimit,
           questionNumber: session.currentQuestion + 1,
           totalQuestions: session.questions.length,
           questionType: q?.questionType,
@@ -155,6 +164,8 @@ function setupGameEvents(sessionId: string): void {
           answerMode,
           artworkUrl: (session.state === "reveal" || session.state === "scoreboard") ? q?.artworkUrl : undefined,
           isTrivia: q?.isTrivia || false,
+          blindMode,
+          stealActive: inSteal,
           roundNumber,
         } as any);
 

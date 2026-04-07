@@ -339,11 +339,22 @@ function onGameState(msg) {
       questionStartTime = Date.now();
       hasAnswered = false;
 
+      updateModifierBadge(msg);
       if (msg.answerMode === 'free-text') {
         showFreeText(msg);
       } else {
         showMultipleChoice(msg);
       }
+      break;
+
+    case 'steal':
+      // Steal window — anyone (incl. those who answered wrong) can jump in.
+      // Server forces answerMode to free-text and timeLimit to 5s.
+      currentQuestionIndex = (msg.questionNumber || 1) - 1;
+      questionStartTime = Date.now();
+      hasAnswered = false;
+      updateModifierBadge(msg);
+      showFreeText({ ...msg, answerMode: 'free-text' });
       break;
 
     case 'evaluating':
@@ -361,6 +372,33 @@ function onGameState(msg) {
     case 'finished':
       // Final result shown via separate message
       break;
+  }
+}
+
+// ─── Round Modifier Badge ──────────────────────────────────
+
+function updateModifierBadge(msg) {
+  let el = document.getElementById('modifier-badge');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'modifier-badge';
+    el.style.cssText = 'position:fixed;top:12px;left:50%;transform:translateX(-50%);padding:6px 14px;border-radius:18px;font-weight:800;font-size:11px;letter-spacing:0.5px;z-index:9999;display:none;text-transform:uppercase;white-space:nowrap';
+    document.body.appendChild(el);
+  }
+  if (msg.stealActive) {
+    el.style.display = '';
+    el.style.background = '#fc3c44';
+    el.style.color = '#fff';
+    el.textContent = '⚡ STEAL · 2× points';
+    if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
+  } else if (msg.blindMode) {
+    el.style.display = '';
+    el.style.background = '#000';
+    el.style.color = '#ffd60a';
+    el.style.border = '1px solid #ffd60a';
+    el.textContent = '🎯 BLIND · 3× points';
+  } else {
+    el.style.display = 'none';
   }
 }
 

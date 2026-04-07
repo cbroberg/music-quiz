@@ -161,6 +161,8 @@ const QuizDisplay = (() => {
       answerMode: document.getElementById('qz-cfg-answer-mode').value,
       excludeRecentPlays: document.getElementById('qz-cfg-exclude-recent').checked,
       includeGossip: document.getElementById('qz-cfg-include-gossip').checked || document.getElementById('qz-cfg-type').value === 'gossip',
+      blindMode: document.getElementById('qz-cfg-blind-mode')?.checked || false,
+      stealRoundEnabled: document.getElementById('qz-cfg-steal-round')?.checked || false,
     };
 
     timeLimit = config.timeLimit;
@@ -428,12 +430,16 @@ const QuizDisplay = (() => {
     currentGameState = msg.state;
     if (msg.roundNumber) roundNumber = msg.roundNumber;
     updateRoundBadge();
+    updateModifierBadge(msg);
     switch (msg.state) {
       case 'countdown':
         showCountdown(msg.questionNumber, msg.totalQuestions, msg.question?.questionType);
         break;
       case 'playing':
         showQuestion(msg);
+        break;
+      case 'steal':
+        showStealOverlay(msg);
         break;
       case 'evaluating':
         showScreen('evaluating');
@@ -446,6 +452,39 @@ const QuizDisplay = (() => {
       case 'finished':
         break; // handled by final_results
     }
+  }
+
+  // ─── Round Modifier Badge (BLIND / STEAL) ───────────────
+  function updateModifierBadge(msg) {
+    let el = document.getElementById('qz-modifier-badge');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'qz-modifier-badge';
+      el.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:20px;font-weight:800;font-size:14px;letter-spacing:1px;z-index:550;display:none;text-transform:uppercase';
+      document.body.appendChild(el);
+    }
+    if (msg.stealActive) {
+      el.style.display = '';
+      el.style.background = '#fc3c44';
+      el.style.color = '#fff';
+      el.textContent = '⚡ STEAL · 5 sec · 2× points';
+    } else if (msg.blindMode) {
+      el.style.display = '';
+      el.style.background = '#000';
+      el.style.color = '#ffd60a';
+      el.style.border = '2px solid #ffd60a';
+      el.textContent = '🎯 BLIND ROUND · 3× points';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+
+  // ─── Steal Round Overlay (host) ─────────────────────────
+  function showStealOverlay(msg) {
+    // Reuse the question screen — the badge already announces STEAL.
+    // We could add a countdown ring, but the players' UI already shows a 5s timer.
+    // Host just needs the badge + the same artwork hidden state.
+    // No screen change needed; modifier badge handles it.
   }
 
   // ─── Countdown ──────────────────────────────────────────

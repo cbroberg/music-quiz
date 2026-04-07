@@ -215,7 +215,139 @@ ws.onMessage = { msg in
 
 ---
 
-## 7. Open questions for the tvOS team
+## 7. Round Modifiers — Blind & Steal (april 2026)
+
+The server now supports two new round-level game modes that change how
+players interact and how points are awarded. tvOS displays must render
+these visibly so the room knows what's happening.
+
+### 7.1 Blind Round (`blindMode`)
+
+**Trigger:** host enables `blindMode: true` when creating the session.
+Applies to **every** question for the entire quiz.
+
+**What changes:**
+- Players are forced into free-text mode regardless of `answerMode` config
+- No multiple-choice options are displayed to players
+- Correct answers earn **3× points** (`BLIND_MODE_MULTIPLIER = 3`)
+- AI evaluator handles fuzzy matching for free-text answers as usual
+
+**Wire signal:** every `game_state` message during a blind quiz includes:
+```json
+{ "blindMode": true, ... }
+```
+
+**tvOS rendering requirement:**
+- Show a persistent banner: `🎯 BLIND ROUND · 3× points`
+- Hide any multiple-choice option grid you would normally render
+- The host UI uses a yellow-on-black pill at the top of the screen — feel free to use the same visual treatment or your own native equivalent
+
+### 7.2 Steal Round (`stealRoundEnabled`)
+
+**Trigger:** host enables `stealRoundEnabled: true` when creating the
+session. Activates **automatically** on a per-question basis: whenever a
+question ends with **0 correct answers**, the server enters a 5-second
+steal window before going to reveal.
+
+**State transition:**
+```
+playing → (0 correct) → steal → (claimed OR 5s elapsed) → reveal → scoreboard
+```
+
+**What happens during steal:**
+- Server transitions to `state: "steal"` and emits `game_state` with
+  `stealActive: true` and `timeLimit: 5`
+- ANY player can submit a new answer — including those who answered
+  wrong in the original round
+- Players are forced into free-text input (no MC during steal)
+- The server uses a **fast string-match check** during steal (not full AI
+  evaluation) — case-insensitive normalized comparison or substring match.
+  This is intentional: the 5-second window is too short for an AI round-trip.
+- **First correct answer wins** with `2×` points
+  (`STEAL_MODE_MULTIPLIER = 2`)
+- Once claimed, the server immediately transitions to `reveal` with the
+  steal winner in the `question_results` payload
+- If no one claims within 5 seconds, the server transitions to `reveal`
+  with empty results (nobody scored that question)
+
+**Wire signals:**
+
+`game_state` for the steal window:
+```json
+{
+  "type": "game_state",
+  "state": "steal",
+  "stealActive": true,
+  "blindMode": false,
+  "timeLimit": 5,
+  "questionNumber": 4,
+  "totalQuestions": 10,
+  "question": { ... same question that just ended ... }
+}
+```
+
+`question_results` after steal claimed:
+```json
+{
+  "type": "question_results",
+  "results": [
+    {
+      "playerId": "abc",
+      "playerName": "Nina",
+      "correct": true,
+      "points": 1450,
+      "aiExplanation": "🎯 STEAL — 2× bonus",
+      ...
+    }
+  ],
+  "question": { ... }
+}
+```
+
+**tvOS rendering requirement:**
+- When `state` transitions to `"steal"`: show a pulsing red banner
+  `⚡ STEAL · 5 sec · 2× points`
+- Run a 5-second countdown ring or progress bar prominently
+- Keep the question text visible (players need to remember what they're
+  answering) but hide any options
+- When `state` transitions back to `"reveal"`, dismiss the banner and show
+  results normally — if a single player has `aiExplanation` containing
+  "STEAL", highlight them as the steal winner with extra fanfare
+- Audio cue recommended (sharp ping or buzz) on steal entry
+
+### 7.3 Combined behavior
+
+- **Blind + Steal together:** allowed. Quiz is fully blind; if no one
+  guesses a question, the steal window opens. Steal answers also use
+  free-text. Steal points are 2× (NOT stacked with the 3× blind bonus —
+  the steal scoring path uses its own formula).
+- **Mixed answerMode + Blind:** blind overrides answerMode. Every question
+  is free-text.
+- **Mixed answerMode + Steal:** steal triggers per-question regardless of
+  whether that question was MC or free-text in the normal round. Steal
+  itself is always free-text input.
+
+### 7.4 What you DON'T need to do
+
+- You don't compute scores. Server sends final per-player numbers in
+  `question_results.results[].points` and `.totalScore`.
+- You don't decide when to enter or leave steal state. The server's
+  `state_change` events drive this — just react to `state: "steal"`.
+- You don't manage the 5-second timer authoritatively. Use the
+  `timeLimit: 5` value from `game_state` for visual countdown only —
+  the server is the source of truth for when steal ends.
+
+### 7.5 Backward compatibility
+
+If `blindMode` and `stealActive` are absent from a `game_state` payload,
+treat them as `false`. Existing displays that ignore these fields will
+continue to work — they just won't render the new badges. The Swift
+client should add an explicit handler for `state: "steal"` so it doesn't
+fall into the default case unhandled.
+
+---
+
+## 8. Open questions for the tvOS team
 
 - Do you need a separate `dj_state` mirror, or will you reuse the existing
   `dj_state` payload that already broadcasts to host? (Currently it ships

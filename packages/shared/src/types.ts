@@ -16,6 +16,7 @@ export type GameState =
   | "lobby"        // waiting for players to join
   | "countdown"    // 3-2-1 before question
   | "playing"      // music playing, players answering
+  | "steal"        // 0 correct answers — 5s steal window with 2x points
   | "evaluating"   // AI evaluating free-text answers
   | "reveal"       // showing correct answer + points
   | "scoreboard"   // showing rankings between questions
@@ -73,9 +74,17 @@ export interface QuizConfig {
   answerMode: AnswerMode;
   excludeRecentPlays?: boolean;
   includeGossip?: boolean;
+  // Round modifiers
+  blindMode?: boolean;          // hide options, force free-text, 3x points
+  stealRoundEnabled?: boolean;  // when 0 correct → 5s steal window, 2x points
   customTracks?: Array<{ id: string; name: string; artistName: string; albumName: string; releaseYear: string; artworkUrl?: string; previewUrl?: string }>;
   customName?: string;
 }
+
+// ─── Score multipliers ───────────────────────────────────
+export const BLIND_MODE_MULTIPLIER = 3;
+export const STEAL_MODE_MULTIPLIER = 2;
+export const STEAL_DURATION_MS = 5000;
 
 // ─── Quiz Question ────────────────────────────────────────
 
@@ -148,6 +157,10 @@ export interface GameSession {
   questionStartTime: number;     // Date.now() when question started
   timer: ReturnType<typeof setTimeout> | null;
   pendingAnswers: Map<string, PendingAnswer>;  // answers waiting for evaluation
+  // Steal round state — populated when state === "steal"
+  stealActive?: boolean;
+  stealStartTime?: number;       // Date.now() when steal window opened
+  stealClaimedBy?: string;       // playerId of first correct answerer (locks the steal)
   createdAt: Date;
   lastActivity: Date;
 }

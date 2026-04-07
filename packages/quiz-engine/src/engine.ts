@@ -12,6 +12,7 @@ import type {
   HostQuestionData, AnswerMode, Party, PartyState, CompletedRound,
   QuizType,
 } from "@music-quiz/shared";
+import { BLIND_MODE_MULTIPLIER, STEAL_MODE_MULTIPLIER, STEAL_DURATION_MS } from "@music-quiz/shared";
 import { generateQuiz, type QuizType as GenQuizType, type Quiz } from "./quiz.js";
 import type { AppleMusicClient } from "./apple-music.js";
 import { isHomeConnected } from "./home-ws.js";
@@ -1248,11 +1249,33 @@ export function submitAnswer(
   timeMs?: number,
 ): boolean {
   const session = sessions.get(sessionId);
-  if (!session || session.state !== "playing") return false;
+  if (!session) return false;
   if (questionIndex !== session.currentQuestion) return false;
 
   const player = session.players.get(wsId);
   if (!player) return false;
+
+  // ─── Steal Round ────────────────────────────────────────
+  // In steal state, ANY player can submit (including those who answered
+  // wrong in the original round). First correct wins.
+  if (session.state === "steal" && session.stealActive) {
+    const question = session.questions[session.currentQuestion];
+    if (!question) return false;
+    let isCorrect = false;
+    if (answerIndex !== undefined) {
+      const correctIndex = question.options.indexOf(question.correctAnswer);
+      isCorrect = answerIndex === correctIndex;
+    } else if (text !== undefined) {
+      // Cheap check: case-insensitive contains. The full AI eval is too slow
+      // for a 5-second steal window. Players are expected to type carefully.
+      const normalize = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9æøå ]/gi, "");
+      isCorrect = normalize(text) === normalize(question.correctAnswer) ||
+                  normalize(question.correctAnswer).includes(normalize(text)) && normalize(text).length >= 3;
+    }
+    return tryClaimSteal(session, wsId, isCorrect);
+  }
+
+  if (session.state !== "playing") return false;
 
   // Don't allow double answers
   if (session.pendingAnswers.has(wsId)) return false;
@@ -1312,6 +1335,9 @@ async function evaluateAndScore(
 ): Promise<void> {
   const results: QuestionResult[] = [];
 
+  // Round modifiers — apply bonus multipliers to points
+  const blindBonus = session.config.blindMode ? BLIND_MODE_MULTIPLIER : 1;
+
   if (mode === "free-text") {
     // AI evaluation
     const playerAnswers = [...session.pendingAnswers.values()].map((a) => ({
@@ -1337,7 +1363,7 @@ async function evaluateAndScore(
       const player = session.players.get(ev.playerId);
       if (!pending || !player) continue;
 
-      const points = ev.isCorrect ? calculatePoints(pending.timeMs, session.config.timeLimit * 1000, player.streak) : 0;
+      const points = ev.isCorrect ? calculatePoints(pending.timeMs, session.config.timeLimit * 1000, player.streak, blindBonus) : 0;
       player.streak = ev.isCorrect ? player.streak + 1 : 0;
       player.score += points;
 
@@ -1371,7 +1397,7 @@ async function evaluateAndScore(
       if (!player) continue;
 
       const correct = pending.answerIndex === correctIndex;
-      const points = correct ? calculatePoints(pending.timeMs, session.config.timeLimit * 1000, player.streak) : 0;
+      const points = correct ? calculatePoints(pending.timeMs, session.config.timeLimit * 1000, player.streak, blindBonus) : 0;
       player.streak = correct ? player.streak + 1 : 0;
       player.score += points;
 
@@ -1419,10 +1445,92 @@ async function evaluateAndScore(
     }
   }
 
+  // Steal Round trigger: if nobody got it right and steal is enabled,
+  // open a 5-second steal window before going to reveal. ANY player can
+  // jump in (including those who already answered wrong) — first correct
+  // wins 2x points. Skip steal if we're already in one (no recursive steal).
+  const anyCorrect = results.some(r => r.correct);
+  if (!anyCorrect && session.config.stealRoundEnabled && !session.stealActive) {
+    enterStealRound(session, question, results);
+    return;
+  }
+
   // Emit results
   transition(session, "reveal");
   emit(session.id, { type: "question_results", session, results });
 
+  // Auto-advance: reveal → scoreboard → next question
+  session.timer = setTimeout(() => {
+    transition(session, "scoreboard");
+    session.timer = setTimeout(async () => {
+      await advanceToNextQuestion(session);
+    }, SCOREBOARD_DURATION_MS);
+  }, REVEAL_DURATION_MS);
+}
+
+// ─── Steal Round ──────────────────────────────────────────
+
+function enterStealRound(session: GameSession, question: QuizQuestion, originalResults: QuestionResult[]): void {
+  console.log(`🎯 Steal round opened for "${question.questionText}" — 0 correct out of ${session.players.size}`);
+  session.stealActive = true;
+  session.stealStartTime = Date.now();
+  session.stealClaimedBy = undefined;
+  // Clear pending so a new round of submissions can come in
+  session.pendingAnswers.clear();
+  transition(session, "steal");
+
+  // 5-second window — if nobody claims, transition to reveal with original results
+  session.timer = setTimeout(() => {
+    finishStealRound(session, question, originalResults);
+  }, STEAL_DURATION_MS);
+}
+
+/** Called when first correct steal answer arrives — locks the steal */
+export function tryClaimSteal(session: GameSession, playerId: string, isCorrect: boolean): boolean {
+  if (!session.stealActive || session.stealClaimedBy) return false;
+  if (!isCorrect) return false;
+  session.stealClaimedBy = playerId;
+  if (session.timer) {
+    clearTimeout(session.timer);
+    session.timer = null;
+  }
+  // Award 2x points instantly
+  const player = session.players.get(playerId);
+  const question = session.questions[session.currentQuestion];
+  if (!player || !question) return true;
+  const elapsed = Date.now() - (session.stealStartTime || Date.now());
+  const points = calculatePoints(elapsed, STEAL_DURATION_MS, player.streak, STEAL_MODE_MULTIPLIER);
+  player.streak = player.streak + 1;
+  player.score += points;
+  player.answers.push({
+    questionIndex: session.currentQuestion,
+    timeMs: elapsed,
+    correct: true,
+    points,
+    aiExplanation: `🎯 STEAL — ${STEAL_MODE_MULTIPLIER}× bonus`,
+  });
+  console.log(`🎯 ${player.name} stole "${question.questionText}" for ${points} points`);
+  // Build a results array containing only the steal winner so reveal shows them
+  const stealResult: QuestionResult = {
+    playerId,
+    playerName: player.name,
+    avatar: player.avatar,
+    answer: "STEAL",
+    correct: true,
+    points,
+    totalScore: player.score,
+    streak: player.streak,
+    aiExplanation: `🎯 STEAL — ${STEAL_MODE_MULTIPLIER}× bonus`,
+  };
+  finishStealRound(session, question, [stealResult]);
+  return true;
+}
+
+function finishStealRound(session: GameSession, question: QuizQuestion, results: QuestionResult[]): void {
+  session.stealActive = false;
+  // Emit reveal with whatever results we have (steal winner OR original empty results)
+  transition(session, "reveal");
+  emit(session.id, { type: "question_results", session, results });
   // Auto-advance: reveal → scoreboard → next question
   session.timer = setTimeout(() => {
     transition(session, "scoreboard");
@@ -1490,7 +1598,7 @@ export function skipQuestion(sessionId: string): boolean {
 
 // ─── Scoring ──────────────────────────────────────────────
 
-export function calculatePoints(timeMs: number, timeLimitMs: number, streak: number): number {
+export function calculatePoints(timeMs: number, timeLimitMs: number, streak: number, bonusMultiplier: number = 1): number {
   if (timeMs > timeLimitMs) return 0;
 
   // Base: 1000 points, falls linearly with time
@@ -1498,9 +1606,9 @@ export function calculatePoints(timeMs: number, timeLimitMs: number, streak: num
   const basePoints = Math.round(1000 * timeRatio);
 
   // Streak bonus: 1.5x after 3, 2x after 5
-  const multiplier = streak >= 5 ? 2.0 : streak >= 3 ? 1.5 : 1.0;
+  const streakMultiplier = streak >= 5 ? 2.0 : streak >= 3 ? 1.5 : 1.0;
 
-  return Math.round(basePoints * multiplier);
+  return Math.round(basePoints * streakMultiplier * bonusMultiplier);
 }
 
 // ─── Danish Language Detection ───────────────────────────
