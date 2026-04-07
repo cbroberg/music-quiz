@@ -1266,11 +1266,7 @@ export function submitAnswer(
       const correctIndex = question.options.indexOf(question.correctAnswer);
       isCorrect = answerIndex === correctIndex;
     } else if (text !== undefined) {
-      // Cheap check: case-insensitive contains. The full AI eval is too slow
-      // for a 5-second steal window. Players are expected to type carefully.
-      const normalize = (s: string) => s.trim().toLowerCase().replace(/[^a-z0-9æøå ]/gi, "");
-      isCorrect = normalize(text) === normalize(question.correctAnswer) ||
-                  normalize(question.correctAnswer).includes(normalize(text)) && normalize(text).length >= 3;
+      isCorrect = matchStealAnswer(text, question.correctAnswer);
     }
     return tryClaimSteal(session, wsId, isCorrect);
   }
@@ -1469,6 +1465,46 @@ async function evaluateAndScore(
 }
 
 // ─── Steal Round ──────────────────────────────────────────
+
+/**
+ * Fast string match for steal answers. Runs in <1ms (no AI roundtrip)
+ * because the steal window is only 5 seconds.
+ *
+ * Handles:
+ * - Unicode diacritics (Beyoncé = Beyonce, Björk = Bjork, Mø = Mo)
+ * - Case insensitivity
+ * - All punctuation including apostrophes, quotes, parentheses, commas
+ * - Collapsed whitespace
+ *
+ * Accept rules (first match wins):
+ * 1. Exact normalized match — "Bohemian Rhapsody" == "bohemian rhapsody"
+ * 2. Player answer is a prefix or suffix of the correct answer AND
+ *    covers at least 60% of the correct answer's length. Handles
+ *    "New York New York" vs "Theme from New York, New York" (suffix,
+ *    80% coverage = accept).
+ *
+ * Rejects everything else — no 3-letter steals.
+ */
+function matchStealAnswer(playerText: string, correctAnswer: string): boolean {
+  const normalize = (s: string) => s
+    .normalize("NFD")                          // decompose é → e + combining acute
+    .replace(/[\u0300-\u036f]/g, "")           // strip combining marks
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N} ]/gu, " ")          // strip all non-letter/digit (Unicode-aware) → space
+    .replace(/\s+/g, " ")                      // collapse whitespace
+    .trim();
+
+  const p = normalize(playerText);
+  const c = normalize(correctAnswer);
+
+  if (!p || !c) return false;
+  if (p === c) return true;
+
+  // Prefix/suffix coverage — must cover at least 60% of correct
+  const coverage = p.length / c.length;
+  if (coverage < 0.6) return false;
+  return c.startsWith(p) || c.endsWith(p);
+}
 
 function enterStealRound(session: GameSession, question: QuizQuestion, originalResults: QuestionResult[]): void {
   console.log(`🎯 Steal round opened for "${question.questionText}" — 0 correct out of ${session.players.size}`);
