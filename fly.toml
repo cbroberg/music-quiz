@@ -13,13 +13,14 @@ primary_region = 'arn'
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
-  min_machines_running = 1
-
+  min_machines_running = 0
+  # F391 24/9 2026 (ejerens GO): kold
 [mounts]
   source = "data"
   destination = "/data"
 
 [[vm]]
-  memory = '512mb'
+  memory = '256mb'
+  # F391 24/9 2026 (ejerens GO): 7d-top 164 MB — 256 MB
   cpu_kind = 'shared'
   cpus = 1
